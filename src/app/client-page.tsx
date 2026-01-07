@@ -12,9 +12,12 @@ import Contact from '@/components/sections/contact';
 import FinalCta from '@/components/sections/final-cta';
 import { cn } from '@/lib/utils';
 import Faq from '@/components/sections/faq';
+import type { OfferingCategory } from '@/components/sections/offerings';
 
 export default function ClientPage() {
     const [isLoading, setIsLoading] = useState(true);
+    const [heroCategory, setHeroCategory] = useState<OfferingCategory>('cakes');
+    const [exploreClicked, setExploreClicked] = useState(false);
 
     useEffect(() => {
         // Hide preloader after a short delay.
@@ -22,15 +25,25 @@ export default function ClientPage() {
         return () => clearTimeout(timer);
     }, []);
 
+    const handleExplore = (category: OfferingCategory) => {
+        setHeroCategory(category);
+        setExploreClicked(true);
+        document.getElementById('offerings')?.scrollIntoView({ behavior: 'smooth' });
+    }
+
     return (
         <>
             <Preloader isLoading={isLoading} />
             <div className={cn("transition-opacity duration-1000", isLoading ? 'opacity-0' : 'opacity-100')}>
                 <Header />
                 <main>
-                    <Hero />
+                    <Hero onExplore={handleExplore} />
                     <BestSellers />
-                    <Offerings />
+                    <Offerings 
+                        initialCategory={heroCategory}
+                        exploreClicked={exploreClicked}
+                        onResetExplore={() => setExploreClicked(false)}
+                    />
                     <Menu />
                     <Contact />
                     <FinalCta />

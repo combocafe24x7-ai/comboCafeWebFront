@@ -28,10 +28,11 @@ export default function BestSellers() {
                   {item.tag}
                 </Badge>
               </div>
-              <CardContent className="p-6 flex-grow">
+              <CardContent className="p-6 flex-grow flex flex-col">
                 <h3 className="font-headline text-2xl text-foreground">{item.name}</h3>
+                <p className="text-muted-foreground mt-2 font-body flex-grow">{item.description}</p>
               </CardContent>
-              <CardFooter className="p-4 bg-card/50 grid grid-cols-2 gap-2">
+              <CardFooter className="p-4 bg-card/50 grid grid-cols-2 gap-2 mt-auto">
                  <Button asChild className="w-full">
                     <a href={`tel:${config.contact.phone}`}>
                         <Phone /> Call to Order

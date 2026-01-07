@@ -7,8 +7,13 @@ import { Button } from '@/components/ui/button';
 import { ArrowUp, ArrowDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import type { OfferingCategory } from './offerings';
 
-export default function Hero() {
+type HeroProps = {
+  onExplore: (category: OfferingCategory) => void;
+};
+
+export default function Hero({ onExplore }: HeroProps) {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
   const [parallaxStyle, setParallaxStyle] = useState<React.CSSProperties>({});
@@ -55,13 +60,13 @@ export default function Hero() {
   };
   
   const PrimaryButton = () => (
-    <Button size="lg" onClick={() => handleScrollTo(config.hero.primaryCta.href)} className="font-semibold shadow-lg hover:shadow-xl transition-shadow bg-primary text-primary-foreground hover:bg-primary/90">
-      {config.hero.primaryCta.text}
+    <Button size="lg" onClick={() => onExplore(currentCategory.id)} className="font-semibold shadow-lg hover:shadow-xl transition-shadow bg-primary text-primary-foreground hover:bg-primary/90">
+      {config.hero.primaryCta.text} {currentCategory.headline}
     </Button>
   );
 
   const SecondaryButton = () => (
-    <Button size="lg" variant="outline" onClick={() => handleScrollTo(config.hero.secondaryCta.href)} className="border-2 text-white border-white/80 hover:bg-white/10 backdrop-blur-sm">
+    <Button size="lg" variant="outline" onClick={() => handleScrollTo(config.hero.secondaryCta.href)} className="border-2 text-white border-white/80 bg-black/20 hover:bg-white/20 backdrop-blur-sm">
       {config.hero.secondaryCta.text}
     </Button>
   );

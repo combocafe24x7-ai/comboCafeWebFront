@@ -31,7 +31,7 @@ export default function Contact() {
                                     <p className="text-muted-foreground">Find us on the map</p>
                                 </div>
                             </div>
-                            <Button asChild>
+                            <Button asChild size="lg">
                                 <a href={config.contact.locationUrl} target="_blank" rel="noopener noreferrer">View Map</a>
                             </Button>
                         </li>
@@ -43,7 +43,7 @@ export default function Contact() {
                                     <p className="text-muted-foreground">Give us a call</p>
                                 </div>
                             </div>
-                            <Button asChild>
+                            <Button asChild size="lg">
                                 <a href={`tel:${config.contact.phone}`}>Call Now</a>
                             </Button>
                         </li>
@@ -55,7 +55,7 @@ export default function Contact() {
                                     <p className="text-muted-foreground">Send us a message</p>
                                 </div>
                             </div>
-                             <Button asChild>
+                             <Button asChild size="lg">
                                 <a href={`mailto:${config.contact.email}`}>Send Email</a>
                             </Button>
                         </li>
@@ -67,7 +67,7 @@ export default function Contact() {
                                     <p className="text-muted-foreground">{config.contact.hours}</p>
                                 </div>
                             </div>
-                            <Button onClick={() => handleScrollTo('contact')}>View Hours</Button>
+                            <Button onClick={() => handleScrollTo('contact')} size="lg">View Hours</Button>
                         </li>
                     </ul>
                 </CardContent>

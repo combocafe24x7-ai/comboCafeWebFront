@@ -1,7 +1,7 @@
 
 "use client"
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { config } from '@/app/config.tsx';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import Image from 'next/image';
@@ -20,9 +20,16 @@ type Product = {
   description?: string;
 };
 
-type OfferingCategory = 'cakes' | 'flowers' | 'food';
+export type OfferingCategory = 'cakes' | 'flowers' | 'food';
 type SubCategory = string;
 type SubSubCategory = string;
+
+type OfferingsProps = {
+    initialCategory: OfferingCategory | null;
+    exploreClicked: boolean;
+    onResetExplore: () => void;
+};
+
 
 const ProductCard = ({ item }: { item: Product }) => {
   const { addToCart } = useCart();
@@ -108,10 +115,20 @@ const CategoryCard = ({ title, imageUrl, imageHint, onClick }: { title: string; 
 );
 
 
-export default function Offerings() {
+export default function Offerings({ initialCategory, exploreClicked, onResetExplore }: OfferingsProps) {
   const [selectedCategory, setSelectedCategory] = useState<OfferingCategory | null>(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState<SubCategory | null>(null);
   const [selectedSubSubCategory, setSelectedSubSubCategory] = useState<SubSubCategory | null>(null);
+
+  useEffect(() => {
+    if (exploreClicked && initialCategory) {
+      setSelectedCategory(initialCategory);
+      setSelectedSubCategory(null);
+      setSelectedSubSubCategory(null);
+      onResetExplore();
+    }
+  }, [exploreClicked, initialCategory, onResetExplore]);
+
 
   const getAnimationKey = () => {
     if (selectedSubSubCategory) return `subsub-${selectedSubSubCategory}`;

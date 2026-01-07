@@ -29,22 +29,25 @@ export const config = {
   },
   hero: {
     backgroundUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ezgif.com-video-to-webp-converter%20(2).webp",
-    primaryCta: { text: "Explore Menu", href: "#menu" },
+    primaryCta: { text: "Explore", href: "#offerings" },
     secondaryCta: { text: "Order for Celebration", href: "#contact" },
     categories: [
       {
+        id: "cakes" as const,
         headline: "Handcrafted Cakes",
         subtitle: "Taste the Celebration",
         description: "Experience our collection of artisanal cakes, baked with love and the finest ingredients for your special moments.",
         accentColor: "#D47B8C", // Muted Pink/Coral
       },
       {
+        id: "flowers" as const,
         headline: "Fresh Flowers",
         subtitle: "Bloom & Smile",
         description: "Brighten any day with our curated selection of fresh, vibrant flowers, arranged to capture the beauty of nature.",
         accentColor: "#A6C2ED", // Soft Blue
       },
       {
+        id: "food" as const,
         headline: "Delicious Food",
         subtitle: "Gifts of Joy",
         description: "Discover the perfect pairing of flavors and flowers. Our special combos are designed to make any occasion unforgettable.",
@@ -130,10 +133,10 @@ export const config = {
     ],
   },
   bestsellers: [
-    { name: "Cappuccino", tag: "Most Loved", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty-coffee') },
-    { name: "Chocolate Cake", tag: "Top Pick", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
-    { name: "Cold Coffee", tag: "Fan Favorite", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
-    { name: "Cake + Flower Combo", tag: "Perfect Gift", imageUrl: findImage('gift-combos'), imageHint: findImageHint('gift-combos') },
+    { name: "Cappuccino", tag: "Most Loved", description: "A classic blend of rich espresso, steamed milk, and a delicate layer of foam.", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty-coffee') },
+    { name: "Chocolate Cake", tag: "Top Pick", description: "Our decadent chocolate cake is a slice of heaven for any chocolate lover.", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
+    { name: "Cold Coffee", tag: "Fan Favorite", description: "A refreshing and creamy cold coffee to cool you down on a hot day.", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
+    { name: "Cake + Flower Combo", tag: "Perfect Gift", description: "The perfect combination of a delicious cake and a beautiful bouquet.", imageUrl: findImage('gift-combos'), imageHint: findImageHint('gift-combos') },
   ],
   contact: {
     address: "123 Blossom Lane, Flavor Town, 45678",
