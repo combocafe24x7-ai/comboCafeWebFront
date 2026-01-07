@@ -4,6 +4,7 @@ import { config } from '@/app/config.tsx';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Phone, Mail, Clock, MapPin } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function Contact() {
 
@@ -31,7 +32,7 @@ export default function Contact() {
                                     <p className="text-muted-foreground">Find us on the map</p>
                                 </div>
                             </div>
-                            <Button asChild size="lg">
+                            <Button asChild size="lg" className="w-32 justify-center">
                                 <a href={config.contact.locationUrl} target="_blank" rel="noopener noreferrer">View Map</a>
                             </Button>
                         </li>
@@ -43,7 +44,7 @@ export default function Contact() {
                                     <p className="text-muted-foreground">Give us a call</p>
                                 </div>
                             </div>
-                            <Button asChild size="lg">
+                            <Button asChild size="lg" className="w-32 justify-center">
                                 <a href={`tel:${config.contact.phone}`}>Call Now</a>
                             </Button>
                         </li>
@@ -55,7 +56,7 @@ export default function Contact() {
                                     <p className="text-muted-foreground">Send us a message</p>
                                 </div>
                             </div>
-                             <Button asChild size="lg">
+                             <Button asChild size="lg" className="w-32 justify-center">
                                 <a href={`mailto:${config.contact.email}`}>Send Email</a>
                             </Button>
                         </li>
@@ -67,7 +68,7 @@ export default function Contact() {
                                     <p className="text-muted-foreground">{config.contact.hours}</p>
                                 </div>
                             </div>
-                            <Button onClick={() => handleScrollTo('contact')} size="lg">View Hours</Button>
+                            <Button onClick={() => handleScrollTo('contact')} size="lg" className="w-32 justify-center">View Hours</Button>
                         </li>
                     </ul>
                 </CardContent>
