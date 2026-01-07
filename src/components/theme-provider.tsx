@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import * as React from "react"
 import { ThemeProvider as NextThemesProvider } from "next-themes"
@@ -37,6 +37,3 @@ function hexToHsl(hex: string): string {
     
     return `${Math.round(h * 360)} ${Math.round(s * 100)}% ${Math.round(l * 100)}%`;
 }
-
-// Re-export useTheme from next-themes
-export { useTheme } from "next-themes";
