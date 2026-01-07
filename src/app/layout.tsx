@@ -3,6 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { config } from './config.tsx';
 import { ThemeProvider } from '@/components/theme-provider';
+import { CartProvider } from '@/context/cart-provider';
 
 export const metadata: Metadata = {
   title: config.brand.name,
@@ -28,8 +29,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Toaster />
+          <CartProvider>
+            {children}
+            <Toaster />
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -5,12 +5,15 @@ import { config } from '@/app/config.tsx';
 import { cn } from '@/lib/utils';
 import ThemeToggle from '@/components/ui/theme-toggle';
 import { Button } from '@/components/ui/button';
-import { Menu as MenuIcon } from 'lucide-react';
+import { Menu as MenuIcon, ShoppingCart } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import { useCart } from '@/context/cart-provider';
+import { Badge } from '@/components/ui/badge';
 
 export default function Header() {
   const [isSticky, setSticky] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const { cart } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,8 +73,22 @@ export default function Header() {
         <div className="hidden md:flex items-center space-x-6">
           <NavLinks />
           <ThemeToggle />
+          <Button variant="ghost" size="icon" className="relative">
+            <ShoppingCart />
+            {cart.length > 0 && (
+              <Badge variant="destructive" className="absolute -top-2 -right-2 h-6 w-6 rounded-full flex items-center justify-center text-xs">{cart.length}</Badge>
+            )}
+            <span className="sr-only">Open cart</span>
+          </Button>
         </div>
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center gap-2">
+           <Button variant="ghost" size="icon" className="relative">
+            <ShoppingCart />
+            {cart.length > 0 && (
+              <Badge variant="destructive" className="absolute -top-2 -right-2 h-6 w-6 rounded-full flex items-center justify-center text-xs">{cart.length}</Badge>
+            )}
+            <span className="sr-only">Open cart</span>
+          </Button>
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
