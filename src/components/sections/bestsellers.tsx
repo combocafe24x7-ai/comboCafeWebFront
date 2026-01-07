@@ -51,7 +51,7 @@ export default function BestSellers() {
                           <Phone /><span>Call to Order</span>
                       </a>
                   </Button>
-                  <Button asChild variant="secondary" size="lg" className="bg-yellow-400 text-black hover:bg-yellow-500 hover:animate-pulse">
+                  <Button asChild variant="secondary" size="lg" className="bg-blue-400 text-white hover:bg-blue-500 hover:animate-pulse">
                       <a href={whatsAppUrl} target="_blank" rel="noopener noreferrer">
                           <span>Order on WhatsApp</span>
                       </a>

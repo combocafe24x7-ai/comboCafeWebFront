@@ -110,7 +110,7 @@ export default function Hero({ onExplore }: HeroProps) {
         {/* Left Side Content */}
         <div className="w-full md:w-1/2">
           <div className={cn('transition-all duration-300 ease-in-out', isChanging ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0')}>
-            <h2 className="text-sm font-body uppercase tracking-widest" style={{ color: currentCategory.accentColor }}>{currentCategory.subtitle}</h2>
+            <h2 className="text-sm font-body uppercase tracking-widest text-primary">{currentCategory.subtitle}</h2>
             <h1 className="font-headline text-5xl md:text-7xl font-bold my-4 leading-tight">{currentCategory.headline}</h1>
             <p className="font-body text-lg text-white/80 max-w-md">{currentCategory.description}</p>
             <div className="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
@@ -145,3 +145,4 @@ export default function Hero({ onExplore }: HeroProps) {
     </section>
   );
 }
+

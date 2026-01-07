@@ -85,7 +85,7 @@ export default function Cart() {
                             <Phone /><span>Call to Order</span>
                         </a>
                     </Button>
-                    <Button asChild variant="secondary" className="w-full bg-yellow-400 text-black hover:bg-yellow-500 hover:animate-pulse">
+                    <Button asChild variant="secondary" className="w-full bg-blue-400 text-white hover:bg-blue-500 hover:animate-pulse">
                         <a href={`https://wa.me/${config.contact.phone}?text=${getWhatsAppMessage()}`} target="_blank" rel="noopener noreferrer">
                             <WhatsAppIcon className="w-5 h-5" /><span>Order on WhatsApp</span>
                         </a>

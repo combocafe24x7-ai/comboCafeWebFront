@@ -89,7 +89,7 @@ const ProductCard = ({ item }: { item: Product }) => {
                 <Phone /><span>Call</span>
             </a>
         </Button>
-        <Button asChild variant="secondary" className="sm:col-span-2 bg-yellow-400 text-black hover:bg-yellow-500 hover:animate-pulse">
+        <Button asChild variant="secondary" className="sm:col-span-2 bg-blue-400 text-white hover:bg-blue-500 hover:animate-pulse">
             <a href={`https://wa.me/${config.contact.phone}?text=I'd like to order: ${item.name} (${item.price})`} target="_blank" rel="noopener noreferrer">
                 <span>Order on WhatsApp</span>
             </a>
@@ -117,7 +117,7 @@ const FlowerCard = ({ item }: { item: { name: string; description: string; image
                 <Phone /><span>Call to Order</span>
             </a>
         </Button>
-        <Button asChild variant="secondary" className="bg-yellow-400 text-black hover:bg-yellow-500 hover:animate-pulse">
+        <Button asChild variant="secondary" className="bg-blue-400 text-white hover:bg-blue-500 hover:animate-pulse">
             <a href={`https://wa.me/${config.contact.phone}?text=I'd like to order: ${item.name}`} target="_blank" rel="noopener noreferrer">
                 <span>Order on WhatsApp</span>
             </a>
