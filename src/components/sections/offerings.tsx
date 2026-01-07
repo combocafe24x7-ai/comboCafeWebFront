@@ -32,7 +32,7 @@ const ProductCard = ({ item }: { item: Product }) => {
   }
 
   return (
-    <Card className="overflow-hidden group border-0 shadow-lg dark:shadow-black/20 hover:shadow-xl transition-shadow duration-300 rounded-lg flex flex-col">
+    <Card className="overflow-hidden group border-0 shadow-lg dark:shadow-black/20 hover:shadow-xl transition-shadow duration-300 flex flex-col rounded-none">
       <CardHeader className="p-0">
         <div className="aspect-square relative">
           <Image src={item.imageUrl} alt={item.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" data-ai-hint={item.imageHint} />
@@ -45,7 +45,7 @@ const ProductCard = ({ item }: { item: Product }) => {
       </CardContent>
       <CardFooter className="p-4 bg-card/50 grid grid-cols-1 sm:grid-cols-3 gap-2">
          <Button onClick={handleAddToCart}>
-            <ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
+            <ShoppingCart className="mr-2 h-4 w-4" /> Cart
         </Button>
          <Button asChild variant="outline">
             <a href={`tel:${config.contact.phone}`}>
@@ -63,7 +63,7 @@ const ProductCard = ({ item }: { item: Product }) => {
 };
 
 const FlowerCard = ({ item }: { item: { name: string; description: string; imageUrl: string; imageHint: string; price: string; } }) => (
-    <Card className="overflow-hidden group border-0 shadow-lg dark:shadow-black/20 hover:shadow-xl transition-shadow duration-300 rounded-lg flex flex-col">
+    <Card className="overflow-hidden group border-0 shadow-lg dark:shadow-black/20 hover:shadow-xl transition-shadow duration-300 flex flex-col rounded-none">
     <CardHeader className="p-0">
       <div className="aspect-square relative">
         <Image src={item.imageUrl} alt={item.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" data-ai-hint={item.imageHint} />
@@ -115,14 +115,14 @@ export default function Offerings() {
                 <div className='text-center my-4'>
                     <Badge variant="secondary">{config.offerings.cakes["Celebration Cakes"].note}</Badge>
                 </div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3">
                   {config.offerings.cakes["Celebration Cakes"].items.map(cake => (
                     <ProductCard key={cake.name} item={cake} />
                   ))}
                 </div>
               </TabsContent>
               <TabsContent value="desserts">
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3">
                   {config.offerings.cakes["Cakes & Desserts"].items.map(cake => (
                     <ProductCard key={cake.name} item={cake} />
                   ))}
@@ -132,7 +132,7 @@ export default function Offerings() {
           </TabsContent>
 
           <TabsContent value="flowers">
-             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+             <div className="grid md:grid-cols-2 lg:grid-cols-3">
               {config.offerings.flowers.map(flower => (
                 <FlowerCard key={flower.name} item={flower} />
               ))}
@@ -146,14 +146,14 @@ export default function Offerings() {
                 <TabsTrigger value="snacks">Snacks</TabsTrigger>
               </TabsList>
               <TabsContent value="beverages">
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4">
                   {config.offerings.food["Beverages"].items.map(item => (
                     <ProductCard key={item.name} item={item} />
                   ))}
                 </div>
               </TabsContent>
               <TabsContent value="snacks">
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3">
                   {config.offerings.food["Snacks"].items.map(item => (
                     <ProductCard key={item.name} item={item} />
                   ))}
