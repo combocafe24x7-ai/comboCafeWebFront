@@ -15,10 +15,9 @@ import { cn } from '@/lib/utils';
 
 export default function ClientPage() {
     const [isLoading, setIsLoading] = useState(true);
-    const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
-        // Hide preloader after a short delay to allow assets to start loading.
+        // Hide preloader after a short delay.
         const timer = setTimeout(() => setIsLoading(false), 500); 
         return () => clearTimeout(timer);
     }, []);
@@ -29,7 +28,7 @@ export default function ClientPage() {
             <div className={cn("transition-opacity duration-1000", isLoading ? 'opacity-0' : 'opacity-100')}>
                 <Header />
                 <main>
-                    <Hero videoRef={videoRef} />
+                    <Hero />
                     <Offerings />
                     <Menu />
                     <BestSellers />

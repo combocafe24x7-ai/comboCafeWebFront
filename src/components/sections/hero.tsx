@@ -5,12 +5,9 @@ import { config } from '@/app/config.tsx';
 import { Button } from '@/components/ui/button';
 import { ArrowUp, ArrowDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
-interface HeroProps {
-  videoRef: React.RefObject<HTMLVideoElement>;
-}
-
-export default function Hero({ videoRef }: HeroProps) {
+export default function Hero() {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
   const [parallaxStyle, setParallaxStyle] = useState<React.CSSProperties>({});
@@ -67,15 +64,13 @@ export default function Hero({ videoRef }: HeroProps) {
   return (
     <section id="home" className="relative h-screen w-full overflow-hidden text-white">
       <div className="absolute inset-0 bg-black/60 z-10" />
-      <video
-        ref={videoRef}
+      <Image
         src={config.hero.backgroundUrl}
-        autoPlay
-        loop
-        muted
-        playsInline
+        alt="Hero background"
+        fill
         className="absolute top-0 left-0 w-full h-full object-cover"
         style={parallaxStyle}
+        unoptimized
       />
       
       <div className="relative z-20 container mx-auto px-6 h-full flex items-center">
