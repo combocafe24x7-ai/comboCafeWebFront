@@ -69,7 +69,7 @@ export default function Header({ onNavSelect, heroAccentColor = config.hero.cate
 
   const handleNavClick = (id: string) => {
     if (id === 'menu') {
-      onNavSelect('menu');
+       window.open('/menu', '_blank');
     } else {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     }
@@ -92,9 +92,8 @@ export default function Header({ onNavSelect, heroAccentColor = config.hero.cate
                     'font-body font-semibold transition-colors w-full text-left p-4 text-lg',
                     isActive ? 'text-primary' : 'text-foreground/80 hover:text-foreground'
                   )}
-                  style={isActive ? { color: heroAccentColor } : {}}
                 >
-                  {link.label}
+                   <span style={isActive ? { color: heroAccentColor } : {}}>{link.label}</span>
                 </button>
               </SheetClose>
               <div className="pl-8">
@@ -123,9 +122,8 @@ export default function Header({ onNavSelect, heroAccentColor = config.hero.cate
                   'text-sm',
                   isActive ? 'text-primary' : 'text-foreground/80 hover:text-foreground'
                 )}
-                style={isActive ? { color: heroAccentColor } : {}}
               >
-                {link.label} <ChevronDown className="h-4 w-4" />
+                <span style={isActive ? { color: heroAccentColor } : {}}>{link.label}</span> <ChevronDown className="h-4 w-4" />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -137,18 +135,18 @@ export default function Header({ onNavSelect, heroAccentColor = config.hero.cate
 
       // Regular link
       const Comp = isMobile ? SheetClose : 'button';
+      const clickHandler = isMobile ? onNavSelect : handleNavClick;
       return (
         <Comp
           key={link.id}
-          onClick={() => handleNavClick(link.id)}
+          onClick={() => clickHandler(link.id)}
           className={cn(
             'font-body font-semibold transition-colors',
             isMobile ? 'block w-full text-left p-4 text-lg' : 'text-sm',
             isActive ? 'text-primary' : 'text-foreground/80 hover:text-foreground'
           )}
-          style={isActive ? { color: heroAccentColor } : {}}
         >
-          {link.label}
+          <span style={isActive ? { color: heroAccentColor } : {}}>{link.label}</span>
         </Comp>
       );
     })

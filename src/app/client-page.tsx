@@ -12,12 +12,14 @@ import Menu from '@/components/sections/menu';
 import BestSellers from '@/components/sections/bestsellers';
 import Contact from '@/components/sections/contact';
 import FinalCta from '@/components/sections/final-cta';
+import MenuOverlay from '@/components/sections/menu-overlay';
 import { cn } from '@/lib/utils';
 import type { OfferingCategory, SubCategory, SubSubCategory } from '@/components/sections/offerings';
 import { config } from './config.tsx';
 
 export default function ClientPage() {
     const [isLoading, setIsLoading] = useState(true);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [exploreClicked, setExploreClicked] = useState(false);
     const [navigatedCategory, setNavigatedCategory] = useState<{ category: OfferingCategory, subCategory?: SubCategory, subSubCategory?: SubSubCategory} | null>(null);
     const [heroAccentColor, setHeroAccentColor] = useState(config.hero.categories[0].accentColor);
@@ -36,7 +38,7 @@ export default function ClientPage() {
 
     const handleNavSelect = (path: string) => {
         if (path === 'menu') {
-            window.open('/menu', '_blank');
+            setIsMenuOpen(true);
             return;
         }
         const [category, subCategory, subSubCategory] = path.split(':') as [OfferingCategory, SubCategory?, SubSubCategory?];
@@ -47,10 +49,11 @@ export default function ClientPage() {
     return (
         <>
             <Preloader isLoading={isLoading} />
+            <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
             <div className={cn("transition-opacity duration-1000", isLoading ? 'opacity-0' : 'opacity-100')}>
                 <Header onNavSelect={handleNavSelect} heroAccentColor={heroAccentColor} />
                 <main className="pb-20 md:pb-0">
-                    <Hero onExplore={handleExplore} onCategoryChange={(color) => setHeroAccentColor(color)} onNavSelect={handleNavSelect} />
+                    <Hero onExplore={handleExplore} onCategoryChange={(color) => setHeroAccentColor(color)} />
                     <div className="hidden md:block">
                         <BestSellers />
                     </div>

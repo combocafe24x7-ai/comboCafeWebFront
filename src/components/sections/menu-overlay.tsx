@@ -17,20 +17,27 @@ import { X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 
-export default function MenuPage() {
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+type MenuOverlayProps = {
+    isOpen: boolean;
+    onClose: () => void;
+};
 
-  const handleClose = () => {
-    window.close();
-  }
+export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(isOpen);
+  }, [isOpen]);
+
+  if (!isOpen) return null;
 
   return (
-    <div className={cn("fixed inset-0 bg-background/95 backdrop-blur-sm z-[200] flex flex-col items-center justify-center transition-opacity duration-500", isMounted ? 'opacity-100' : 'opacity-0')}>
+    <div className={cn(
+        "fixed inset-0 bg-background/95 backdrop-blur-sm z-[200] flex flex-col items-center justify-center transition-opacity duration-500", 
+        isMounted ? 'opacity-100' : 'opacity-0'
+    )}>
       <div className="absolute top-4 right-4">
-        <Button variant="ghost" size="icon" onClick={handleClose} className="text-foreground/70 hover:text-foreground">
+        <Button variant="ghost" size="icon" onClick={onClose} className="text-foreground/70 hover:text-foreground">
           <X className="h-6 w-6" />
           <span className="sr-only">Close</span>
         </Button>
@@ -41,7 +48,10 @@ export default function MenuPage() {
         <p className="mt-2 max-w-2xl mx-auto text-lg text-muted-foreground">Take a look at our full menu.</p>
       </div>
 
-      <div className={cn("w-full max-w-7xl mx-auto transition-transform duration-700 delay-200 transform", isMounted ? 'scale-100 opacity-100' : 'scale-90 opacity-0')}>
+      <div className={cn(
+          "w-full max-w-7xl mx-auto transition-transform duration-700 delay-200 transform", 
+          isMounted ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
+      )}>
         <Carousel 
             opts={{
                 align: "start",
