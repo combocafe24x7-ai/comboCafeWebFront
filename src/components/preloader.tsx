@@ -14,7 +14,7 @@ export default function Preloader({ isLoading }: { isLoading: boolean }) {
     >
       <div className="text-center">
         <h1 className="text-3xl md:text-4xl font-headline text-stone-800 mb-4">{config.brand.name}</h1>
-        <div className="w-12 h-12 border-4 border-primary/50 border-t-primary rounded-full animate-spin mx-auto"></div>
+        <div className="w-12 h-12 border-4 border-stone-800/50 border-t-stone-800 rounded-full animate-spin mx-auto"></div>
       </div>
     </div>
   );
