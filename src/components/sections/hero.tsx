@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { config } from '@/app/config';
+import { config } from '@/app/config.tsx';
 import { Button } from '@/components/ui/button';
 import { ArrowUp, ArrowDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -66,7 +66,7 @@ export default function Hero({ videoRef }: HeroProps) {
 
   return (
     <section id="home" className="relative h-screen w-full overflow-hidden text-white">
-      <div className="absolute inset-0 bg-black/50 z-10" />
+      <div className="absolute inset-0 bg-black/60 z-10" />
       <video
         ref={videoRef}
         src={config.hero.backgroundUrl}

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
-import { config } from './config';
+import { config } from './config.tsx';
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {

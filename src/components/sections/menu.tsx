@@ -1,4 +1,4 @@
-import { config } from '@/app/config';
+import { config } from '@/app/config.tsx';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 

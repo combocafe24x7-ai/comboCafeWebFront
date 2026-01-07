@@ -1,4 +1,4 @@
-import { config } from '@/app/config';
+import { config } from '@/app/config.tsx';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';

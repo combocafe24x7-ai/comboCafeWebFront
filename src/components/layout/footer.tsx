@@ -1,4 +1,4 @@
-import { config } from "@/app/config";
+import { config } from "@/app/config.tsx";
 import { cn } from "@/lib/utils";
 
 export default function Footer() {

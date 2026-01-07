@@ -1,4 +1,4 @@
-import { config } from '@/app/config';
+import { config } from '@/app/config.tsx';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 export default function Faq() {

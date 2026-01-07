@@ -1,6 +1,6 @@
 "use client";
 
-import { config } from '@/app/config';
+import { config } from '@/app/config.tsx';
 import { Button } from '@/components/ui/button';
 
 export default function FinalCta() {

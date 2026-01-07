@@ -67,10 +67,28 @@
       "imageHint": "celebration gift"
     },
     {
-      "id": "map-image",
-      "description": "A static map image showing the location of the cafe.",
-      "imageUrl": "https://images.unsplash.com/photo-1522678073884-26b1b87526e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjaXR5JTIwbWFwfGVufDB8fHx8MTc2NzczNzM3NXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "city map"
+      "id": "specialty-coffee",
+      "description": "A cup of specialty coffee.",
+      "imageUrl": "https://images.unsplash.com/photo-1680381792123-676305af82d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzcGVjaWFsdHklMjBjb2ZmZWV8ZW58MHx8fHwxNzY3NzAzNTk3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "specialty coffee"
+    },
+    {
+      "id": "gourmet-sandwiches",
+      "description": "A gourmet sandwich.",
+      "imageUrl": "https://images.unsplash.com/photo-1764620977411-9f06b1425064?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxnb3VybWV0JTIwc2FuZHdpY2h8ZW58MHx8fHwxNzY3NzQ4MzIxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gourmet sandwich"
+    },
+    {
+      "id": "artisanal-pastries",
+      "description": "An artisanal pastry.",
+      "imageUrl": "https://images.unsplash.com/photo-1759503262428-f4ab8a0ddd60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhcnRpc2FuYWwlMjBwYXN0cnl8ZW58MHx8fHwxNzY3NzQ4MzIxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "artisanal pastry"
+    },
+    {
+      "id": "healthy-salads",
+      "description": "A healthy salad.",
+      "imageUrl": "https://images.unsplash.com/photo-1692194740974-21e59c3bbbea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aGVhbHRoeSUyMHNhbGFkfGVufDB8fHx8MTc2NzY1Nzg4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy salad"
     }
   ]
 }
