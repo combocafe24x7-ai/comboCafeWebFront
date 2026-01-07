@@ -113,12 +113,12 @@ export default function Hero({ onExplore, onCategoryChange }: HeroProps) {
       />
       
       <div className="relative z-20 container mx-auto px-6 h-full flex flex-col justify-center">
-        <div className="md:w-1/2 text-center md:text-left">
+        <div className="md:w-1/2 text-left">
           <div className={cn('transition-all duration-300 ease-in-out', isChanging ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0')}>
             <h2 className="text-sm font-body uppercase tracking-widest" style={{ color: currentCategory.accentColor }}>{currentCategory.subtitle}</h2>
-            <h1 className="font-headline text-5xl md:text-7xl font-bold my-4 leading-tight">{currentCategory.headline}</h1>
-            <p className="font-body text-lg text-white/80 max-w-md mx-auto md:mx-0">{currentCategory.description}</p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <h1 className="font-headline text-5xl md:text-7xl font-bold my-4 leading-tight" style={{ color: currentCategory.accentColor }}>{currentCategory.headline}</h1>
+            <p className="font-body text-lg text-white/80 max-w-md">{currentCategory.description}</p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-start">
               <PrimaryButton />
               <SecondaryButton />
             </div>
@@ -150,4 +150,3 @@ export default function Hero({ onExplore, onCategoryChange }: HeroProps) {
     </section>
   );
 }
-
