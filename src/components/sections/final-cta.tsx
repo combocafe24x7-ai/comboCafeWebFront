@@ -1,3 +1,4 @@
+
 "use client";
 
 import { config } from '@/app/config.tsx';
@@ -8,7 +9,7 @@ export default function FinalCta() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
   return (
-    <section className="bg-primary text-primary-foreground py-20 md:py-28">
+    <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
       <div className="container mx-auto px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-headline font-bold">{config.finalCta.headline}</h2>
         <p className="mt-4 max-w-2xl mx-auto text-lg opacity-90">{config.finalCta.description}</p>
@@ -16,7 +17,7 @@ export default function FinalCta() {
             variant="outline"
             size="lg"
             onClick={() => handleScrollTo('contact')}
-            className="mt-8 bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-bold px-8 py-6 text-base"
+            className="mt-8 bg-white text-gray-900 hover:bg-gray-200 font-bold px-8 py-6 text-base"
         >
             {config.finalCta.buttonText}
         </Button>
@@ -24,3 +25,5 @@ export default function FinalCta() {
     </section>
   );
 }
+
+    
