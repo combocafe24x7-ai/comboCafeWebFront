@@ -18,26 +18,9 @@ export default function ClientPage() {
     const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
-        const video = videoRef.current;
-        if (video) {
-            const onCanPlay = () => {
-                // Add a small delay for a smoother visual transition
-                setTimeout(() => setIsLoading(false), 500);
-            };
-
-            if (video.readyState >= 3) {
-                onCanPlay();
-            } else {
-                video.addEventListener('canplaythrough', onCanPlay, { once: true });
-            }
-
-            return () => {
-                video.removeEventListener('canplaythrough', onCanPlay);
-            };
-        } else {
-            const timer = setTimeout(() => setIsLoading(false), 3000); // Fallback timer
-            return () => clearTimeout(timer);
-        }
+        // Hide preloader after a short delay to allow assets to start loading.
+        const timer = setTimeout(() => setIsLoading(false), 500); 
+        return () => clearTimeout(timer);
     }, []);
 
     return (
