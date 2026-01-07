@@ -63,6 +63,10 @@ export default function Header({ onNavSelect, heroAccentColor = '#FFDA63' }: Hea
     };
   }, []);
 
+  const handleBrandClick = () => {
+    window.location.reload();
+  };
+
   const handleScrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -182,9 +186,9 @@ export default function Header({ onNavSelect, heroAccentColor = '#FFDA63' }: Hea
     <header className={cn('fixed top-0 left-0 right-0 z-50 transition-all duration-300', isSticky ? 'bg-background/80 backdrop-blur-sm shadow-md' : 'bg-transparent')}>
       <nav className="container flex justify-between items-center px-4 md:px-6 py-3">
         <button 
-          onClick={() => handleScrollTo('home')} 
+          onClick={handleBrandClick} 
           className="text-xl font-headline font-bold transition-colors duration-300"
-          style={{ color: activeSection === 'home' ? heroAccentColor : 'hsl(var(--primary))' }}
+          style={{ color: heroAccentColor }}
         >
           {config.brand.name}
         </button>
@@ -229,5 +233,3 @@ export default function Header({ onNavSelect, heroAccentColor = '#FFDA63' }: Hea
     </header>
   );
 }
-
-    
