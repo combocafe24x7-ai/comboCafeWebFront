@@ -21,11 +21,11 @@ type Product = {
 };
 
 export type OfferingCategory = 'cakes' | 'flowers' | 'food';
-type SubCategory = string;
-type SubSubCategory = string;
+export type SubCategory = string;
+export type SubSubCategory = string;
 
 type OfferingsProps = {
-    initialCategory: OfferingCategory | null;
+    initialCategoryState: { category: OfferingCategory, subCategory?: SubCategory, subSubCategory?: SubSubCategory } | null;
     exploreClicked: boolean;
     onResetExplore: () => void;
 };
@@ -115,19 +115,22 @@ const CategoryCard = ({ title, imageUrl, imageHint, onClick }: { title: string; 
 );
 
 
-export default function Offerings({ initialCategory, exploreClicked, onResetExplore }: OfferingsProps) {
+export default function Offerings({ initialCategoryState, exploreClicked, onResetExplore }: OfferingsProps) {
   const [selectedCategory, setSelectedCategory] = useState<OfferingCategory | null>(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState<SubCategory | null>(null);
   const [selectedSubSubCategory, setSelectedSubSubCategory] = useState<SubSubCategory | null>(null);
 
   useEffect(() => {
-    if (exploreClicked && initialCategory) {
-      setSelectedCategory(initialCategory);
-      setSelectedSubCategory(null);
-      setSelectedSubSubCategory(null);
-      onResetExplore();
+    if (exploreClicked || initialCategoryState) {
+        const category = initialCategoryState?.category || selectedCategory;
+        if(category) {
+            setSelectedCategory(category);
+            setSelectedSubCategory(initialCategoryState?.subCategory || null);
+            setSelectedSubSubCategory(initialCategoryState?.subSubCategory || null);
+        }
+        onResetExplore();
     }
-  }, [exploreClicked, initialCategory, onResetExplore]);
+  }, [exploreClicked, initialCategoryState, onResetExplore, selectedCategory]);
 
 
   const getAnimationKey = () => {

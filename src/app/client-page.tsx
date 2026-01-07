@@ -12,13 +12,13 @@ import Contact from '@/components/sections/contact';
 import FinalCta from '@/components/sections/final-cta';
 import { cn } from '@/lib/utils';
 import Faq from '@/components/sections/faq';
-import type { OfferingCategory } from '@/components/sections/offerings';
+import type { OfferingCategory, SubCategory, SubSubCategory } from '@/components/sections/offerings';
 
 export default function ClientPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [heroCategory, setHeroCategory] = useState<OfferingCategory>('cakes');
     const [exploreClicked, setExploreClicked] = useState(false);
-    const [navigatedCategory, setNavigatedCategory] = useState<OfferingCategory | null>(null);
+    const [navigatedCategory, setNavigatedCategory] = useState<{ category: OfferingCategory, subCategory?: SubCategory, subSubCategory?: SubSubCategory} | null>(null);
 
     useEffect(() => {
         // Hide preloader after a short delay.
@@ -32,8 +32,9 @@ export default function ClientPage() {
         document.getElementById('offerings')?.scrollIntoView({ behavior: 'smooth' });
     }
 
-    const handleNavSelect = (category: OfferingCategory) => {
-        setNavigatedCategory(category);
+    const handleNavSelect = (path: string) => {
+        const [category, subCategory, subSubCategory] = path.split(':') as [OfferingCategory, SubCategory?, SubSubCategory?];
+        setNavigatedCategory({ category, subCategory, subSubCategory });
         document.getElementById('offerings')?.scrollIntoView({ behavior: 'smooth' });
     };
 
@@ -46,7 +47,7 @@ export default function ClientPage() {
                     <Hero onExplore={handleExplore} />
                     <BestSellers />
                     <Offerings 
-                        initialCategory={exploreClicked ? heroCategory : navigatedCategory}
+                        initialCategoryState={navigatedCategory}
                         exploreClicked={exploreClicked || !!navigatedCategory}
                         onResetExplore={() => {
                             setExploreClicked(false);

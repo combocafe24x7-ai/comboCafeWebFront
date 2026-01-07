@@ -63,9 +63,30 @@ export const config = {
         id: "offerings",
         label: "Offerings",
         sublinks: [
-          { id: "cakes", label: "Cakes" },
+          { 
+            id: "cakes", 
+            label: "Cakes",
+            sublinks: [
+              { id: "cakes:Celebration Cakes", label: "Celebration Cakes" },
+              { id: "cakes:Cakes & Desserts", label: "Cakes & Desserts" },
+            ]
+          },
           { id: "flowers", label: "Flowers" },
-          { id: "food", label: "Food" },
+          { 
+            id: "food", 
+            label: "Food",
+            sublinks: [
+              { id: "food:Snacks", label: "Snacks" },
+              { 
+                id: "food:Beverages", 
+                label: "Beverages",
+                sublinks: [
+                  { id: "food:Beverages:Hot Beverages", label: "Hot Beverages" },
+                  { id: "food:Beverages:Cold Beverages", label: "Cold Beverages" },
+                ]
+              },
+            ]
+          },
         ]
       },
       { id: "menu", label: "Menu" },

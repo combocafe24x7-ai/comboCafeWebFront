@@ -11,15 +11,24 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+  DropdownMenuPortal,
 } from "@/components/ui/dropdown-menu"
 import { useCart } from '@/context/cart-provider';
 import { Badge } from '@/components/ui/badge';
 import Cart from '@/components/cart';
-import type { OfferingCategory } from '../sections/offerings';
 
 type HeaderProps = {
-    onNavSelect: (category: OfferingCategory) => void;
+    onNavSelect: (path: string) => void;
 }
+
+type NavLink = {
+  id: string;
+  label: string;
+  sublinks?: NavLink[];
+};
 
 export default function Header({ onNavSelect }: HeaderProps) {
   const [isSticky, setSticky] = useState(false);
@@ -56,14 +65,17 @@ export default function Header({ onNavSelect }: HeaderProps) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const NavLinks = ({ isMobile = false }: { isMobile?: boolean }) => (
-    config.navigation.links.map(link => {
-      if (link.sublinks) {
+  const renderNavLinks = (links: NavLink[], isMobile = false): React.ReactNode[] => {
+    return links.map(link => {
+      const hasSublinks = link.sublinks && link.sublinks.length > 0;
+
+      if (hasSublinks) {
         if (isMobile) {
-          return (
+          // Basic mobile dropdown - can be enhanced later if needed
+           return (
             <div key={link.id}>
               <button
-                onClick={() => handleScrollTo(link.id)}
+                onClick={() => onNavSelect(link.id)}
                 className={cn(
                   'font-body font-semibold transition-colors w-full text-left p-4 text-lg',
                   activeSection === link.id ? 'text-primary' : 'text-foreground/80 hover:text-foreground'
@@ -72,10 +84,10 @@ export default function Header({ onNavSelect }: HeaderProps) {
                 {link.label}
               </button>
               <div className="pl-8">
-                {link.sublinks.map(sublink => (
+                {link.sublinks?.map(sublink => (
                     <SheetClose key={sublink.id} asChild>
                         <button
-                            onClick={() => onNavSelect(sublink.id as OfferingCategory)}
+                            onClick={() => onNavSelect(sublink.id)}
                             className="block w-full text-left p-3 text-md text-foreground/70 hover:text-foreground"
                         >
                             {sublink.label}
@@ -86,6 +98,8 @@ export default function Header({ onNavSelect }: HeaderProps) {
             </div>
           )
         }
+        
+        // Desktop nested dropdown
         return (
           <DropdownMenu key={link.id}>
             <DropdownMenuTrigger asChild>
@@ -100,16 +114,13 @@ export default function Header({ onNavSelect }: HeaderProps) {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              {link.sublinks.map(sublink => (
-                <DropdownMenuItem key={sublink.id} onClick={() => onNavSelect(sublink.id as OfferingCategory)}>
-                  {sublink.label}
-                </DropdownMenuItem>
-              ))}
+              {renderDropdownItems(link.sublinks!)}
             </DropdownMenuContent>
           </DropdownMenu>
         );
       }
 
+      // Regular link
       const Comp = isMobile ? SheetClose : 'button';
       return (
         <Comp
@@ -125,7 +136,33 @@ export default function Header({ onNavSelect }: HeaderProps) {
         </Comp>
       );
     })
-  );
+  };
+  
+  const renderDropdownItems = (links: NavLink[]): React.ReactNode[] => {
+    return links.map(link => {
+      const hasSublinks = link.sublinks && link.sublinks.length > 0;
+      if (hasSublinks) {
+        return (
+          <DropdownMenuSub key={link.id}>
+            <DropdownMenuSubTrigger onClick={() => onNavSelect(link.id)}>
+              <span>{link.label}</span>
+            </DropdownMenuSubTrigger>
+            <DropdownMenuPortal>
+              <DropdownMenuSubContent>
+                {renderDropdownItems(link.sublinks!)}
+              </DropdownMenuSubContent>
+            </DropdownMenuPortal>
+          </DropdownMenuSub>
+        );
+      }
+      return (
+        <DropdownMenuItem key={link.id} onClick={() => onNavSelect(link.id)}>
+          {link.label}
+        </DropdownMenuItem>
+      );
+    });
+  }
+
 
   const CartTrigger = () => (
      <SheetTrigger asChild>
@@ -147,8 +184,8 @@ export default function Header({ onNavSelect }: HeaderProps) {
         </button>
         <Sheet>
             <div className="hidden md:flex items-center space-x-6">
-            <NavLinks />
-            <CartTrigger />
+              {renderNavLinks(config.navigation.links)}
+              <CartTrigger />
             </div>
             <SheetContent className="flex flex-col">
                 <Cart />
@@ -176,7 +213,7 @@ export default function Header({ onNavSelect }: HeaderProps) {
                   </span>
                 </div>
                 <div className="flex-grow py-4">
-                  <NavLinks isMobile />
+                  {renderNavLinks(config.navigation.links, true)}
                 </div>
               </div>
             </SheetContent>
@@ -186,5 +223,4 @@ export default function Header({ onNavSelect }: HeaderProps) {
     </header>
   );
 }
-
     
