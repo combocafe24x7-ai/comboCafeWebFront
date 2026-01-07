@@ -12,7 +12,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 20%;
     
-    --primary: 47 100% 69.2%; /* #FFDA63 */
+    --primary: var(--primary-hsl, 47 100% 69.2%); /* #FFDA63 */
     --primary-foreground: 0 0% 20%;
     
     --secondary: 0 0% 93.1%;
@@ -25,7 +25,7 @@
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
-    --ring: 47 100% 69.2%;
+    --ring: var(--primary-hsl, 47 100% 69.2%);
     --radius: 0.75rem;
   }
  
@@ -38,7 +38,7 @@
     --popover: 0 0% 7.1%;
     --popover-foreground: 0 0% 94.1%;
     
-    --primary: 47 100% 69.2%; /* #FFDA63 */
+    --primary: var(--primary-hsl, 47 100% 69.2%); /* #FFDA63 */
     --primary-foreground: 0 0% 7.1%;
     
     --secondary: 0 0% 14.9%;
@@ -51,7 +51,7 @@
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
-    --ring: 47 100% 69.2%;
+    --ring: var(--primary-hsl, 47 100% 69.2%);
   }
 }
 
