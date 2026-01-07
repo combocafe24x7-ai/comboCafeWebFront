@@ -1,3 +1,4 @@
+
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 
@@ -66,8 +67,8 @@ export const config = {
         note: "You have to order",
         items: [
           { name: "Chocolate Cake", price: "₹120", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
-          { name: "Vanilla Cake (Slice)", price: "₹100", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
-          { name: "Strawberry Cake (Slice)", price: "₹130", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
+          { name: "Vanilla Cake", price: "₹100", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
+          { name: "Strawberry Cake", price: "₹130", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
           { name: "Red Velvet Cake", price: "₹150", imageUrl: findImage('celebration-cake'), imageHint: findImageHint('celebration-cake') },
           { name: "Chocolate Brownie", price: "₹90", imageUrl: findImage('best-seller-1'), imageHint: findImageHint('best-seller-1') },
           { name: "Cup Cake (Chocolate / Vanilla)", price: "₹60", imageUrl: findImage('best-seller-3'), imageHint: findImageHint('best-seller-3') },
@@ -78,7 +79,7 @@ export const config = {
           { name: "Chocolate Cake (Slice)", price: "₹120", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
           { name: "Vanilla Cake (Slice)", price: "₹100", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
           { name: "Strawberry Cake (Slice)", price: "₹130", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
-          { name: "Red Velvet Cake", price: "₹150", imageUrl: findImage('celebration-cake'), imageHint: findImageHint('celebration-cake') },
+          { name: "Red Velvet Cake (Slice)", price: "₹150", imageUrl: findImage('celebration-cake'), imageHint: findImageHint('celebration-cake') },
           { name: "Chocolate Brownie", price: "₹90", imageUrl: findImage('best-seller-1'), imageHint: findImageHint('best-seller-1') },
         ]
       }
@@ -97,18 +98,24 @@ export const config = {
         ]
       },
       "Beverages": {
-        items: [
-            { name: "Espresso", price: "₹80", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-            { name: "Americano", price: "₹100", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-            { name: "Cappuccino", price: "₹120", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-            { name: "Caffè Latte", price: "₹130", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-            { name: "Mocha", price: "₹140", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-            { name: "Hot Chocolate", price: "₹120", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-            { name: "Cold Coffee", price: "₹140", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
-            { name: "Iced Latte", price: "₹150", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
-            { name: "Chocolate Frappe", price: "₹160", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
-            { name: "Strawberry Milkshake", price: "₹150", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
-        ]
+        "Hot Beverages": {
+            items: [
+                { name: "Espresso", price: "₹80", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
+                { name: "Americano", price: "₹100", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
+                { name: "Cappuccino", price: "₹120", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
+                { name: "Caffè Latte", price: "₹130", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
+                { name: "Mocha", price: "₹140", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
+                { name: "Hot Chocolate", price: "₹120", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
+            ]
+        },
+        "Cold Beverages": {
+            items: [
+                { name: "Cold Coffee", price: "₹140", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
+                { name: "Iced Latte", price: "₹150", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
+                { name: "Chocolate Frappe", price: "₹160", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
+                { name: "Strawberry Milkshake", price: "₹150", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
+            ]
+        }
       }
     }
   },
@@ -136,8 +143,8 @@ export const config = {
     ],
     celebrationCakes: [
         { name: "Chocolate Cake", price: "₹120" },
-        { name: "Vanilla Cake (Slice)", price: "₹100" },
-        { name: "Strawberry Cake (Slice)", price: "₹130" },
+        { name: "Vanilla Cake", price: "₹100" },
+        { name: "Strawberry Cake", price: "₹130" },
         { name: "Red Velvet Cake", price: "₹150" },
         { name: "Chocolate Brownie", price: "₹90" },
         { name: "Cup Cake (Chocolate / Vanilla)", price: "₹60" },
@@ -193,3 +200,5 @@ export const config = {
     copyright: `© ${new Date().getFullYear()} Combo Café & Gift Shop. All rights reserved.`,
   },
 };
+
+    

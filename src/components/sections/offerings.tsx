@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from 'react';
@@ -21,6 +22,7 @@ type Product = {
 
 type OfferingCategory = 'cakes' | 'flowers' | 'food';
 type SubCategory = string;
+type SubSubCategory = string;
 
 const ProductCard = ({ item }: { item: Product }) => {
   const { addToCart } = useCart();
@@ -105,9 +107,26 @@ const CategoryCard = ({ title, imageUrl, imageHint, onClick }: { title: string; 
 export default function Offerings() {
   const [selectedCategory, setSelectedCategory] = useState<OfferingCategory | null>(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState<SubCategory | null>(null);
+  const [selectedSubSubCategory, setSelectedSubSubCategory] = useState<SubSubCategory | null>(null);
 
   const renderContent = () => {
-    // Level 3: Show products in the selected sub-category
+    
+    // Level 4: Show products for beverage sub-sub-category
+    if (selectedCategory === 'food' && selectedSubCategory === 'Beverages' && selectedSubSubCategory) {
+        const items = config.offerings.food.Beverages[selectedSubSubCategory as keyof typeof config.offerings.food.Beverages].items;
+        return (
+            <div>
+                <Button variant="ghost" onClick={() => setSelectedSubSubCategory(null)} className="mb-8">
+                    <ArrowLeft className="mr-2 h-4 w-4" /> Back to Beverages
+                </Button>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4">
+                    {items.map(item => <ProductCard key={item.name} item={item} />)}
+                </div>
+            </div>
+        )
+    }
+
+    // Level 3: Show products in the selected sub-category or beverage sub-sub-categories
     if (selectedCategory && selectedSubCategory) {
       let items: Product[] = [];
       let note: string | undefined;
@@ -116,28 +135,62 @@ export default function Offerings() {
         const subCatData = config.offerings.cakes[selectedSubCategory as keyof typeof config.offerings.cakes];
         items = subCatData.items;
         note = subCatData.note;
-      } else if (selectedCategory === 'food') {
-        items = config.offerings.food[selectedSubCategory as keyof typeof config.offerings.food].items;
+        return (
+            <div>
+               <Button variant="ghost" onClick={() => setSelectedSubCategory(null)} className="mb-8">
+                <ArrowLeft className="mr-2 h-4 w-4" /> Back to {selectedCategory}
+              </Button>
+              <div className='text-center my-4'>
+                  {note && <Badge variant="secondary">{note}</Badge>}
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4">
+                {items.map(item => <ProductCard key={item.name} item={item} />)}
+              </div>
+            </div>
+          )
+      } else if (selectedCategory === 'food' && selectedSubCategory === 'Snacks') {
+          items = config.offerings.food[selectedSubCategory as keyof typeof config.offerings.food].items;
+          return (
+            <div>
+               <Button variant="ghost" onClick={() => setSelectedSubCategory(null)} className="mb-8">
+                <ArrowLeft className="mr-2 h-4 w-4" /> Back to {selectedCategory}
+              </Button>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4">
+                {items.map(item => <ProductCard key={item.name} item={item} />)}
+              </div>
+            </div>
+          )
+      } else if (selectedCategory === 'food' && selectedSubCategory === 'Beverages') {
+          const beverageCategories = Object.keys(config.offerings.food.Beverages);
+          return (
+            <div>
+                <Button variant="ghost" onClick={() => setSelectedSubCategory(null)} className="mb-8">
+                    <ArrowLeft className="mr-2 h-4 w-4" /> Back to Food
+                </Button>
+                <div className="grid md:grid-cols-2">
+                    {beverageCategories.map(beverageCat => {
+                        const firstItem = config.offerings.food.Beverages[beverageCat as keyof typeof config.offerings.food.Beverages].items[0];
+                        return <CategoryCard 
+                                    key={beverageCat}
+                                    title={beverageCat}
+                                    imageUrl={firstItem.imageUrl}
+                                    imageHint={firstItem.imageHint}
+                                    onClick={() => setSelectedSubSubCategory(beverageCat)}
+                                />
+                    })}
+                </div>
+            </div>
+          )
       }
-      
-      return (
-        <div>
-           <Button variant="ghost" onClick={() => setSelectedSubCategory(null)} className="mb-8">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to {selectedCategory}
-          </Button>
-          <div className='text-center my-4'>
-              {note && <Badge variant="secondary">{note}</Badge>}
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4">
-            {items.map(item => <ProductCard key={item.name} item={item} />)}
-          </div>
-        </div>
-      )
     }
 
-    // Level 2: Show sub-categories or products for the selected main category
+    // Level 2: Show sub-categories for the selected main category
     if (selectedCategory) {
-      const handleBackClick = () => setSelectedCategory(null);
+      const handleBackClick = () => {
+        setSelectedCategory(null);
+        setSelectedSubCategory(null);
+        setSelectedSubSubCategory(null);
+      };
       let subCategories, gridCols;
 
       switch(selectedCategory) {
@@ -186,7 +239,10 @@ export default function Offerings() {
               </Button>
               <div className={`grid ${gridCols}`}>
                   {subCategories.map(subCategory => {
-                      const firstItem = config.offerings.food[subCategory as keyof typeof config.offerings.food].items[0];
+                      const firstItem = (config.offerings.food[subCategory as keyof typeof config.offerings.food] as any).items
+                        ? (config.offerings.food[subCategory as keyof typeof config.offerings.food] as any).items[0]
+                        : (config.offerings.food[subCategory as keyof typeof config.offerings.food] as any)["Hot Beverages"].items[0];
+
                       return <CategoryCard 
                                 key={subCategory}
                                 title={subCategory}
@@ -221,8 +277,8 @@ export default function Offerings() {
         />
         <CategoryCard 
             title="Food"
-            imageUrl={food["Beverages"].items[0].imageUrl}
-            imageHint={food["Beverages"].items[0].imageHint}
+            imageUrl={food.Beverages["Hot Beverages"].items[0].imageUrl}
+            imageHint={food.Beverages["Hot Beverages"].items[0].imageHint}
             onClick={() => setSelectedCategory('food')}
         />
       </div>
@@ -244,3 +300,5 @@ export default function Offerings() {
     </section>
   );
 }
+
+    
