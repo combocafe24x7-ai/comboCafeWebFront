@@ -5,12 +5,33 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Phone, Mail, Clock, MapPin } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+
 
 export default function Contact() {
 
   const handleScrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
+  
+  const iconActions = [
+    {
+      label: "View Map",
+      Icon: MapPin,
+      href: config.contact.locationUrl,
+      target: "_blank"
+    },
+    {
+      label: "Call Now",
+      Icon: Phone,
+      href: `tel:${config.contact.phone}`,
+    },
+    {
+      label: "Send Email",
+      Icon: Mail,
+      href: `mailto:${config.contact.email}`,
+    }
+  ];
 
   return (
     <section id="contact" className="py-20 md:py-28 bg-muted/30">
@@ -20,7 +41,33 @@ export default function Contact() {
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">We'd love to hear from you. Visit us for a coffee or drop us a line.</p>
         </div>
 
-        <div className="grid lg:grid-cols-1 gap-12 items-center">
+        {/* Mobile View: Icon bar */}
+        <Card className="md:hidden shadow-lg border-0 p-2">
+            <CardContent className="p-0">
+                <TooltipProvider>
+                    <div className="flex justify-around">
+                        {iconActions.map(({ label, Icon, href, target }) => (
+                             <Tooltip key={label}>
+                                <TooltipTrigger asChild>
+                                     <Button asChild variant="ghost" size="icon" className="w-16 h-16">
+                                        <a href={href} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined}>
+                                            <Icon className="h-6 w-6 text-primary" />
+                                        </a>
+                                    </Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>{label}</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        ))}
+                    </div>
+                </TooltipProvider>
+            </CardContent>
+        </Card>
+
+
+        {/* Desktop View: Full List */}
+        <div className="hidden md:grid lg:grid-cols-1 gap-12 items-center">
             <Card className="shadow-lg dark:shadow-black/20 border-0 p-4 max-w-4xl mx-auto w-full">
                 <CardContent className="p-6">
                     <ul className="space-y-6">
@@ -44,7 +91,7 @@ export default function Contact() {
                                     <p className="text-muted-foreground">Give us a call</p>
                                 </div>
                             </div>
-                            <Button asChild size="lg" className="w-32 justify-center">
+                            <Button asChild size="lg" className="w-32 justify-center hover:animate-pulse">
                                 <a href={`tel:${config.contact.phone}`}>Call Now</a>
                             </Button>
                         </li>

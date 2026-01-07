@@ -1,6 +1,6 @@
-
 "use client"
 
+import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { config } from '@/app/config.tsx';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -11,6 +11,9 @@ import { useCart } from '@/context/cart-provider';
 import { useToast } from '@/hooks/use-toast';
 import { Badge } from '../ui/badge';
 import { cn } from '@/lib/utils';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import Autoplay from "embla-carousel-autoplay";
+
 
 type Product = {
   name: string;
@@ -139,6 +142,25 @@ const CategoryCard = ({ title, imageUrl, imageHint, onClick }: { title: string; 
     </div>
 );
 
+const DesktopGrid = ({ children }: { children: React.ReactNode }) => (
+    <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4">
+        {children}
+    </div>
+);
+
+const MobileCarousel = ({ children, basis }: { children: React.ReactNode, basis?: string }) => (
+    <Carousel 
+        opts={{ align: "start" }} 
+        className="w-full md:hidden"
+    >
+        <CarouselContent className="-ml-4">
+            {React.Children.map(children, (child) => (
+                <CarouselItem className={cn("pl-4", basis || 'basis-4/5')}>{child}</CarouselItem>
+            ))}
+        </CarouselContent>
+    </Carousel>
+);
+
 
 export default function Offerings({ initialCategoryState, exploreClicked, onResetExplore }: OfferingsProps) {
   const [selectedCategory, setSelectedCategory] = useState<OfferingCategory | null>(null);
@@ -170,14 +192,14 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
     // Level 4: Show products for beverage sub-sub-category
     if (selectedCategory === 'food' && selectedSubCategory === 'Beverages' && selectedSubSubCategory) {
         const items = config.offerings.food.Beverages[selectedSubSubCategory as keyof typeof config.offerings.food.Beverages].items;
+        const productCards = items.map(item => <ProductCard key={item.name} item={item} />);
         return (
             <div>
                 <Button variant="ghost" onClick={() => setSelectedSubSubCategory(null)} className="mb-8">
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back to Beverages
                 </Button>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4">
-                    {items.map(item => <ProductCard key={item.name} item={item} />)}
-                </div>
+                <DesktopGrid>{productCards}</DesktopGrid>
+                <MobileCarousel>{productCards}</MobileCarousel>
             </div>
         )
     }
@@ -191,6 +213,7 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
         const subCatData = config.offerings.cakes[selectedSubCategory as keyof typeof config.offerings.cakes];
         items = subCatData.items;
         note = subCatData.note;
+        const productCards = items.map(item => <ProductCard key={item.name} item={item} />);
         return (
             <div>
                <Button variant="ghost" onClick={() => setSelectedSubCategory(null)} className="mb-8">
@@ -199,42 +222,41 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
               <div className='text-center my-4'>
                   {note && <Badge variant="secondary">{note}</Badge>}
               </div>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4">
-                {items.map(item => <ProductCard key={item.name} item={item} />)}
-              </div>
+                <DesktopGrid>{productCards}</DesktopGrid>
+                <MobileCarousel>{productCards}</MobileCarousel>
             </div>
           )
       } else if (selectedCategory === 'food' && selectedSubCategory === 'Snacks') {
           items = config.offerings.food[selectedSubCategory as keyof typeof config.offerings.food].items;
+          const productCards = items.map(item => <ProductCard key={item.name} item={item} />);
           return (
             <div>
                <Button variant="ghost" onClick={() => setSelectedSubCategory(null)} className="mb-8">
                 <ArrowLeft className="mr-2 h-4 w-4" /> Back to {selectedCategory}
               </Button>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4">
-                {items.map(item => <ProductCard key={item.name} item={item} />)}
-              </div>
+                <DesktopGrid>{productCards}</DesktopGrid>
+                <MobileCarousel>{productCards}</MobileCarousel>
             </div>
           )
       } else if (selectedCategory === 'food' && selectedSubCategory === 'Beverages') {
           const beverageCategories = Object.keys(config.offerings.food.Beverages);
+          const categoryCards = beverageCategories.map(beverageCat => {
+              const firstItem = config.offerings.food.Beverages[beverageCat as keyof typeof config.offerings.food.Beverages].items[0];
+              return <CategoryCard 
+                          key={beverageCat}
+                          title={beverageCat}
+                          imageUrl={firstItem.imageUrl}
+                          imageHint={firstItem.imageHint}
+                          onClick={() => setSelectedSubSubCategory(beverageCat)}
+                      />
+          });
           return (
             <div>
                 <Button variant="ghost" onClick={() => setSelectedSubCategory(null)} className="mb-8">
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back to Food
                 </Button>
-                <div className="grid md:grid-cols-2">
-                    {beverageCategories.map(beverageCat => {
-                        const firstItem = config.offerings.food.Beverages[beverageCat as keyof typeof config.offerings.food.Beverages].items[0];
-                        return <CategoryCard 
-                                    key={beverageCat}
-                                    title={beverageCat}
-                                    imageUrl={firstItem.imageUrl}
-                                    imageHint={firstItem.imageHint}
-                                    onClick={() => setSelectedSubSubCategory(beverageCat)}
-                                />
-                    })}
-                </div>
+                <div className="hidden md:grid md:grid-cols-2">{categoryCards}</div>
+                <MobileCarousel basis="basis-full">{categoryCards}</MobileCarousel>
             </div>
           )
       }
@@ -247,67 +269,64 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
         setSelectedSubCategory(null);
         setSelectedSubSubCategory(null);
       };
-      let subCategories, gridCols;
-
+      
       switch(selectedCategory) {
         case 'cakes':
-          subCategories = Object.keys(config.offerings.cakes);
-          gridCols = 'md:grid-cols-2';
+          const cakeSubCategories = Object.keys(config.offerings.cakes);
+          const cakeCategoryCards = cakeSubCategories.map(subCategory => {
+              const firstItem = config.offerings.cakes[subCategory as keyof typeof config.offerings.cakes].items[0];
+              return <CategoryCard 
+                        key={subCategory}
+                        title={subCategory}
+                        imageUrl={firstItem.imageUrl}
+                        imageHint={firstItem.imageHint}
+                        onClick={() => setSelectedSubCategory(subCategory)}
+                     />
+          });
           return (
             <div>
               <Button variant="ghost" onClick={handleBackClick} className="mb-8">
                 <ArrowLeft className="mr-2 h-4 w-4" /> Back to Offerings
               </Button>
-              <div className={`grid ${gridCols}`}>
-                  {subCategories.map(subCategory => {
-                      const firstItem = config.offerings.cakes[subCategory as keyof typeof config.offerings.cakes].items[0];
-                      return <CategoryCard 
-                                key={subCategory}
-                                title={subCategory}
-                                imageUrl={firstItem.imageUrl}
-                                imageHint={firstItem.imageHint}
-                                onClick={() => setSelectedSubCategory(subCategory)}
-                             />
-                  })}
-              </div>
+              <div className="hidden md:grid md:grid-cols-2">{cakeCategoryCards}</div>
+              <MobileCarousel basis="basis-full">{cakeCategoryCards}</MobileCarousel>
             </div>
           );
         case 'flowers':
+           const flowerCards = config.offerings.flowers.map(flower => (
+                <FlowerCard key={flower.name} item={flower} />
+            ));
            return (
             <div>
                 <Button variant="ghost" onClick={handleBackClick} className="mb-8">
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back to Offerings
                 </Button>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3">
-                    {config.offerings.flowers.map(flower => (
-                        <FlowerCard key={flower.name} item={flower} />
-                    ))}
-                </div>
+                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3">{flowerCards}</div>
+                <MobileCarousel>{flowerCards}</MobileCarousel>
             </div>
            );
         case 'food':
-          subCategories = Object.keys(config.offerings.food);
-          gridCols = 'md:grid-cols-2';
+          const foodSubCategories = Object.keys(config.offerings.food);
+          const foodCategoryCards = foodSubCategories.map(subCategory => {
+              const firstItem = (config.offerings.food[subCategory as keyof typeof config.offerings.food] as any).items
+                ? (config.offerings.food[subCategory as keyof typeof config.offerings.food] as any).items[0]
+                : (config.offerings.food[subCategory as keyof typeof config.offerings.food] as any)["Hot Beverages"].items[0];
+
+              return <CategoryCard 
+                        key={subCategory}
+                        title={subCategory}
+                        imageUrl={firstItem.imageUrl}
+                        imageHint={firstItem.imageHint}
+                        onClick={() => setSelectedSubCategory(subCategory)}
+                     />
+          });
            return (
             <div>
               <Button variant="ghost" onClick={handleBackClick} className="mb-8">
                 <ArrowLeft className="mr-2 h-4 w-4" /> Back to Offerings
               </Button>
-              <div className={`grid ${gridCols}`}>
-                  {subCategories.map(subCategory => {
-                      const firstItem = (config.offerings.food[subCategory as keyof typeof config.offerings.food] as any).items
-                        ? (config.offerings.food[subCategory as keyof typeof config.offerings.food] as any).items[0]
-                        : (config.offerings.food[subCategory as keyof typeof config.offerings.food] as any)["Hot Beverages"].items[0];
-
-                      return <CategoryCard 
-                                key={subCategory}
-                                title={subCategory}
-                                imageUrl={firstItem.imageUrl}
-                                imageHint={firstItem.imageHint}
-                                onClick={() => setSelectedSubCategory(subCategory)}
-                             />
-                  })}
-              </div>
+              <div className="hidden md:grid md:grid-cols-2">{foodCategoryCards}</div>
+              <MobileCarousel basis="basis-full">{foodCategoryCards}</MobileCarousel>
             </div>
           );
         default:
@@ -317,34 +336,41 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
 
     // Level 1: Show main category cards
     const { cakes, flowers, food } = config.offerings;
+    const mainCategories = (
+        <>
+            <CategoryCard 
+                title="Cakes" 
+                imageUrl={cakes["Cakes & Desserts"].items[0].imageUrl}
+                imageHint={cakes["Cakes & Desserts"].items[0].imageHint}
+                onClick={() => setSelectedCategory('cakes')}
+            />
+            <CategoryCard 
+                title="Flowers"
+                imageUrl={flowers[0].imageUrl}
+                imageHint={flowers[0].imageHint}
+                onClick={() => setSelectedCategory('flowers')}
+            />
+            <CategoryCard 
+                title="Food"
+                imageUrl={food.Beverages["Hot Beverages"].items[0].imageUrl}
+                imageHint={food.Beverages["Hot Beverages"].items[0].imageHint}
+                onClick={() => setSelectedCategory('food')}
+            />
+        </>
+    );
+
     return (
-      <div className="grid md:grid-cols-3">
-        <CategoryCard 
-            title="Cakes" 
-            imageUrl={cakes["Cakes & Desserts"].items[0].imageUrl}
-            imageHint={cakes["Cakes & Desserts"].items[0].imageHint}
-            onClick={() => setSelectedCategory('cakes')}
-        />
-        <CategoryCard 
-            title="Flowers"
-            imageUrl={flowers[0].imageUrl}
-            imageHint={flowers[0].imageHint}
-            onClick={() => setSelectedCategory('flowers')}
-        />
-        <CategoryCard 
-            title="Food"
-            imageUrl={food.Beverages["Hot Beverages"].items[0].imageUrl}
-            imageHint={food.Beverages["Hot Beverages"].items[0].imageHint}
-            onClick={() => setSelectedCategory('food')}
-        />
-      </div>
+        <>
+            <div className="hidden md:grid md:grid-cols-3">{mainCategories}</div>
+            <MobileCarousel>{mainCategories}</MobileCarousel>
+        </>
     );
   };
 
 
   return (
     <section id="offerings" className="py-20 md:py-28 bg-muted/30">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto md:px-6">
         <div className="text-center mb-12 md:mb-16">
             <h2 className="text-4xl md:text-5xl font-headline text-foreground">Our Offerings</h2>
             <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">From celebration cakes to hand-tied bouquets, every creation is a piece of art.</p>
