@@ -13,12 +13,14 @@ import BestSellers from '@/components/sections/bestsellers';
 import Contact from '@/components/sections/contact';
 import FinalCta from '@/components/sections/final-cta';
 import MenuOverlay from '@/components/sections/menu-overlay';
+import BestSellersOverlay from '@/components/sections/bestsellers-overlay';
 import { cn } from '@/lib/utils';
 import type { OfferingCategory, SubCategory, SubSubCategory } from '@/components/sections/offerings';
 
 export default function ClientPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isBestSellersOpen, setIsBestSellersOpen] = useState(false);
     const [exploreClicked, setExploreClicked] = useState(false);
     const [navigatedCategory, setNavigatedCategory] = useState<{ category: OfferingCategory, subCategory?: SubCategory, subSubCategory?: SubSubCategory} | null>(null);
 
@@ -35,8 +37,15 @@ export default function ClientPage() {
     }
 
     const handleNavSelect = (path: string) => {
+        const isMobile = window.innerWidth < 768;
+
         if (path === 'menu') {
             setIsMenuOpen(true);
+            return;
+        }
+
+        if (isMobile && path === 'bestsellers') {
+            setIsBestSellersOpen(true);
             return;
         }
         
@@ -53,6 +62,7 @@ export default function ClientPage() {
         <>
             <Preloader isLoading={isLoading} />
             <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+            <BestSellersOverlay isOpen={isBestSellersOpen} onClose={() => setIsBestSellersOpen(false)} />
             <div 
               className={cn("transition-opacity duration-1000", isLoading ? 'opacity-0' : 'opacity-100')}
             >
