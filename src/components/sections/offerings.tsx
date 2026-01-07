@@ -44,9 +44,10 @@ const ProductCard = ({ item }: { item: Product }) => {
   }
 
   const getDiscount = () => {
-    if (!item.originalPrice) return null;
-    const original = parseFloat(item.originalPrice.replace('Rs ', ''));
-    const current = parseFloat(item.price.replace('Rs ', ''));
+    if (!item.originalPrice || !item.price) return null;
+    const original = parseFloat(item.originalPrice.replace(/Rs\s?/i, ''));
+    const current = parseFloat(item.price.replace(/Rs\s?/i, ''));
+    
     if (isNaN(original) || isNaN(current) || original <= current) return null;
     
     const percentage = Math.round(((original - current) / original) * 100);
@@ -78,13 +79,13 @@ const ProductCard = ({ item }: { item: Product }) => {
             <p className="text-primary font-bold text-xl">{item.price}</p>
             {item.originalPrice && <p className="text-muted-foreground line-through text-sm">{item.originalPrice}</p>}
         </div>
-        {discount && <p className="text-sm text-green-600 font-semibold">You save Rs {discount.saved.toFixed(2)}!</p>}
+        {discount && <p className="text-sm text-green-600 font-semibold">You save Rs {discount.saved.toFixed(0)}!</p>}
       </CardContent>
       <CardFooter className="p-4 bg-card/50 grid grid-cols-1 sm:grid-cols-2 gap-2">
          <Button onClick={handleAddToCart}>
             <ShoppingCart /><span>Cart</span>
         </Button>
-         <Button asChild variant="outline">
+         <Button asChild variant="outline" className="hover:animate-pulse">
             <a href={`tel:${config.contact.phone}`}>
                 <Phone /><span>Call</span>
             </a>
@@ -112,7 +113,7 @@ const FlowerCard = ({ item }: { item: { name: string; description: string; image
        <p className="text-primary font-bold text-xl mt-4">{item.price}</p>
     </CardContent>
      <CardFooter className="p-4 bg-card/50 grid grid-cols-1 sm:grid-cols-2 gap-2">
-        <Button asChild>
+        <Button asChild className="hover:animate-pulse">
             <a href={`tel:${config.contact.phone}`}>
                 <Phone /><span>Call to Order</span>
             </a>
@@ -357,5 +358,3 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
     </section>
   );
 }
-
-    

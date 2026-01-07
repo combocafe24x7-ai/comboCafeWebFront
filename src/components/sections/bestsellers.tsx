@@ -46,7 +46,7 @@ export default function BestSellers() {
                 <h3 className="font-headline text-3xl md:text-4xl text-foreground mt-2">{item.name}</h3>
                 <p className="text-muted-foreground mt-4 font-body max-w-md mx-auto md:mx-0">{item.description}</p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-2 justify-center md:justify-start">
-                   <Button asChild size="lg">
+                   <Button asChild size="lg" className="hover:animate-pulse">
                       <a href={`tel:${config.contact.phone}`}>
                           <Phone /><span>Call to Order</span>
                       </a>
@@ -71,5 +71,3 @@ export default function BestSellers() {
     </section>
   );
 }
-
-    

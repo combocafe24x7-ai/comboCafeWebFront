@@ -98,17 +98,17 @@ export const config = {
       "Celebration Cakes": {
         note: "You have to order",
         items: [
-          { name: "Chocolate Cake", description: "Decadent layers of rich chocolate sponge and ganache.", price: "Rs 1200", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
-          { name: "Vanilla Cake", description: "A classic, elegant vanilla cake with buttercream frosting.", price: "Rs 1000", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
-          { name: "Strawberry Cake", description: "Light, fruity, and topped with fresh strawberries.", price: "Rs 1300", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
-          { name: "Red Velvet Cake", description: "A southern classic with a hint of cocoa and cream cheese frosting.", price: "Rs 1500", imageUrl: findImage('celebration-cake'), imageHint: findImageHint('celebration-cake') },
-          { name: "Chocolate Brownie", description: "Fudgy, dense, and packed with chocolate chunks.", price: "Rs 900", imageUrl: findImage('best-seller-1'), imageHint: findImageHint('best-seller-1') },
+          { name: "Chocolate Cake", description: "Decadent layers of rich chocolate sponge and ganache.", price: "Rs 120", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
+          { name: "Vanilla Cake", description: "A classic, elegant vanilla cake with buttercream frosting.", price: "Rs 100", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
+          { name: "Strawberry Cake", description: "Light, fruity, and topped with fresh strawberries.", price: "Rs 130", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
+          { name: "Red Velvet Cake", description: "A southern classic with a hint of cocoa and cream cheese frosting.", price: "Rs 150", imageUrl: findImage('celebration-cake'), imageHint: findImageHint('celebration-cake') },
+          { name: "Chocolate Brownie", description: "Fudgy, dense, and packed with chocolate chunks.", price: "Rs 90", imageUrl: findImage('best-seller-1'), imageHint: findImageHint('best-seller-1') },
           { name: "Cup Cake (V/C)", description: "Your choice of vanilla or chocolate, perfectly portioned.", price: "Rs 60", imageUrl: findImage('best-seller-3'), imageHint: findImageHint('best-seller-3') },
         ]
       },
       "Cakes & Desserts": {
         items: [
-          { name: "Choco Slice", description: "A perfect single serving of our decadent chocolate cake.", price: "Rs 120", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
+          { name: "Choco Slice", description: "A perfect single serving of our decadent chocolate cake.", price: "Rs 120", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake'), originalPrice: "Rs 150" },
           { name: "Vanilla Slice", description: "A slice of classic vanilla cake, simple and delicious.", price: "Rs 100", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
           { name: "Strawberry Slice", description: "Enjoy the fresh, fruity flavor of our strawberry cake.", price: "Rs 130", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
           { name: "Red Velvet Slice", description: "A slice of our famous red velvet cake.", price: "Rs 150", imageUrl: findImage('celebration-cake'), imageHint: findImageHint('celebration-cake') },
@@ -125,7 +125,7 @@ export const config = {
       "Snacks": {
         items: [
           { name: "Veg Puff", description: "A flaky pastry filled with a savory vegetable mixture.", price: "Rs 60", imageUrl: findImage('gourmet-sandwiches'), imageHint: findImageHint('gourmet-sandwiches') },
-          { name: "Cheese Sandwich", description: "A classic comfort food, grilled to perfection.", price: "Rs 90", imageUrl: findImage('gourmet-sandwiches'), imageHint: findImageHint('gourmet-sandwiches') },
+          { name: "Cheese Sandwich", description: "A classic comfort food, grilled to perfection.", price: "Rs 90", imageUrl: findImage('gourmet-sandwiches'), imageHint: findImageHint('gourmet-sandwiches'), originalPrice: "Rs 110" },
           { name: "Garlic Bread", description: "Toasted bread with a generous spread of garlic butter.", price: "Rs 100", imageUrl: findImage('gourmet-sandwiches'), imageHint: findImageHint('gourmet-sandwiches') },
         ]
       },
@@ -156,7 +156,7 @@ export const config = {
       { url: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%207,%202026,%2006_44_35%20AM.png" },
       { url: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%207,%202026,%2006_49_51%20AM.png" },
       { url: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%207,%202026,%2006_49_51%20AM.png" },
-      { url: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%207,%202026,%2006_50_51%20AM.png" },
+      { url: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%207,%202026,%nbsp;06_50_51%20AM.png" },
       { url: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%207,%202026,%2006_51_49%20AM.png" },
       { url: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%207,%202026,%2006_54_26%20AM.png" },
     ],
