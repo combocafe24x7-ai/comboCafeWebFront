@@ -11,10 +11,10 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog.tsx";
+import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "@/components/ui/dialog.tsx";
+import { VisuallyHidden } from "./ui/visually-hidden.tsx";
 
 const deliveryHours = [
   "9:00 AM - 11:00 AM",
@@ -230,6 +230,9 @@ export function OrderForm({ onSubmit, totalPrice }: OrderFormProps) {
                         </FormControl>
                     </DialogTrigger>
                     <DialogContent className="w-auto p-0">
+                        <VisuallyHidden>
+                            <DialogTitle>Select a delivery date</DialogTitle>
+                        </VisuallyHidden>
                         <Calendar
                           mode="single"
                           selected={field.value}
@@ -278,5 +281,3 @@ export function OrderForm({ onSubmit, totalPrice }: OrderFormProps) {
     </Form>
   )
 }
-
-    
