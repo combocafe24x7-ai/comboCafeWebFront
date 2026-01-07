@@ -1,3 +1,76 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "chocolate-cake",
+      "description": "A rich chocolate cake.",
+      "imageUrl": "https://images.unsplash.com/photo-1626263468007-a9e0cf83f1ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjaG9jb2xhdGUlMjBjYWtlfGVufDB8fHx8MTc2NzY5MDgwMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "chocolate cake"
+    },
+    {
+      "id": "strawberry-cake",
+      "description": "A light and fluffy strawberry cake.",
+      "imageUrl": "https://images.unsplash.com/photo-1593424718424-cf4d83f3def1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3RyYXdiZXJyeSUyMGNha2V8ZW58MHx8fHwxNzY3NzQyNTA5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "strawberry cake"
+    },
+    {
+      "id": "vanilla-cake",
+      "description": "A classic vanilla bean cake.",
+      "imageUrl": "https://images.unsplash.com/photo-1574043436847-6e18093727c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx2YW5pbGxhJTIwY2FrZXxlbnwwfHx8fDE3Njc3NDY5MDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "vanilla cake"
+    },
+    {
+      "id": "celebration-cake",
+      "description": "A custom cake for any celebration.",
+      "imageUrl": "https://images.unsplash.com/photo-1590615428797-ad80b4e5f554?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjZWxlYnJhdGlvbiUyMGNha2V8ZW58MHx8fHwxNzY3NjYxNjUwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "celebration cake"
+    },
+    {
+      "id": "roses",
+      "description": "A beautiful bouquet of fresh roses.",
+      "imageUrl": "https://images.unsplash.com/photo-1530906622963-8a60586a49c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxyZWQlMjByb3Nlc3xlbnwwfHx8fDE3Njc3MTA2MTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "red roses"
+    },
+    {
+      "id": "bouquets",
+      "description": "Artfully arranged mixed flower bouquets.",
+      "imageUrl": "https://images.unsplash.com/photo-1583228858294-6745cb25969e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxmbG93ZXIlMjBib3VxdWV0fGVufDB8fHx8MTc2NzYzODk4OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "flower bouquet"
+    },
+    {
+      "id": "gift-combos",
+      "description": "Thoughtful gift combos with flowers and treats.",
+      "imageUrl": "https://images.unsplash.com/photo-1674620213535-9b2a2553ef40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxnaWZ0JTIwYm94fGVufDB8fHx8MTc2Nzc0MzY4NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gift box"
+    },
+    {
+      "id": "seasonal-flowers",
+      "description": "Fresh, seasonal flowers of the day.",
+      "imageUrl": "https://images.unsplash.com/photo-1588713365055-ef3a060e4cb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3aWxkZmxvd2VycyUyMGZpZWxkfGVufDB8fHx8MTc2NzYyODcxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wildflowers field"
+    },
+    {
+      "id": "best-seller-1",
+      "description": "Velvet Heart Cake, a signature chocolate creation.",
+      "imageUrl": "https://images.unsplash.com/photo-1707248591857-cd4f010b42df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxoZWFydCUyMGNha2V8ZW58MHx8fHwxNzY3NzQ2OTA0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "heart cake"
+    },
+    {
+      "id": "best-seller-2",
+      "description": "Sunrise Bouquet, a vibrant mix of seasonal flowers.",
+      "imageUrl": "https://images.unsplash.com/photo-1718049378931-c38164efe94c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzdW5yaXNlJTIwYm91cXVldHxlbnwwfHx8fDE3Njc3NDY5MDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sunrise bouquet"
+    },
+    {
+      "id": "best-seller-3",
+      "description": "Celebration Box, a combo of cake, flowers, and gifts.",
+      "imageUrl": "https://images.unsplash.com/photo-1544506686-0e53885d4b4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjZWxlYnJhdGlvbiUyMGdpZnR8ZW58MHx8fHwxNzY3NzQ2OTA0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "celebration gift"
+    },
+    {
+      "id": "map-image",
+      "description": "A static map image showing the location of the cafe.",
+      "imageUrl": "https://images.unsplash.com/photo-1522678073884-26b1b87526e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjaXR5JTIwbWFwfGVufDB8fHx8MTc2NzczNzM3NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "city map"
+    }
+  ]
 }
