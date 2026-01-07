@@ -62,7 +62,7 @@ const ProductCard = ({ item }: { item: Product }) => {
 
   return (
     <Card className="overflow-hidden group border-0 shadow-lg dark:shadow-black/20 hover:shadow-xl transition-shadow duration-300 flex flex-col rounded-lg h-full">
-      <div className="relative w-full" style={{ paddingBottom: '100%' }}>
+      <div className="relative w-full" style={{ paddingBottom: '85%' }}>
         {discount && (
           <Badge 
             variant="destructive" 
