@@ -39,9 +39,14 @@ export default function ClientPage() {
             setIsMenuOpen(true);
             return;
         }
-        const [category, subCategory, subSubCategory] = path.split(':') as [OfferingCategory, SubCategory?, SubSubCategory?];
-        setNavigatedCategory({ category, subCategory, subSubCategory });
-        document.getElementById('offerings')?.scrollIntoView({ behavior: 'smooth' });
+        
+        if (path.includes(':')) {
+            const [category, subCategory, subSubCategory] = path.split(':') as [OfferingCategory, SubCategory?, SubSubCategory?];
+            setNavigatedCategory({ category, subCategory, subSubCategory });
+            document.getElementById('offerings')?.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            document.getElementById(path)?.scrollIntoView({ behavior: 'smooth' });
+        }
     };
 
     return (
