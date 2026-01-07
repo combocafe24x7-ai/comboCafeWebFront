@@ -60,7 +60,7 @@ export const config = {
       { id: "bestsellers", label: "Best Sellers" },
       {
         id: "offerings",
-        label: "Offerings",
+        label: "Categories",
         sublinks: [
           { 
             id: "cakes", 
@@ -202,3 +202,5 @@ export const config = {
     copyright: `© ${new Date().getFullYear()} Combo Café & Gift Shop. All rights reserved.`,
   },
 };
+
+    

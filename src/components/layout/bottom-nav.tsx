@@ -16,7 +16,7 @@ type BottomNavProps = {
 
 const navItems = [
   { id: 'home', label: 'Home', icon: Home },
-  { id: 'offerings', label: 'Offerings', icon: LayoutGrid },
+  { id: 'offerings', label: 'Categories', icon: LayoutGrid },
   { id: 'menu', label: 'Menu', icon: BookOpen },
   { id: 'contact', label: 'Contact', icon: Phone },
 ];
@@ -92,3 +92,5 @@ export default function BottomNav({ onNavSelect }: BottomNavProps) {
     </div>
   );
 }
+
+    
