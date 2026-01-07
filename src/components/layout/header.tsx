@@ -4,13 +4,24 @@ import { useState, useEffect } from 'react';
 import { config } from '@/app/config.tsx';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Menu as MenuIcon, ShoppingCart } from 'lucide-react';
+import { Menu as MenuIcon, ShoppingCart, ChevronDown } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { useCart } from '@/context/cart-provider';
 import { Badge } from '@/components/ui/badge';
 import Cart from '@/components/cart';
+import type { OfferingCategory } from '../sections/offerings';
 
-export default function Header() {
+type HeaderProps = {
+    onNavSelect: (category: OfferingCategory) => void;
+}
+
+export default function Header({ onNavSelect }: HeaderProps) {
   const [isSticky, setSticky] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const { cart } = useCart();
@@ -47,6 +58,58 @@ export default function Header() {
 
   const NavLinks = ({ isMobile = false }: { isMobile?: boolean }) => (
     config.navigation.links.map(link => {
+      if (link.sublinks) {
+        if (isMobile) {
+          return (
+            <div key={link.id}>
+              <button
+                onClick={() => handleScrollTo(link.id)}
+                className={cn(
+                  'font-body font-semibold transition-colors w-full text-left p-4 text-lg',
+                  activeSection === link.id ? 'text-primary' : 'text-foreground/80 hover:text-foreground'
+                )}
+              >
+                {link.label}
+              </button>
+              <div className="pl-8">
+                {link.sublinks.map(sublink => (
+                    <SheetClose key={sublink.id} asChild>
+                        <button
+                            onClick={() => onNavSelect(sublink.id as OfferingCategory)}
+                            className="block w-full text-left p-3 text-md text-foreground/70 hover:text-foreground"
+                        >
+                            {sublink.label}
+                        </button>
+                    </SheetClose>
+                ))}
+              </div>
+            </div>
+          )
+        }
+        return (
+          <DropdownMenu key={link.id}>
+            <DropdownMenuTrigger asChild>
+              <button
+                className={cn(
+                  'font-body font-semibold transition-colors flex items-center gap-1',
+                  'text-sm',
+                  activeSection === link.id ? 'text-primary' : 'text-foreground/80 hover:text-foreground'
+                )}
+              >
+                {link.label} <ChevronDown className="h-4 w-4" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {link.sublinks.map(sublink => (
+                <DropdownMenuItem key={sublink.id} onClick={() => onNavSelect(sublink.id as OfferingCategory)}>
+                  {sublink.label}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      }
+
       const Comp = isMobile ? SheetClose : 'button';
       return (
         <Comp
@@ -123,3 +186,5 @@ export default function Header() {
     </header>
   );
 }
+
+    

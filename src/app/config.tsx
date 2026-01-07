@@ -59,7 +59,15 @@ export const config = {
     links: [
       { id: "home", label: "Home" },
       { id: "bestsellers", label: "Best Sellers" },
-      { id: "offerings", label: "Offerings" },
+      {
+        id: "offerings",
+        label: "Offerings",
+        sublinks: [
+          { id: "cakes", label: "Cakes" },
+          { id: "flowers", label: "Flowers" },
+          { id: "food", label: "Food" },
+        ]
+      },
       { id: "menu", label: "Menu" },
       { id: "contact", label: "Contact" },
     ],
@@ -69,54 +77,54 @@ export const config = {
       "Celebration Cakes": {
         note: "You have to order",
         items: [
-          { name: "Chocolate Cake", price: "₹120", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
-          { name: "Vanilla Cake", price: "₹100", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
-          { name: "Strawberry Cake", price: "₹130", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
-          { name: "Red Velvet Cake", price: "₹150", imageUrl: findImage('celebration-cake'), imageHint: findImageHint('celebration-cake') },
-          { name: "Chocolate Brownie", price: "₹90", imageUrl: findImage('best-seller-1'), imageHint: findImageHint('best-seller-1') },
-          { name: "Cup Cake (Chocolate / Vanilla)", price: "₹60", imageUrl: findImage('best-seller-3'), imageHint: findImageHint('best-seller-3') },
+          { name: "Chocolate Cake", description: "Decadent layers of rich chocolate sponge and ganache.", price: "₹120", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
+          { name: "Vanilla Cake", description: "A classic, elegant vanilla cake with buttercream frosting.", price: "₹100", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
+          { name: "Strawberry Cake", description: "Light, fruity, and topped with fresh strawberries.", price: "₹130", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
+          { name: "Red Velvet Cake", description: "A southern classic with a hint of cocoa and cream cheese frosting.", price: "₹150", imageUrl: findImage('celebration-cake'), imageHint: findImageHint('celebration-cake') },
+          { name: "Chocolate Brownie", description: "Fudgy, dense, and packed with chocolate chunks.", price: "₹90", imageUrl: findImage('best-seller-1'), imageHint: findImageHint('best-seller-1') },
+          { name: "Cup Cake (V/C)", description: "Your choice of vanilla or chocolate, perfectly portioned.", price: "₹60", imageUrl: findImage('best-seller-3'), imageHint: findImageHint('best-seller-3') },
         ]
       },
       "Cakes & Desserts": {
         items: [
-          { name: "Chocolate Cake (Slice)", price: "₹120", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
-          { name: "Vanilla Cake (Slice)", price: "₹100", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
-          { name: "Strawberry Cake (Slice)", price: "₹130", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
-          { name: "Red Velvet Cake (Slice)", price: "₹150", imageUrl: findImage('celebration-cake'), imageHint: findImageHint('celebration-cake') },
-          { name: "Chocolate Brownie", price: "₹90", imageUrl: findImage('best-seller-1'), imageHint: findImageHint('best-seller-1') },
+          { name: "Choco Slice", description: "A perfect single serving of our decadent chocolate cake.", price: "₹120", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
+          { name: "Vanilla Slice", description: "A slice of classic vanilla cake, simple and delicious.", price: "₹100", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
+          { name: "Strawberry Slice", description: "Enjoy the fresh, fruity flavor of our strawberry cake.", price: "₹130", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
+          { name: "Red Velvet Slice", description: "A slice of our famous red velvet cake.", price: "₹150", imageUrl: findImage('celebration-cake'), imageHint: findImageHint('celebration-cake') },
+          { name: "Fudgy Brownie", description: "Rich, chewy, and intensely chocolatey.", price: "₹90", imageUrl: findImage('best-seller-1'), imageHint: findImageHint('best-seller-1') },
         ]
       }
     },
     flowers: [
-        { name: "Single Rose", description: "A classic gesture.", imageUrl: findImage('roses'), imageHint: findImageHint('roses'), price: "₹50" },
-        { name: "Flower Bouquets", description: "Artfully arranged.", imageUrl: findImage('bouquets'), imageHint: findImageHint('bouquets'), price: "Starting at ₹500" },
-        { name: "Cake + Flower Combo", description: "The perfect pair.", imageUrl: findImage('gift-combos'), imageHint: findImageHint('gift-combos'), price: "Starting at ₹700" },
+        { name: "Single Rose", description: "A timeless, classic gesture of love and appreciation.", imageUrl: findImage('roses'), imageHint: findImageHint('roses'), price: "₹50" },
+        { name: "Flower Bouquets", description: "A stunning, artfully arranged collection of fresh blooms.", imageUrl: findImage('bouquets'), imageHint: findImageHint('bouquets'), price: "Starting at ₹500" },
+        { name: "Cake + Flower Combo", description: "The perfect pair: a delicious treat and a beautiful bouquet.", imageUrl: findImage('gift-combos'), imageHint: findImageHint('gift-combos'), price: "Starting at ₹700" },
     ],
     food: {
       "Snacks": {
         items: [
-          { name: "Veg Puff", price: "₹60", imageUrl: findImage('gourmet-sandwiches'), imageHint: findImageHint('gourmet-sandwiches') },
-          { name: "Cheese Sandwich", price: "₹90", imageUrl: findImage('gourmet-sandwiches'), imageHint: findImageHint('gourmet-sandwiches') },
-          { name: "Garlic Bread", price: "₹100", imageUrl: findImage('gourmet-sandwiches'), imageHint: findImageHint('gourmet-sandwiches') },
+          { name: "Veg Puff", description: "A flaky pastry filled with a savory vegetable mixture.", price: "₹60", imageUrl: findImage('gourmet-sandwiches'), imageHint: findImageHint('gourmet-sandwiches') },
+          { name: "Cheese Sandwich", description: "A classic comfort food, grilled to perfection.", price: "₹90", imageUrl: findImage('gourmet-sandwiches'), imageHint: findImageHint('gourmet-sandwiches') },
+          { name: "Garlic Bread", description: "Toasted bread with a generous spread of garlic butter.", price: "₹100", imageUrl: findImage('gourmet-sandwiches'), imageHint: findImageHint('gourmet-sandwiches') },
         ]
       },
       "Beverages": {
         "Hot Beverages": {
             items: [
-                { name: "Espresso", price: "₹80", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-                { name: "Americano", price: "₹100", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-                { name: "Cappuccino", price: "₹120", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-                { name: "Caffè Latte", price: "₹130", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-                { name: "Mocha", price: "₹140", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-                { name: "Hot Chocolate", price: "₹120", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
+                { name: "Espresso", description: "A strong, concentrated shot of pure coffee.", price: "₹80", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
+                { name: "Americano", description: "Espresso diluted with hot water for a milder flavor.", price: "₹100", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
+                { name: "Cappuccino", description: "The perfect balance of espresso, steamed milk, and foam.", price: "₹120", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
+                { name: "Caffè Latte", description: "A creamier option with more steamed milk than a cappuccino.", price: "₹130", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
+                { name: "Mocha", description: "A delightful mix of chocolate, espresso, and steamed milk.", price: "₹140", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
+                { name: "Hot Chocolate", description: "Rich, creamy, and comforting, made with real chocolate.", price: "₹120", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
             ]
         },
         "Cold Beverages": {
             items: [
-                { name: "Cold Coffee", price: "₹140", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
-                { name: "Iced Latte", price: "₹150", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
-                { name: "Chocolate Frappe", price: "₹160", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
-                { name: "Strawberry Milkshake", price: "₹150", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
+                { name: "Cold Coffee", description: "A classic creamy and refreshing cold coffee.", price: "₹140", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
+                { name: "Iced Latte", description: "Chilled espresso and milk over ice.", price: "₹150", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
+                { name: "Chocolate Frappe", description: "A blended iced drink with rich chocolate flavor.", price: "₹160", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
+                { name: "Strawberry Milkshake", description: "A thick, creamy milkshake made with real strawberries.", price: "₹150", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
             ]
         }
       }
@@ -133,10 +141,10 @@ export const config = {
     ],
   },
   bestsellers: [
-    { name: "Cappuccino", tag: "Most Loved", description: "A classic blend of rich espresso, steamed milk, and a delicate layer of foam.", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty-coffee') },
-    { name: "Chocolate Cake", tag: "Top Pick", description: "Our decadent chocolate cake is a slice of heaven for any chocolate lover.", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
-    { name: "Cold Coffee", tag: "Fan Favorite", description: "A refreshing and creamy cold coffee to cool you down on a hot day.", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy salads') },
-    { name: "Cake + Flower Combo", tag: "Perfect Gift", description: "The perfect combination of a delicious cake and a beautiful bouquet.", imageUrl: findImage('gift-combos'), imageHint: findImageHint('gift-combos') },
+    { name: "Cappuccino", tag: "Most Loved", description: "A classic blend of rich espresso, steamed milk, and a delicate layer of foam. It's the perfect pick-me-up at any time of day, loved for its balanced and comforting flavor.", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty-coffee') },
+    { name: "Chocolate Cake", tag: "Top Pick", description: "Our decadent chocolate cake is a slice of heaven for any chocolate lover. Made with rich cocoa and a silky ganache, it's an unforgettable indulgent experience.", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
+    { name: "Cold Coffee", tag: "Fan Favorite", description: "A refreshing and creamy cold coffee to cool you down on a hot day. It's a sweet, smooth, and energizing treat that has become a customer favorite.", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy-salads') },
+    { name: "Cake + Flower Combo", tag: "Perfect Gift", description: "The perfect combination of a delicious cake and a beautiful bouquet. This thoughtful gift is ideal for birthdays, anniversaries, or just to make someone's day special.", imageUrl: findImage('gift-combos'), imageHint: findImageHint('gift-combos') },
   ],
   contact: {
     address: "123 Blossom Lane, Flavor Town, 45678",
@@ -174,3 +182,5 @@ export const config = {
     copyright: `© ${new Date().getFullYear()} Combo Café & Gift Shop. All rights reserved.`,
   },
 };
+
+    

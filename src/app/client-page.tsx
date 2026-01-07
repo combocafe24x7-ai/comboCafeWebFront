@@ -18,6 +18,7 @@ export default function ClientPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [heroCategory, setHeroCategory] = useState<OfferingCategory>('cakes');
     const [exploreClicked, setExploreClicked] = useState(false);
+    const [navigatedCategory, setNavigatedCategory] = useState<OfferingCategory | null>(null);
 
     useEffect(() => {
         // Hide preloader after a short delay.
@@ -31,18 +32,26 @@ export default function ClientPage() {
         document.getElementById('offerings')?.scrollIntoView({ behavior: 'smooth' });
     }
 
+    const handleNavSelect = (category: OfferingCategory) => {
+        setNavigatedCategory(category);
+        document.getElementById('offerings')?.scrollIntoView({ behavior: 'smooth' });
+    };
+
     return (
         <>
             <Preloader isLoading={isLoading} />
             <div className={cn("transition-opacity duration-1000", isLoading ? 'opacity-0' : 'opacity-100')}>
-                <Header />
+                <Header onNavSelect={handleNavSelect} />
                 <main>
                     <Hero onExplore={handleExplore} />
                     <BestSellers />
                     <Offerings 
-                        initialCategory={heroCategory}
-                        exploreClicked={exploreClicked}
-                        onResetExplore={() => setExploreClicked(false)}
+                        initialCategory={exploreClicked ? heroCategory : navigatedCategory}
+                        exploreClicked={exploreClicked || !!navigatedCategory}
+                        onResetExplore={() => {
+                            setExploreClicked(false);
+                            setNavigatedCategory(null);
+                        }}
                     />
                     <Menu />
                     <Contact />
@@ -53,3 +62,5 @@ export default function ClientPage() {
         </>
     );
 }
+
+    
