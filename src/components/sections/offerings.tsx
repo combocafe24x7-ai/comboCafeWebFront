@@ -144,7 +144,7 @@ const ProductCard = ({ item }: { item: Product }) => {
         <Sheet>
             <SheetTrigger asChild>
                 <Button variant="secondary" size="sm" className="w-full text-xs rounded-sm h-9 bg-blue-400 text-white hover:bg-blue-500">
-                    <WhatsAppIcon className="mr-2 h-4 w-4" /> Order on WhatsApp
+                    Order on WhatsApp
                 </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[90vw] sm:max-w-lg overflow-y-auto">

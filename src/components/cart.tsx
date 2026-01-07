@@ -144,7 +144,7 @@ export default function Cart() {
                     <Sheet>
                        <SheetTrigger asChild>
                            <Button variant="secondary" className="w-full bg-blue-400 text-white hover:bg-blue-500 hover:animate-pulse">
-                                <WhatsAppIcon className="w-5 h-5" /><span>Order on WhatsApp</span>
+                               Order on WhatsApp
                            </Button>
                        </SheetTrigger>
                        <SheetContent side="right" className="w-[90vw] sm:max-w-lg overflow-y-auto">

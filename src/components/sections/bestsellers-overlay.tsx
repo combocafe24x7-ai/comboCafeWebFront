@@ -116,7 +116,7 @@ const BestSellerCard = ({ item }: { item: typeof config.bestsellers[0] }) => {
                     <Sheet>
                         <SheetTrigger asChild>
                             <Button variant="secondary" size="lg" className="bg-blue-400 text-white hover:bg-blue-500 hover:animate-pulse">
-                                <WhatsAppIcon className="mr-2 h-5 w-5"/><span>Order on WhatsApp</span>
+                                Order on WhatsApp
                             </Button>
                         </SheetTrigger>
                         <SheetContent side="right" className="w-[90vw] sm:max-w-lg overflow-y-auto">
