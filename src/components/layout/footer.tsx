@@ -1,6 +1,7 @@
 
 import { config } from "@/app/config.tsx";
 import { cn } from "@/lib/utils";
+import { Instagram, Twitter, Facebook } from "lucide-react";
 
 const WhatsAppIcon = (props: React.ComponentProps<'svg'>) => (
     <svg

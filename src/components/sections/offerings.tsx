@@ -15,6 +15,7 @@ import { cn } from '@/lib/utils';
 type Product = {
   name: string;
   price: string;
+  originalPrice?: string;
   imageUrl: string;
   imageHint: string;
   description?: string;
@@ -33,7 +34,6 @@ type OfferingsProps = {
 const ProductCard = ({ item }: { item: Product }) => {
   const { addToCart } = useCart();
   const { toast } = useToast();
-  const whatsAppUrl = `https://wa.me/${config.contact.phone}?text=I'd like to order: ${item.name}`;
 
   const handleAddToCart = () => {
     addToCart(item);
@@ -43,8 +43,29 @@ const ProductCard = ({ item }: { item: Product }) => {
     });
   }
 
+  const getDiscount = () => {
+    if (!item.originalPrice) return null;
+    const original = parseFloat(item.originalPrice.replace('Rs ', ''));
+    const current = parseFloat(item.price.replace('Rs ', ''));
+    if (isNaN(original) || isNaN(current) || original <= current) return null;
+    
+    const percentage = Math.round(((original - current) / original) * 100);
+    const saved = original - current;
+    return { percentage, saved };
+  }
+
+  const discount = getDiscount();
+
   return (
-    <Card className="overflow-hidden group border-0 shadow-lg dark:shadow-black/20 hover:shadow-xl transition-shadow duration-300 flex flex-col rounded-none">
+    <Card className="overflow-hidden group border-0 shadow-lg dark:shadow-black/20 hover:shadow-xl transition-shadow duration-300 flex flex-col rounded-none relative">
+      {discount && (
+        <Badge 
+          variant="destructive" 
+          className="absolute top-4 right-4 z-10 text-base"
+        >
+          {discount.percentage}% OFF
+        </Badge>
+      )}
       <CardHeader className="p-0">
         <div className="aspect-square relative">
           <Image src={item.imageUrl} alt={item.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" data-ai-hint={item.imageHint} />
@@ -53,7 +74,11 @@ const ProductCard = ({ item }: { item: Product }) => {
       <CardContent className="p-6 flex-grow">
         <CardTitle className="font-headline text-2xl text-foreground">{item.name}</CardTitle>
         {item.description && <p className="text-muted-foreground mt-2 font-body">{item.description}</p>}
-        <p className="text-primary font-bold text-xl mt-4">{item.price}</p>
+        <div className="flex items-baseline gap-2 mt-4">
+            <p className="text-primary font-bold text-xl">{item.price}</p>
+            {item.originalPrice && <p className="text-muted-foreground line-through text-sm">{item.originalPrice}</p>}
+        </div>
+        {discount && <p className="text-sm text-green-600 font-semibold">You save Rs {discount.saved.toFixed(2)}!</p>}
       </CardContent>
       <CardFooter className="p-4 bg-card/50 grid grid-cols-1 sm:grid-cols-2 gap-2">
          <Button onClick={handleAddToCart}>
@@ -65,7 +90,7 @@ const ProductCard = ({ item }: { item: Product }) => {
             </a>
         </Button>
         <Button asChild variant="secondary" className="sm:col-span-2">
-            <a href={whatsAppUrl} target="_blank" rel="noopener noreferrer">
+            <a href={`https://wa.me/${config.contact.phone}?text=I'd like to order: ${item.name} (${item.price})`} target="_blank" rel="noopener noreferrer">
                 <span>Order on WhatsApp</span>
             </a>
         </Button>
