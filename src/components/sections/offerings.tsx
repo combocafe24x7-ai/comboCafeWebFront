@@ -73,35 +73,35 @@ const ProductCard = ({ item }: { item: Product }) => {
         )}
         <Image src={item.imageUrl} alt={item.name} layout="fill" className="absolute top-0 left-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-ai-hint={item.imageHint} />
       </div>
-      <CardContent className="p-3 flex-grow flex flex-col justify-between">
-        <div>
-            <CardTitle className="font-headline text-lg text-foreground">{item.name}</CardTitle>
-            {item.description && <p className="text-muted-foreground mt-1 font-body text-xs line-clamp-2">{item.description}</p>}
+      <CardContent className="p-4 flex-grow flex flex-col">
+        <div className="flex-grow">
+            <CardTitle className="font-headline text-xl text-foreground mb-1">{item.name}</CardTitle>
+            {item.description && <p className="text-muted-foreground font-body text-sm line-clamp-2">{item.description}</p>}
         </div>
-        <div>
-            <div className="flex items-baseline gap-2 mt-2">
-                <p className="text-primary font-bold text-md">{item.price}</p>
-                {item.originalPrice && <p className="text-muted-foreground line-through text-xs">{item.originalPrice}</p>}
+        <div className="mt-2">
+            <div className="flex items-baseline gap-2">
+                <p className="text-primary font-bold text-lg">{item.price}</p>
+                {item.originalPrice && <p className="text-muted-foreground line-through text-sm">{item.originalPrice}</p>}
             </div>
             {discount && <p className="text-xs text-green-600 font-semibold">You save Rs{discount.saved.toFixed(0)}!</p>}
         </div>
       </CardContent>
-      <CardFooter className="p-1 border-t">
-        <div className="grid grid-cols-3 gap-1 w-full">
-            <Button onClick={handleAddToCart} size="sm" className="text-xs rounded-sm px-3 h-9">
-                Cart
+      <CardFooter className="p-2 border-t flex flex-col gap-2">
+        <div className="flex gap-2 w-full">
+            <Button onClick={handleAddToCart} size="sm" className="w-full text-xs rounded-sm h-9">
+                <ShoppingCart className="mr-2 h-4 w-4" /> Cart
             </Button>
-            <Button asChild variant="outline" size="sm" className="text-xs rounded-sm px-3 h-9">
+            <Button asChild variant="outline" size="sm" className="w-full text-xs rounded-sm h-9">
                 <a href={`tel:${config.contact.phone}`}>
-                    Call
-                </a>
-            </Button>
-            <Button asChild variant="secondary" size="sm" className="text-xs rounded-sm px-3 h-9 bg-blue-400 text-white hover:bg-blue-500">
-                <a href={`https://wa.me/${config.contact.phone}?text=I'd like to order: ${item.name} (${item.price})`} target="_blank" rel="noopener noreferrer">
-                    WhatsApp
+                    <Phone className="mr-2 h-4 w-4" /> Call
                 </a>
             </Button>
         </div>
+        <Button asChild variant="secondary" size="sm" className="w-full text-xs rounded-sm h-9 bg-blue-400 text-white hover:bg-blue-500">
+            <a href={`https://wa.me/${config.contact.phone}?text=I'd like to order: ${item.name} (${item.price})`} target="_blank" rel="noopener noreferrer">
+                Order on WhatsApp
+            </a>
+        </Button>
       </CardFooter>
     </Card>
   );
@@ -377,3 +377,5 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
     </section>
   );
 }
+
+    
