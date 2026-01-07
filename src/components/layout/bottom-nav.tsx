@@ -8,6 +8,7 @@ import { useCart } from '@/context/cart-provider';
 import { Badge } from '@/components/ui/badge';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Cart from '@/components/cart';
+import { useAccentColor } from '@/context/accent-color-provider';
 
 type BottomNavProps = {
   onNavSelect: (path: string) => void;
@@ -23,6 +24,7 @@ const navItems = [
 export default function BottomNav({ onNavSelect }: BottomNavProps) {
   const [activeSection, setActiveSection] = useState('home');
   const { cart } = useCart();
+  const { accentColor } = useAccentColor();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -65,6 +67,7 @@ export default function BottomNav({ onNavSelect }: BottomNavProps) {
                 'flex flex-col items-center justify-center text-muted-foreground transition-colors duration-200',
                 isActive ? 'text-primary' : ''
               )}
+               style={isActive ? { color: accentColor } : {}}
             >
               <item.icon className="h-6 w-6" />
               <span className="text-xs font-medium">{item.label}</span>
