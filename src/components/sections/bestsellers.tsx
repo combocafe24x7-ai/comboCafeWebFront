@@ -31,7 +31,7 @@ export default function BestSellers() {
                 index % 2 !== 0 && "md:flex-row-reverse"
               )}
             >
-              <div className="w-full md:w-1/2 relative aspect-video shadow-lg rounded-lg overflow-hidden">
+              <div className="w-full md:w-1/2 relative aspect-video overflow-hidden">
                 <Image
                   src={item.imageUrl}
                   alt={item.name}
