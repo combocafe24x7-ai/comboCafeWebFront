@@ -14,6 +14,8 @@ import { Badge } from '../ui/badge';
 import { cn } from '@/lib/utils';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet';
+import { OrderForm } from '../order-form';
 
 type Product = {
   name: string;
@@ -34,6 +36,26 @@ type OfferingsProps = {
     onResetExplore: () => void;
 };
 
+// A custom component for the WhatsApp icon
+const WhatsAppIcon = (props: React.ComponentProps<'svg'>) => (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-label="WhatsApp"
+    >
+      <path d="M16.75 13.96c.25.13.42.2.46.3.05.1.05.75-.2 1.3-.25.55-1.12 1.1-1.52 1.25-.4.15-1.07.13-1.6-.08s-2.15-1-3.6-2.5c-1.15-1.15-2-2.5-2.2-2.9-.2-.4-.04-.6.12-.77.16-.17.35-.2.5-.2s.33.02.47.22c.14.2.3.66.35.7.05.05.07.12.02.2-.05.08-.1.18-.2.25-.1.08-.2.12-.25.2-.06.07-.12.15-.05.27.07.12.33.56.7.92.56.5.94.75 1.1.8.14.05.24.03.32-.03.1-.06.42-.5.54-.66.12-.17.22-.15.32-.1.1.04.65.3.75.36zM12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10c1.85 0 3.55-.5 5-1.35l-1.3-1.3c-1.1.5-2.35.8-3.7.8a8 8 0 1 1 8-8c0 1.35-.3 2.6-.8 3.7l1.3 1.3C21.5 15.55 22 13.85 22 12A10 10 0 0 0 12 2z"/>
+    </svg>
+);
+
+const parsePrice = (price: string) => {
+    if (typeof price !== 'string') return 0;
+    const cleanedPrice = price.replace(/Rs\.?/i, '').replace(/,/g, '').trim();
+    const numericPrice = parseFloat(cleanedPrice);
+    return isNaN(numericPrice) ? 0 : numericPrice;
+};
+
 const ProductCard = ({ item }: { item: Product }) => {
   const { addToCart } = useCart();
   const { toast } = useToast();
@@ -46,12 +68,34 @@ const ProductCard = ({ item }: { item: Product }) => {
     });
   }
 
+  const handleWhatsAppOrder = (details: Record<string, string>) => {
+    const messageHeader = `I'd like to place an order for the following item:\n\n*Order Summary:*`;
+    const orderItem = `- ${item.name} (${item.price})`;
+    const total = `\n*Total: ${item.price}*`;
+
+    const customerDetails = `\n\n*Delivery Details:*\n` +
+        `Name: ${details.firstName} ${details.lastName}\n` +
+        `Phone: ${details.phoneNumber}\n` +
+        (details.emailId ? `Email: ${details.emailId}\n` : '') +
+        `Address: ${details.address}\n` +
+        (details.houseNumber ? `  House No: ${details.houseNumber}\n` : '') +
+        (details.streetNumber ? `  Street: ${details.streetNumber}\n` : '') +
+        `  Landmark: ${details.landmarks}\n` +
+        `  Pincode: ${details.pincode}\n` +
+        `Delivery Date: ${details.deliveryDate}\n` +
+        `Delivery Time: ${details.deliveryHours}`;
+    
+    const message = encodeURIComponent([messageHeader, orderItem, total, customerDetails].join('\n'));
+    const url = `https://wa.me/${config.contact.phone}?text=${message}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   const getDiscount = () => {
     if (!item.originalPrice || !item.price) return null;
-    const original = parseFloat(item.originalPrice.replace(/Rs\s?/i, ''));
-    const current = parseFloat(item.price.replace(/Rs\s?/i, ''));
+    const original = parsePrice(item.originalPrice);
+    const current = parsePrice(item.price);
     
-    if (isNaN(original) || isNaN(current) || original <= current) return null;
+    if (original <= current) return null;
     
     const percentage = Math.round(((original - current) / original) * 100);
     const saved = original - current;
@@ -73,12 +117,12 @@ const ProductCard = ({ item }: { item: Product }) => {
         )}
         <Image src={item.imageUrl} alt={item.name} layout="fill" className="absolute top-0 left-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-ai-hint={item.imageHint} />
       </div>
-      <CardContent className="p-4 flex flex-col flex-1">
-        <div className="flex-1">
-            <CardTitle className="font-headline text-xl text-foreground mb-1">{item.name}</CardTitle>
+      <CardContent className="p-4 flex flex-col flex-grow">
+        <div className="flex-grow mb-2">
+            <CardTitle className="font-headline text-xl text-foreground mb-1 line-clamp-1">{item.name}</CardTitle>
             {item.description && <p className="text-muted-foreground font-body text-sm line-clamp-2 h-10">{item.description}</p>}
         </div>
-        <div className="mt-2">
+        <div>
             <div className="flex items-baseline gap-2">
                 <p className="text-primary font-bold text-lg">{item.price}</p>
                 {item.originalPrice && <p className="text-muted-foreground line-through text-sm">{item.originalPrice}</p>}
@@ -97,11 +141,25 @@ const ProductCard = ({ item }: { item: Product }) => {
                 </a>
             </Button>
         </div>
-        <Button asChild variant="secondary" size="sm" className="w-full text-xs rounded-sm h-9 bg-blue-400 text-white hover:bg-blue-500">
-            <a href={`https://wa.me/${config.contact.phone}?text=I'd like to order: ${item.name} (${item.price})`} target="_blank" rel="noopener noreferrer">
-                Order on WhatsApp
-            </a>
-        </Button>
+        <Sheet>
+            <SheetTrigger asChild>
+                <Button variant="secondary" size="sm" className="w-full text-xs rounded-sm h-9 bg-blue-400 text-white hover:bg-blue-500">
+                    <WhatsAppIcon className="mr-2 h-4 w-4" /> Order on WhatsApp
+                </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[90vw] sm:max-w-lg overflow-y-auto">
+                <SheetHeader>
+                    <SheetTitle>Delivery Information</SheetTitle>
+                    <SheetDescription>
+                        Please provide your details to place an order for <span className="font-bold">{item.name}</span>.
+                    </SheetDescription>
+                </SheetHeader>
+                <OrderForm 
+                    onSubmit={handleWhatsAppOrder}
+                    totalPrice={parsePrice(item.price)}
+                />
+            </SheetContent>
+        </Sheet>
       </CardFooter>
     </Card>
   );
