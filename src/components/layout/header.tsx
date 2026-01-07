@@ -67,8 +67,12 @@ export default function Header({ onNavSelect, heroAccentColor = config.hero.cate
     window.location.reload();
   };
 
-  const handleScrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const handleNavClick = (id: string) => {
+    if (id === 'menu') {
+      onNavSelect('menu');
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const renderNavLinks = (links: NavLink[], isMobile = false): React.ReactNode[] => {
@@ -81,16 +85,18 @@ export default function Header({ onNavSelect, heroAccentColor = config.hero.cate
           // Basic mobile dropdown - can be enhanced later if needed
            return (
             <div key={link.id}>
-              <button
-                onClick={() => onNavSelect(link.id)}
-                className={cn(
-                  'font-body font-semibold transition-colors w-full text-left p-4 text-lg',
-                  isActive ? 'text-primary' : 'text-foreground/80 hover:text-foreground'
-                )}
-                style={isActive ? { color: heroAccentColor } : {}}
-              >
-                {link.label}
-              </button>
+              <SheetClose asChild>
+                <button
+                  onClick={() => onNavSelect(link.id)}
+                  className={cn(
+                    'font-body font-semibold transition-colors w-full text-left p-4 text-lg',
+                    isActive ? 'text-primary' : 'text-foreground/80 hover:text-foreground'
+                  )}
+                  style={isActive ? { color: heroAccentColor } : {}}
+                >
+                  {link.label}
+                </button>
+              </SheetClose>
               <div className="pl-8">
                 {link.sublinks?.map(sublink => (
                     <SheetClose key={sublink.id} asChild>
@@ -134,7 +140,7 @@ export default function Header({ onNavSelect, heroAccentColor = config.hero.cate
       return (
         <Comp
           key={link.id}
-          onClick={() => handleScrollTo(link.id)}
+          onClick={() => handleNavClick(link.id)}
           className={cn(
             'font-body font-semibold transition-colors',
             isMobile ? 'block w-full text-left p-4 text-lg' : 'text-sm',

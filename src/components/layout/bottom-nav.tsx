@@ -9,6 +9,10 @@ import { Badge } from '@/components/ui/badge';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Cart from '@/components/cart';
 
+type BottomNavProps = {
+  onNavSelect: (path: string) => void;
+};
+
 const navItems = [
   { id: 'home', label: 'Home', icon: Home },
   { id: 'offerings', label: 'Offerings', icon: LayoutGrid },
@@ -16,7 +20,7 @@ const navItems = [
   { id: 'contact', label: 'Contact', icon: Phone },
 ];
 
-export default function BottomNav() {
+export default function BottomNav({ onNavSelect }: BottomNavProps) {
   const [activeSection, setActiveSection] = useState('home');
   const { cart } = useCart();
 
@@ -40,8 +44,12 @@ export default function BottomNav() {
     };
   }, []);
 
-  const handleScrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const handleNavClick = (id: string) => {
+    if (id === 'menu') {
+      onNavSelect('menu');
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
   
   return (
@@ -52,7 +60,7 @@ export default function BottomNav() {
           return (
             <button
               key={item.id}
-              onClick={() => handleScrollTo(item.id)}
+              onClick={() => handleNavClick(item.id)}
               className={cn(
                 'flex flex-col items-center justify-center text-muted-foreground transition-colors duration-200',
                 isActive ? 'text-primary' : ''

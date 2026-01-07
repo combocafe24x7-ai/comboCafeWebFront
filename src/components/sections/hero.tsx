@@ -8,13 +8,15 @@ import { ArrowUp, ArrowDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import type { OfferingCategory } from './offerings';
+import SearchBar from '../search-bar';
 
 type HeroProps = {
   onExplore: (category: OfferingCategory) => void;
   onCategoryChange: (color: string) => void;
+  onNavSelect: (path: string) => void;
 };
 
-export default function Hero({ onExplore, onCategoryChange }: HeroProps) {
+export default function Hero({ onExplore, onCategoryChange, onNavSelect }: HeroProps) {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
   const [parallaxStyle, setParallaxStyle] = useState<React.CSSProperties>({});
@@ -113,7 +115,7 @@ export default function Hero({ onExplore, onCategoryChange }: HeroProps) {
       />
       
       <div className="relative z-20 container mx-auto px-6 h-full flex flex-col justify-center">
-        <div className="md:w-1/2 text-left">
+        <div className="text-left md:w-1/2">
           <div className={cn('transition-all duration-300 ease-in-out', isChanging ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0')}>
             <h2 className="text-sm font-body uppercase tracking-widest" style={{ color: currentCategory.accentColor }}>{currentCategory.subtitle}</h2>
             <h1 className="font-headline text-5xl md:text-7xl font-bold my-4 leading-tight" style={{ color: currentCategory.accentColor }}>{currentCategory.headline}</h1>
@@ -146,6 +148,9 @@ export default function Hero({ onExplore, onCategoryChange }: HeroProps) {
             </Button>
           </div>
         </div>
+      </div>
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-full px-4 md:px-0 md:max-w-xl lg:max-w-2xl">
+          <SearchBar onNavSelect={onNavSelect} onExplore={onExplore} />
       </div>
     </section>
   );

@@ -13,7 +13,6 @@ import BestSellers from '@/components/sections/bestsellers';
 import Contact from '@/components/sections/contact';
 import FinalCta from '@/components/sections/final-cta';
 import { cn } from '@/lib/utils';
-import Faq from '@/components/sections/faq';
 import type { OfferingCategory, SubCategory, SubSubCategory } from '@/components/sections/offerings';
 import { config } from './config.tsx';
 
@@ -36,6 +35,10 @@ export default function ClientPage() {
     }
 
     const handleNavSelect = (path: string) => {
+        if (path === 'menu') {
+            window.open('/menu', '_blank');
+            return;
+        }
         const [category, subCategory, subSubCategory] = path.split(':') as [OfferingCategory, SubCategory?, SubSubCategory?];
         setNavigatedCategory({ category, subCategory, subSubCategory });
         document.getElementById('offerings')?.scrollIntoView({ behavior: 'smooth' });
@@ -47,7 +50,7 @@ export default function ClientPage() {
             <div className={cn("transition-opacity duration-1000", isLoading ? 'opacity-0' : 'opacity-100')}>
                 <Header onNavSelect={handleNavSelect} heroAccentColor={heroAccentColor} />
                 <main className="pb-20 md:pb-0">
-                    <Hero onExplore={handleExplore} onCategoryChange={(color) => setHeroAccentColor(color)} />
+                    <Hero onExplore={handleExplore} onCategoryChange={(color) => setHeroAccentColor(color)} onNavSelect={handleNavSelect} />
                     <div className="hidden md:block">
                         <BestSellers />
                     </div>
@@ -66,7 +69,7 @@ export default function ClientPage() {
                     <FinalCta />
                 </main>
                 <Footer />
-                <BottomNav />
+                <BottomNav onNavSelect={handleNavSelect} />
             </div>
         </>
     );
