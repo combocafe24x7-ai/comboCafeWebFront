@@ -34,13 +34,13 @@ export default function Menu() {
                   stopOnInteraction: true,
                 }),
             ]}
-            className="w-full max-w-4xl mx-auto"
+            className="w-full max-w-5xl mx-auto"
         >
-          <CarouselContent>
+          <CarouselContent className="-ml-0">
             {config.menu.cards.map((menu, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                <div className="p-1">
-                  <Card className="overflow-hidden group">
+              <CarouselItem key={index} className="pl-0 md:basis-1/2 lg:basis-1/3">
+                <div className="p-0">
+                  <Card className="overflow-hidden group rounded-none border-0">
                     <CardContent className="p-0 flex items-center justify-center relative aspect-[3/4]">
                       <Image
                         src={menu.url}
