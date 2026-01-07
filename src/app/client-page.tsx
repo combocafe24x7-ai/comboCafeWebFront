@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
@@ -13,12 +14,13 @@ import FinalCta from '@/components/sections/final-cta';
 import { cn } from '@/lib/utils';
 import Faq from '@/components/sections/faq';
 import type { OfferingCategory, SubCategory, SubSubCategory } from '@/components/sections/offerings';
+import { config } from './config.tsx';
 
 export default function ClientPage() {
     const [isLoading, setIsLoading] = useState(true);
-    const [heroCategory, setHeroCategory] = useState<OfferingCategory>('cakes');
     const [exploreClicked, setExploreClicked] = useState(false);
     const [navigatedCategory, setNavigatedCategory] = useState<{ category: OfferingCategory, subCategory?: SubCategory, subSubCategory?: SubSubCategory} | null>(null);
+    const [heroAccentColor, setHeroAccentColor] = useState(config.hero.categories[0].accentColor);
 
     useEffect(() => {
         // Hide preloader after a short delay.
@@ -27,8 +29,8 @@ export default function ClientPage() {
     }, []);
 
     const handleExplore = (category: OfferingCategory) => {
-        setHeroCategory(category);
         setExploreClicked(true);
+        setNavigatedCategory({ category });
         document.getElementById('offerings')?.scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -42,9 +44,9 @@ export default function ClientPage() {
         <>
             <Preloader isLoading={isLoading} />
             <div className={cn("transition-opacity duration-1000", isLoading ? 'opacity-0' : 'opacity-100')}>
-                <Header onNavSelect={handleNavSelect} />
+                <Header onNavSelect={handleNavSelect} heroAccentColor={heroAccentColor} />
                 <main>
-                    <Hero onExplore={handleExplore} />
+                    <Hero onExplore={handleExplore} onCategoryChange={(color) => setHeroAccentColor(color)} />
                     <div className="hidden md:block">
                         <BestSellers />
                     </div>

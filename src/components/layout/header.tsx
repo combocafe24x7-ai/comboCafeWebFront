@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -22,6 +23,7 @@ import Cart from '@/components/cart';
 
 type HeaderProps = {
     onNavSelect: (path: string) => void;
+    heroAccentColor?: string;
 }
 
 type NavLink = {
@@ -30,7 +32,7 @@ type NavLink = {
   sublinks?: NavLink[];
 };
 
-export default function Header({ onNavSelect }: HeaderProps) {
+export default function Header({ onNavSelect, heroAccentColor = '#FFDA63' }: HeaderProps) {
   const [isSticky, setSticky] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const { cart } = useCart();
@@ -179,7 +181,11 @@ export default function Header({ onNavSelect }: HeaderProps) {
   return (
     <header className={cn('fixed top-0 left-0 right-0 z-50 transition-all duration-300', isSticky ? 'bg-background/80 backdrop-blur-sm shadow-md' : 'bg-transparent')}>
       <nav className="container flex justify-between items-center px-4 md:px-6 py-3">
-        <button onClick={() => handleScrollTo('home')} className="text-xl font-headline font-bold text-primary">
+        <button 
+          onClick={() => handleScrollTo('home')} 
+          className="text-xl font-headline font-bold transition-colors duration-300"
+          style={{ color: activeSection === 'home' ? heroAccentColor : 'hsl(var(--primary))' }}
+        >
           {config.brand.name}
         </button>
         <Sheet>
@@ -223,4 +229,5 @@ export default function Header({ onNavSelect }: HeaderProps) {
     </header>
   );
 }
+
     

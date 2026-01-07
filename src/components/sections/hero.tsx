@@ -11,15 +11,20 @@ import type { OfferingCategory } from './offerings';
 
 type HeroProps = {
   onExplore: (category: OfferingCategory) => void;
+  onCategoryChange: (color: string) => void;
 };
 
-export default function Hero({ onExplore }: HeroProps) {
+export default function Hero({ onExplore, onCategoryChange }: HeroProps) {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
   const [parallaxStyle, setParallaxStyle] = useState<React.CSSProperties>({});
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   
   const currentCategory = config.hero.categories[currentCategoryIndex];
+
+  useEffect(() => {
+    onCategoryChange(currentCategory.accentColor);
+  }, [currentCategory, onCategoryChange]);
 
   const changeCategory = (direction: 'next' | 'prev') => {
     if (isChanging) return;
@@ -109,12 +114,12 @@ export default function Hero({ onExplore }: HeroProps) {
       
       <div className="relative z-20 container mx-auto px-6 h-full flex flex-col justify-end md:justify-center">
         {/* Mobile: bottom aligned content */}
-        <div className="w-full md:w-1/2 mb-20 md:mb-0">
+        <div className="md:w-1/2 mb-20 md:mb-0 text-center md:text-left">
           <div className={cn('transition-all duration-300 ease-in-out', isChanging ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0')}>
             <h2 className="text-sm font-body uppercase tracking-widest" style={{ color: currentCategory.accentColor }}>{currentCategory.subtitle}</h2>
             <h1 className="font-headline text-5xl md:text-7xl font-bold my-4 leading-tight" style={{ color: currentCategory.accentColor }}>{currentCategory.headline}</h1>
-            <p className="font-body text-lg text-white/80 max-w-md" style={{ color: currentCategory.accentColor }}>{currentCategory.description}</p>
-            <div className="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <p className="font-body text-lg text-white/80 max-w-md mx-auto md:mx-0" style={{ color: currentCategory.accentColor }}>{currentCategory.description}</p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <PrimaryButton />
               <SecondaryButton />
             </div>
