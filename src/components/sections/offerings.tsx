@@ -60,41 +60,43 @@ const ProductCard = ({ item }: { item: Product }) => {
   const discount = getDiscount();
 
   return (
-    <Card className="overflow-hidden group border-0 shadow-lg dark:shadow-black/20 hover:shadow-xl transition-shadow duration-300 flex flex-col rounded-none relative">
+    <Card className="overflow-hidden group border-0 shadow-lg dark:shadow-black/20 hover:shadow-xl transition-shadow duration-300 flex flex-col rounded-none relative aspect-square">
       {discount && (
         <Badge 
           variant="destructive" 
-          className="absolute top-4 right-4 z-10 text-base"
+          className="absolute top-2 right-2 z-10"
         >
           {discount.percentage}% OFF
         </Badge>
       )}
-      <CardHeader className="p-0">
-        <div className="aspect-square relative">
-          <Image src={item.imageUrl} alt={item.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" data-ai-hint={item.imageHint} />
-        </div>
+      <CardHeader className="p-0 relative h-[50%]">
+        <Image src={item.imageUrl} alt={item.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" data-ai-hint={item.imageHint} />
       </CardHeader>
-      <CardContent className="p-6 flex-grow">
-        <CardTitle className="font-headline text-2xl text-foreground">{item.name}</CardTitle>
-        {item.description && <p className="text-muted-foreground mt-2 font-body">{item.description}</p>}
-        <div className="flex items-baseline gap-2 mt-4">
-            <p className="text-primary font-bold text-xl">{item.price}</p>
-            {item.originalPrice && <p className="text-muted-foreground line-through text-sm">{item.originalPrice}</p>}
+      <CardContent className="p-3 flex-grow flex flex-col justify-between">
+        <div>
+            <CardTitle className="font-headline text-lg text-foreground">{item.name}</CardTitle>
+            {item.description && <p className="text-muted-foreground mt-1 font-body text-xs line-clamp-2">{item.description}</p>}
         </div>
-        {discount && <p className="text-sm text-green-600 font-semibold">You save Rs {discount.saved.toFixed(0)}!</p>}
+        <div>
+            <div className="flex items-baseline gap-2 mt-2">
+                <p className="text-primary font-bold text-md">{item.price}</p>
+                {item.originalPrice && <p className="text-muted-foreground line-through text-xs">{item.originalPrice}</p>}
+            </div>
+            {discount && <p className="text-xs text-green-600 font-semibold">You save Rs {discount.saved.toFixed(0)}!</p>}
+        </div>
       </CardContent>
-      <CardFooter className="p-4 bg-card/50 grid grid-cols-1 sm:grid-cols-2 gap-2">
-         <Button onClick={handleAddToCart}>
+      <CardFooter className="p-2 bg-card/50 grid grid-cols-3 gap-1">
+         <Button onClick={handleAddToCart} size="sm" className="text-xs px-2">
             <ShoppingCart /><span>Cart</span>
         </Button>
-         <Button asChild variant="outline" className="hover:animate-pulse">
+         <Button asChild variant="outline" size="sm" className="text-xs px-2">
             <a href={`tel:${config.contact.phone}`}>
                 <Phone /><span>Call</span>
             </a>
         </Button>
-        <Button asChild variant="secondary" className="sm:col-span-2 bg-blue-400 text-white hover:bg-blue-500 hover:animate-pulse">
+        <Button asChild variant="secondary" size="sm" className="text-xs px-2 bg-blue-400 text-white hover:bg-blue-500">
             <a href={`https://wa.me/${config.contact.phone}?text=I'd like to order: ${item.name} (${item.price})`} target="_blank" rel="noopener noreferrer">
-                <span>Order on WhatsApp</span>
+                <span>WhatsApp</span>
             </a>
         </Button>
       </CardFooter>
@@ -200,7 +202,7 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back to Beverages
                 </Button>
                 <DesktopGrid>{productCards}</DesktopGrid>
-                <MobileCarousel basis="basis-2/5">{productCards}</MobileCarousel>
+                <MobileCarousel basis="basis-2/5 sm:basis-1/3">{productCards}</MobileCarousel>
             </div>
         )
     }
@@ -224,7 +226,7 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
                   {note && <Badge variant="secondary">{note}</Badge>}
               </div>
                 <DesktopGrid>{productCards}</DesktopGrid>
-                <MobileCarousel basis="basis-2/5">{productCards}</MobileCarousel>
+                <MobileCarousel basis="basis-2/5 sm:basis-1/3">{productCards}</MobileCarousel>
             </div>
           )
       } else if (selectedCategory === 'food' && selectedSubCategory === 'Snacks') {
@@ -236,7 +238,7 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
                 <ArrowLeft className="mr-2 h-4 w-4" /> Back to {selectedCategory}
               </Button>
                 <DesktopGrid>{productCards}</DesktopGrid>
-                <MobileCarousel basis="basis-2/5">{productCards}</MobileCarousel>
+                <MobileCarousel basis="basis-2/5 sm:basis-1/3">{productCards}</MobileCarousel>
             </div>
           )
       } else if (selectedCategory === 'food' && selectedSubCategory === 'Beverages') {
@@ -303,7 +305,7 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back to Offerings
                 </Button>
                 <DesktopGrid>{flowerCards}</DesktopGrid>
-                <MobileCarousel basis="basis-2/5">{flowerCards}</MobileCarousel>
+                <MobileCarousel basis="basis-2/5 sm:basis-1/3">{flowerCards}</MobileCarousel>
             </div>
            );
         case 'food':
