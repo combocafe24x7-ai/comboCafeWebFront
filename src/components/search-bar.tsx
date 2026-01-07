@@ -77,17 +77,13 @@ export default function SearchBar({ onNavSelect, onExplore }: SearchBarProps) {
         setQuery('');
     }
 
-    const handleCategoryClick = (category: OfferingCategory) => {
-        onExplore(category);
-    }
-
     return (
         <div className="relative">
             <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 <Input 
                     type="text" 
-                    placeholder="Search for cakes, flowers, coffee..." 
+                    placeholder="Search for anything..." 
                     className="w-full pl-10 pr-4 py-2 rounded-full bg-white/20 text-white placeholder:text-gray-300 border-2 border-white/30 focus:bg-white/30 focus:border-white/50 backdrop-blur-sm transition-all"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
@@ -95,7 +91,7 @@ export default function SearchBar({ onNavSelect, onExplore }: SearchBarProps) {
             </div>
 
             {filteredSuggestions.length > 0 && (
-                 <div className="absolute bottom-full mb-2 w-full bg-white/90 backdrop-blur-md rounded-xl shadow-lg overflow-hidden border border-gray-200/50">
+                 <div className="absolute top-full mt-2 w-full bg-white/90 backdrop-blur-md rounded-xl shadow-lg overflow-hidden border border-gray-200/50">
                      <ul className="divide-y divide-gray-200/50">
                         {filteredSuggestions.map((suggestion, index) => (
                             <li key={`${suggestion.name}-${index}`}>
@@ -108,15 +104,6 @@ export default function SearchBar({ onNavSelect, onExplore }: SearchBarProps) {
                     </ul>
                 </div>
             )}
-            
-            <div className="flex justify-center gap-2 mt-3">
-                {(['cakes', 'flowers', 'food'] as const).map(cat => (
-                    <Button key={cat} onClick={() => handleCategoryClick(cat)} size="sm" variant="ghost" className="capitalize bg-white/10 text-white rounded-full hover:bg-white/20">
-                        {cat}
-                    </Button>
-                ))}
-            </div>
-
         </div>
     );
 }

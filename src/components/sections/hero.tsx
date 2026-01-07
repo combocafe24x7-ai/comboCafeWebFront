@@ -114,6 +114,10 @@ export default function Hero({ onExplore, onCategoryChange, onNavSelect }: HeroP
         unoptimized
       />
       
+      <div className="absolute top-20 right-6 z-30 w-full max-w-sm">
+        <SearchBar onNavSelect={onNavSelect} onExplore={onExplore} />
+      </div>
+      
       <div className="relative z-20 container mx-auto px-6 h-full flex flex-col justify-center">
         <div className="text-left md:w-1/2">
           <div className={cn('transition-all duration-300 ease-in-out', isChanging ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0')}>
@@ -148,9 +152,6 @@ export default function Hero({ onExplore, onCategoryChange, onNavSelect }: HeroP
             </Button>
           </div>
         </div>
-      </div>
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-full px-4 md:px-0 md:max-w-xl lg:max-w-2xl">
-          <SearchBar onNavSelect={onNavSelect} onExplore={onExplore} />
       </div>
     </section>
   );
