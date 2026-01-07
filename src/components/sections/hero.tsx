@@ -1,31 +1,31 @@
 
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { config } from '@/app/config.tsx';
 import { Button } from '@/components/ui/button';
 import { ArrowUp, ArrowDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import type { OfferingCategory } from './offerings';
+import { useAccentColor } from '@/context/accent-color-provider';
 
 type HeroProps = {
   onExplore: (category: OfferingCategory) => void;
-  onCategoryChange: (color: string) => void;
-  onNavSelect: (path: string) => void;
 };
 
-export default function Hero({ onExplore, onCategoryChange, onNavSelect }: HeroProps) {
+export default function Hero({ onExplore }: HeroProps) {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
   const [parallaxStyle, setParallaxStyle] = useState<React.CSSProperties>({});
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const { setAccentColor } = useAccentColor();
   
   const currentCategory = config.hero.categories[currentCategoryIndex];
 
   useEffect(() => {
-    onCategoryChange(currentCategory.accentColor);
-  }, [currentCategory, onCategoryChange]);
+    setAccentColor(currentCategory.accentColor);
+  }, [currentCategory, setAccentColor]);
 
   const changeCategory = (direction: 'next' | 'prev') => {
     if (isChanging) return;

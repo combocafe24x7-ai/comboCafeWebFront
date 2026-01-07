@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { config } from '@/app/config.tsx';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -20,10 +20,10 @@ import {
 import { useCart } from '@/context/cart-provider';
 import { Badge } from '@/components/ui/badge';
 import Cart from '@/components/cart';
+import { useAccentColor } from '@/context/accent-color-provider';
 
 type HeaderProps = {
     onNavSelect: (path: string) => void;
-    heroAccentColor?: string;
 }
 
 type NavLink = {
@@ -32,10 +32,11 @@ type NavLink = {
   sublinks?: NavLink[];
 };
 
-export default function Header({ onNavSelect, heroAccentColor = config.hero.categories[0].accentColor }: HeaderProps) {
+export default function Header({ onNavSelect }: HeaderProps) {
   const [isSticky, setSticky] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const { cart } = useCart();
+  const { accentColor } = useAccentColor();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,7 +70,7 @@ export default function Header({ onNavSelect, heroAccentColor = config.hero.cate
 
   const handleNavClick = (id: string) => {
     if (id === 'menu') {
-       window.open('/menu', '_blank');
+       onNavSelect('menu');
     } else {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     }
@@ -93,7 +94,7 @@ export default function Header({ onNavSelect, heroAccentColor = config.hero.cate
                     isActive ? 'text-primary' : 'text-foreground/80 hover:text-foreground'
                   )}
                 >
-                   <span style={isActive ? { color: heroAccentColor } : {}}>{link.label}</span>
+                   <span style={isActive ? { color: accentColor } : {}}>{link.label}</span>
                 </button>
               </SheetClose>
               <div className="pl-8">
@@ -123,7 +124,7 @@ export default function Header({ onNavSelect, heroAccentColor = config.hero.cate
                   isActive ? 'text-primary' : 'text-foreground/80 hover:text-foreground'
                 )}
               >
-                <span style={isActive ? { color: heroAccentColor } : {}}>{link.label}</span> <ChevronDown className="h-4 w-4" />
+                <span style={isActive ? { color: accentColor } : {}}>{link.label}</span> <ChevronDown className="h-4 w-4" />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -135,18 +136,19 @@ export default function Header({ onNavSelect, heroAccentColor = config.hero.cate
 
       // Regular link
       const Comp = isMobile ? SheetClose : 'button';
-      const clickHandler = isMobile ? onNavSelect : handleNavClick;
+      const clickHandler = isMobile ? () => onNavSelect(link.id) : () => handleNavClick(link.id);
+      
       return (
         <Comp
           key={link.id}
-          onClick={() => clickHandler(link.id)}
+          onClick={clickHandler}
           className={cn(
             'font-body font-semibold transition-colors',
             isMobile ? 'block w-full text-left p-4 text-lg' : 'text-sm',
             isActive ? 'text-primary' : 'text-foreground/80 hover:text-foreground'
           )}
         >
-          <span style={isActive ? { color: heroAccentColor } : {}}>{link.label}</span>
+          <span style={isActive ? { color: accentColor } : {}}>{link.label}</span>
         </Comp>
       );
     })
@@ -193,13 +195,12 @@ export default function Header({ onNavSelect, heroAccentColor = config.hero.cate
   return (
     <header 
       className={cn('fixed top-0 left-0 right-0 z-50 transition-all duration-300', isSticky ? 'bg-background/80 backdrop-blur-sm shadow-md' : 'bg-transparent')}
-      style={{ '--hero-accent-color': heroAccentColor } as React.CSSProperties}
     >
       <nav className="container flex justify-between items-center px-4 md:px-6 py-3">
         <button 
           onClick={handleBrandClick} 
           className="text-xl font-headline font-bold transition-colors duration-300"
-          style={{ color: isSticky ? 'hsl(var(--primary))' : heroAccentColor }}
+          style={{ color: isSticky ? 'hsl(var(--primary))' : accentColor }}
         >
           {config.brand.name}
         </button>
@@ -229,7 +230,7 @@ export default function Header({ onNavSelect, heroAccentColor = config.hero.cate
             <SheetContent side="right" className="w-[80vw]">
               <div className="flex flex-col h-full">
                 <div className="py-4 border-b">
-                  <span className="text-xl font-headline font-bold text-primary px-4" style={{ color: heroAccentColor }}>
+                  <span className="text-xl font-headline font-bold text-primary px-4" style={{ color: accentColor }}>
                     {config.brand.name}
                   </span>
                 </div>

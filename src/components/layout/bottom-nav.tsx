@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Home, LayoutGrid, BookOpen, Phone, ShoppingCart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useCart } from '@/context/cart-provider';

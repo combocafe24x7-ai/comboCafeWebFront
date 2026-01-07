@@ -15,14 +15,12 @@ import FinalCta from '@/components/sections/final-cta';
 import MenuOverlay from '@/components/sections/menu-overlay';
 import { cn } from '@/lib/utils';
 import type { OfferingCategory, SubCategory, SubSubCategory } from '@/components/sections/offerings';
-import { config } from './config.tsx';
 
 export default function ClientPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [exploreClicked, setExploreClicked] = useState(false);
     const [navigatedCategory, setNavigatedCategory] = useState<{ category: OfferingCategory, subCategory?: SubCategory, subSubCategory?: SubSubCategory} | null>(null);
-    const [heroAccentColor, setHeroAccentColor] = useState(config.hero.categories[0].accentColor);
 
     useEffect(() => {
         // Hide preloader after a short delay.
@@ -52,11 +50,10 @@ export default function ClientPage() {
             <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
             <div 
               className={cn("transition-opacity duration-1000", isLoading ? 'opacity-0' : 'opacity-100')}
-              style={{ '--hero-accent-color': heroAccentColor } as React.CSSProperties}
             >
-                <Header onNavSelect={handleNavSelect} heroAccentColor={heroAccentColor} />
+                <Header onNavSelect={handleNavSelect} />
                 <main className="pb-20 md:pb-0">
-                    <Hero onExplore={handleExplore} onCategoryChange={(color) => setHeroAccentColor(color)} />
+                    <Hero onExplore={handleExplore} />
                     <div className="hidden md:block">
                         <BestSellers />
                     </div>
