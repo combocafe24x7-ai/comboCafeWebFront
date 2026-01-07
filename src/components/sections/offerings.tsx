@@ -26,7 +26,7 @@ export default function Offerings() {
         </div>
         
         <div className="mb-16">
-          <h3 className="text-3xl font-headline mb-8 text-center md:text-left">Handcrafted Cakes</h3>
+          <h3 className="text-3xl font-headline mb-8 text-center md:text-left">Cakes</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {config.offerings.cakes.map(cake => (
               <CategoryCard key={cake.name} item={cake} />
@@ -35,8 +35,8 @@ export default function Offerings() {
         </div>
 
         <div className="mb-16">
-          <h3 className="text-3xl font-headline mb-8 text-center md:text-left">Fresh Flowers</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <h3 className="text-3xl font-headline mb-8 text-center md:text-left">Flowers</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {config.offerings.flowers.map(flower => (
               <CategoryCard key={flower.name} item={flower} />
             ))}
@@ -45,7 +45,7 @@ export default function Offerings() {
 
         <div>
           <h3 className="text-3xl font-headline mb-8 text-center md:text-left">Food</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {config.offerings.food.map(item => (
               <CategoryCard key={item.name} item={item} />
             ))}

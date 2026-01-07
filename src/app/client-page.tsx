@@ -11,6 +11,7 @@ import BestSellers from '@/components/sections/bestsellers';
 import Contact from '@/components/sections/contact';
 import FinalCta from '@/components/sections/final-cta';
 import { cn } from '@/lib/utils';
+import Faq from '@/components/sections/faq';
 
 export default function ClientPage() {
     const [isLoading, setIsLoading] = useState(true);
@@ -28,9 +29,9 @@ export default function ClientPage() {
                 <Header />
                 <main>
                     <Hero />
+                    <BestSellers />
                     <Offerings />
                     <Menu />
-                    <BestSellers />
                     <Contact />
                     <FinalCta />
                 </main>

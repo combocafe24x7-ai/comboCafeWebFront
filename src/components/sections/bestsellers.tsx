@@ -11,7 +11,7 @@ export default function BestSellers() {
           <h2 className="text-4xl md:text-5xl font-headline text-foreground">Our Best Sellers</h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">Discover the favorites that our customers can't get enough of.</p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {config.bestsellers.map(item => (
             <Card key={item.name} className="overflow-hidden group border-0 shadow-lg dark:shadow-black/20 hover:shadow-xl transition-shadow duration-300 rounded-lg">
               <div className="relative aspect-video">
