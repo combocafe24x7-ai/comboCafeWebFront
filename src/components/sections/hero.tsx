@@ -146,3 +146,5 @@ export default function Hero({ onExplore }: HeroProps) {
     </section>
   );
 }
+
+    
