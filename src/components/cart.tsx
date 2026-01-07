@@ -57,7 +57,7 @@ export default function Cart() {
                         <p className="text-muted-foreground text-sm">{item.price}</p>
                         </div>
                         <Button variant="ghost" size="icon" onClick={() => handleRemoveFromCart(item.name)}>
-                        <X className="h-4 w-4" />
+                        <X />
                         </Button>
                     </div>
                     ))}
@@ -68,18 +68,18 @@ export default function Cart() {
                 <div className='grid grid-cols-2 gap-2'>
                     <Button asChild className="w-full">
                         <a href={`tel:${config.contact.phone}`}>
-                            <Phone className="mr-2 h-4 w-4" /> Call to Order
+                            <Phone /> Call to Order
                         </a>
                     </Button>
                     <Button asChild variant="secondary" className="w-full">
                         <a href={`https://wa.me/${config.contact.phone}?text=${getWhatsAppMessage()}`} target="_blank" rel="noopener noreferrer">
-                            <MessageCircle className="mr-2 h-4 w-4" /> WhatsApp
+                            <MessageCircle /> WhatsApp
                         </a>
                     </Button>
                 </div>
                 <SheetClose asChild>
                     <Button variant="outline" onClick={handleClearCart}>
-                        <Trash className="mr-2 h-4 w-4" /> Empty Cart
+                        <Trash /> Empty Cart
                     </Button>
                 </SheetClose>
             </SheetFooter>

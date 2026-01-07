@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -11,6 +12,8 @@ export default function Hero() {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
   const [parallaxStyle, setParallaxStyle] = useState<React.CSSProperties>({});
+  
+  const currentCategory = config.hero.categories[currentCategoryIndex];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +29,10 @@ export default function Hero() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--primary-hex', currentCategory.accentColor);
+  }, [currentCategory]);
 
   const changeCategory = (direction: 'next' | 'prev') => {
     if (isChanging) return;
@@ -47,10 +54,8 @@ export default function Hero() {
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
   };
   
-  const currentCategory = config.hero.categories[currentCategoryIndex];
-  
   const PrimaryButton = () => (
-    <Button size="lg" onClick={() => handleScrollTo(config.hero.primaryCta.href)} style={{ backgroundColor: currentCategory.accentColor, color: '#121212' }} className="font-semibold shadow-lg hover:shadow-xl transition-shadow">
+    <Button size="lg" onClick={() => handleScrollTo(config.hero.primaryCta.href)} className="font-semibold shadow-lg hover:shadow-xl transition-shadow bg-primary text-primary-foreground hover:bg-primary/90">
       {config.hero.primaryCta.text}
     </Button>
   );

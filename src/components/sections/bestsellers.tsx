@@ -1,3 +1,7 @@
+
+"use client";
+
+import React from 'react';
 import { config } from '@/app/config.tsx';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -7,6 +11,7 @@ import { Phone, MessageCircle } from 'lucide-react';
 
 export default function BestSellers() {
   const whatsAppUrl = `https://wa.me/${config.contact.phone}?text=I'd like to order one of your best sellers!`;
+
   return (
     <section id="bestsellers" className="py-20 md:py-28 bg-muted/30">
       <div className="container mx-auto px-6">
@@ -29,12 +34,12 @@ export default function BestSellers() {
               <CardFooter className="p-4 bg-card/50 grid grid-cols-2 gap-2">
                  <Button asChild className="w-full">
                     <a href={`tel:${config.contact.phone}`}>
-                        <Phone className="mr-2 h-4 w-4" /> Call to Order
+                        <Phone /> Call to Order
                     </a>
                 </Button>
                 <Button asChild variant="secondary" className="w-full">
                     <a href={whatsAppUrl} target="_blank" rel="noopener noreferrer">
-                        <MessageCircle className="mr-2 h-4 w-4" /> WhatsApp
+                        <MessageCircle /> WhatsApp
                     </a>
                 </Button>
               </CardFooter>

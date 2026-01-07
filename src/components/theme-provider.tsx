@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -5,21 +6,6 @@ import { ThemeProvider as NextThemesProvider } from "next-themes"
 import { type ThemeProviderProps } from "next-themes/dist/types"
 import { config } from "@/app/config.tsx";
 
-export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  React.useEffect(() => {
-    const root = window.document.documentElement;
-    // This function might not be defined if you removed dark mode logic
-    try {
-      root.style.setProperty('--primary-hsl', hexToHsl(config.theme.accentColor));
-    } catch (e) {
-      console.warn("Could not set primary color from config, hexToHsl might be missing.");
-    }
-  }, []);
-
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
-}
-
-// Keeping this function in case it's used elsewhere, but it is part of the theme logic.
 function hexToHsl(hex: string): string {
     hex = hex.replace("#", "");
     const r = parseInt(hex.substring(0, 2), 16) / 255;
@@ -42,4 +28,34 @@ function hexToHsl(hex: string): string {
     }
     
     return `${Math.round(h * 360)} ${Math.round(s * 100)}% ${Math.round(l * 100)}%`;
+}
+
+export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+  React.useEffect(() => {
+    const root = window.document.documentElement;
+    const initialAccentColor = config.hero.categories[0].accentColor;
+    
+    // Set initial color
+    root.style.setProperty('--primary', hexToHsl(initialAccentColor));
+    
+    // Create an observer to watch for changes on the --primary-hex variable
+    const observer = new MutationObserver((mutationsList) => {
+      for (const mutation of mutationsList) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+          const newHex = root.style.getPropertyValue('--primary-hex').trim();
+          if (newHex) {
+            root.style.setProperty('--primary', hexToHsl(newHex));
+            root.style.setProperty('--ring', hexToHsl(newHex));
+          }
+        }
+      }
+    });
+
+    observer.observe(root, { attributes: true });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Force light theme and remove theme-switching capabilities
+  return <NextThemesProvider {...props} forcedTheme="light">{children}</NextThemesProvider>
 }
