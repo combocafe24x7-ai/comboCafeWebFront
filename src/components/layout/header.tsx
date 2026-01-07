@@ -183,7 +183,10 @@ export default function Header({ onNavSelect, heroAccentColor = '#FFDA63' }: Hea
   );
 
   return (
-    <header className={cn('fixed top-0 left-0 right-0 z-50 transition-all duration-300', isSticky ? 'bg-background/80 backdrop-blur-sm shadow-md' : 'bg-transparent')}>
+    <header 
+      className={cn('fixed top-0 left-0 right-0 z-50 transition-all duration-300', isSticky ? 'bg-background/80 backdrop-blur-sm shadow-md' : 'bg-transparent')}
+      style={{ '--hero-accent-color': heroAccentColor } as React.CSSProperties}
+    >
       <nav className="container flex justify-between items-center px-4 md:px-6 py-3">
         <button 
           onClick={handleBrandClick} 

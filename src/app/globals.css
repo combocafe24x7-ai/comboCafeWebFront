@@ -13,7 +13,8 @@
     --popover: 240 10% 100%;
     --popover-foreground: 224 8% 20%;
     
-    --primary: 48 100% 70%; /* Fallback: hsl from #FFDA63 */
+    --hero-accent-color: 48 100% 70%; /* Default to yellow */
+    --primary: var(--hero-accent-color);
     --primary-foreground: 240 10% 10%; /* Darker text for light primary colors */
     
     --secondary: 240 5% 94%;
@@ -26,7 +27,7 @@
     --destructive-foreground: 0 0% 98%;
     --border: 240 5% 90%;
     --input: 240 5% 90%;
-    --ring: 48 100% 70%;
+    --ring: var(--hero-accent-color);
     --radius: 0.75rem;
   }
 }
