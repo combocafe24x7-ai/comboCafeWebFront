@@ -27,41 +27,43 @@ export default function Menu() {
             <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">Take a look at our full menu.</p>
         </div>
 
-        <Carousel 
-            opts={{
-                align: "start",
-                loop: true,
-            }}
-            plugins={[
-                Autoplay({
-                  delay: 3000,
-                  stopOnInteraction: true,
-                }),
-            ]}
-            className="w-full max-w-5xl mx-auto"
-        >
-          <CarouselContent className="-ml-4">
-            {config.menu.cards.map((menu, index) => (
-              <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                <div className="p-1">
-                  <Card className="overflow-hidden group rounded-lg border-0 shadow-lg">
-                    <CardContent className="p-0 flex items-center justify-center relative aspect-[3/4]">
-                      <Image
-                        src={menu.url}
-                        alt={`Menu page ${index + 1}`}
-                        width={450}
-                        height={600}
-                        className="object-contain transform transition-transform duration-300 group-hover:scale-110"
-                      />
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10" />
-          <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10" />
-        </Carousel>
+        <div className="relative w-full max-w-5xl mx-auto">
+          <Carousel 
+              opts={{
+                  align: "start",
+                  loop: true,
+              }}
+              plugins={[
+                  Autoplay({
+                    delay: 3000,
+                    stopOnInteraction: true,
+                  }),
+              ]}
+              className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {config.menu.cards.map((menu, index) => (
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="p-1">
+                    <Card className="overflow-hidden group rounded-lg border-0 shadow-lg">
+                      <CardContent className="p-0 flex items-center justify-center relative aspect-[3/4]">
+                        <Image
+                          src={menu.url}
+                          alt={`Menu page ${index + 1}`}
+                          width={450}
+                          height={600}
+                          className="object-contain transform transition-transform duration-300 group-hover:scale-110"
+                        />
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10" />
+            <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10" />
+          </Carousel>
+        </div>
       </div>
     </section>
   );
