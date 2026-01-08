@@ -88,8 +88,7 @@ export default function Hero({ onExplore }: HeroProps) {
     <Button 
         size="lg" 
         onClick={() => onExplore(currentCategory.id as OfferingCategory)} 
-        className="font-semibold shadow-lg hover:shadow-xl transition-shadow text-black"
-        style={{ backgroundColor: currentCategory.accentColor }}
+        className="font-semibold shadow-lg hover:shadow-xl transition-shadow text-primary-foreground"
     >
       {config.hero.primaryCta.text}
     </Button>
@@ -118,7 +117,7 @@ export default function Hero({ onExplore }: HeroProps) {
           <div className={cn('transition-all duration-300 ease-in-out', isChanging ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0')}>
             <h2 className="text-sm font-body uppercase tracking-widest" style={{ color: currentCategory.accentColor }}>{currentCategory.subtitle}</h2>
             <h1 className="font-headline text-5xl md:text-7xl font-bold my-4 leading-tight" style={{ color: currentCategory.accentColor }}>{currentCategory.headline}</h1>
-            <p className="font-body text-lg text-white/80 max-w-md">{currentCategory.description}</p>
+            <p className="font-body text-lg text-white/80 max-w-md hidden md:block">{currentCategory.description}</p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-start">
               <PrimaryButton />
               <SecondaryButton />
