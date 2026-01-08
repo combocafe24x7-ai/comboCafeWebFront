@@ -66,6 +66,7 @@ export const config = {
             label: "Cakes",
             sublinks: [
               { id: "cakes:Celebration Cakes", label: "Celebration Cakes" },
+              { id: "cakes:Cakes & Desserts", label: "Cakes & Desserts" },
             ]
           },
           { id: "gifts", label: "Gifts" },
@@ -102,6 +103,17 @@ export const config = {
           { name: "Cup Cake (V/C)", description: "Your choice of vanilla or chocolate, perfectly portioned.", price: "Rs60", imageUrl: findImage('best-seller-3'), imageHint: findImageHint('best-seller-3') },
         ]
       },
+       "Cakes & Desserts": {
+        note: "Please order at least 2 hours in advance.",
+        items: [
+          { name: "Chocolate Cake", description: "Decadent layers of rich chocolate sponge and ganache.", price: "Rs120", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
+          { name: "Vanilla Cake", description: "A classic, elegant vanilla cake with buttercream frosting.", price: "Rs100", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
+          { name: "Strawberry Cake", description: "Light, fruity, and topped with fresh strawberries.", price: "Rs130", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
+          { name: "Red Velvet Cake", description: "A southern classic with a hint of cocoa and cream cheese frosting.", price: "Rs150", imageUrl: findImage('celebration-cake'), imageHint: findImageHint('celebration-cake') },
+          { name: "Chocolate Brownie", description: "Fudgy, dense, and packed with chocolate chunks.", price: "Rs90", imageUrl: findImage('best-seller-1'), imageHint: findImageHint('best-seller-1') },
+          { name: "Cup Cake (V/C)", description: "Your choice of vanilla or chocolate, perfectly portioned.", price: "Rs60", imageUrl: findImage('best-seller-3'), imageHint: findImageHint('best-seller-3') },
+        ]
+      },
     },
     gifts: [
         { name: "Single Rose", description: "A timeless, classic gesture of love and appreciation.", imageUrl: findImage('roses'), imageHint: findImageHint('roses'), price: "Rs50" },
@@ -125,7 +137,7 @@ export const config = {
                 { name: "Cappuccino", description: "The perfect balance of espresso, steamed milk, and foam.", price: "Rs120", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
                 { name: "Caffè Latte", description: "A creamier option with more steamed milk than a cappuccino.", price: "Rs130", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
                 { name: "Mocha", description: "A delightful mix of chocolate, espresso, and steamed milk.", price: "Rs140", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-                { name: "Hot Chocolate", description: "Rich, creamy, and comforting, made with real chocolate.", price: "Rs120", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
+                { name: "Hot Chocolate", description: "Rich, creamy, and comforting, made with real chocolate.", price: "Rs120", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty-coffee') },
             ]
         },
         "Cold Beverages": {
@@ -187,5 +199,3 @@ export const config = {
     copyright: `© ${new Date().getFullYear()} Combo Café & Gift Shop. All rights reserved.`,
   },
 };
-
-    
