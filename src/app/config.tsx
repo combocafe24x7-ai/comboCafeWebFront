@@ -66,7 +66,7 @@ export const config = {
             label: "Cakes",
             sublinks: [
               { id: "cakes:Celebration Cakes", label: "Celebration Cakes" },
-              { id: "cakes:Cakes &amp; Desserts", label: "Cakes &amp; Desserts" },
+              { id: "cakes:Cakes & Desserts", label: "Cakes & Desserts" },
             ]
           },
           { id: "gifts", label: "Gifts" },
@@ -97,17 +97,19 @@ export const config = {
         items: [
           { name: "Chocolate Celebration Cake", description: "Rich, decadent chocolate layers.", price: "Rs599", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
           { name: "Vanilla Celebration Cake", description: "A classic, elegant vanilla cake.", price: "Rs549", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
-          { name: "Strawberry Cake (Slice)", description: "Light, fruity, and delicious.", price: "Rs649", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
+          { name: "Strawberry Cake", description: "Light, fruity, and delicious.", price: "Rs649", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
           { name: "Custom Theme Cake", description: "Your vision, our creation.", price: "Price on Request", imageUrl: findImage('celebration-cake'), imageHint: findImageHint('celebration-cake') },
         ]
       },
-       "Cakes &amp; Desserts": {
+       "Cakes & Desserts": {
         note: "Please order at least 2 hours in advance.",
         items: [
-          { name: "Chocolate Celebration Cake", description: "Rich, decadent chocolate layers.", price: "Rs599", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
-          { name: "Vanilla Celebration Cake", description: "A classic, elegant vanilla cake.", price: "Rs549", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
-          { name: "Strawberry Cake (Slice)", description: "Light, fruity, and delicious.", price: "Rs649", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
-          { name: "Custom Theme Cake", description: "Your vision, our creation.", price: "Price on Request", imageUrl: findImage('celebration-cake'), imageHint: findImageHint('celebration-cake') },
+          { name: "Chocolate Cake (Slice)", description: "Decadent layers of rich chocolate sponge and ganache.", price: "Rs120", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
+          { name: "Vanilla Cake (Slice)", description: "A classic, elegant vanilla cake with buttercream frosting.", price: "Rs100", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
+          { name: "Strawberry Cake (Slice)", description: "Light, fruity, and topped with fresh strawberries.", price: "Rs130", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
+          { name: "Red Velvet Cake", description: "A southern classic with a hint of cocoa and cream cheese frosting.", price: "Rs150", imageUrl: findImage('celebration-cake'), imageHint: findImageHint('celebration-cake') },
+          { name: "Chocolate Brownie", description: "Fudgy, dense, and packed with chocolate chunks.", price: "Rs90", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
+          { name: "Cup Cake (V/C)", description: "Your choice of vanilla or chocolate, perfectly portioned.", price: "Rs60", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
         ]
       },
     },
