@@ -9,7 +9,7 @@ import { Calendar as CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
@@ -24,11 +24,17 @@ const deliveryHours = [
   "5:00 PM - 7:00 PM",
 ];
 
+const allowedPincodes = ["731224", "731223", "731216", "731241", "731242"];
+
 const formSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
   address: z.string().min(1, "Address is required"),
-  pincode: z.string().regex(/^\d{6}$/, "Must be a 6-digit pincode"),
+  pincode: z.string()
+    .regex(/^\d{6}$/, "Must be a 6-digit pincode")
+    .refine(pincode => allowedPincodes.includes(pincode), {
+      message: "Sorry, we only deliver to select pincodes currently. See list below.",
+    }),
   streetNumber: z.string().optional(),
   houseNumber: z.string().optional(),
   landmarks: z.string().min(1, "Landmark is required"),
@@ -155,6 +161,9 @@ export function OrderForm({ onSubmit, totalPrice }: OrderFormProps) {
                   <FormControl>
                     <Input placeholder="123456" {...field} />
                   </FormControl>
+                  <FormDescription>
+                    One-day delivery available for: 731224, 731223, 731216, 731241, 731242.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -281,3 +290,5 @@ export function OrderForm({ onSubmit, totalPrice }: OrderFormProps) {
     </Form>
   )
 }
+
+    
