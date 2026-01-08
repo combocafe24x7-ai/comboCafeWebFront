@@ -105,7 +105,7 @@ const ProductCard = ({ item }: { item: Product }) => {
             {discount.percentage}% OFF
           </Badge>
         )}
-        <Image src={item.imageUrl} alt={item.name} width={400} height={300} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-ai-hint={item.imageHint} />
+        <Image src={item.imageUrl} alt={item.name} width={400} height={400} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-ai-hint={item.imageHint} />
       </div>
       <CardContent className="p-4 flex flex-col flex-grow">
         <div className="flex-grow mb-2">
