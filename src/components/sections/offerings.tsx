@@ -181,6 +181,12 @@ const ItemsGrid = ({ children }: { children: React.ReactNode }) => (
     </div>
 );
 
+const SubCategoryGrid = ({ children }: { children: React.ReactNode }) => (
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {children}
+    </div>
+);
+
 
 const Breadcrumbs = ({ path, onNavigate }: { path: string[], onNavigate: (index: number) => void }) => {
     const { displayColor } = useAccentColor();
@@ -295,7 +301,7 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
                       />
           });
           return (
-            <ItemsGrid>{categoryCards}</ItemsGrid>
+            <SubCategoryGrid>{categoryCards}</SubCategoryGrid>
           )
       }
     }
@@ -316,7 +322,7 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
                      />
           });
           return (
-            <ItemsGrid>{cakeCategoryCards}</ItemsGrid>
+            <SubCategoryGrid>{cakeCategoryCards}</SubCategoryGrid>
           );
         case 'gifts':
            const giftCards = config.offerings.gifts.map(gift => (
@@ -342,7 +348,7 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
                      />
           });
            return (
-            <ItemsGrid>{foodCategoryCards}</ItemsGrid>
+            <SubCategoryGrid>{foodCategoryCards}</SubCategoryGrid>
           );
         default:
           return null;
@@ -376,7 +382,7 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
     ];
 
     return (
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {mainCategories}
       </div>
     );
