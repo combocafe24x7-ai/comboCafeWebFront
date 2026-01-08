@@ -13,13 +13,12 @@ export default function GiftsGallery() {
   return (
     <section id="gifts-gallery" className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="mb-8">
-            <h3 className="font-headline text-2xl text-foreground">Gifts</h3>
-            <div className="flex items-center text-muted-foreground text-sm">
-                <p>Flavor Town</p>
-                <span className="mx-2">·</span>
-                <p>{formattedDate}</p>
-            </div>
+        <div className="text-center mb-12 md:mb-16">
+            <VisuallyHidden>
+                <h2>Our Gifts Gallery</h2>
+            </VisuallyHidden>
+            <h2 className="text-4xl md:text-5xl font-headline text-foreground">Gifts Gallery</h2>
+            <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">A collection of beautiful gifts for your loved ones.</p>
         </div>
         
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-0.5">
