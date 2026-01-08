@@ -91,8 +91,8 @@
       "imageHint": "healthy salad"
     },
     {
-      "id": "custom-gift-card",
-      "description": "A custom gift card.",
+      "id": "custom-gift",
+      "description": "A custom gift.",
       "imageUrl": "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxnaWZ0JTIwY2FyZHxlbnwwfHx8fDE3NjgxODg0MzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "gift card"
     }
