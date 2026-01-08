@@ -107,25 +107,25 @@ const ProductCard = ({ item }: { item: Product }) => {
         )}
         <Image src={item.imageUrl} alt={item.name} width={400} height={400} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-ai-hint={item.imageHint} />
       </div>
-      <CardContent className="p-4 flex flex-col flex-grow">
-        <div className="flex-grow mb-2">
-            <CardTitle className="font-headline text-xl text-foreground mb-1 line-clamp-1">{item.name}</CardTitle>
-            {item.description && <p className="text-muted-foreground font-body text-sm line-clamp-2 h-10">{item.description}</p>}
+      <CardContent className="p-3 flex flex-col flex-grow">
+        <div className="flex-grow">
+            <CardTitle className="font-headline text-lg text-foreground mb-1 line-clamp-1">{item.name}</CardTitle>
+            {item.description && <p className="text-muted-foreground font-body text-xs line-clamp-1">{item.description}</p>}
         </div>
-        <div>
+        <div className="mt-2">
             <div className="flex items-baseline gap-2">
-                <p className="text-primary font-bold text-lg">{item.price}</p>
-                {item.originalPrice && <p className="text-muted-foreground line-through text-sm">{item.originalPrice}</p>}
+                <p className="text-primary font-bold text-base">{item.price}</p>
+                {item.originalPrice && <p className="text-muted-foreground line-through text-xs">{item.originalPrice}</p>}
             </div>
             {discount && <p className="text-xs text-green-600 font-semibold">You save Rs{discount.saved.toFixed(0)}!</p>}
         </div>
       </CardContent>
       <CardFooter className="p-2 border-t flex flex-col gap-2">
         <div className="flex gap-2 w-full">
-            <Button onClick={handleAddToCart} size="sm" className="w-full text-xs rounded-sm h-9">
+            <Button onClick={handleAddToCart} size="sm" className="w-full text-xs rounded-sm h-8">
                 <ShoppingCart className="mr-2 h-4 w-4" /> Cart
             </Button>
-            <Button asChild variant="outline" size="sm" className="w-full text-xs rounded-sm h-9">
+            <Button asChild variant="outline" size="sm" className="w-full text-xs rounded-sm h-8">
                 <a href={`tel:${config.contact.phone}`}>
                     <Phone className="mr-2 h-4 w-4" /> Call
                 </a>
@@ -133,7 +133,7 @@ const ProductCard = ({ item }: { item: Product }) => {
         </div>
         <Sheet>
             <SheetTrigger asChild>
-                <Button variant="secondary" size="sm" className="w-full text-xs rounded-sm h-9 bg-blue-400 text-white hover:bg-blue-500">
+                <Button variant="secondary" size="sm" className="w-full text-xs rounded-sm h-8 bg-blue-400 text-white hover:bg-blue-500">
                     Order on WhatsApp
                 </Button>
             </SheetTrigger>
@@ -168,7 +168,7 @@ const CategoryCard = ({ title, imageUrl, imageHint, onClick }: { title: string; 
 );
 
 const ItemsGrid = ({ children }: { children: React.ReactNode }) => (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {children}
     </div>
 );
