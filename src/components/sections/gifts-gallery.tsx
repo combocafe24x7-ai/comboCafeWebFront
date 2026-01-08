@@ -22,9 +22,9 @@ export default function GiftsGallery() {
             </div>
         </div>
         
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-0.5">
           {config.giftsGallery.map((image, index) => (
-            <div key={index} className="relative aspect-square rounded-lg overflow-hidden group">
+            <div key={index} className="relative aspect-square overflow-hidden group">
                 <Image
                     src={image.url}
                     alt={`Gift image ${index + 1}`}
