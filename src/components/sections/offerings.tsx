@@ -128,7 +128,7 @@ const ProductCard = ({ item }: { item: Product }) => {
             {discount && <p className="text-xs text-green-600 font-semibold">Save Rs{discount.saved.toFixed(0)}</p>}
         </div>
       </CardContent>
-      <div className="p-1.5 border-t mt-auto">
+      <div className="p-1.5 border-t space-y-1.5">
         <div className="flex gap-1.5 w-full">
             <Button onClick={handleAddToCart} size="sm" className="w-full text-xs rounded-sm h-8 flex-1">
                 <ShoppingCart className="mr-1.5 h-4 w-4" /> Cart
@@ -138,26 +138,26 @@ const ProductCard = ({ item }: { item: Product }) => {
                     <Phone className="h-4 w-4" />
                 </a>
             </Button>
-             <Sheet>
-                <SheetTrigger asChild>
-                     <Button variant="secondary" size="icon" className="h-8 w-8 rounded-sm bg-green-500 text-white hover:bg-green-600">
-                        <MessageSquare className="h-4 w-4" />
-                    </Button>
-                </SheetTrigger>
-                <SheetContent side="right" className="w-[90vw] sm:max-w-lg overflow-y-auto">
-                    <SheetHeader>
-                        <SheetTitle>Delivery Information</SheetTitle>
-                        <SheetDescription>
-                            Please provide your details to place an order for <span className="font-bold">{item.name}</span>.
-                        </SheetDescription>
-                    </SheetHeader>
-                    <OrderForm 
-                        onSubmit={handleWhatsAppOrder}
-                        totalPrice={parsePrice(item.price)}
-                    />
-                </SheetContent>
-            </Sheet>
         </div>
+        <Sheet>
+            <SheetTrigger asChild>
+                  <Button variant="secondary" size="sm" className="h-8 rounded-sm bg-green-500 text-white hover:bg-green-600 w-full text-xs">
+                    Order on WhatsApp
+                </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[90vw] sm:max-w-lg overflow-y-auto">
+                <SheetHeader>
+                    <SheetTitle>Delivery Information</SheetTitle>
+                    <SheetDescription>
+                        Please provide your details to place an order for <span className="font-bold">{item.name}</span>.
+                    </SheetDescription>
+                </SheetHeader>
+                <OrderForm 
+                    onSubmit={handleWhatsAppOrder}
+                    totalPrice={parsePrice(item.price)}
+                />
+            </SheetContent>
+        </Sheet>
       </div>
     </Card>
   );
