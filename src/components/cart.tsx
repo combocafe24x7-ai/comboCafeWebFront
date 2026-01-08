@@ -118,7 +118,7 @@ export default function Cart() {
                 </div>
             </ScrollArea>
             <Separator className='-mx-6 w-[calc(100%+48px)]' />
-            <SheetFooter className="mt-auto pt-6 grid grid-cols-1 gap-2">
+            <SheetFooter className="mt-auto pt-6 grid grid-cols-1 gap-4">
                 <div className='grid grid-cols-2 gap-2'>
                     <Button asChild className="w-full">
                         <a href={`tel:${config.contact.phone}`}>
