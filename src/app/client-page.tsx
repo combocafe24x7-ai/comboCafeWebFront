@@ -37,12 +37,12 @@ export default function ClientPage() {
     }
 
     const handleNavSelect = (path: string) => {
-        if (path === 'menu' && window.innerWidth < 768) {
+        if (path === 'menu') {
             setIsMenuOpen(true);
             return;
         }
 
-        if (path === 'bestsellers' && window.innerWidth < 768) {
+        if (path === 'bestsellers') {
             setIsBestSellersOpen(true);
             return;
         }
@@ -74,9 +74,7 @@ export default function ClientPage() {
                 <Header onNavSelect={handleNavSelect} />
                 <main className="pb-20 md:pb-0">
                     <Hero onExplore={handleExplore} />
-                    <div className="hidden md:block">
-                        <BestSellers />
-                    </div>
+                    <BestSellers />
                     <Offerings 
                         initialCategoryState={navigatedCategory}
                         exploreClicked={exploreClicked || !!navigatedCategory}

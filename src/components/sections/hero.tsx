@@ -88,8 +88,8 @@ export default function Hero({ onExplore }: HeroProps) {
     <Button 
         size="lg" 
         onClick={() => onExplore(currentCategory.id as OfferingCategory)} 
-        className="font-semibold shadow-lg hover:shadow-xl transition-shadow"
-        style={{ backgroundColor: currentCategory.accentColor, color: '#333' }}
+        className="font-semibold shadow-lg hover:shadow-xl transition-shadow text-black"
+        style={{ backgroundColor: currentCategory.accentColor }}
     >
       {config.hero.primaryCta.text}
     </Button>
@@ -110,7 +110,7 @@ export default function Hero({ onExplore }: HeroProps) {
         fill
         className="absolute top-0 left-0 w-full h-full object-cover"
         style={parallaxStyle}
-        unoptimized
+        priority
       />
       
       <div className="relative z-20 container mx-auto px-6 h-full flex flex-col justify-center">

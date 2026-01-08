@@ -16,18 +16,6 @@ type BestSellersOverlayProps = {
     onClose: () => void;
 };
 
-const WhatsAppIcon = (props: React.ComponentProps<'svg'>) => (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-label="WhatsApp"
-    >
-      <path d="M16.75 13.96c.25.13.42.2.46.3.05.1.05.75-.2 1.3-.25.55-1.12 1.1-1.52 1.25-.4.15-1.07.13-1.6-.08s-2.15-1-3.6-2.5c-1.15-1.15-2-2.5-2.2-2.9-.2-.4-.04-.6.12-.77.16-.17.35-.2.5-.2s.33.02.47.22c.14.2.3.66.35.7.05.05.07.12.02.2-.05.08-.1.18-.2.25-.1.08-.2.12-.25.2-.06.07-.12.15-.05.27.07.12.33.56.7.92.56.5.94.75 1.1.8.14.05.24.03.32-.03.1-.06.42-.5.54-.66.12-.17.22-.15.32-.1.1.04.65.3.75.36zM12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10c1.85 0 3.55-.5 5-1.35l-1.3-1.3c-1.1.5-2.35.8-3.7.8a8 8 0 1 1 8-8c0 1.35-.3 2.6-.8 3.7l1.3 1.3C21.5 15.55 22 13.85 22 12A10 10 0 0 0 12 2z"/>
-    </svg>
-);
-
 const parsePrice = (price: string) => {
     const match = price.match(/(\d+(\.\d+)?)/);
     if (!match) return 0;
@@ -97,7 +85,8 @@ const BestSellerCard = ({ item }: { item: typeof config.bestsellers[0] }) => {
                 <Image
                     src={item.imageUrl}
                     alt={item.name}
-                    fill
+                    width={600}
+                    height={338}
                     className="object-cover"
                     data-ai-hint={item.imageHint}
                 />
@@ -152,14 +141,9 @@ export default function BestSellersOverlay({ isOpen, onClose }: BestSellersOverl
         "fixed inset-0 bg-background/95 backdrop-blur-sm z-[200] flex flex-col items-center justify-start transition-opacity duration-300", 
         isMounted ? 'opacity-100' : 'opacity-0'
     )}>
-        <VisuallyHidden>
-            <h2>Our Best Sellers</h2>
-        </VisuallyHidden>
-
-        <div className="absolute top-4 right-4 z-10">
-            <Button variant="ghost" size="icon" onClick={onClose} className="text-foreground/70 hover:text-foreground">
+      <div className="absolute top-4 right-4 z-10">
+            <Button variant="ghost" size="icon" onClick={onClose} aria-label="Close" className="text-foreground/70 hover:text-foreground">
                 <X className="h-6 w-6" />
-                <span className="sr-only">Close</span>
             </Button>
         </div>
 
@@ -169,6 +153,9 @@ export default function BestSellersOverlay({ isOpen, onClose }: BestSellersOverl
         )}>
             <div className="container mx-auto px-6 py-20">
                 <div className="text-center mb-12 animate-fade-in-down">
+                    <VisuallyHidden>
+                        <h2>Our Best Sellers</h2>
+                    </VisuallyHidden>
                     <h2 className="text-4xl md:text-5xl font-headline text-foreground">Our Best Sellers</h2>
                     <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">Discover the favorites that our customers can't get enough of.</p>
                 </div>
@@ -183,5 +170,3 @@ export default function BestSellersOverlay({ isOpen, onClose }: BestSellersOverl
     </div>
   );
 }
-
-    

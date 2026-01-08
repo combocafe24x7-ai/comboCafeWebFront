@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
+import { VisuallyHidden } from '../ui/visually-hidden.tsx';
 
 
 export default function Menu() {
@@ -19,8 +20,11 @@ export default function Menu() {
     <section id="menu" className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-4xl md:text-5xl font-headline text-foreground">Our Menu</h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">Take a look at our full menu.</p>
+            <VisuallyHidden>
+                <h2>Our Menu</h2>
+            </VisuallyHidden>
+            <h2 className="text-4xl md:text-5xl font-headline text-foreground">Our Menu</h2>
+            <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">Take a look at our full menu.</p>
         </div>
 
         <Carousel 
@@ -45,7 +49,8 @@ export default function Menu() {
                       <Image
                         src={menu.url}
                         alt={`Menu page ${index + 1}`}
-                        fill
+                        width={450}
+                        height={600}
                         className="object-contain transform transition-transform duration-300 group-hover:scale-110"
                       />
                     </CardContent>

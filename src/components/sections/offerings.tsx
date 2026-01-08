@@ -16,6 +16,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet';
 import { OrderForm } from '../order-form';
+import { VisuallyHidden } from '../ui/visually-hidden.tsx';
 
 type Product = {
   name: string;
@@ -93,7 +94,7 @@ const ProductCard = ({ item }: { item: Product }) => {
 
   return (
     <Card className="overflow-hidden group border-0 shadow-lg dark:shadow-black/20 hover:shadow-xl transition-shadow duration-300 flex flex-col rounded-lg h-full">
-      <div className="relative w-full" style={{ paddingBottom: '100%' }}>
+      <div className="relative w-full aspect-square">
         {discount && (
           <Badge 
             variant="destructive" 
@@ -102,7 +103,7 @@ const ProductCard = ({ item }: { item: Product }) => {
             {discount.percentage}% OFF
           </Badge>
         )}
-        <Image src={item.imageUrl} alt={item.name} layout="fill" className="absolute top-0 left-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-ai-hint={item.imageHint} />
+        <Image src={item.imageUrl} alt={item.name} width={400} height={400} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-ai-hint={item.imageHint} />
       </div>
       <CardContent className="p-4 flex flex-col flex-grow">
         <div className="flex-grow mb-2">
@@ -154,7 +155,7 @@ const ProductCard = ({ item }: { item: Product }) => {
 
 const CategoryCard = ({ title, imageUrl, imageHint, onClick }: { title: string; imageUrl: string; imageHint: string, onClick: () => void }) => (
     <div className="relative aspect-square overflow-hidden group cursor-pointer" onClick={onClick}>
-        <Image src={imageUrl} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" data-ai-hint={imageHint} />
+        <Image src={imageUrl} alt={title} width={400} height={400} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300" data-ai-hint={imageHint} />
         <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center p-4">
             <h3 className="font-headline text-4xl text-white font-bold text-center">{title}</h3>
             <div className="absolute bottom-10 opacity-0 group-hover:opacity-100 group-hover:bottom-20 transition-all duration-300">
@@ -428,6 +429,9 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
       <div className="container mx-auto px-4 md:px-6">
         { !selectedCategory ? (
             <div className="text-center mb-12 md:mb-16">
+                <VisuallyHidden>
+                    <h2>Product Categories</h2>
+                </VisuallyHidden>
                 <h2 className="text-4xl md:text-5xl font-headline text-foreground">Product Categories</h2>
                 <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">Explore our delicious cakes, beautiful gifts, and tasty treats.</p>
             </div>

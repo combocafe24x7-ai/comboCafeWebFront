@@ -70,11 +70,7 @@ export default function Header({ onNavSelect }: HeaderProps) {
   };
 
   const handleNavClick = (id: string) => {
-    if (id === 'menu' && window.innerWidth < 768) {
-       onNavSelect('menu');
-    } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    }
+    onNavSelect(id);
   };
 
   const renderNavLinks = (links: NavLink[], isMobile = false): React.ReactNode[] => {
@@ -137,7 +133,7 @@ export default function Header({ onNavSelect }: HeaderProps) {
 
       // Regular link
       const Comp = isMobile ? SheetClose : 'button';
-      const clickHandler = isMobile ? () => onNavSelect(link.id) : () => handleNavClick(link.id);
+      const clickHandler = () => onNavSelect(link.id);
       
       return (
         <Comp
@@ -183,12 +179,11 @@ export default function Header({ onNavSelect }: HeaderProps) {
 
   const CartTrigger = () => (
      <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative">
+        <Button variant="ghost" size="icon" className="relative" aria-label="Open cart">
             <ShoppingCart />
             {cart.length > 0 && (
               <Badge variant="destructive" className="absolute -top-2 -right-2 h-6 w-6 rounded-full flex items-center justify-center text-xs">{cart.length}</Badge>
             )}
-            <span className="sr-only">Open cart</span>
         </Button>
     </SheetTrigger>
   );
@@ -217,9 +212,8 @@ export default function Header({ onNavSelect }: HeaderProps) {
         <div className="md:hidden flex items-center gap-2">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" aria-label="Open menu">
                 <MenuIcon />
-                <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[80vw]">
@@ -233,7 +227,7 @@ export default function Header({ onNavSelect }: HeaderProps) {
                   </span>
                 </div>
                 <div className="flex-grow py-4">
-                  {renderNavLinks(config.navigation.links.filter(l => l.id !== 'bestsellers'), true)}
+                  {renderNavLinks(config.navigation.links, true)}
                 </div>
               </div>
             </SheetContent>

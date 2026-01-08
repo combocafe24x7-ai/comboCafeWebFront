@@ -9,6 +9,7 @@ import { Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet';
 import { OrderForm } from '../order-form';
+import { VisuallyHidden } from '../ui/visually-hidden.tsx';
 
 
 const parsePrice = (price: string) => {
@@ -83,7 +84,8 @@ const BestSellerCard = ({ item, reverse = false }: { item: typeof config.bestsel
             <Image
               src={item.imageUrl}
               alt={item.name}
-              fill
+              width={600}
+              height={338}
               className="object-cover"
               data-ai-hint={item.imageHint}
             />
@@ -133,7 +135,10 @@ export default function BestSellers() {
     <section id="bestsellers" className="py-20 md:py-28 bg-muted/30">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12 md:mb-20">
-          <h2 className="text-4xl md:text-5xl font-headline text-foreground">Our Best Sellers</h2>
+            <VisuallyHidden>
+                <h2>Our Best Sellers</h2>
+            </VisuallyHidden>
+            <h2 className="text-4xl md:text-5xl font-headline text-foreground">Our Best Sellers</h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">Discover the favorites that our customers can't get enough of.</p>
         </div>
 
@@ -152,6 +157,3 @@ export default function BestSellers() {
     </section>
   );
 }
-
-
-    
