@@ -103,7 +103,7 @@ const ProductCard = ({ item }: { item: Product }) => {
   const discount = getDiscount();
 
   return (
-    <Card className="overflow-hidden group border-0 shadow-lg dark:shadow-black/20 hover:shadow-xl transition-shadow duration-300 flex flex-col rounded-lg">
+    <Card className="overflow-hidden group border-0 shadow-lg dark:shadow-black/20 hover:shadow-xl transition-shadow duration-300 flex flex-col rounded-lg h-full">
       <div className="relative w-full aspect-square">
         {discount && (
           <Badge 
@@ -115,10 +115,10 @@ const ProductCard = ({ item }: { item: Product }) => {
         )}
         <Image src={item.imageUrl} alt={item.name} width={400} height={400} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-ai-hint={item.imageHint} />
       </div>
-      <CardContent className="p-2">
-        <div>
+      <CardContent className="p-2 flex flex-col flex-grow">
+        <div className='flex-grow'>
             <CardTitle className="font-headline text-base text-foreground mb-0.5 line-clamp-1">{item.name}</CardTitle>
-            {item.description && <p className="text-muted-foreground font-body text-xs line-clamp-1">{item.description}</p>}
+            {item.description && <p className="text-muted-foreground font-body text-xs line-clamp-1 h-4">{item.description}</p>}
         </div>
         <div className="mt-1.5">
             <div className="flex items-baseline gap-2">
@@ -414,3 +414,5 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
     </section>
   );
 }
+
+    
