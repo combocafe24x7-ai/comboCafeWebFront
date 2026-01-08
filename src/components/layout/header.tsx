@@ -69,10 +69,6 @@ export default function Header({ onNavSelect }: HeaderProps) {
     window.location.reload();
   };
 
-  const handleNavClick = (id: string) => {
-    onNavSelect(id);
-  };
-
   const renderNavLinks = (links: NavLink[], isMobile = false): React.ReactNode[] => {
     return links.map(link => {
       const hasSublinks = link.sublinks && link.sublinks.length > 0;
@@ -211,6 +207,12 @@ export default function Header({ onNavSelect }: HeaderProps) {
         </Sheet>
         <div className="md:hidden flex items-center gap-2">
           <Sheet>
+            <CartTrigger />
+            <SheetContent className="flex flex-col">
+                <Cart />
+            </SheetContent>
+          </Sheet>
+          <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" aria-label="Open menu">
                 <MenuIcon />
@@ -234,3 +236,5 @@ export default function Header({ onNavSelect }: HeaderProps) {
     </header>
   );
 }
+
+    

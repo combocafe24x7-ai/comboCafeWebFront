@@ -57,7 +57,6 @@ export const config = {
   navigation: {
     links: [
       { id: "home", label: "Home" },
-      { id: "bestsellers", label: "Best Sellers" },
       {
         id: "offerings",
         label: "Categories",
@@ -87,7 +86,6 @@ export const config = {
           },
         ]
       },
-      { id: "menu", label: "Menu" },
       { id: "contact", label: "Contact" },
     ],
   },
@@ -104,15 +102,6 @@ export const config = {
           { name: "Cup Cake (V/C)", description: "Your choice of vanilla or chocolate, perfectly portioned.", price: "Rs60", imageUrl: findImage('best-seller-3'), imageHint: findImageHint('best-seller-3') },
         ]
       },
-      "Cakes & Desserts": {
-        items: [
-          { name: "Choco Slice", description: "A perfect single serving of our decadent chocolate cake.", price: "Rs120", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake'), originalPrice: "Rs150" },
-          { name: "Vanilla Slice", description: "A slice of classic vanilla cake, simple and delicious.", price: "Rs100", imageUrl: findImage('vanilla-cake'), imageHint: findImageHint('vanilla-cake') },
-          { name: "Strawberry Slice", description: "Enjoy the fresh, fruity flavor of our strawberry cake.", price: "Rs130", imageUrl: findImage('strawberry-cake'), imageHint: findImageHint('strawberry-cake') },
-          { name: "Red Velvet Slice", description: "A slice of our famous red velvet cake.", price: "Rs150", imageUrl: findImage('celebration-cake'), imageHint: findImageHint('celebration-cake') },
-          { name: "Fudgy Brownie", description: "Rich, chewy, and intensely chocolatey.", price: "Rs90", imageUrl: findImage('best-seller-1'), imageHint: findImageHint('best-seller-1') },
-        ]
-      }
     },
     gifts: [
         { name: "Single Rose", description: "A timeless, classic gesture of love and appreciation.", imageUrl: findImage('roses'), imageHint: findImageHint('roses'), price: "Rs50" },
@@ -153,8 +142,7 @@ export const config = {
   menu: {
     cards: [
       { url: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%207,%202026,%2006_44_35%20AM.png" },
-      { url: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%207,%202026,%2006_49_51%20AM.png" },
-      { url: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%207,%202026,%2006_51_49%20AM.png" }
+      { url: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%207,%202026,%2006_49_51%20AM.png" }
     ],
   },
   bestsellers: [
@@ -199,3 +187,5 @@ export const config = {
     copyright: `© ${new Date().getFullYear()} Combo Café & Gift Shop. All rights reserved.`,
   },
 };
+
+    

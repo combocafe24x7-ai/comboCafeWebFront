@@ -17,6 +17,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet';
 import { OrderForm } from '../order-form';
 import { VisuallyHidden } from '../ui/visually-hidden.tsx';
+import { useAccentColor } from '@/context/accent-color-provider';
 
 type Product = {
   name: string;
@@ -187,17 +188,18 @@ const MobileCarousel = ({ children, basis }: { children: React.ReactNode, basis?
 );
 
 const Breadcrumbs = ({ path, onNavigate }: { path: string[], onNavigate: (index: number) => void }) => {
+    const { displayColor } = useAccentColor();
     if (path.length === 0) return null;
     
     return (
         <div className="mb-8 flex items-center flex-wrap gap-2 text-sm text-muted-foreground">
-            <Button variant="link" className="p-0 h-auto" onClick={() => onNavigate(-1)}>Home</Button>
+            <Button variant="link" className="p-0 h-auto" onClick={() => onNavigate(-1)} style={{ color: displayColor }}>Home</Button>
             <ChevronRight className="h-4 w-4" />
             {path.map((item, index) => (
                 <React.Fragment key={item}>
                     {index < path.length - 1 ? (
                         <>
-                            <Button variant="link" className="p-0 h-auto" onClick={() => onNavigate(index)}>
+                            <Button variant="link" className="p-0 h-auto" onClick={() => onNavigate(index)} style={{ color: displayColor }}>
                                 {item}
                             </Button>
                             <ChevronRight className="h-4 w-4" />
@@ -376,8 +378,8 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
       <CategoryCard 
           key="cakes"
           title="Cakes" 
-          imageUrl={cakes["Cakes & Desserts"].items[0].imageUrl}
-          imageHint={cakes["Cakes & Desserts"].items[0].imageHint}
+          imageUrl={cakes["Celebration Cakes"].items[0].imageUrl}
+          imageHint={cakes["Celebration Cakes"].items[0].imageHint}
           onClick={() => setSelectedCategory('cakes')}
       />,
       <CategoryCard 
@@ -449,3 +451,5 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
     </section>
   );
 }
+
+    
