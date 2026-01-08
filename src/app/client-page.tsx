@@ -41,6 +41,11 @@ export default function ClientPage() {
             setIsMenuOpen(true);
             return;
         }
+
+        if (path === 'bestsellers' && window.innerWidth < 768) {
+            setIsBestSellersOpen(true);
+            return;
+        }
         
         if (path.includes(':')) {
             const [category, subCategory, subSubCategory] = path.split(':') as [OfferingCategory, SubCategory?, SubSubCategory?];
@@ -69,7 +74,9 @@ export default function ClientPage() {
                 <Header onNavSelect={handleNavSelect} />
                 <main className="pb-20 md:pb-0">
                     <Hero onExplore={handleExplore} />
-                    <BestSellers />
+                    <div className="hidden md:block">
+                        <BestSellers />
+                    </div>
                     <Offerings 
                         initialCategoryState={navigatedCategory}
                         exploreClicked={exploreClicked || !!navigatedCategory}

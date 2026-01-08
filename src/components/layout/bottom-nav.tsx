@@ -32,7 +32,10 @@ export default function BottomNav({ onNavSelect }: BottomNavProps) {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+            const newActiveSection = entry.target.id;
+            // Best sellers is not a main section on mobile
+            if (window.innerWidth < 768 && newActiveSection === 'bestsellers') return;
+            setActiveSection(newActiveSection);
           }
         });
       },
@@ -48,11 +51,7 @@ export default function BottomNav({ onNavSelect }: BottomNavProps) {
   }, []);
 
   const handleNavClick = (id: string) => {
-    if (id === 'menu' && window.innerWidth < 768) {
-      onNavSelect('menu');
-    } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    }
+    onNavSelect(id);
   };
   
   return (
