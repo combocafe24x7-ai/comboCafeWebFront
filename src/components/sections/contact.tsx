@@ -16,20 +16,27 @@ export default function Contact() {
   useEffect(() => {
     // This logic runs only on the client to avoid hydration mismatch
     const checkOpeningStatus = () => {
-      // IST is UTC+5:30
-      const now = new Date();
-      const utcOffset = now.getTimezoneOffset() * 60000;
-      const istOffset = 5.5 * 3600000;
-      const istTime = new Date(now.getTime() + utcOffset + istOffset);
+      try {
+        const now = new Date();
+        // Get the current hour in Asia/Kolkata timezone (GMT+5:30)
+        const hourString = now.toLocaleTimeString('en-US', {
+          timeZone: 'Asia/Kolkata',
+          hour: '2-digit',
+          hour12: false,
+        });
+        const currentHour = parseInt(hourString, 10);
 
-      const hours = istTime.getHours();
-      const openingHour = 10; // 10 AM
-      const closingHour = 20; // 8 PM
+        const openingHour = 10; // 10 AM
+        const closingHour = 20; // 8 PM
 
-      if (hours >= openingHour && hours < closingHour) {
-        setShopStatus('open');
-      } else {
-        setShopStatus('closed');
+        if (currentHour >= openingHour && currentHour < closingHour) {
+          setShopStatus('open');
+        } else {
+          setShopStatus('closed');
+        }
+      } catch (error) {
+        console.error("Could not determine time zone, defaulting to closed:", error);
+        setShopStatus('closed'); // Default to closed on error
       }
     };
 
