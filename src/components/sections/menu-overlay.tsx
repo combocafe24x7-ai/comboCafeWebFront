@@ -79,7 +79,7 @@ export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
                         src={menu.url}
                         alt={`Menu page ${index + 1}`}
                         fill
-                        className="object-contain transform transition-transform duration-300 group-hover:scale-105"
+                        className="object-contain transform transition-transform duration-300 group-hover:scale-110"
                       />
                     </CardContent>
                   </Card>
