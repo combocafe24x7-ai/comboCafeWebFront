@@ -5,16 +5,14 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { config } from '@/app/config.tsx';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
 import { Button } from '../ui/button';
-import { Phone, ShoppingCart, ArrowLeft, Mail, ChevronRight } from 'lucide-react';
+import { Phone, ShoppingCart, ArrowLeft, Mail, ChevronRight, MessageSquare } from 'lucide-react';
 import { useCart } from '@/context/cart-provider';
 import { useToast } from '@/hooks/use-toast';
 import { Badge } from '../ui/badge';
 import { cn } from '@/lib/utils';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet';
 import { OrderForm } from '../order-form';
 import { VisuallyHidden } from '../ui/visually-hidden.tsx';
@@ -58,25 +56,35 @@ const ProductCard = ({ item }: { item: Product }) => {
     });
   }
 
-  const handleWhatsAppOrder = (details: Record<string, string>) => {
-    const messageHeader = `I'd like to place an order for the following item:\n\n*Order Summary:*`;
-    const orderItem = `- ${item.name} (${item.price})`;
-    const total = `\n*Total: ${item.price}*`;
+  const getWhatsAppMessage = (details?: Record<string, string>) => {
+    let message: string;
+    if (details) {
+        const messageHeader = `I'd like to place an order for the following item:\n\n*Order Summary:*`;
+        const orderItem = `- ${item.name} (${item.price})`;
+        const total = `\n*Total: ${item.price}*`;
 
-    const customerDetails = `\n\n*Delivery Details:*\n` +
-        `Name: ${details.firstName} ${details.lastName}\n` +
-        `Phone: ${details.phoneNumber}\n` +
-        (details.emailId ? `Email: ${details.emailId}\n` : '') +
-        `Address: ${details.address}\n` +
-        (details.houseNumber ? `  House No: ${details.houseNumber}\n` : '') +
-        (details.streetNumber ? `  Street: ${details.streetNumber}\n` : '') +
-        `  Landmark: ${details.landmarks}\n` +
-        `  Pincode: ${details.pincode}\n` +
-        `Delivery Date: ${details.deliveryDate}\n` +
-        `Delivery Time: ${details.deliveryHours}`;
+        const customerDetails = `\n\n*Delivery Details:*\n` +
+            `Name: ${details.firstName} ${details.lastName}\n` +
+            `Phone: ${details.phoneNumber}\n` +
+            (details.emailId ? `Email: ${details.emailId}\n` : '') +
+            `Address: ${details.address}\n` +
+            (details.houseNumber ? `  House No: ${details.houseNumber}\n` : '') +
+            (details.streetNumber ? `  Street: ${details.streetNumber}\n` : '') +
+            `  Landmark: ${details.landmarks}\n` +
+            `  Pincode: ${details.pincode}\n` +
+            `Delivery Date: ${details.deliveryDate}\n` +
+            `Delivery Time: ${details.deliveryHours}`;
+        
+        message = [messageHeader, orderItem, total, customerDetails].join('\n');
+    } else {
+        message = `I'd like to inquire about this product: ${item.name} (${item.price})`;
+    }
     
-    const message = encodeURIComponent([messageHeader, orderItem, total, customerDetails].join('\n'));
-    const url = `https://wa.me/${config.contact.phone}?text=${message}`;
+    return encodeURIComponent(message);
+  };
+  
+  const handleWhatsAppOrder = (details: Record<string, string>) => {
+    const url = `https://wa.me/${config.contact.phone}?text=${getWhatsAppMessage(details)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
@@ -107,50 +115,50 @@ const ProductCard = ({ item }: { item: Product }) => {
         )}
         <Image src={item.imageUrl} alt={item.name} width={400} height={400} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-ai-hint={item.imageHint} />
       </div>
-      <CardContent className="p-3 flex flex-col flex-grow">
-        <div className="flex-grow">
-            <CardTitle className="font-headline text-lg text-foreground mb-1 line-clamp-1">{item.name}</CardTitle>
+      <CardContent className="p-2">
+        <div>
+            <CardTitle className="font-headline text-base text-foreground mb-0.5 line-clamp-1">{item.name}</CardTitle>
             {item.description && <p className="text-muted-foreground font-body text-xs line-clamp-1">{item.description}</p>}
         </div>
-        <div className="mt-2">
+        <div className="mt-1.5">
             <div className="flex items-baseline gap-2">
-                <p className="text-primary font-bold text-base">{item.price}</p>
+                <p className="text-primary font-bold text-sm">{item.price}</p>
                 {item.originalPrice && <p className="text-muted-foreground line-through text-xs">{item.originalPrice}</p>}
             </div>
-            {discount && <p className="text-xs text-green-600 font-semibold">You save Rs{discount.saved.toFixed(0)}!</p>}
+            {discount && <p className="text-xs text-green-600 font-semibold">Save Rs{discount.saved.toFixed(0)}</p>}
         </div>
       </CardContent>
-      <CardFooter className="p-2 border-t flex flex-col gap-2">
-        <div className="flex gap-2 w-full">
-            <Button onClick={handleAddToCart} size="sm" className="w-full text-xs rounded-sm h-8">
-                <ShoppingCart className="mr-2 h-4 w-4" /> Cart
+      <div className="p-1.5 border-t mt-auto">
+        <div className="flex gap-1.5 w-full">
+            <Button onClick={handleAddToCart} size="sm" className="w-full text-xs rounded-sm h-8 flex-1">
+                <ShoppingCart className="mr-1.5 h-4 w-4" /> Cart
             </Button>
-            <Button asChild variant="outline" size="sm" className="w-full text-xs rounded-sm h-8">
-                <a href={`tel:${config.contact.phone}`}>
-                    <Phone className="mr-2 h-4 w-4" /> Call
+            <Button asChild variant="outline" size="icon" className="h-8 w-8 rounded-sm">
+                <a href={`tel:${config.contact.phone}`} aria-label="Call to order">
+                    <Phone className="h-4 w-4" />
                 </a>
             </Button>
+             <Sheet>
+                <SheetTrigger asChild>
+                     <Button variant="secondary" size="icon" className="h-8 w-8 rounded-sm bg-green-500 text-white hover:bg-green-600">
+                        <MessageSquare className="h-4 w-4" />
+                    </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[90vw] sm:max-w-lg overflow-y-auto">
+                    <SheetHeader>
+                        <SheetTitle>Delivery Information</SheetTitle>
+                        <SheetDescription>
+                            Please provide your details to place an order for <span className="font-bold">{item.name}</span>.
+                        </SheetDescription>
+                    </SheetHeader>
+                    <OrderForm 
+                        onSubmit={handleWhatsAppOrder}
+                        totalPrice={parsePrice(item.price)}
+                    />
+                </SheetContent>
+            </Sheet>
         </div>
-        <Sheet>
-            <SheetTrigger asChild>
-                <Button variant="secondary" size="sm" className="w-full text-xs rounded-sm h-8 bg-blue-400 text-white hover:bg-blue-500">
-                    Order on WhatsApp
-                </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[90vw] sm:max-w-lg overflow-y-auto">
-                <SheetHeader>
-                    <SheetTitle>Delivery Information</SheetTitle>
-                    <SheetDescription>
-                        Please provide your details to place an order for <span className="font-bold">{item.name}</span>.
-                    </SheetDescription>
-                </SheetHeader>
-                <OrderForm 
-                    onSubmit={handleWhatsAppOrder}
-                    totalPrice={parsePrice(item.price)}
-                />
-            </SheetContent>
-        </Sheet>
-      </CardFooter>
+      </div>
     </Card>
   );
 };
@@ -322,6 +330,7 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
           const foodCategoryCards = foodSubCategories.map(subCategory => {
               const firstItem = (config.offerings.food[subCategory as keyof typeof config.offerings.food] as any).items
                 ? (config.offerings.food[subCategory as keyof typeof config.offerings.food] as any).items[0]
+                // eslint-disable-next-line
                 : (config.offerings.food[subCategory as keyof typeof config.offerings.food] as any)["Hot Beverages"].items[0];
 
               return <CategoryCard 
