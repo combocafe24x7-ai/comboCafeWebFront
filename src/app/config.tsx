@@ -186,7 +186,7 @@ export const config = {
     address: "123 Blossom Lane, Flavor Town, 45678",
     phone: "8436860216",
     email: "combocafe24x7@gmail.com",
-    hours: "Mon-Sat: 8am - 8pm | Sun: 9am - 6pm",
+    hours: "Open Daily: 10am - 8pm",
     locationUrl: "https://www.google.com/maps/place/Combo+Cafe+%26+Gifts+Shop/@24.1772241,87.7728579,3a,75y,90t/data=!3m8!1e2!3m6!1sAF1QipPa8FLuLWnB1huMew0G3KiWQ6ZlK760fuVO02So!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fp%2FAF1QipPa8FLuLWnB1huMew0G3KiWQ6ZlK760fuVO02So%3Dw137-h195-k-no!7i2480!8i3508!4m7!3m6!1s0x39fa1c2b13747f7d:0x20d4a8fe5d070ebc!8m2!3d24.1772509!4d87.7727781!10e9!16s%2Fg%2F11f10f6vs5?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
   },
   faq: {
@@ -218,3 +218,5 @@ export const config = {
     copyright: `© ${new Date().getFullYear()} Combo Café & Gift Shop. All rights reserved.`,
   },
 };
+
+    

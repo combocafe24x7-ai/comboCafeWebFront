@@ -68,7 +68,7 @@ export default function Contact() {
                                 <p className="text-muted-foreground text-sm">{config.contact.hours}</p>
                             </div>
                         </div>
-                        <Button onClick={() => handleScrollTo('contact')} size="lg" className="w-28 sm:w-32 justify-center text-xs sm:text-sm">View Hours</Button>
+                        <Button variant="outline" size="lg" className="w-28 sm:w-32 justify-center text-xs sm:text-sm" disabled>Open</Button>
                     </li>
                 </ul>
             </CardContent>
@@ -77,3 +77,5 @@ export default function Contact() {
     </section>
   );
 }
+
+    
