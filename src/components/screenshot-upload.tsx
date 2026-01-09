@@ -60,7 +60,7 @@ export function ScreenshotUpload({ onFileSelect }: ScreenshotUploadProps) {
         <div className="relative w-full max-w-xs mx-auto">
           <p className="font-semibold mb-2">Screenshot Preview:</p>
           <div className="relative aspect-video rounded-md overflow-hidden border">
-            <Image src={preview} alt="Screenshot preview" layout="fill" objectFit="contain" />
+            <Image src={preview} alt="Screenshot preview" fill objectFit="contain" />
           </div>
           <Button
             variant="destructive"
