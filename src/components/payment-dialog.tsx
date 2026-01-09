@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -23,6 +22,12 @@ type PaymentDialogProps = {
 
 export function PaymentDialog({ isOpen, onClose, onConfirm }: PaymentDialogProps) {
   const [screenshotFile, setScreenshotFile] = useState<File | null>(null);
+
+  const handleConfirm = () => {
+    if (screenshotFile) {
+      onConfirm();
+    }
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -55,7 +60,7 @@ export function PaymentDialog({ isOpen, onClose, onConfirm }: PaymentDialogProps
           <Button
             type="button"
             className="w-full bg-green-500 hover:bg-green-600 text-white"
-            onClick={onConfirm}
+            onClick={handleConfirm}
             disabled={!screenshotFile}
           >
             Place Order on WhatsApp
