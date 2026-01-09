@@ -51,7 +51,7 @@ const BestSellerCard = ({ item, reverse = false }: { item: typeof config.bestsel
     const price = offeringItem?.price || 'N/A';
     const numericPrice = parsePrice(price);
 
-    const getWhatsAppMessage = (details: Record<string, string>) => {
+    const getWhatsAppMessage = (details: Record<string, string>, transactionId: string) => {
         const messageHeader = `I'd like to place an order for the following best seller:\n\n*Order Summary:*`;
         const orderItem = `- ${item.name} (${price})`;
         const total = `\n*Total: ${price}*`;
@@ -68,7 +68,9 @@ const BestSellerCard = ({ item, reverse = false }: { item: typeof config.bestsel
             `Delivery Date: ${details.deliveryDate}\n` +
             `Delivery Time: ${details.deliveryHours}`;
         
-        const finalMessage = [messageHeader, orderItem, total, customerDetails].join('\n') + `\n\nI have completed the payment. Please find the screenshot attached.`;
+        const paymentDetails = `\n\n*Payment Details:*\nTransaction ID: ${transactionId}`;
+        
+        const finalMessage = [messageHeader, orderItem, total, customerDetails, paymentDetails].join('\n');
         return encodeURIComponent(finalMessage);
     };
 

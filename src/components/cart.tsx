@@ -54,7 +54,7 @@ export default function Cart() {
   }, 0);
 
 
-  const getWhatsAppMessage = (details: Record<string, string>) => {
+  const getWhatsAppMessage = (details: Record<string, string>, transactionId: string) => {
     const header = `I'd like to place an order for the following items:\n\n*Order Summary:*`;
     const items = cart.map(item => `- ${item.name} (${item.price})`).join('\n');
     const total = `\n*Total: Rs${totalPrice.toFixed(2)}*`;
@@ -71,7 +71,9 @@ export default function Cart() {
         `Delivery Date: ${details.deliveryDate}\n` +
         `Delivery Time: ${details.deliveryHours}`;
 
-    const finalMessage = [header, items, total, customerDetails].join('\n') + `\n\nI have completed the payment. Please find the screenshot attached.`;
+    const paymentDetails = `\n\n*Payment Details:*\nTransaction ID: ${transactionId}`;
+
+    const finalMessage = [header, items, total, customerDetails, paymentDetails].join('\n');
     return encodeURIComponent(finalMessage);
   }
 

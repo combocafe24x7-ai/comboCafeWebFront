@@ -12,22 +12,23 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "./ui/badge";
-import { ScreenshotUpload } from "./screenshot-upload";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 import { useState } from "react";
 import { ScrollArea } from "./ui/scroll-area";
 
 type PaymentDialogProps = {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: () => void;
+  onConfirm: (transactionId: string) => void;
 };
 
 export function PaymentDialog({ isOpen, onClose, onConfirm }: PaymentDialogProps) {
-  const [screenshotFile, setScreenshotFile] = useState<File | null>(null);
+  const [transactionId, setTransactionId] = useState("");
 
   const handleConfirm = () => {
-    if (screenshotFile) {
-      onConfirm();
+    if (transactionId.trim()) {
+      onConfirm(transactionId.trim());
     }
   };
 
@@ -37,7 +38,7 @@ export function PaymentDialog({ isOpen, onClose, onConfirm }: PaymentDialogProps
         <DialogHeader className="p-6 pb-0">
           <DialogTitle>Complete Your Payment</DialogTitle>
           <DialogDescription>
-            Scan the QR code to pay. Upload a screenshot to confirm your order.
+            Scan the QR code, then enter the Transaction ID below to confirm your order.
           </DialogDescription>
         </DialogHeader>
         <ScrollArea className="overflow-y-auto">
@@ -55,17 +56,25 @@ export function PaymentDialog({ isOpen, onClose, onConfirm }: PaymentDialogProps
               <Badge variant="destructive" className="mt-2">Payment is mandatory</Badge>
             </div>
             
-            <ScreenshotUpload onFileSelect={setScreenshotFile} />
+            <div className="w-full space-y-2">
+                <Label htmlFor="transactionId" className="font-semibold">Enter Transaction ID</Label>
+                <Input 
+                    id="transactionId"
+                    placeholder="e.g. T1234567890"
+                    value={transactionId}
+                    onChange={(e) => setTransactionId(e.target.value)}
+                />
+            </div>
 
-            <p className="text-xs text-muted-foreground text-center">After paying, upload the screenshot and click below. You will be asked to send the screenshot in the WhatsApp chat.</p>
+            <p className="text-xs text-muted-foreground text-center">After paying, enter the transaction ID from your UPI app and click below to place your order on WhatsApp.</p>
           </div>
         </ScrollArea>
-        <DialogFooter className="p-6 pt-0">
+        <DialogFooter className="p-6 pt-0 border-t">
           <Button
             type="button"
             className="w-full bg-green-500 hover:bg-green-600 text-white"
             onClick={handleConfirm}
-            disabled={!screenshotFile}
+            disabled={!transactionId.trim()}
           >
             Place Order on WhatsApp
           </Button>

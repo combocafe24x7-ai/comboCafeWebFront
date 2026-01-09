@@ -47,7 +47,7 @@ const formSchema = z.object({
 type OrderFormValues = z.infer<typeof formSchema>;
 
 type OrderFormProps = {
-  getWhatsAppMessage: (values: Record<string,string>) => string;
+  getWhatsAppMessage: (values: Record<string,string>, transactionId: string) => string;
   totalPrice: number;
   totalDiscount?: number;
 };
@@ -77,13 +77,13 @@ export function OrderForm({ getWhatsAppMessage, totalPrice, totalDiscount }: Ord
     setPaymentDialogOpen(true);
   };
   
-  const handlePlaceOrder = () => {
+  const handlePlaceOrder = (transactionId: string) => {
     if (!formData) return;
     const formattedValues = {
         ...formData,
         deliveryDate: format(formData.deliveryDate, "PPP"),
     };
-    const message = getWhatsAppMessage(formattedValues);
+    const message = getWhatsAppMessage(formattedValues, transactionId);
     const url = `https://wa.me/${config.contact.phone}?text=${message}`;
     window.open(url, '_blank', 'noopener,noreferrer');
     setPaymentDialogOpen(false);
@@ -309,7 +309,7 @@ export function OrderForm({ getWhatsAppMessage, totalPrice, totalDiscount }: Ord
         <div className="pt-6">
             <Button type="submit" className="w-full" size="lg">
               Proceed to Pay (Total: Rs{totalPrice.toFixed(2)}
-              {totalDiscount && totalDiscount > 0 ? `, Save Rs${totalDiscount.toFixed(2)}` : ''})
+              {totalDiscount && totalDiscount > 0 ? `, Save Rs${totalDiscount.toFixed(2)})` : ')'}
             </Button>
         </div>
       </form>
