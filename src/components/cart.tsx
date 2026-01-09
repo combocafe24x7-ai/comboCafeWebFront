@@ -79,16 +79,14 @@ export default function Cart() {
     <>
       <SheetHeader>
         <SheetTitle>Your Cart</SheetTitle>
-        {totalPrice > 0 && (
-             <SheetDescription>
-                Total Price: <span className="font-bold text-primary">Rs{totalPrice.toFixed(2)}</span>
-                {totalDiscount > 0 && (
-                    <span className="ml-4 text-green-600 font-semibold">
-                        (You save Rs{totalDiscount.toFixed(2)})
-                    </span>
-                )}
-            </SheetDescription>
-        )}
+        <SheetDescription>
+            Total Price: <span className="font-bold text-primary">Rs{totalPrice.toFixed(2)}</span>
+            {totalDiscount > 0 && (
+                <span className="ml-4 text-green-600 font-semibold">
+                    (You save Rs{totalDiscount.toFixed(2)})
+                </span>
+            )}
+        </SheetDescription>
       </SheetHeader>
       <Separator />
       {cart.length > 0 ? (
