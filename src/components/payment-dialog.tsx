@@ -16,6 +16,7 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { useState } from "react";
 import { ScrollArea } from "./ui/scroll-area";
+import { FormDescription, FormMessage } from "./ui/form";
 
 type PaymentDialogProps = {
   isOpen: boolean;
@@ -23,11 +24,19 @@ type PaymentDialogProps = {
   onConfirm: (transactionId: string) => void;
 };
 
+const isValidTransactionId = (id: string) => {
+  // A simple check for a 12-digit numeric UPI transaction ID (RRN)
+  const upiRegex = /^\d{12}$/;
+  return upiRegex.test(id);
+};
+
+
 export function PaymentDialog({ isOpen, onClose, onConfirm }: PaymentDialogProps) {
   const [transactionId, setTransactionId] = useState("");
+  const isIdValid = isValidTransactionId(transactionId);
 
   const handleConfirm = () => {
-    if (transactionId.trim()) {
+    if (isIdValid) {
       onConfirm(transactionId.trim());
     }
   };
@@ -60,10 +69,19 @@ export function PaymentDialog({ isOpen, onClose, onConfirm }: PaymentDialogProps
                 <Label htmlFor="transactionId" className="font-semibold">Enter Transaction ID</Label>
                 <Input 
                     id="transactionId"
-                    placeholder="e.g. T1234567890"
+                    placeholder="e.g. 412345678901"
                     value={transactionId}
                     onChange={(e) => setTransactionId(e.target.value)}
+                    maxLength={12}
                 />
+                 <FormDescription>
+                    Please enter the 12-digit UPI Transaction ID.
+                 </FormDescription>
+                 {transactionId && !isIdValid && (
+                    <FormMessage>
+                        ID must be 12 digits.
+                    </FormMessage>
+                 )}
             </div>
 
             <p className="text-xs text-muted-foreground text-center">After paying, enter the transaction ID from your UPI app and click below to place your order on WhatsApp.</p>
@@ -74,7 +92,7 @@ export function PaymentDialog({ isOpen, onClose, onConfirm }: PaymentDialogProps
             type="button"
             className="w-full bg-green-500 hover:bg-green-600 text-white"
             onClick={handleConfirm}
-            disabled={!transactionId.trim()}
+            disabled={!isIdValid}
           >
             Place Order on WhatsApp
           </Button>
