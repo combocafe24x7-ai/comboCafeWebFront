@@ -94,9 +94,11 @@ const ProductCard = ({ item }: { item: Product }) => {
   const discount = getDiscount();
   const isStartingAt = item.price && item.price.toLowerCase().includes('starting at');
   const displayPrice = isStartingAt ? item.price.replace(/starting at/i, '').trim() : item.price;
+  
+  const isCustomGift = item.name === 'Custom Gift';
 
   return (
-    <Card className="overflow-hidden group border-0 shadow-lg dark:shadow-black/20 hover:shadow-xl transition-shadow duration-300 rounded-lg">
+    <Card className="overflow-hidden group border-0 shadow-lg dark:shadow-black/20 hover:shadow-xl transition-shadow duration-300 rounded-lg flex flex-col">
       <div className="relative w-full aspect-square">
         {discount && (
           <Badge 
@@ -111,47 +113,59 @@ const ProductCard = ({ item }: { item: Product }) => {
       <CardContent className="p-2 flex-grow flex flex-col justify-between">
         <div>
             <CardTitle className="font-headline text-base text-foreground mb-0.5 line-clamp-1">{item.name}</CardTitle>
-            {item.description && <p className="text-muted-foreground font-body text-xs line-clamp-1 h-4">{item.description}</p>}
+            {item.description && <p className="text-muted-foreground font-body text-xs line-clamp-2 h-8">{item.description}</p>}
         </div>
-        <div className="mt-1.5">
-            {isStartingAt && <p className="text-muted-foreground text-xs">Starting at</p>}
-            <div className="flex items-baseline gap-2">
-                <p className="text-primary font-bold text-sm">{displayPrice}</p>
-                {item.originalPrice && <p className="text-muted-foreground line-through text-xs">{item.originalPrice}</p>}
+        {!isCustomGift && (
+            <div className="mt-1.5">
+                {isStartingAt && <p className="text-muted-foreground text-xs">Starting at</p>}
+                <div className="flex items-baseline gap-2">
+                    <p className="text-primary font-bold text-sm">{displayPrice}</p>
+                    {item.originalPrice && <p className="text-muted-foreground line-through text-xs">{item.originalPrice}</p>}
+                </div>
+                {discount && <p className="text-xs text-green-600 font-semibold">Save Rs{discount.saved.toFixed(0)}</p>}
             </div>
-            {discount && <p className="text-xs text-green-600 font-semibold">Save Rs{discount.saved.toFixed(0)}</p>}
-        </div>
+        )}
       </CardContent>
-      <div className="p-1.5 border-t space-y-1.5">
-        <div className="flex gap-1.5 w-full">
-            <Button onClick={handleAddToCart} size="sm" className="w-full text-xs rounded-sm h-8 flex-1">
+       <div className="p-1.5 border-t mt-auto">
+        {isCustomGift ? (
+          <Button asChild size="sm" className="w-full text-xs rounded-sm h-8">
+            <a href={`tel:${config.contact.phone}`}>
+              <Phone className="mr-1.5 h-4 w-4" /> Call to Create
+            </a>
+          </Button>
+        ) : (
+          <div className="space-y-1.5">
+            <div className="flex gap-1.5 w-full">
+              <Button onClick={handleAddToCart} size="sm" className="w-full text-xs rounded-sm h-8 flex-1">
                 <ShoppingCart className="mr-1.5 h-4 w-4" /> Cart
-            </Button>
-            <Button asChild variant="outline" size="icon" className="h-8 w-8 rounded-sm">
+              </Button>
+              <Button asChild variant="outline" size="icon" className="h-8 w-8 rounded-sm">
                 <a href={`tel:${config.contact.phone}`} aria-label="Call to order">
-                    <Phone className="h-4 w-4" />
+                  <Phone className="h-4 w-4" />
                 </a>
-            </Button>
-        </div>
-        <Sheet>
-            <SheetTrigger asChild>
-                  <Button variant="secondary" size="sm" className="h-8 rounded-sm bg-green-500 text-white hover:bg-green-600 w-full text-xs">
-                    Order on WhatsApp
+              </Button>
+            </div>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="secondary" size="sm" className="h-8 rounded-sm bg-green-500 text-white hover:bg-green-600 w-full text-xs">
+                  Order on WhatsApp
                 </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[90vw] sm:max-w-lg overflow-y-auto">
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[90vw] sm:max-w-lg overflow-y-auto">
                 <SheetHeader>
-                    <SheetTitle>Delivery Information</SheetTitle>
-                    <SheetDescription>
-                        Please provide your details to place an order for <span className="font-bold">{item.name}</span>.
-                    </SheetDescription>
+                  <SheetTitle>Delivery Information</SheetTitle>
+                  <SheetDescription>
+                    Please provide your details to place an order for <span className="font-bold">{item.name}</span>.
+                  </SheetDescription>
                 </SheetHeader>
                 <OrderForm 
-                    getWhatsAppMessage={getWhatsAppMessage}
-                    totalPrice={parsePrice(item.price)}
+                  getWhatsAppMessage={getWhatsAppMessage}
+                  totalPrice={parsePrice(item.price)}
                 />
-            </SheetContent>
-        </Sheet>
+              </SheetContent>
+            </Sheet>
+          </div>
+        )}
       </div>
     </Card>
   );

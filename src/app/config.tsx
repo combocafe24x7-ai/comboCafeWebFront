@@ -167,7 +167,7 @@ export const config = {
         { name: "Single Rose", description: "A timeless, classic gesture of love and appreciation.", imageUrl: findImage('roses'), imageHint: findImageHint('roses'), price: "Rs50" },
         { name: "Flower Bouquets", description: "A stunning, artfully arranged collection of fresh blooms.", imageUrl: findImage('bouquets'), imageHint: findImageHint('bouquets'), price: "Starting at Rs500" },
         { name: "Cake + Flower Combo", description: "The perfect pair: a delicious treat and a beautiful bouquet.", imageUrl: findImage('gift-combos'), imageHint: findImageHint('gift-combos'), price: "Starting at Rs700" },
-        { name: "Custom Gift", description: "The perfect gift for any occasion. Let them choose their favorite treat.", imageUrl: findImage('custom-gift'), imageHint: findImageHint('custom-gift'), price: "???" },
+        { name: "Custom Gift", description: "Give us a call to create your own personal gift.", imageUrl: findImage('custom-gift'), imageHint: findImageHint('custom-gift'), price: "" },
     ],
     food: {
       "Snacks": {
