@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "./ui/badge";
+import { ScreenshotUpload } from "./screenshot-upload";
+import { useState } from "react";
 
 type PaymentDialogProps = {
   isOpen: boolean;
@@ -20,6 +22,7 @@ type PaymentDialogProps = {
 };
 
 export function PaymentDialog({ isOpen, onClose, onConfirm }: PaymentDialogProps) {
+  const [screenshotFile, setScreenshotFile] = useState<File | null>(null);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -27,7 +30,7 @@ export function PaymentDialog({ isOpen, onClose, onConfirm }: PaymentDialogProps
         <DialogHeader>
           <DialogTitle>Complete Your Payment</DialogTitle>
           <DialogDescription>
-            Scan the QR code to pay. Payment is mandatory before delivery.
+            Scan the QR code to pay. Upload a screenshot to confirm your order.
           </DialogDescription>
         </DialogHeader>
         <div className="flex flex-col items-center gap-6 py-4">
@@ -43,13 +46,17 @@ export function PaymentDialog({ isOpen, onClose, onConfirm }: PaymentDialogProps
             <p className="text-sm font-semibold text-foreground">Scan and pay using any UPI app.</p>
             <Badge variant="destructive" className="mt-2">Payment is mandatory</Badge>
           </div>
-          <p className="text-xs text-muted-foreground text-center">After paying, click the button below to confirm your order on WhatsApp. Please send the payment screenshot in the chat.</p>
+          
+          <ScreenshotUpload onFileSelect={setScreenshotFile} />
+
+          <p className="text-xs text-muted-foreground text-center">After paying, upload the screenshot and click below. You will be asked to send the screenshot in the WhatsApp chat.</p>
         </div>
         <DialogFooter>
           <Button
             type="button"
             className="w-full bg-green-500 hover:bg-green-600 text-white"
             onClick={onConfirm}
+            disabled={!screenshotFile}
           >
             Place Order on WhatsApp
           </Button>
