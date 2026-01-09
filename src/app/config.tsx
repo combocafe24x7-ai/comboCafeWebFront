@@ -181,11 +181,11 @@ export const config = {
       "Beverages": {
         "Hot Beverages": {
             items: [
-                { name: "Espresso", description: "A strong, concentrated shot of pure coffee.", price: "Rs80", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-                { name: "Americano", description: "Espresso diluted with hot water for a milder flavor.", price: "Rs100", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-                { name: "Cappuccino", description: "The perfect balance of espresso, steamed milk, and foam.", price: "Rs120", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-                { name: "Caffè Latte", description: "A creamier option with more steamed milk than a cappuccino.", price: "Rs130", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
-                { name: "Mocha", description: "A delightful mix of chocolate, espresso, and steamed milk.", price: "Rs140", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty coffee') },
+                { name: "Espresso", description: "A strong, concentrated shot of pure coffee.", price: "Rs80", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty-coffee') },
+                { name: "Americano", description: "Espresso diluted with hot water for a milder flavor.", price: "Rs100", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty-coffee') },
+                { name: "Cappuccino", description: "The perfect balance of espresso, steamed milk, and foam.", price: "Rs120", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty-coffee') },
+                { name: "Caffè Latte", description: "A creamier option with more steamed milk than a cappuccino.", price: "Rs130", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty-coffee') },
+                { name: "Mocha", description: "A delightful mix of chocolate, espresso, and steamed milk.", price: "Rs140", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty-coffee') },
                 { name: "Hot Chocolate", description: "Rich, creamy, and comforting, made with real chocolate.", price: "Rs120", imageUrl: findImage('specialty-coffee'), imageHint: findImageHint('specialty-coffee') },
             ]
         },
@@ -267,10 +267,3 @@ export const config = {
     copyright: `© ${new Date().getFullYear()} Combo Café & Gift Shop. All rights reserved.`,
   },
 };
-
-    
-    
-
-    
-
-    
