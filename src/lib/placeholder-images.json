@@ -143,6 +143,30 @@
       "description": "Rich, creamy, and comforting, made with real chocolate.",
       "imageUrl": "https://images.unsplash.com/photo-1637572815755-c4b80092dce1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "imageHint": "hot chocolate"
+    },
+    {
+      "id": "cold-coffee",
+      "description": "A classic creamy and refreshing cold coffee.",
+      "imageUrl": "https://images.unsplash.com/photo-1592663527359-cf6642f54cff?q=80&w=2038&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "cold coffee"
+    },
+    {
+      "id": "iced-latte",
+      "description": "Chilled espresso and milk over ice.",
+      "imageUrl": "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?q=80&w=714&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "iced latte"
+    },
+    {
+      "id": "chocolate-frappe",
+      "description": "A blended iced drink with rich chocolate flavor.",
+      "imageUrl": "https://images.unsplash.com/photo-1696487773677-c0c8061fe3d2?q=80&w=699&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "chocolate frappe"
+    },
+    {
+      "id": "strawberry-milkshake",
+      "description": "A thick, creamy milkshake made with real strawberries.",
+      "imageUrl": "https://images.unsplash.com/photo-1629174114500-6ec256a6213f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "strawberry milkshake"
     }
   ]
 }

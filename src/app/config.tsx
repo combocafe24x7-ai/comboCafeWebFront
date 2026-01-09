@@ -102,7 +102,7 @@ export const config = {
           { name: "Butterscotch", description: "Deliciously rich with a butterscotch glaze.", price: "Rs390", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/butterscotch%20390.jpeg", imageHint: "butterscotch cake" },
           { name: "Butterscotch", description: "A crowd-pleasing butterscotch creation.", price: "Rs450", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/butterscotch%20450%20(2).jpeg", imageHint: "butterscotch cake" },
           { name: "Butterscotch", description: "Irresistible butterscotch flavor in every bite.", price: "Rs450", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/butterscotch%20450.jpeg", imageHint: "butterscotch cake" },
-          { name: "Choco Blush", description: "A delicate chocolate cake with a rosy hint.", price: "Rs500", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/choco%20blush%20500.jpeg", imageHint: "chocolate cake" },
+          { name: "Choco Cafe", description: "A delicate chocolate cake with a rosy hint.", price: "Rs500", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/choco%20blush%20500.jpeg", imageHint: "chocolate cake" },
           { name: "Choco Cafe", description: "A coffee-lover's dream in cake form.", price: "Rs400", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/choco%20cafe%20400.jpeg", imageHint: "coffee cake" },
           { name: "Choco Cafe", description: "Rich coffee-infused chocolate cake.", price: "Rs430", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/choco%20cafe%20430%20.jpeg", imageHint: "coffee cake" },
           { name: "Choco Crunch", description: "A chocolate cake with a satisfying crunch.", price: "Rs400", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/choco%20crunch%20400%20(2).jpeg", imageHint: "crunchy cake" },
@@ -190,10 +190,10 @@ export const config = {
         },
         "Cold Beverages": {
             items: [
-                { name: "Cold Coffee", description: "A classic creamy and refreshing cold coffee.", price: "Rs140", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy-salads') },
-                { name: "Iced Latte", description: "Chilled espresso and milk over ice.", price: "Rs150", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy-salads') },
-                { name: "Chocolate Frappe", description: "A blended iced drink with rich chocolate flavor.", price: "Rs160", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy-salads') },
-                { name: "Strawberry Milkshake", description: "A thick, creamy milkshake made with real strawberries.", price: "Rs150", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy-salads') },
+                { name: "Cold Coffee", description: "A classic creamy and refreshing cold coffee.", price: "Rs140", imageUrl: findImage('cold-coffee'), imageHint: findImageHint('cold-coffee') },
+                { name: "Iced Latte", description: "Chilled espresso and milk over ice.", price: "Rs150", imageUrl: findImage('iced-latte'), imageHint: findImageHint('iced-latte') },
+                { name: "Chocolate Frappe", description: "A blended iced drink with rich chocolate flavor.", price: "Rs160", imageUrl: findImage('chocolate-frappe'), imageHint: findImageHint('chocolate-frappe') },
+                { name: "Strawberry Milkshake", description: "A thick, creamy milkshake made with real strawberries.", price: "Rs150", imageUrl: findImage('strawberry-milkshake'), imageHint: findImageHint('strawberry-milkshake') },
             ]
         }
       }
@@ -227,7 +227,7 @@ export const config = {
   bestsellers: [
     { name: "Cappuccino", tag: "Most Loved", description: "A classic blend of rich espresso, steamed milk, and a delicate layer of foam. It's the perfect pick-me-up at any time of day, loved for its balanced and comforting flavor.", imageUrl: findImage('cappuccino'), imageHint: findImageHint('cappuccino') },
     { name: "Chocolate Cake", tag: "Top Pick", description: "Our decadent chocolate cake is a slice of heaven for any chocolate lover. Made with rich cocoa and a silky ganache, it's an unforgettable indulgent experience.", imageUrl: findImage('chocolate-cake'), imageHint: findImageHint('chocolate-cake') },
-    { name: "Cold Coffee", tag: "Fan Favorite", description: "A refreshing and creamy cold coffee to cool you down on a hot day. It's a sweet, smooth, and energizing treat that has become a customer favorite.", imageUrl: findImage('healthy-salads'), imageHint: findImageHint('healthy-salads') },
+    { name: "Cold Coffee", tag: "Fan Favorite", description: "A refreshing and creamy cold coffee to cool you down on a hot day. It's a sweet, smooth, and energizing treat that has become a customer favorite.", imageUrl: findImage('cold-coffee'), imageHint: findImageHint('cold-coffee') },
     { name: "Cake + Flower Combo", tag: "Perfect Gift", description: "The perfect combination of a delicious cake and a beautiful bouquet. This thoughtful gift is ideal for birthdays, anniversaries, or just to make someone's day special.", imageUrl: findImage('gift-combos'), imageHint: findImageHint('gift-combos') },
   ],
   contact: {
