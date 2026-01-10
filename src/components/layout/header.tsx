@@ -116,8 +116,9 @@ export default function Header({ onNavSelect }: HeaderProps) {
                   'text-sm',
                   isActive ? 'text-primary' : 'text-foreground/80 hover:text-foreground'
                 )}
+                style={isActive ? { color: accentColor } : {}}
               >
-                <span style={isActive ? { color: accentColor } : {}}>{link.label}</span> <ChevronDown className="h-4 w-4" />
+                <span>{link.label}</span> <ChevronDown className="h-4 w-4" />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
