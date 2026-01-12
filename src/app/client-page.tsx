@@ -105,6 +105,7 @@ export default function ClientPage() {
                             setExploreClicked(false);
                             setNavigatedCategory(null);
                         }}
+                        onOpenGiftsGallery={() => setIsGiftsOpen(true)}
                     />
                     <div className="hidden md:block">
                         <BestSellers />

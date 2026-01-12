@@ -8,7 +8,7 @@ import { config } from '@/app/config.tsx';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
 import { Button } from '../ui/button';
-import { Phone, ShoppingCart, ArrowLeft, Mail, ChevronRight, MessageSquare } from 'lucide-react';
+import { Phone, ShoppingCart, ArrowLeft, Mail, ChevronRight, MessageSquare, Gift } from 'lucide-react';
 import { useCart } from '@/context/cart-provider';
 import { useToast } from '@/hooks/use-toast';
 import { Badge } from '../ui/badge';
@@ -35,6 +35,7 @@ type OfferingsProps = {
     initialCategoryState: { category: OfferingCategory, subCategory?: SubCategory, subSubCategory?: SubSubCategory } | null;
     exploreClicked: boolean;
     onResetExplore: () => void;
+    onOpenGiftsGallery: () => void;
 };
 
 const parsePrice = (price: string) => {
@@ -44,7 +45,7 @@ const parsePrice = (price: string) => {
     return isNaN(numericPrice) ? 0 : numericPrice;
 };
 
-const ProductCard = ({ item }: { item: Product }) => {
+const ProductCard = ({ item, onOpenGiftsGallery }: { item: Product, onOpenGiftsGallery: () => void }) => {
   const { addToCart } = useCart();
   const { toast } = useToast();
 
@@ -128,11 +129,16 @@ const ProductCard = ({ item }: { item: Product }) => {
       </CardContent>
        <div className="p-1.5 border-t mt-auto">
         {isCustomGift ? (
-          <Button asChild size="sm" className="w-full text-xs rounded-sm h-8">
-            <a href={`tel:${config.contact.phone}`}>
-              <Phone className="mr-1.5 h-4 w-4" /> Call to Create
-            </a>
-          </Button>
+          <div className="space-y-1.5">
+            <Button variant="outline" size="sm" className="w-full text-xs rounded-sm h-8" onClick={onOpenGiftsGallery}>
+                <Gift className="mr-1.5 h-4 w-4" /> View Gallery
+            </Button>
+            <Button asChild size="sm" className="w-full text-xs rounded-sm h-8">
+              <a href={`tel:${config.contact.phone}`}>
+                <Phone className="mr-1.5 h-4 w-4" /> Call to Create
+              </a>
+            </Button>
+          </div>
         ) : (
           <div className="space-y-1.5">
             <div className="flex gap-1.5 w-full">
@@ -223,7 +229,7 @@ const Breadcrumbs = ({ path, onNavigate }: { path: string[], onNavigate: (index:
 };
 
 
-export default function Offerings({ initialCategoryState, exploreClicked, onResetExplore }: OfferingsProps) {
+export default function Offerings({ initialCategoryState, exploreClicked, onResetExplore, onOpenGiftsGallery }: OfferingsProps) {
   const [selectedCategory, setSelectedCategory] = useState<OfferingCategory | null>(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState<SubCategory | null>(null);
   const [selectedSubSubCategory, setSelectedSubSubCategory] = useState<SubSubCategory | null>(null);
@@ -266,7 +272,7 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
     // Level 4: Show products for beverage sub-sub-category
     if (selectedCategory === 'food' && selectedSubCategory === 'Beverages' && selectedSubSubCategory) {
         const items = config.offerings.food.Beverages[selectedSubSubCategory as keyof typeof config.offerings.food.Beverages].items;
-        const productCards = items.map(item => <ProductCard key={item.name} item={item} />);
+        const productCards = items.map(item => <ProductCard key={item.name} item={item} onOpenGiftsGallery={onOpenGiftsGallery} />);
         return (
             <ItemsGrid>{productCards}</ItemsGrid>
         )
@@ -281,7 +287,7 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
         const subCatData = config.offerings.cakes[selectedSubCategory as keyof typeof config.offerings.cakes];
         items = subCatData.items;
         note = subCatData.note;
-        const productCards = items.map(item => <ProductCard key={item.name} item={item} />);
+        const productCards = items.map(item => <ProductCard key={item.name} item={item} onOpenGiftsGallery={onOpenGiftsGallery} />);
         return (
             <div>
               <div className='text-center my-4'>
@@ -292,7 +298,7 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
           )
       } else if (selectedCategory === 'food' && selectedSubCategory === 'Snacks') {
           items = config.offerings.food[selectedSubCategory as keyof typeof config.offerings.food].items;
-          const productCards = items.map(item => <ProductCard key={item.name} item={item} />);
+          const productCards = items.map(item => <ProductCard key={item.name} item={item} onOpenGiftsGallery={onOpenGiftsGallery} />);
           return (
             <ItemsGrid>{productCards}</ItemsGrid>
           )
@@ -334,7 +340,7 @@ export default function Offerings({ initialCategoryState, exploreClicked, onRese
           );
         case 'gifts':
            const giftCards = config.offerings.gifts.map(gift => (
-                <ProductCard key={gift.name} item={gift} />
+                <ProductCard key={gift.name} item={gift} onOpenGiftsGallery={onOpenGiftsGallery} />
             ));
            return (
             <ItemsGrid>{giftCards}</ItemsGrid>
