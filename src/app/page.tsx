@@ -17,26 +17,36 @@ export default function Home() {
         <Hero />
         <IconCategoryStrip />
         <ServiceStrip />
+        <ProductSection
+          title="Best Selling Cakes"
+          subtitle="Loved by everyone"
+          items={config.productSections.bestSellingCakes}
+        />
         <ProductSection 
           title="Top Gifts"
           subtitle="A selection of our finest gift items"
           items={config.productSections.gifts}
+          bgColor="bg-accent"
         />
         <ProductSection 
           title="Personalised Mugs & Cushions"
           subtitle="Add a personal touch to your gifts"
           items={config.productSections.personalisedMugsAndCushions}
-          bgColor="bg-accent"
         />
         <ProductSection 
           title="Personalised Frames"
           subtitle="Frame your cherished memories"
           items={config.productSections.personalisedFrames}
+          bgColor="bg-accent"
         />
         <GiftFinder />
         <HorizontalCollection 
           title="Flower Collections"
           items={config.collections.flowers}
+        />
+        <HorizontalCollection 
+          title="Delectable Cakes"
+          items={config.collections.cakes}
           bgColor="bg-section-alternate"
         />
       </main>
