@@ -1,9 +1,9 @@
-
 import { Button } from '../ui/button';
 import { Card, CardContent } from '../ui/card';
 import Image from 'next/image';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Link from 'next/link';
+import { Phone, MessageSquare } from 'lucide-react';
 
 type CollectionItem = {
   title: string;
@@ -19,32 +19,49 @@ type HorizontalCollectionProps = {
   viewAllLink?: string;
 };
 
-const CollectionCard = ({ item }: { item: CollectionItem }) => (
-  <Card className="overflow-hidden group border-0 rounded-lg">
-    <CardContent className="p-0">
-      <Link href="#" className="block">
-        <div className="relative aspect-[4/5]">
-          <Image 
-            src={item.imageUrl} 
-            alt={item.title} 
-            layout="fill" 
-            className="object-cover group-hover:scale-105 transition-transform duration-300" 
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          <div className="absolute bottom-4 left-4 right-4">
-              <h4 className="font-semibold text-lg text-white truncate">{item.title}</h4>
-              {item.description && <p className="text-xs text-gray-200 mt-1 truncate">{item.description}</p>}
-          </div>
-        </div>
-        {item.price && (
-          <div className="p-3 bg-white">
-            <p className="font-semibold text-gray-900 text-sm">{`Rs. ${item.price}`}</p>
-          </div>
-        )}
-      </Link>
-    </CardContent>
-  </Card>
-);
+const CollectionCard = ({ item }: { item: CollectionItem }) => {
+    const phoneNumber = "919474771771";
+    const whatsappMessage = `I'd like to inquire about: ${item.title}`;
+
+    return (
+    <Card className="overflow-hidden group border-0 rounded-lg shadow-sm flex flex-col h-full">
+        <CardContent className="p-0 flex-grow">
+            <Link href={`/search?q=${encodeURIComponent(item.title)}`} className="block">
+                <div className="relative aspect-[4/5]">
+                <Image 
+                    src={item.imageUrl} 
+                    alt={item.title} 
+                    layout="fill" 
+                    className="object-cover group-hover:scale-105 transition-transform duration-300" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                    <h4 className="font-semibold text-lg text-white truncate">{item.title}</h4>
+                    {item.description && <p className="text-xs text-gray-200 mt-1 truncate">{item.description}</p>}
+                </div>
+                </div>
+            </Link>
+            {item.price && (
+            <div className="p-3 bg-white">
+                <p className="font-semibold text-gray-900 text-sm">{`Rs. ${item.price}`}</p>
+            </div>
+            )}
+        </CardContent>
+        <div className="p-3 pt-0 bg-white space-y-2">
+            <Button asChild variant="secondary" className="w-full text-xs h-9">
+                <a href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
+                    <MessageSquare className="mr-2 h-4 w-4" /> Order on WhatsApp
+                </a>
+            </Button>
+            <Button asChild variant="outline" className="w-full text-xs h-9">
+                <a href={`tel:+${phoneNumber}`}>
+                    <Phone className="mr-2 h-4 w-4" /> Call to Order
+                </a>
+            </Button>
+      </div>
+    </Card>
+    );
+};
 
 export default function HorizontalCollection({ title, items, bgColor = 'bg-white', viewAllLink = '#' }: HorizontalCollectionProps) {
   return (
@@ -66,7 +83,9 @@ export default function HorizontalCollection({ title, items, bgColor = 'bg-white
             <CarouselContent className="-ml-4">
                 {items.map((item, index) => (
                     <CarouselItem key={index} className="pl-4 md:basis-1/4 lg:basis-1/5">
-                        <CollectionCard item={item} />
+                        <div className="h-full">
+                            <CollectionCard item={item} />
+                        </div>
                     </CarouselItem>
                 ))}
             </CarouselContent>

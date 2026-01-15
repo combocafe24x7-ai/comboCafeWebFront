@@ -1,4 +1,3 @@
-
 "use client";
 import { Button } from '../ui/button';
 import { Card, CardContent } from '../ui/card';
@@ -7,7 +6,7 @@ import { Badge } from '../ui/badge';
 import Link from 'next/link';
 import { useCart } from '@/context/cart-provider';
 import { useToast } from '@/hooks/use-toast';
-import { Plus } from 'lucide-react';
+import { Plus, Phone, MessageSquare } from 'lucide-react';
 
 type Product = {
   id: string;
@@ -31,6 +30,9 @@ type ProductSectionProps = {
 const ProductCard = ({ item }: { item: Product }) => {
   const { addToCart } = useCart();
   const { toast } = useToast();
+  const phoneNumber = "919474771771";
+  const whatsappMessage = `I'd like to place an order for: ${item.name} (Price: Rs. ${item.price}).`;
+
 
   const handleAddToCart = () => {
     addToCart(item);
@@ -62,9 +64,19 @@ const ProductCard = ({ item }: { item: Product }) => {
           </div>
         </Link>
       </CardContent>
-      <div className="p-4 pt-0">
+      <div className="p-4 pt-0 space-y-2">
         <Button onClick={handleAddToCart} variant="outline" className="w-full">
           <Plus className="mr-2 h-4 w-4" /> Add to Cart
+        </Button>
+        <Button asChild variant="secondary" className="w-full">
+            <a href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
+                <MessageSquare className="mr-2 h-4 w-4" /> Order on WhatsApp
+            </a>
+        </Button>
+        <Button asChild variant="outline" className="w-full">
+            <a href={`tel:+${phoneNumber}`}>
+                <Phone className="mr-2 h-4 w-4" /> Call to Order
+            </a>
         </Button>
       </div>
     </Card>
