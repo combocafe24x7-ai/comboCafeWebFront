@@ -38,8 +38,9 @@ export default function Home() {
         <ProductSection 
           title="Personalised Frames"
           subtitle="Frame your cherished memories"
-          items={config.productSections.personalisedFrames}
+          items={config.productSections.personalisedFrames.slice(0, 4)}
           bgColor="bg-accent"
+          viewAllLink="/personalised-frames"
         />
         <GiftFinder />
         <HorizontalCollection 
@@ -56,5 +57,3 @@ export default function Home() {
     </>
   );
 }
-
-    
