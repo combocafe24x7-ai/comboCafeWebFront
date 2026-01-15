@@ -1,3 +1,4 @@
+
 "use client";
 import React from 'react';
 import Image from 'next/image';
@@ -30,7 +31,7 @@ const MainHeader = () => {
             <MapPin className="h-5 w-5 text-gray-500" />
             <input 
               type="text" 
-              defaultValue="Mumbai" 
+              defaultValue="Rampurhat" 
               className="w-24 ml-2 bg-transparent focus:outline-none text-sm"
             />
             <ChevronDown className="h-4 w-4 text-gray-500 ml-1" />
