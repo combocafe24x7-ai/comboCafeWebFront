@@ -30,11 +30,7 @@ const allProducts: Product[] = [
 
 const TopUtilityBar = () => (
   <div className="bg-gray-100 text-gray-600 text-xs py-1.5">
-    <div className="container mx-auto flex justify-between items-center">
-      <div className="flex gap-4">
-        <a href="#" className="hover:underline">Help</a>
-        <a href="#" className="hover:underline">Track Order</a>
-      </div>
+    <div className="container mx-auto flex justify-end items-center">
       <p>{config.header.utilityBar.promoText}</p>
     </div>
   </div>
