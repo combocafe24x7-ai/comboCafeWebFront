@@ -120,7 +120,7 @@ export const config = {
         { id: "g14", name: "LED Premium Frame", price: "650", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/led-premium-frame-650.jpg", description: "Premium quality LED frame, includes photo printing." },
         { id: "g15", name: "LED Premium Frame (Large)", price: "800", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/led-premium-frame-800.jpg", description: "Top-tier premium LED illuminated photo frame." },
         { id: "g16", name: "LED Mirror", price: "350", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/led-mirror-350.jpg", description: "A stylish mirror with built-in LED lights." },
-        { id: "g17", name: "Mirror Frame (Heart/Round)", price: "349", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/mirror-frame-349.jpg", description: "A unique shaped mirror frame for your pictures." },
+        { id: "g17", name: "Mirror Frame (Heart / Round)", price: "349", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/mirror-frame-349.jpg", description: "A unique shaped mirror frame for your pictures." },
         { id: "g18", name: "Customized Cushion", price: "550", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/custom-cushion-550.jpg", description: "A soft, personalized cushion for your home." },
         { id: "g19", name: "Pair Combo Gift", price: "399", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/pair-combo-399.jpg", description: "A perfect gift set for a couple." }
     ],
@@ -221,7 +221,6 @@ export const config = {
       business: [
         { label: "Corporate Gifting", href: "#" },
         { label: "Franchise", href: "#" },
-        { label: "Affiliate Program", href: "#" },
       ],
       policies: [
         { label: "Terms & Conditions", href: "#" },
