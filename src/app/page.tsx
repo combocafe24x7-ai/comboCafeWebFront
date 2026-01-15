@@ -24,12 +24,6 @@ export default function Home() {
           subtitle="Loved by everyone"
           items={config.productSections.bestSellingCakes}
         />
-        <ProductSection 
-          title="Birthday Special"
-          subtitle="Make their day memorable"
-          items={config.productSections.birthdaySpecial}
-          bgColor="bg-section-alternate"
-        />
         <OccasionTabs />
         <PaymentOfferBanners />
         <ProductSection 
