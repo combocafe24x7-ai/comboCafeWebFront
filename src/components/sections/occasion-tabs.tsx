@@ -13,6 +13,7 @@ type Product = {
   name: string;
   price: string;
   imageUrl: string;
+  description: string;
   badge?: string;
 };
 
@@ -31,8 +32,9 @@ const ProductCard = ({ item }: { item: Product }) => (
         )}
       </div>
       <div className="p-4">
-        <h4 className="font-medium text-sm text-gray-800 truncate h-10 leading-5">{item.name}</h4>
-        <p className="font-semibold text-gray-900 mt-1">{item.price}</p>
+        <h4 className="font-medium text-sm text-gray-800 truncate">{item.name}</h4>
+        <p className="text-xs text-gray-500 mt-1 h-8 leading-4">{item.description}</p>
+        <p className="font-semibold text-gray-900 mt-2">{item.price}</p>
       </div>
     </CardContent>
   </Card>
@@ -59,7 +61,7 @@ export default function OccasionTabs() {
                     {tabs.map((tab) => (
                         <TabsContent key={tab.id} value={tab.id} className="mt-6">
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                                {products[tab.id as keyof typeof products]?.map((item) => (
+                                {(products[tab.id as keyof typeof products] || []).map((item: Product) => (
                                     <ProductCard key={item.id} item={item} />
                                 ))}
                              </div>
@@ -70,3 +72,5 @@ export default function OccasionTabs() {
         </section>
     )
 }
+
+    
