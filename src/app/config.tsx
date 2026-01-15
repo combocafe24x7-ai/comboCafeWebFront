@@ -22,10 +22,10 @@ export const config = {
   },
   hero: {
     banners: [
-      { imageUrl: `https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/hero%20images/ChatGPT%20Image%20Jan%2015,%202026,%2011_54_36%20PM.png`, alt: "New Collection" },
-      { imageUrl: `https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/hero%20images/ChatGPT%20Image%20Jan%2015,%202026,%2011_50_28%20PM.png`, alt: "Anniversary Gifts" },
-      { imageUrl: `https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/hero%20images/ChatGPT%20Image%20Jan%2016,%202026,%2012_00_07%20AM.png`, alt: "Birthday Gifts" },
-      { imageUrl: `https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/hero%20images/ChatGPT%20Image%20Jan%2016,%202026,%2012_05_00%20AM.png`, alt: "Same Day Delivery" },
+      { imageUrl: `https://picsum.photos/seed/1/1280/720`, alt: "Promotional Banner 1" },
+      { imageUrl: `https://picsum.photos/seed/2/1280/720`, alt: "Promotional Banner 2" },
+      { imageUrl: `https://picsum.photos/seed/3/1280/720`, alt: "Promotional Banner 3" },
+      { imageUrl: `https://picsum.photos/seed/4/1280/720`, alt: "Promotional Banner 4" },
     ],
   },
   iconCategories: [
