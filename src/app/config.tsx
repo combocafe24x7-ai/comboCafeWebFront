@@ -8,7 +8,7 @@ export const config = {
     utilityBar: {
       promoText: "Fast, Free, and Contactless Delivery",
     },
-    logoUrl: `${supabaseUrl}/logo.svg`,
+    logoUrl: `https://picsum.photos/seed/brand-logo/180/40`,
     navLinks: [
       { id: "birthday", label: "Birthday", href: "#" },
       { id: "anniversary", label: "Anniversary", href: "#" },
@@ -29,14 +29,14 @@ export const config = {
     ],
   },
   iconCategories: [
-    { label: "All Gifts", imageUrl: "https://picsum.photos/seed/cat1/100/100", href: "#" },
-    { label: "Flowers", imageUrl: "https://picsum.photos/seed/cat2/100/100", href: "#" },
-    { label: "Cakes", imageUrl: "https://picsum.photos/seed/cat3/100/100", href: "#" },
-    { label: "Birthday", imageUrl: "https://picsum.photos/seed/cat4/100/100", href: "#" },
-    { label: "Anniversary", imageUrl: "https://picsum.photos/seed/cat5/100/100", href: "#" },
-    { label: "Personalised", imageUrl: "https://picsum.photos/seed/cat6/100/100", href: "#" },
-    { label: "Plants", imageUrl: "https://picsum.photos/seed/cat7/100/100", href: "#" },
-    { label: "Combos", imageUrl: "https://picsum.photos/seed/cat8/100/100", href: "#" },
+    { label: "All Gifts", imageUrl: "https://picsum.photos/seed/gifts/100/100", href: "#" },
+    { label: "Flowers", imageUrl: "https://picsum.photos/seed/flowers/100/100", href: "#" },
+    { label: "Cakes", imageUrl: "https://picsum.photos/seed/cakes/100/100", href: "#" },
+    { label: "Birthday", imageUrl: "https://picsum.photos/seed/birthday/100/100", href: "#" },
+    { label: "Anniversary", imageUrl: "https://picsum.photos/seed/anniversary/100/100", href: "#" },
+    { label: "Personalised", imageUrl: "https://picsum.photos/seed/personalised/100/100", href: "#" },
+    { label: "Plants", imageUrl: "https://picsum.photos/seed/plants/100/100", href: "#" },
+    { label: "Combos", imageUrl: "https://picsum.photos/seed/combos/100/100", href: "#" },
   ],
   serviceStrip: {
     title: "Bulk orders are acceptable",
