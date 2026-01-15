@@ -3,7 +3,6 @@ import { Card, CardContent } from '../ui/card';
 import Image from 'next/image';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Link from 'next/link';
-import { Phone, MessageSquare } from 'lucide-react';
 
 type CollectionItem = {
   title: string;
@@ -50,12 +49,12 @@ const CollectionCard = ({ item }: { item: CollectionItem }) => {
         <div className="p-3 pt-0 bg-white space-y-2">
             <Button asChild variant="secondary" className="w-full text-xs" size="sm">
                 <a href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
-                    <MessageSquare className="mr-2 h-4 w-4" /> Order on WhatsApp
+                    Order on WhatsApp
                 </a>
             </Button>
             <Button asChild variant="outline" className="w-full text-xs" size="sm">
                 <a href={`tel:+${phoneNumber}`}>
-                    <Phone className="mr-2 h-4 w-4" /> Call to Order
+                    Call to Order
                 </a>
             </Button>
       </div>

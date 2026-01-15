@@ -6,7 +6,6 @@ import { Badge } from '../ui/badge';
 import Link from 'next/link';
 import { useCart } from '@/context/cart-provider';
 import { useToast } from '@/hooks/use-toast';
-import { Plus, Phone, MessageSquare } from 'lucide-react';
 
 type Product = {
   id: string;
@@ -59,25 +58,25 @@ const ProductCard = ({ item }: { item: Product }) => {
           </div>
           <div className="p-4 flex-grow flex flex-col">
             <h4 className="font-medium text-sm text-gray-800 truncate">{item.name}</h4>
-            <p className="text-xs text-gray-500 mt-1 h-8 leading-4 flex-grow">{item.description}</p>
-            <p className="font-semibold text-gray-900 mt-2">{`Rs. ${item.price}`}</p>
+            <p className="text-xs text-gray-500 mt-1 h-4 truncate">{item.description}</p>
+            <p className="font-semibold text-gray-900 mt-auto pt-2">{`Rs. ${item.price}`}</p>
           </div>
         </Link>
       </CardContent>
       <div className="p-4 pt-0 space-y-2">
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2">
           <Button onClick={handleAddToCart} variant="outline" className="w-full text-xs" size="sm">
-            <Plus className="mr-2 h-4 w-4" /> Add to Cart
+            Add to Cart
           </Button>
           <Button asChild variant="secondary" className="w-full text-xs" size="sm">
               <a href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
-                  <MessageSquare className="mr-2 h-4 w-4" /> Order on WhatsApp
+                  Order on WhatsApp
               </a>
           </Button>
         </div>
         <Button asChild variant="outline" className="w-full text-xs" size="sm">
             <a href={`tel:+${phoneNumber}`}>
-                <Phone className="mr-2 h-4 w-4" /> Call to Order
+                Call to Order
             </a>
         </Button>
       </div>
