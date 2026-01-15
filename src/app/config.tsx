@@ -139,6 +139,11 @@ export const config = {
         { id: "f12", name: "Chocolate Frappe", price: "160", imageUrl: `https://picsum.photos/seed/food12/400/400`, description: "A blended iced coffee drink with rich chocolate flavor." },
         { id: "f13", name: "Strawberry Milkshake", price: "150", imageUrl: `https://picsum.photos/seed/food13/400/400`, description: "A sweet and creamy shake made with fresh strawberries." }
     ],
+    snacks: [
+        { id: "s1", name: "Veg Puff", price: "60", imageUrl: `https://picsum.photos/seed/snack1/400/400`, description: "A savory and flaky pastry filled with spiced vegetables." },
+        { id: "s2", name: "Cheese Sandwich", price: "90", imageUrl: `https://picsum.photos/seed/snack2/400/400`, description: "A classic sandwich with a generous layer of cheese." },
+        { id: "s3", name: "Garlic Bread", price: "100", imageUrl: `https://picsum.photos/seed/snack3/400/400`, description: "Toasted bread with a savory garlic butter spread." },
+    ],
     flowerProducts: [
       { id: "fp1", name: "Single Rose", price: "50", imageUrl: "https://picsum.photos/seed/flower1/400/400", description: "A single, elegant rose for a simple gesture." },
       { id: "fp2", name: "Rose Bouquet", price: "299", imageUrl: "https://picsum.photos/seed/flower2/400/400", description: "A beautiful bouquet of fresh roses." },

@@ -47,6 +47,13 @@ export default function Home() {
         />
         <GiftFinder />
         <ProductSection
+          title="Quick Bites"
+          subtitle="Delicious and savory snacks"
+          items={config.productSections.snacks}
+          bgColor="bg-white"
+          showViewAll={false}
+        />
+        <ProductSection
           title="Flowers & More"
           subtitle="Fresh arrangements and thoughtful gifts"
           items={config.productSections.flowerProducts}
