@@ -12,7 +12,7 @@ export const config = {
     navLinks: [
       { id: "cakes", label: "Cakes", href: "/cakes" },
       { id: "gifts", label: "Gifts", href: "/gifts" },
-      { id: "food", label: "Food", href: "#" },
+      { id: "food", label: "Food", href: "/food" },
       { id: "our-menu", label: "Our Menu", href: "/menu" },
     ],
   },
@@ -123,6 +123,21 @@ export const config = {
         { id: "g17", name: "Mirror Frame (Heart/Round)", price: "349", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/mirror-frame-349.jpg", description: "A unique shaped mirror frame for your pictures." },
         { id: "g18", name: "Customized Cushion", price: "550", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/custom-cushion-550.jpg", description: "A soft, personalized cushion for your home." },
         { id: "g19", name: "Pair Combo Gift", price: "399", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/pair-combo-399.jpg", description: "A perfect gift set for a couple." }
+    ],
+    foodItems: [
+        { id: "f1", name: "Veg Puff", price: "60", imageUrl: `https://picsum.photos/seed/food1/400/400`, description: "A savory and flaky pastry filled with spiced vegetables." },
+        { id: "f2", name: "Cheese Sandwich", price: "90", imageUrl: `https://picsum.photos/seed/food2/400/400`, description: "A classic sandwich with a generous layer of cheese." },
+        { id: "f3", name: "Garlic Bread", price: "100", imageUrl: `https://picsum.photos/seed/food3/400/400`, description: "Toasted bread with a savory garlic butter spread." },
+        { id: "f4", name: "Espresso", price: "80", imageUrl: `https://picsum.photos/seed/food4/400/400`, description: "A strong and concentrated coffee shot." },
+        { id: "f5", name: "Americano", price: "100", imageUrl: `https://picsum.photos/seed/food5/400/400`, description: "Espresso diluted with hot water, giving it a similar strength to drip coffee." },
+        { id: "f6", name: "Cappuccino", price: "120", imageUrl: `https://picsum.photos/seed/food6/400/400`, description: "A classic coffee drink with equal parts espresso, steamed milk, and milk foam." },
+        { id: "f7", name: "Caffè Latte", price: "130", imageUrl: `https://picsum.photos/seed/food7/400/400`, description: "A coffee drink made with espresso and steamed milk." },
+        { id: "f8", name: "Mocha", price: "140", imageUrl: `https://picsum.photos/seed/food8/400/400`, description: "A rich blend of espresso, chocolate, and steamed milk." },
+        { id: "f9", name: "Hot Chocolate", price: "120", imageUrl: `https://picsum.photos/seed/food9/400/400`, description: "A warm and comforting chocolate-flavored drink." },
+        { id: "f10", name: "Cold Coffee", price: "140", imageUrl: `https://picsum.photos/seed/food10/400/400`, description: "A refreshing chilled coffee beverage." },
+        { id: "f11", name: "Iced Latte", price: "150", imageUrl: `https://picsum.photos/seed/food11/400/400`, description: "Chilled espresso mixed with cold milk over ice." },
+        { id: "f12", name: "Chocolate Frappe", price: "160", imageUrl: `https://picsum.photos/seed/food12/400/400`, description: "A blended iced coffee drink with rich chocolate flavor." },
+        { id: "f13", name: "Strawberry Milkshake", price: "150", imageUrl: `https://picsum.photos/seed/food13/400/400`, description: "A sweet and creamy shake made with fresh strawberries." }
     ],
     personalisedFrames: [
         { id: "pf1", name: "Customized Photo Frame (Normal)", price: "350", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/customized-photo-frame-350.jpg", description: "A classic frame for your cherished photos." },
