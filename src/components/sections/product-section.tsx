@@ -65,14 +65,16 @@ const ProductCard = ({ item }: { item: Product }) => {
         </Link>
       </CardContent>
       <div className="p-4 pt-0 space-y-2">
-        <Button onClick={handleAddToCart} variant="outline" className="w-full">
-          <Plus className="mr-2 h-4 w-4" /> Add to Cart
-        </Button>
-        <Button asChild variant="secondary" className="w-full">
-            <a href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
-                <MessageSquare className="mr-2 h-4 w-4" /> Order on WhatsApp
-            </a>
-        </Button>
+        <div className="flex gap-2">
+          <Button onClick={handleAddToCart} variant="outline" className="w-full">
+            <Plus className="mr-2 h-4 w-4" /> Add to Cart
+          </Button>
+          <Button asChild variant="secondary" className="w-full">
+              <a href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`} target="_blank" rel="noopener noreferrer">
+                  <MessageSquare className="mr-2 h-4 w-4" /> Order on WhatsApp
+              </a>
+          </Button>
+        </div>
         <Button asChild variant="outline" className="w-full">
             <a href={`tel:+${phoneNumber}`}>
                 <Phone className="mr-2 h-4 w-4" /> Call to Order
