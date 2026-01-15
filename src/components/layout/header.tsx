@@ -1,8 +1,7 @@
-
 "use client";
 import React from 'react';
 import Image from 'next/image';
-import { ChevronDown, MapPin, Search, Heart, ShoppingBag } from 'lucide-react';
+import { ChevronDown, MapPin, Search, ShoppingBag } from 'lucide-react';
 import { config } from '@/app/config';
 import { useCart } from '@/context/cart-provider';
 import { Button } from '../ui/button';
@@ -22,7 +21,7 @@ const MainHeader = () => {
       <div className="container mx-auto flex items-center py-4 gap-8">
         {/* Logo */}
         <a href="#" className="shrink-0">
-          <Image src={config.header.logoUrl} alt="Brand Image" width={180} height={40} priority />
+          <span className="text-xl font-bold text-gray-800">combo cafe and gift shop</span>
         </a>
         
         {/* Location & Search */}
