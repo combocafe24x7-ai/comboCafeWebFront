@@ -21,6 +21,7 @@ type Product = {
 
 const allProducts: Product[] = [
   ...config.productSections.bestSellingCakes,
+  ...config.productSections.allCakes,
   ...config.productSections.gifts,
   ...config.productSections.personalisedFrames,
   ...config.productSections.personalisedMugsAndCushions,
@@ -83,3 +84,5 @@ export default function SearchPage() {
     </Suspense>
   );
 }
+
+    

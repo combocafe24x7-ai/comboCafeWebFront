@@ -1,7 +1,6 @@
 
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ChevronDown, MapPin, Search, ShoppingBag, User } from 'lucide-react';
@@ -21,6 +20,7 @@ type Product = {
 
 const allProducts: Product[] = [
   ...config.productSections.bestSellingCakes,
+  ...config.productSections.allCakes,
   ...config.productSections.gifts,
   ...config.productSections.personalisedFrames,
   ...config.productSections.personalisedMugsAndCushions,
@@ -181,3 +181,5 @@ export default function Header() {
     </header>
   );
 }
+
+    
