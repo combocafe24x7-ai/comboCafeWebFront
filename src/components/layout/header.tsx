@@ -2,7 +2,7 @@
 "use client";
 import React from 'react';
 import Image from 'next/image';
-import { ChevronDown, MapPin, Search, User, Heart, ShoppingBag } from 'lucide-react';
+import { ChevronDown, MapPin, Search, Heart, ShoppingBag } from 'lucide-react';
 import { config } from '@/app/config';
 import { useCart } from '@/context/cart-provider';
 import { Button } from '../ui/button';
@@ -50,10 +50,6 @@ const MainHeader = () => {
         
         {/* Action Icons */}
         <div className="flex items-center space-x-6">
-          <a href="#" className="flex flex-col items-center text-gray-600 hover:text-gray-900">
-            <User className="h-6 w-6" />
-            <span className="text-xs mt-1">Account</span>
-          </a>
           <a href="#" className="flex flex-col items-center text-gray-600 hover:text-gray-900">
             <Heart className="h-6 w-6" />
             <span className="text-xs mt-1">Wishlist</span>
