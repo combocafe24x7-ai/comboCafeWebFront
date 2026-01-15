@@ -24,6 +24,7 @@ type ProductSectionProps = {
   items: Product[];
   bgColor?: string;
   viewAllLink?: string;
+  showViewAll?: boolean;
 };
 
 const ProductCard = ({ item }: { item: Product }) => {
@@ -69,7 +70,7 @@ const ProductCard = ({ item }: { item: Product }) => {
   );
 };
 
-export default function ProductSection({ title, subtitle, items, bgColor = 'bg-white', viewAllLink = "#" }: ProductSectionProps) {
+export default function ProductSection({ title, subtitle, items, bgColor = 'bg-white', viewAllLink = "#", showViewAll = true }: ProductSectionProps) {
   return (
     <section className={bgColor}>
       <div className="container mx-auto">
@@ -78,9 +79,9 @@ export default function ProductSection({ title, subtitle, items, bgColor = 'bg-w
             <h2 className="text-3xl font-semibold">{title}</h2>
             {subtitle && <p className="text-md text-gray-500 mt-1">{subtitle}</p>}
           </div>
-           <Button variant="outline" asChild>
+           {showViewAll && <Button variant="outline" asChild>
             <Link href={viewAllLink}>View All</Link>
-          </Button>
+          </Button>}
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {items.map((item) => (
