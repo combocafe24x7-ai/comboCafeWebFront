@@ -84,15 +84,13 @@ const MainHeader = () => {
         {/* Location & Search */}
         <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
           <form onSubmit={handleSearchSubmit} className="flex-grow flex items-center border rounded-md relative">
-            <div className="flex items-center p-2 border-r cursor-pointer hover:bg-gray-50">
+            <a href="https://google.com/maps/place/Combo+Cafe+%26+Gifts+Shop/data=!4m2!3m1!1s0x0:0x20d4a8fe5d070ebc?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer" className="flex items-center p-2 border-r cursor-pointer hover:bg-gray-50">
               <MapPin className="h-5 w-5 text-gray-500" />
-              <input 
-                type="text" 
-                defaultValue="Rampurhat" 
-                className="w-24 ml-2 bg-transparent focus:outline-none text-sm"
-              />
+              <div className="ml-2 bg-transparent focus:outline-none text-sm">
+                Rampurhat
+              </div>
               <ChevronDown className="h-4 w-4 text-gray-500 ml-1" />
-            </div>
+            </a>
             <PopoverAnchor asChild>
               <div className="flex-grow flex items-center p-2">
                 <input 
