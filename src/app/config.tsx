@@ -13,7 +13,7 @@ export const config = {
       { id: "cakes", label: "Cakes", href: "/cakes" },
       { id: "gifts", label: "Gifts", href: "/gifts" },
       { id: "food", label: "Food", href: "#" },
-      { id: "our-menu", label: "Our Menu", href: "#" },
+      { id: "our-menu", label: "Our Menu", href: "/menu" },
     ],
   },
   hero: {
@@ -26,6 +26,18 @@ export const config = {
   },
   serviceStrip: {
     title: "Bulk orders are acceptable",
+  },
+  menu: {
+    title: "Our Menu",
+    subtitle: "Explore our wide range of delicious offerings",
+    images: [
+      { id: "menu1", src: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/menu%201.png", alt: "Menu Page 1" },
+      { id: "menu2", src: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/menu%202.png", alt: "Menu Page 2" },
+      { id: "menu3", src: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/menu%203.png", alt: "Menu Page 3" },
+      { id: "menu4", src: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/menu%204.png", alt: "Menu Page 4" },
+      { id: "menu5", src: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/menu%205.png", alt: "Menu Page 5" },
+      { id: "menu6", src: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/menu%206.png", alt: "Menu Page 6" },
+    ]
   },
   productSections: {
     bestSellingCakes: [
@@ -186,4 +198,5 @@ export const config = {
   }
 };
 
+    
     
