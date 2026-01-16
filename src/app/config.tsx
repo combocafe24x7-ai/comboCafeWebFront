@@ -195,8 +195,8 @@ export const config = {
         { label: "Customer Reviews", href: "/reviews" },
       ],
       business: [
-        { label: "Corporate Gifting", href: "#" },
-        { label: "Franchise", href: "#" },
+        { label: "Corporate Gifting", href: "/coming-soon" },
+        { label: "Franchise", href: "/coming-soon" },
       ],
       policies: [
         { label: "Terms & Conditions", href: "/terms" },
