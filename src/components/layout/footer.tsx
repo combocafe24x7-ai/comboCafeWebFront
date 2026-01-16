@@ -56,8 +56,8 @@ export default function Footer() {
             </p>
             <h4 className="font-semibold text-gray-800 mb-4">Subscribe to our newsletter</h4>
             <form onSubmit={handleSubscribe} className="flex gap-2">
-              <Input name="email" type="email" placeholder="Enter your email" className="bg-white" required />
-              <Button type="submit">Subscribe</Button>
+              <Input name="email" type="email" placeholder="Enter your email" className="bg-white" required suppressHydrationWarning />
+              <Button type="submit" suppressHydrationWarning>Subscribe</Button>
             </form>
           </div>
 

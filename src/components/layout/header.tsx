@@ -99,8 +99,9 @@ const MainHeader = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   autoComplete="off"
+                  suppressHydrationWarning
                 />
-                <Button type="submit" variant="ghost" size="icon" className="w-8 h-8">
+                <Button type="submit" variant="ghost" size="icon" className="w-8 h-8" suppressHydrationWarning>
                   <Search className="h-5 w-5 text-gray-400" />
                 </Button>
               </div>

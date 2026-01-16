@@ -31,7 +31,7 @@ export default function GiftFinder() {
                 </div>
               ))}
             </div>
-            <Button onClick={handleFindGift} className="mt-6 w-full md:w-auto" size="lg">Find Gift</Button>
+            <Button onClick={handleFindGift} className="mt-6 w-full md:w-auto" size="lg" suppressHydrationWarning>Find Gift</Button>
           </div>
           <div className="relative aspect-square max-w-md mx-auto">
             <Image src={config.giftFinder.imageUrl} alt="Gift Finder" layout="fill" objectFit="contain" />

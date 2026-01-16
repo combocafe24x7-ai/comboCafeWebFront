@@ -49,17 +49,17 @@ export default function ContactPage() {
               <form onSubmit={handleSendMessage} className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="name">Full Name</Label>
-                  <Input id="name" name="name" placeholder="John Doe" required />
+                  <Input id="name" name="name" placeholder="John Doe" required suppressHydrationWarning />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" name="email" type="email" placeholder="you@example.com" required />
+                  <Input id="email" name="email" type="email" placeholder="you@example.com" required suppressHydrationWarning />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="message">Message</Label>
-                  <Textarea id="message" name="message" placeholder="Your message..." required />
+                  <Textarea id="message" name="message" placeholder="Your message..." required suppressHydrationWarning />
                 </div>
-                <Button type="submit" className="w-full" size="lg">
+                <Button type="submit" className="w-full" size="lg" suppressHydrationWarning>
                   Send Message
                 </Button>
               </form>

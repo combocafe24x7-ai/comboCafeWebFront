@@ -133,17 +133,17 @@ export default function CheckoutPage() {
                           <div className="flex-grow">
                             <h3 className="font-semibold">{product.name}</h3>
                             <p className="text-sm text-gray-500">{`Rs. ${product.price}`}</p>
-                             <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-600 px-0" onClick={() => handleRemoveAllOfItem(product.id)}>
+                             <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-600 px-0" onClick={() => handleRemoveAllOfItem(product.id)} suppressHydrationWarning>
                                 <Trash2 className="mr-1 h-4 w-4" />
                                 Remove
                             </Button>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => removeFromCart(product.id)}>
+                            <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => removeFromCart(product.id)} suppressHydrationWarning>
                                 <Minus className="h-4 w-4" />
                             </Button>
                             <span className="w-8 text-center">{quantity}</span>
-                            <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => addToCart(product)}>
+                            <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => addToCart(product)} suppressHydrationWarning>
                                 <Plus className="h-4 w-4" />
                             </Button>
                           </div>
@@ -179,27 +179,27 @@ export default function CheckoutPage() {
                     <form onSubmit={handlePlaceOrder} className="w-full space-y-4">
                          <div className="space-y-2">
                             <Label htmlFor="name">Full Name</Label>
-                            <Input id="name" name="name" placeholder="John Doe" required />
+                            <Input id="name" name="name" placeholder="John Doe" required suppressHydrationWarning />
                         </div>
                          <div className="space-y-2">
                             <Label htmlFor="email">Email</Label>
-                            <Input id="email" name="email" type="email" placeholder="you@example.com" required />
+                            <Input id="email" name="email" type="email" placeholder="you@example.com" required suppressHydrationWarning />
                         </div>
                         <div className="space-y-2">
                             <Label htmlFor="phone">Phone Number</Label>
-                            <Input id="phone" name="phone" type="tel" placeholder="9876543210" required />
+                            <Input id="phone" name="phone" type="tel" placeholder="9876543210" required suppressHydrationWarning />
                         </div>
                          <div className="space-y-2">
                             <Label htmlFor="address">Delivery Address</Label>
-                            <Input id="address" name="address" placeholder="123 Main St, Rampurhat" required />
+                            <Input id="address" name="address" placeholder="123 Main St, Rampurhat" required suppressHydrationWarning />
                         </div>
                         <div className="space-y-2">
                             <Label htmlFor="landmark">Landmark</Label>
-                            <Input id="landmark" name="landmark" placeholder="Near City Mall" />
+                            <Input id="landmark" name="landmark" placeholder="Near City Mall" suppressHydrationWarning />
                         </div>
                         <div className="space-y-2">
                             <Label htmlFor="pincode">Pincode</Label>
-                            <Input id="pincode" name="pincode" type="text" placeholder="731235" maxLength={6} required />
+                            <Input id="pincode" name="pincode" type="text" placeholder="731235" maxLength={6} required suppressHydrationWarning />
                         </div>
 
                         <div className="space-y-2">
@@ -212,7 +212,7 @@ export default function CheckoutPage() {
                                             "w-full justify-start text-left font-normal",
                                             !date && "text-muted-foreground"
                                         )}
-                                    >
+                                     suppressHydrationWarning>
                                         <CalendarIcon className="mr-2 h-4 w-4" />
                                         {date ? format(date, "PPP") : <span>Pick a date</span>}
                                     </Button>
@@ -233,7 +233,7 @@ export default function CheckoutPage() {
                         <div className="space-y-2">
                             <Label htmlFor="time">Delivery Time</Label>
                             <Select value={timeSlot} onValueChange={setTimeSlot}>
-                                <SelectTrigger id="time">
+                                <SelectTrigger id="time" suppressHydrationWarning>
                                     <SelectValue placeholder="Select a time slot" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -246,7 +246,7 @@ export default function CheckoutPage() {
                             </Select>
                         </div>
 
-                        <Button type="submit" className="w-full" size="lg" disabled={cart.length === 0}>
+                        <Button type="submit" className="w-full" size="lg" disabled={cart.length === 0} suppressHydrationWarning>
                             Place Order
                         </Button>
                     </form>
