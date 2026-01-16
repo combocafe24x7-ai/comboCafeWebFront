@@ -77,7 +77,7 @@ export default function CheckoutPage() {
       return;
     }
 
-    const deliveryDate = date ? format(date, "P") : "Not selected";
+    const deliveryDate = date ? format(date, "PPP") : "Not selected";
     const timeSlotMap: { [key: string]: string } = {
         '10-12': '10:00 AM - 12:00 PM',
         '12-14': '12:00 PM - 02:00 PM',
@@ -202,50 +202,48 @@ export default function CheckoutPage() {
                             <Input id="pincode" name="pincode" type="text" placeholder="731235" maxLength={6} required />
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div className="space-y-2">
-                              <Label htmlFor="date">Delivery Date</Label>
-                              <Popover>
-                                  <PopoverTrigger asChild>
-                                      <Button
-                                          variant={"outline"}
-                                          className={cn(
-                                              "w-full justify-start text-left font-normal",
-                                              !date && "text-muted-foreground"
-                                          )}
-                                      >
-                                          <CalendarIcon className="mr-2 h-4 w-4" />
-                                          {date ? format(date, "P") : <span>Pick a date</span>}
-                                      </Button>
-                                  </PopoverTrigger>
-                                  <PopoverContent className="w-auto p-0">
-                                      <Calendar
-                                          mode="single"
-                                          selected={date}
-                                          onSelect={setDate}
-                                          disabled={(day) =>
-                                            day < addDays(startOfDay(new Date()), 1) || day > addDays(new Date(), 30)
-                                          }
-                                          initialFocus
-                                      />
-                                  </PopoverContent>
-                              </Popover>
-                          </div>
-                          <div className="space-y-2">
-                              <Label htmlFor="time">Delivery Time</Label>
-                              <Select value={timeSlot} onValueChange={setTimeSlot}>
-                                  <SelectTrigger id="time">
-                                      <SelectValue placeholder="Select a time slot" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                      <SelectItem value="10-12">10:00 AM - 12:00 PM</SelectItem>
-                                      <SelectItem value="12-14">12:00 PM - 02:00 PM</SelectItem>
-                                      <SelectItem value="14-16">02:00 PM - 04:00 PM</SelectItem>
-                                      <SelectItem value="16-18">04:00 PM - 06:00 PM</SelectItem>
-                                      <SelectItem value="18-20">06:00 PM - 08:00 PM</SelectItem>
-                                  </SelectContent>
-                              </Select>
-                          </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="date">Delivery Date</Label>
+                            <Popover>
+                                <PopoverTrigger asChild>
+                                    <Button
+                                        variant={"outline"}
+                                        className={cn(
+                                            "w-full justify-start text-left font-normal",
+                                            !date && "text-muted-foreground"
+                                        )}
+                                    >
+                                        <CalendarIcon className="mr-2 h-4 w-4" />
+                                        {date ? format(date, "PPP") : <span>Pick a date</span>}
+                                    </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-auto p-0">
+                                    <Calendar
+                                        mode="single"
+                                        selected={date}
+                                        onSelect={setDate}
+                                        disabled={(day) =>
+                                          day < addDays(startOfDay(new Date()), 1) || day > addDays(new Date(), 30)
+                                        }
+                                        initialFocus
+                                    />
+                                </PopoverContent>
+                            </Popover>
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="time">Delivery Time</Label>
+                            <Select value={timeSlot} onValueChange={setTimeSlot}>
+                                <SelectTrigger id="time">
+                                    <SelectValue placeholder="Select a time slot" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="10-12">10:00 AM - 12:00 PM</SelectItem>
+                                    <SelectItem value="12-14">12:00 PM - 02:00 PM</SelectItem>
+                                    <SelectItem value="14-16">02:00 PM - 04:00 PM</SelectItem>
+                                    <SelectItem value="16-18">04:00 PM - 06:00 PM</SelectItem>
+                                    <SelectItem value="18-20">06:00 PM - 08:00 PM</SelectItem>
+                                </SelectContent>
+                            </Select>
                         </div>
 
                         <Button type="submit" className="w-full" size="lg" disabled={cart.length === 0}>
