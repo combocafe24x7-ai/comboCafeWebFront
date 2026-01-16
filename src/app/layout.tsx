@@ -32,7 +32,7 @@ export default function RootLayout({
         >
           <CartProvider>
               <Header />
-              <div className='md:pt-0 pt-28'>
+              <div className='md:pt-0 pt-24'>
                 {children}
               </div>
               <MobileBottomNav />
