@@ -130,7 +130,7 @@ const MainHeader = () => {
         
         {/* Action Icons */}
         <div className="flex items-center space-x-6">
-          <a href="#" className="relative flex flex-col items-center text-gray-600 hover:text-gray-900">
+          <Link href="/checkout" className="relative flex flex-col items-center text-gray-600 hover:text-gray-900">
             <ShoppingBag className="h-6 w-6" />
             <span className="text-xs mt-1">Cart</span>
             {cart.length > 0 && (
@@ -138,7 +138,7 @@ const MainHeader = () => {
                 {cart.length}
               </div>
             )}
-          </a>
+          </Link>
         </div>
       </div>
     </div>

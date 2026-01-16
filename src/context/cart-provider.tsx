@@ -1,17 +1,21 @@
+
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-type Product = {
+export type Product = {
+  id: string;
   name: string;
   price: string;
   imageUrl: string;
+  description: string;
+  badge?: string;
 };
 
 type CartContextType = {
   cart: Product[];
   addToCart: (product: Product) => void;
-  removeFromCart: (productName: string) => void;
+  removeFromCart: (productId: string, removeAll?: boolean) => void;
   clearCart: () => void;
 };
 
@@ -24,8 +28,20 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCart(prevCart => [...prevCart, product]);
   };
 
-  const removeFromCart = (productName: string) => {
-    setCart(prevCart => prevCart.filter(item => item.name !== productName));
+  const removeFromCart = (productId: string, removeAll: boolean = false) => {
+    setCart(prevCart => {
+      if (removeAll) {
+        return prevCart.filter(item => item.id !== productId);
+      }
+      
+      const index = prevCart.findIndex(item => item.id === productId);
+      if (index > -1) {
+        const newCart = [...prevCart];
+        newCart.splice(index, 1);
+        return newCart;
+      }
+      return prevCart;
+    });
   };
 
   const clearCart = () => {
