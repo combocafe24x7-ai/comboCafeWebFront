@@ -104,12 +104,12 @@ export const config = {
       { id: "c55", name: "Yummy Butterscotch Extra", price: "380", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/yummy%20butterscoth%20380.jpeg", description: "An extra yummy butterscotch experience." }
     ],
     gifts: [
-        { id: "g1", name: "Coffee Mug", price: "199", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/coffee-mug-199.jpg", description: "A classic mug for your daily coffee." },
+        { id: "g1", name: "Coffee Mug", price: "199", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/gift%20images/Coffee%20Mug%20199.jpeg", description: "A classic mug for your daily coffee." },
         { id: "g2", name: "Customized White Mug", price: "249", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/custom-white-mug-249.jpg", description: "A classic white mug, personalized for you." },
         { id: "g3", name: "Customized Mug", price: "249", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/custom-mug-249.jpg", description: "Your personal design on a quality mug." },
         { id: "g4", name: "Colour Mug", price: "280", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/color-mug-280.jpg", description: "A vibrant mug to brighten your day." },
         { id: "g5", name: "Black Mug", price: "299", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/black-mug-299.jpg", description: "A sleek and stylish black mug." },
-        { id: "g6", name: "Black Mug (Premium)", price: "330", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/black-mug-330.jpg", description: "A premium quality sleek black mug." },
+        { id: "g6", name: "Black Mug (Premium)", price: "330", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/gift%20images/Black%20Mug%20330.jpeg", description: "A premium quality sleek black mug." },
         { id: "g7", name: "Magic Mug", price: "350", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/magic-mug-350.jpg", description: "Reveals a surprise image with hot liquid." },
         { id: "g8", name: "Magic Mug (Premium)", price: "399", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/magic-mug-399.jpg", description: "Premium, customizable mug that reveals your image." },
         { id: "g9", name: "Customized Photo Frame (Normal)", price: "350", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/customized-photo-frame-350.jpg", description: "A classic frame for your cherished photos." },
