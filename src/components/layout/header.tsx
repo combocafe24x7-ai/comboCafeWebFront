@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ChevronDown, MapPin, Search, ShoppingCart, Menu, X } from 'lucide-react';
+import { ChevronDown, Search, ShoppingCart, Menu, X } from 'lucide-react';
 import { config } from '@/app/config';
 import { useCart } from '@/context/cart-provider';
 import { Button } from '../ui/button';
@@ -88,16 +88,9 @@ const MainHeader = () => {
           <span className="text-xl font-bold text-gray-800">combo cafe and gift shop</span>
         </Link>
         
-        {/* Location & Search */}
+        {/* Search */}
         <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
           <form onSubmit={handleSearchSubmit} className="flex-grow flex items-center border rounded-md relative">
-            <a href="https://google.com/maps/place/Combo+Cafe+%26+Gifts+Shop/data=!4m2!3m1!1s0x0:0x20d4a8fe5d070ebc?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer" className="flex items-center p-2 border-r cursor-pointer hover:bg-gray-50">
-              <MapPin className="h-5 w-5 text-gray-500" />
-              <div className="ml-2 bg-transparent focus:outline-none text-sm">
-                Rampurhat
-              </div>
-              <ChevronDown className="h-4 w-4 text-gray-500 ml-1" />
-            </a>
             <PopoverAnchor asChild>
               <div className="flex-grow flex items-center p-2">
                 <input 

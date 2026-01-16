@@ -1,10 +1,10 @@
 
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { MapPin, Search, ChevronDown } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { config } from '@/app/config';
 import { Popover, PopoverContent, PopoverAnchor } from "@/components/ui/popover";
 import { Button } from '../ui/button';
@@ -64,16 +64,6 @@ export default function MobileSearch() {
     return (
         <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
             <form onSubmit={handleSearchSubmit} className="flex items-center border rounded-md relative bg-gray-100">
-                <a 
-                    href="https://google.com/maps/place/Combo+Cafe+%26+Gifts+Shop/data=!4m2!3m1!1s0x0:0x20d4a8fe5d070ebc?sa=X&ved=1t:2428&ictx=111" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="flex items-center p-2 border-r cursor-pointer"
-                >
-                    <MapPin className="h-5 w-5 text-gray-500" />
-                    <span className="ml-1 text-sm font-medium">Rampurhat</span>
-                    <ChevronDown className="h-4 w-4 text-gray-500 ml-1" />
-                </a>
                 <PopoverAnchor asChild>
                     <div className="flex-grow flex items-center">
                         <input
