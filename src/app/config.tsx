@@ -144,11 +144,11 @@ export const config = {
         { id: "hb6", name: "Hot Chocolate", price: "120", imageUrl: `https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/hot%20bevrages/hot%20chocolate.jpg`, description: "A warm and comforting chocolate drink." },
     ],
     flowerProducts: [
-      { id: "fp1", name: "Single Rose", price: "50", imageUrl: "https://picsum.photos/seed/flower1/400/400", description: "A single, elegant rose for a simple gesture." },
-      { id: "fp2", name: "Rose Bouquet", price: "299", imageUrl: "https://picsum.photos/seed/flower2/400/400", description: "A beautiful bouquet of fresh roses." },
-      { id: "fp3", name: "Mixed Flower Bouquet", price: "399", imageUrl: "https://picsum.photos/seed/flower3/400/400", description: "A vibrant mix of seasonal flowers." },
-      { id: "fp4", name: "Cake + Flower Combo", price: "699", imageUrl: "https://picsum.photos/seed/flower4/400/400", description: "The perfect combo for any celebration." },
-      { id: "fp5", name: "Gift Hampers", price: "499", imageUrl: "https://picsum.photos/seed/flower5/400/400", description: "Thoughtfully curated hampers for your loved ones." },
+      { id: "fp1", name: "Single Rose", price: "50", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/flowers/single%20rose.jpg", description: "A single, elegant rose for a simple gesture." },
+      { id: "fp2", name: "Rose Bouquet", price: "299", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/flowers/rose%20bouquet.jpg", description: "A beautiful bouquet of fresh roses." },
+      { id: "fp3", name: "Mixed Flower Bouquet", price: "399", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/flowers/flower%20bouquet.jpg", description: "A vibrant mix of seasonal flowers." },
+      { id: "fp4", name: "Cake + Flower Combo", price: "699", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/flowers/cake%20plus%20flower.jpg", description: "The perfect combo for any celebration." },
+      { id: "fp5", name: "Gift Hampers", price: "499", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/flowers/gift%20hamper.jpg", description: "Thoughtfully curated hampers for your loved ones." },
     ],
   },
   giftFinder: {
@@ -203,3 +203,5 @@ export const config = {
     }
   }
 };
+
+    
