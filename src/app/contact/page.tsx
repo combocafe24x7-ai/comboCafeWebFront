@@ -88,7 +88,7 @@ export default function ContactPage() {
                   <Mail className="h-6 w-6 text-primary mt-1" />
                   <div>
                     <h3 className="font-semibold">Email Us</h3>
-                    <a href="mailto:info@combocafe.com" className="text-gray-600 hover:text-primary">info@combocafe.com</a>
+                    <a href="mailto:combocafe24x7@gmail.com" className="text-gray-600 hover:text-primary">combocafe24x7@gmail.com</a>
                   </div>
                 </div>
               </div>
