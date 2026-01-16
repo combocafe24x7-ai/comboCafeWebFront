@@ -151,12 +151,12 @@ const MobileHeader = () => {
     const [isSheetOpen, setIsSheetOpen] = useState(false);
 
     return (
-        <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-background shadow-sm flex flex-col p-2 gap-2">
+        <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-background shadow-sm flex flex-col p-2">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                         <SheetTrigger asChild>
-                            <Button variant="ghost" size="icon" className="-ml-2">
+                            <Button variant="ghost" size="icon" className="-ml-2" suppressHydrationWarning>
                                 <Menu className="h-6 w-6" />
                                 <span className="sr-only">Open menu</span>
                             </Button>
@@ -232,7 +232,7 @@ const CategoryNavigation = () => {
                         link.subLinks ? (
                             <DropdownMenu key={link.id}>
                                 <DropdownMenuTrigger asChild>
-                                    <button className="flex items-center gap-1 text-sm font-medium text-gray-700 pb-1 border-b-2 border-transparent hover:border-primary hover:text-gray-900 transition-colors duration-200 cursor-pointer focus-visible:outline-none">
+                                    <button suppressHydrationWarning className="flex items-center gap-1 text-sm font-medium text-gray-700 pb-1 border-b-2 border-transparent hover:border-primary hover:text-gray-900 transition-colors duration-200 cursor-pointer focus-visible:outline-none">
                                         {link.label}
                                         <ChevronDown className="h-4 w-4" />
                                     </button>
@@ -280,5 +280,3 @@ export default function Header() {
     </header>
   );
 }
-
-    

@@ -75,8 +75,9 @@ export default function MobileSearch() {
                             className="block w-full bg-transparent pl-3 pr-4 py-2 text-sm placeholder:text-gray-500 focus:outline-none"
                             placeholder="Search Combo Cafe..."
                             autoComplete="off"
+                            suppressHydrationWarning
                         />
-                        <Button type="submit" variant="ghost" size="icon" className="w-10 h-10">
+                        <Button type="submit" variant="ghost" size="icon" className="w-10 h-10" suppressHydrationWarning>
                             <Search className="h-5 w-5 text-gray-500" />
                         </Button>
                     </div>
@@ -102,5 +103,3 @@ export default function MobileSearch() {
         </Popover>
     );
 }
-
-    

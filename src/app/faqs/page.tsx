@@ -55,7 +55,7 @@ export default function FaqsPage() {
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger>{faq.question}</AccordionTrigger>
+                  <AccordionTrigger suppressHydrationWarning>{faq.question}</AccordionTrigger>
                   <AccordionContent>
                     {faq.answer}
                   </AccordionContent>

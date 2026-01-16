@@ -25,7 +25,7 @@ const FooterLinkColumn = ({ title, links }: { title: string; links: { label: str
 
 const FooterAccordion = ({ title, links }: { title: string; links: { label: string; href: string }[] }) => (
     <AccordionItem value={title}>
-        <AccordionTrigger>{title}</AccordionTrigger>
+        <AccordionTrigger suppressHydrationWarning>{title}</AccordionTrigger>
         <AccordionContent>
             <ul className="space-y-3">
                 {links.map((link) => (
