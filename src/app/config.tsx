@@ -125,7 +125,6 @@ export const config = {
         { id: "f5", name: "Americano", price: "100", imageUrl: `https://picsum.photos/seed/food5/400/400`, description: "Espresso diluted with hot water, giving it a similar strength to drip coffee." },
         { id: "f6", name: "Cappuccino", price: "120", imageUrl: `https://picsum.photos/seed/food6/400/400`, description: "A classic coffee drink with equal parts espresso, steamed milk, and milk foam." },
         { id: "f7", name: "Caffè Latte", price: "130", imageUrl: `https://picsum.photos/seed/food7/400/400`, description: "A coffee drink made with espresso and steamed milk." },
-        { id: "f8", name: "Mocha", price: "140", imageUrl: `https://picsum.photos/seed/food8/400/400`, description: "A rich blend of espresso, chocolate, and steamed milk." },
         { id: "f9", name: "Hot Chocolate", price: "120", imageUrl: `https://picsum.photos/seed/food9/400/400`, description: "A warm and comforting chocolate-flavored drink." },
         { id: "f10", name: "Cold Coffee", price: "140", imageUrl: `https://picsum.photos/seed/food10/400/400`, description: "A refreshing chilled coffee beverage." },
         { id: "f11", name: "Iced Latte", price: "150", imageUrl: `https://picsum.photos/seed/food11/400/400`, description: "Chilled espresso mixed with cold milk over ice." },
@@ -142,7 +141,6 @@ export const config = {
         { id: "hb2", name: "Americano", price: "100", imageUrl: `https://picsum.photos/seed/beverage2/400/400`, description: "Espresso diluted with hot water." },
         { id: "hb3", name: "Cappuccino", price: "120", imageUrl: `https://picsum.photos/seed/beverage3/400/400`, description: "Espresso, steamed milk, and milk foam." },
         { id: "hb4", name: "Caffè Latte", price: "130", imageUrl: `https://picsum.photos/seed/beverage4/400/400`, description: "Espresso with a larger amount of steamed milk." },
-        { id: "hb5", name: "Mocha", price: "140", imageUrl: `https://picsum.photos/seed/beverage5/400/400`, description: "A rich blend of espresso, chocolate, and milk." },
         { id: "hb6", name: "Hot Chocolate", price: "120", imageUrl: `https://picsum.photos/seed/beverage6/400/400`, description: "A warm and comforting chocolate drink." },
     ],
     flowerProducts: [
