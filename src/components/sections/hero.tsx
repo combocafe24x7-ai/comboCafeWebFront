@@ -8,7 +8,7 @@ import { config } from '@/app/config';
 
 export default function Hero() {
   return (
-    <section id="home" className="bg-gray-50 pt-0 md:pt-6 pb-6">
+    <section id="home" className="bg-gray-50 pt-4 md:pt-6 pb-6">
       <div className="container mx-auto">
         <Carousel
           opts={{ loop: true }}
