@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ChevronDown, MapPin, Search, ShoppingCart, Menu, X, Flag } from 'lucide-react';
+import { ChevronDown, MapPin, Search, ShoppingCart, Menu, X } from 'lucide-react';
 import { config } from '@/app/config';
 import { useCart } from '@/context/cart-provider';
 import { Button } from '../ui/button';
@@ -15,6 +15,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import MobileSearch from '../mobile/MobileSearch';
 
 
 type Product = {
@@ -26,13 +27,13 @@ type Product = {
   badge?: string;
 };
 
-const allProducts: Product[] = [
+const allProducts: Product[] = Array.from(new Set([ // Use Set to remove duplicates
   ...config.productSections.bestSellingCakes,
   ...config.productSections.allCakes,
   ...config.productSections.gifts,
   ...config.collections.cakes.map(c => ({...c, id: c.id || c.title, name: c.title, price: c.price || '0', description: c.description || ''})),
   ...config.productSections.foodItems,
-];
+]));
 
 
 const TopUtilityBar = () => (
@@ -157,8 +158,8 @@ const MobileHeader = () => {
     const [isSheetOpen, setIsSheetOpen] = useState(false);
 
     return (
-        <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-background shadow-sm">
-            <div className="flex items-center justify-between px-4 py-2 border-b">
+        <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-background shadow-sm flex flex-col p-2 gap-2">
+            <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                         <SheetTrigger asChild>
@@ -176,24 +177,40 @@ const MobileHeader = () => {
                                 </SheetTitle>
                             </SheetHeader>
                             <div className="mt-8 flex flex-col gap-4">
-                                {config.header.navLinks.map((link) => (
-                                    <a 
-                                        key={link.id} 
-                                        href={link.href}
-                                        onClick={() => setIsSheetOpen(false)}
-                                        className="text-lg font-medium text-gray-700 hover:text-primary"
-                                    >
-                                        {link.label}
-                                    </a>
+                                {(config.header.navLinks as any[]).map((link) => (
+                                     link.subLinks ? (
+                                        <div key={link.id}>
+                                            <p className="text-lg font-medium text-gray-700">{link.label}</p>
+                                            <div className="flex flex-col gap-2 pl-4 mt-2">
+                                                {link.subLinks.map((subLink:any) => (
+                                                    <a 
+                                                        key={subLink.id} 
+                                                        href={subLink.href}
+                                                        onClick={() => setIsSheetOpen(false)}
+                                                        className="text-base text-gray-600 hover:text-primary"
+                                                    >
+                                                        {subLink.label}
+                                                    </a>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <a 
+                                            key={link.id} 
+                                            href={link.href}
+                                            onClick={() => setIsSheetOpen(false)}
+                                            className="text-lg font-medium text-gray-700 hover:text-primary"
+                                        >
+                                            {link.label}
+                                        </a>
+                                    )
                                 ))}
                             </div>
                         </SheetContent>
                     </Sheet>
-                    <Flag className="h-5 w-5 text-gray-600" />
-                    <div>
-                        <p className="font-semibold text-sm">Where to deliver?</p>
-                        <p className="text-xs text-red-500">Location missing</p>
-                    </div>
+                    <Link href="/" className="shrink-0">
+                      <span className="text-lg font-bold text-gray-800">combo cafe</span>
+                    </Link>
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -208,6 +225,7 @@ const MobileHeader = () => {
                     </Link>
                 </div>
             </div>
+            <MobileSearch />
         </div>
     )
 }
@@ -269,3 +287,5 @@ export default function Header() {
     </header>
   );
 }
+
+    
