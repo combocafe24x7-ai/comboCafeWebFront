@@ -28,9 +28,9 @@ export const config = {
     ],
   },
   iconCategories: [
-    { id: "cakes", label: "Cakes", href: "/cakes", Icon: CakeSlice },
-    { id: "gifts", label: "Gifts", href: "/gifts", Icon: Gift },
-    { id: "flowers", label: "Flowers", href: "/flowers", Icon: Flower },
+    { id: "cakes", label: "Cakes", href: "/cakes", Icon: CakeSlice, imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%2016,%202026,%2005_40_12%20PM.png" },
+    { id: "gifts", label: "Gifts", href: "/gifts", Icon: Gift, imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%2016,%202026,%2005_41_52%20PM.png" },
+    { id: "flowers", label: "Flowers", href: "/flowers", Icon: Flower, imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%2016,%202026,%2005_45_36%20PM.png" },
     { id: "snacks", label: "Snacks", href: "/food", Icon: Cookie },
   ],
   serviceStrip: {
@@ -239,3 +239,5 @@ export const config = {
     ]
   }
 };
+
+    
