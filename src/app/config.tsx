@@ -252,7 +252,7 @@ export const config = {
     ]
   },
   payment: {
-    qrCodeUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/qr/qr%20code.jpeg"
+    qrCodeUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/qr%20code.jpeg"
   }
 };
     
@@ -261,3 +261,4 @@ export const config = {
 
     
 
+    
