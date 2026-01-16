@@ -8,6 +8,7 @@ import ProductSection from '@/components/sections/product-section';
 import GiftFinder from '@/components/sections/gift-finder';
 import HorizontalCollection from '@/components/sections/horizontal-collection';
 import { config } from './config';
+import IconCategoryStrip from '@/components/sections/icon-category-strip';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <IconCategoryStrip />
         <ServiceStrip />
         <ProductSection
           id="best-selling-cakes"

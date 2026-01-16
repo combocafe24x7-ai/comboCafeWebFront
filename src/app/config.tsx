@@ -1,5 +1,5 @@
 
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import { Facebook, Instagram, Twitter, CakeSlice, Gift, Flower, Cookie } from "lucide-react";
 
 const supabaseUrl = "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/images";
 
@@ -27,6 +27,12 @@ export const config = {
       { imageUrl: `https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/hero%20images/ChatGPT%20Image%20Jan%2016,%202026,%2012_05_00%20AM.png`, alt: "Promotional Banner 4" },
     ],
   },
+  iconCategories: [
+    { id: "cakes", label: "Cakes", href: "/cakes", Icon: CakeSlice },
+    { id: "gifts", label: "Gifts", href: "/gifts", Icon: Gift },
+    { id: "flowers", label: "Flowers", href: "/flowers", Icon: Flower },
+    { id: "snacks", label: "Snacks", href: "/food", Icon: Cookie },
+  ],
   serviceStrip: {
     title: "Bulk orders are acceptable",
   },
