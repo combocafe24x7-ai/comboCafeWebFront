@@ -14,7 +14,7 @@ const MobileHeader = () => {
     const [isSheetOpen, setIsSheetOpen] = useState(false);
 
     return (
-        <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-background shadow-sm flex flex-col p-2 space-y-2">
+        <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-background shadow-sm flex flex-col p-2">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
