@@ -1,5 +1,5 @@
 
-import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Facebook, Instagram, Twitter } from "lucide-react";
 
 const supabaseUrl = "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/images";
 
@@ -210,7 +210,6 @@ export const config = {
       { label: "Facebook", Icon: Facebook, href: "#" },
       { label: "Instagram", Icon: Instagram, href: "#" },
       { label: "Twitter", Icon: Twitter, href: "#" },
-      { label: "Youtube", Icon: Youtube, href: "#" },
     ],
     links: {
       help: [
