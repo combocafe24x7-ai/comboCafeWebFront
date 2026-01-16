@@ -77,7 +77,7 @@ export default function CheckoutPage() {
       return;
     }
 
-    const deliveryDate = date ? format(date, "PPP") : "Not selected";
+    const deliveryDate = date ? format(date, "P") : "Not selected";
     const timeSlotMap: { [key: string]: string } = {
         '10-12': '10:00 AM - 12:00 PM',
         '12-14': '12:00 PM - 02:00 PM',
@@ -215,7 +215,7 @@ export default function CheckoutPage() {
                                           )}
                                       >
                                           <CalendarIcon className="mr-2 h-4 w-4" />
-                                          {date ? format(date, "PPP") : <span>Pick a date</span>}
+                                          {date ? format(date, "P") : <span>Pick a date</span>}
                                       </Button>
                                   </PopoverTrigger>
                                   <PopoverContent className="w-auto p-0">
