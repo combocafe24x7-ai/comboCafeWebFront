@@ -9,12 +9,16 @@ import GiftFinder from '@/components/sections/gift-finder';
 import HorizontalCollection from '@/components/sections/horizontal-collection';
 import { config } from './config';
 import IconCategoryStrip from '@/components/sections/icon-category-strip';
+import FreeDeliveryPill from '@/components/mobile/FreeDeliveryPill';
 
 export default function Home() {
   return (
     <>
       <main>
         <Hero />
+        <div className="md:hidden">
+            <FreeDeliveryPill />
+        </div>
         <IconCategoryStrip />
         <ServiceStrip />
         <ProductSection
