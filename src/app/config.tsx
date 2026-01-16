@@ -118,9 +118,9 @@ export const config = {
       { id: "g11", name: "Customised Normal Frame", price: "350", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/gift%20images/Customized%20Normal%20Frame%20size%208/12%20350.jpeg", description: "Standard 8x12 inch photo frame." }
     ],
     foodItems: [
-        { id: "f1", name: "Veg Puff", price: "60", imageUrl: `https://picsum.photos/seed/food1/400/400`, description: "A savory and flaky pastry filled with spiced vegetables." },
-        { id: "f2", name: "Cheese Sandwich", price: "90", imageUrl: `https://picsum.photos/seed/food2/400/400`, description: "A classic sandwich with a generous layer of cheese." },
-        { id: "f3", name: "Garlic Bread", price: "100", imageUrl: `https://picsum.photos/seed/food3/400/400`, description: "Toasted bread with a savory garlic butter spread." },
+        { id: "f1", name: "Veg Puff", price: "60", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/snacks/veg%20puff.jpg", description: "A savory and flaky pastry filled with spiced vegetables." },
+        { id: "f2", name: "Cheese Sandwich", price: "90", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/snacks/cheese%20sandwich.jpg", description: "A classic sandwich with a generous layer of cheese." },
+        { id: "f3", name: "Garlic Bread", price: "100", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/snacks/garluc%20bread.jpg", description: "Toasted bread with a savory garlic butter spread." },
         { id: "f4", name: "Espresso", price: "80", imageUrl: `https://picsum.photos/seed/food4/400/400`, description: "A strong and concentrated coffee shot." },
         { id: "f5", name: "Americano", price: "100", imageUrl: `https://picsum.photos/seed/food5/400/400`, description: "Espresso diluted with hot water, giving it a similar strength to drip coffee." },
         { id: "f6", name: "Cappuccino", price: "120", imageUrl: `https://picsum.photos/seed/food6/400/400`, description: "A classic coffee drink with equal parts espresso, steamed milk, and milk foam." },
@@ -133,9 +133,9 @@ export const config = {
         { id: "f13", name: "Strawberry Milkshake", price: "150", imageUrl: `https://picsum.photos/seed/food13/400/400`, description: "A sweet and creamy shake made with fresh strawberries." }
     ],
     snacks: [
-        { id: "s1", name: "Veg Puff", price: "60", imageUrl: `https://picsum.photos/seed/snack1/400/400`, description: "A savory and flaky pastry filled with spiced vegetables." },
-        { id: "s2", name: "Cheese Sandwich", price: "90", imageUrl: `https://picsum.photos/seed/snack2/400/400`, description: "A classic sandwich with a generous layer of cheese." },
-        { id: "s3", name: "Garlic Bread", price: "100", imageUrl: `https://picsum.photos/seed/snack3/400/400`, description: "Toasted bread with a savory garlic butter spread." },
+        { id: "s1", name: "Veg Puff", price: "60", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/snacks/veg%20puff.jpg", description: "A savory and flaky pastry filled with spiced vegetables." },
+        { id: "s2", name: "Cheese Sandwich", price: "90", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/snacks/cheese%20sandwich.jpg", description: "A classic sandwich with a generous layer of cheese." },
+        { id: "s3", name: "Garlic Bread", price: "100", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/snacks/garluc%20bread.jpg", description: "Toasted bread with a savory garlic butter spread." },
     ],
     hotBeverages: [
         { id: "hb1", name: "Espresso", price: "80", imageUrl: `https://picsum.photos/seed/beverage1/400/400`, description: "A strong and concentrated coffee shot." },
