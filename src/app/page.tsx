@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <main>
-        <div className="md:hidden">
+        <div className="md:hidden py-2 px-4">
             <FreeDeliveryPill />
         </div>
         <Hero />
@@ -39,23 +39,25 @@ export default function Home() {
           id="quick-bites"
           title="Quick Bites"
           subtitle="Delicious and savory snacks"
-          items={config.productSections.snacks}
+          items={config.productSections.snacks.slice(0, 4)}
           bgColor="bg-white"
-          showViewAll={false}
+          showViewAll={true}
+          viewAllLink="/food"
         />
         <ProductSection
           id="hot-beverages"
           title="Hot Beverages"
           subtitle="Warm up with our selection of coffees and more"
-          items={config.productSections.hotBeverages}
+          items={config.productSections.hotBeverages.slice(0, 4)}
           bgColor="bg-accent"
-          showViewAll={false}
+          showViewAll={true}
+          viewAllLink="/food"
         />
         <ProductSection
           id="flowers-more"
           title="Flowers & More"
           subtitle="Fresh arrangements and thoughtful gifts"
-          items={config.productSections.flowerProducts}
+          items={config.productSections.flowerProducts.slice(0, 4)}
           showViewAll={true}
           viewAllLink="/flowers"
         />

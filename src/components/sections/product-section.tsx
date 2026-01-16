@@ -96,7 +96,7 @@ const ProductCard = ({ item }: { item: Product }) => {
 };
 
 export default function ProductSection({ id, title, subtitle, items, bgColor = 'bg-white', viewAllLink = "#", showViewAll = true }: ProductSectionProps) {
-  const useCarousel = ['best-selling-cakes', 'quick-bites', 'top-gifts'].includes(id || '');
+  const useCarousel = ['best-selling-cakes', 'quick-bites', 'top-gifts', 'hot-beverages', 'flowers-more'].includes(id || '');
 
   return (
     <section id={id} className={bgColor}>
