@@ -9,7 +9,7 @@ export default function IconCategoryStrip() {
       <div className="container mx-auto">
         <div className="grid grid-cols-4 gap-x-2 gap-y-6 justify-items-center">
           {config.iconCategories.map((category: any) => (
-            <Link href={category.href} key={category.id} className="group w-20 text-center">
+            <Link href={category.href} key={category.id} className="group w-20 text-center transition-transform duration-300 hover:-translate-y-1">
               <div className="flex justify-center items-center">
                   <div className="relative w-20 h-20 rounded-lg bg-accent flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300 overflow-hidden">
                       {category.imageUrl ? (
