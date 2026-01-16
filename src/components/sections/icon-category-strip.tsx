@@ -4,24 +4,27 @@ import { useState, useEffect } from 'react';
 import { config } from '@/app/config';
 import Link from 'next/link';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
+
+type AnimatedCategory = (typeof config.iconCategories)[0] & { animation?: string };
 
 export default function IconCategoryStrip() {
-  const [categories, setCategories] = useState(config.iconCategories);
+  const [categories, setCategories] = useState<AnimatedCategory[]>([]);
 
   useEffect(() => {
-    const shuffle = () => {
-      // Create a copy to avoid mutating the original config array
-      const array = [...config.iconCategories];
-      let currentIndex = array.length;
-      let randomIndex;
+    // Set initial categories with fade-in animation
+    setCategories(
+      config.iconCategories.map(c => ({ ...c, animation: 'animate-fade-in' }))
+    );
 
-      // While there remain elements to shuffle.
+    const shuffle = () => {
+      const array = [...config.iconCategories];
+      let currentIndex = array.length, randomIndex;
+
       while (currentIndex !== 0) {
-        // Pick a remaining element.
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
 
-        // And swap it with the current element.
         [array[currentIndex], array[randomIndex]] = [
           array[randomIndex],
           array[currentIndex],
@@ -31,7 +34,17 @@ export default function IconCategoryStrip() {
     };
 
     const intervalId = setInterval(() => {
-      setCategories(shuffle());
+      // Trigger fade-out on existing categories
+      setCategories(prev =>
+        prev.map(c => ({ ...c, animation: 'animate-fade-out' }))
+      );
+
+      // Wait for fade-out, then shuffle and set new categories with fade-in
+      setTimeout(() => {
+        setCategories(
+          shuffle().map(c => ({ ...c, animation: 'animate-fade-in' }))
+        );
+      }, 500); // Must match fade-out duration in tailwind.config.ts
     }, 3000); // Shuffle every 3 seconds
 
     return () => clearInterval(intervalId);
@@ -45,7 +58,10 @@ export default function IconCategoryStrip() {
             <Link
               href={category.href}
               key={category.id}
-              className="group w-20 text-center transition-transform duration-300 hover:-translate-y-1"
+              className={cn(
+                "group w-20 text-center transition-transform duration-300 hover:-translate-y-1 opacity-0",
+                category.animation
+              )}
             >
               <div className="flex justify-center items-center">
                 <div className="relative w-20 h-20 rounded-lg bg-accent flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300 overflow-hidden">
