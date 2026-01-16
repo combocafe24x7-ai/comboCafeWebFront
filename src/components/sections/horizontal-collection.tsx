@@ -136,8 +136,8 @@ Transaction ID: *${transactionId}*
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4">
-                        <h4 className="font-semibold text-lg text-white truncate">{item.title}</h4>
-                        {item.description && <p className="text-xs text-gray-200 mt-1 truncate">{item.description}</p>}
+                        <h4 className="font-semibold text-lg text-white line-clamp-2">{item.title}</h4>
+                        {item.description && <p className="text-xs text-gray-200 mt-1 line-clamp-1">{item.description}</p>}
                     </div>
                     </div>
                 </Link>
@@ -159,7 +159,7 @@ Transaction ID: *${transactionId}*
                        </a>
                    </Button>
                 )}
-                <Button asChild variant="outline" className="w-full text-xs text-center" size="sm" suppressHydrationWarning>
+                <Button asChild variant="outline" className="w-full text-xs text-center hidden md:block" size="sm" suppressHydrationWarning>
                     <a href={`tel:+${phoneNumber}`}>
                         Call to Order
                     </a>

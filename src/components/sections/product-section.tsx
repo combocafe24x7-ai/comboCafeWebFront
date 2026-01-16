@@ -27,7 +27,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Calendar as CalendarIcon } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
+import { Separator } from '../ui/separator';
 import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
 
 
@@ -153,8 +153,8 @@ Transaction ID: *${transactionId}*
               )}
             </div>
             <div className="p-4 flex-grow flex flex-col">
-              <h4 className="font-medium text-sm text-gray-800 truncate">{item.name}</h4>
-              <p className="text-xs text-gray-500 mt-1 h-4 truncate">{item.description}</p>
+              <h4 className="font-medium text-sm text-gray-800 line-clamp-2 h-10">{item.name}</h4>
+              <p className="text-xs text-gray-500 mt-1 line-clamp-1">{item.description}</p>
               <p className="font-semibold text-gray-900 mt-auto pt-2">{`Rs. ${item.price}`}</p>
             </div>
           </Link>
@@ -168,7 +168,7 @@ Transaction ID: *${transactionId}*
                 Order on WhatsApp
             </Button>
           </div>
-          <Button asChild variant="outline" className="w-full text-xs text-center" size="sm" suppressHydrationWarning>
+          <Button asChild variant="outline" className="w-full text-xs text-center hidden md:block" size="sm" suppressHydrationWarning>
               <a href={`tel:+${phoneNumber}`}>
                   Call to Order
               </a>
@@ -292,7 +292,7 @@ Transaction ID: *${transactionId}*
 };
 
 export default function ProductSection({ id, title, subtitle, items, bgColor = 'bg-white', viewAllLink = "#", showViewAll = true }: ProductSectionProps) {
-  const useCarousel = ['best-selling-cakes', 'top-gifts', 'quick-bites', 'hot-beverages'].includes(id || '');
+  const useCarousel = ['best-selling-cakes', 'quick-bites'].includes(id || '');
 
   return (
     <section id={id} className={bgColor}>
@@ -320,7 +320,7 @@ export default function ProductSection({ id, title, subtitle, items, bgColor = '
             <Carousel opts={{ align: "start", slidesToScroll: "auto" }}>
               <CarouselContent className="-ml-2">
                 {items.map((item, index) => (
-                  <CarouselItem key={index} className="basis-1/2 pl-2">
+                  <CarouselItem key={index} className="basis-3/4 sm:basis-1/2 pl-2">
                     <ProductCard item={item} />
                   </CarouselItem>
                 ))}

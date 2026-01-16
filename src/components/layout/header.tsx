@@ -149,43 +149,45 @@ const MobileHeader = () => {
     const { cart } = useCart();
     const [isSheetOpen, setIsSheetOpen] = useState(false);
     return (
-        <div className="md:hidden bg-background border-b sticky top-0 z-50">
-            <div className="container mx-auto flex items-center justify-between h-16">
-                <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-                    <SheetTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                            <Menu />
-                            <span className="sr-only">Open menu</span>
-                        </Button>
-                    </SheetTrigger>
-                    <SheetContent side="left">
-                        <SheetHeader>
-                            <SheetTitle className="text-left">
-                                <Link href="/" onClick={() => setIsSheetOpen(false)}>
-                                    <span className="text-xl font-bold text-gray-800">combo cafe and gift shop</span>
-                                </Link>
-                            </SheetTitle>
-                        </SheetHeader>
-                        <div className="mt-8 flex flex-col gap-4">
-                            {config.header.navLinks.map((link) => (
-                                <a 
-                                    key={link.id} 
-                                    href={link.href}
-                                    onClick={() => setIsSheetOpen(false)}
-                                    className="text-lg font-medium text-gray-700 hover:text-primary"
-                                >
-                                    {link.label}
-                                </a>
-                            ))}
-                        </div>
-                    </SheetContent>
-                </Sheet>
+        <div className="md:hidden bg-background/95 backdrop-blur border-b sticky top-0 z-50">
+            <div className="container mx-auto grid grid-cols-3 items-center h-16">
+                <div className="flex justify-start">
+                    <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+                        <SheetTrigger asChild>
+                            <Button variant="ghost" size="icon">
+                                <Menu className="h-6 w-6" />
+                                <span className="sr-only">Open menu</span>
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent side="left">
+                            <SheetHeader>
+                                <SheetTitle className="text-left">
+                                    <Link href="/" onClick={() => setIsSheetOpen(false)}>
+                                        <span className="text-xl font-bold text-gray-800">combo cafe</span>
+                                    </Link>
+                                </SheetTitle>
+                            </SheetHeader>
+                            <div className="mt-8 flex flex-col gap-4">
+                                {config.header.navLinks.map((link) => (
+                                    <a 
+                                        key={link.id} 
+                                        href={link.href}
+                                        onClick={() => setIsSheetOpen(false)}
+                                        className="text-lg font-medium text-gray-700 hover:text-primary"
+                                    >
+                                        {link.label}
+                                    </a>
+                                ))}
+                            </div>
+                        </SheetContent>
+                    </Sheet>
+                </div>
                 
-                <Link href="/" className="shrink-0">
-                    <span className="text-lg font-bold text-gray-800">combo cafe and gift shop</span>
+                <Link href="/" className="text-center">
+                    <span className="text-lg font-bold text-gray-800 truncate">combo cafe</span>
                 </Link>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-end">
                     <Button asChild variant="ghost" size="icon">
                         <Link href="/search">
                             <Search className="h-6 w-6" />
@@ -194,7 +196,7 @@ const MobileHeader = () => {
                     <Link href="/checkout" className="relative text-gray-600 hover:text-gray-900 p-2">
                         <ShoppingBag className="h-6 w-6" />
                         {cart.length > 0 && (
-                            <div className="absolute top-0 right-0 bg-red-500 text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center">
+                            <div className="absolute top-1 right-1 bg-red-500 text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center">
                                 {cart.length}
                             </div>
                         )}

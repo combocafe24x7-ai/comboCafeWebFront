@@ -4,6 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 import { CartProvider } from '@/context/cart-provider';
 import React from 'react';
+import MobileCartFab from '@/components/common/MobileCartFab';
 
 export const metadata = {
   title: 'Ferns & Petals - Gifts, Cakes, Flowers',
@@ -30,6 +31,7 @@ export default function RootLayout({
         >
           <CartProvider>
               {children}
+              <MobileCartFab />
               <Toaster />
           </CartProvider>
         </ThemeProvider>

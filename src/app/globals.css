@@ -83,3 +83,19 @@
     @apply py-12; /* 48px */
   }
 }
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  .snap-x { 
+    scroll-snap-type: x mandatory; 
+  }
+  .snap-center { 
+    scroll-snap-align: center; 
+  }
+}
