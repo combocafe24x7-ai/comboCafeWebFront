@@ -7,22 +7,24 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
 import { ArrowLeft, MapPin, Phone, Mail } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ContactPage() {
-  const { toast } = useToast();
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
+    const phoneNumber = "918436860216";
 
-    toast({
-      title: "Message Sent!",
-      description: `Thank you for reaching out, ${name}. We'll get back to you soon.`,
-    });
+    const whatsappMessage = `Hello, my name is ${name} (${email}).\n\nI have a question:\n${message}`;
+    
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+    window.open(whatsappUrl, '_blank');
     e.currentTarget.reset();
   };
 
@@ -60,7 +62,7 @@ export default function ContactPage() {
                   <Textarea id="message" name="message" placeholder="Your message..." required suppressHydrationWarning />
                 </div>
                 <Button type="submit" className="w-full" size="lg" suppressHydrationWarning>
-                  Send Message
+                  Send Message via WhatsApp
                 </Button>
               </form>
             </div>
