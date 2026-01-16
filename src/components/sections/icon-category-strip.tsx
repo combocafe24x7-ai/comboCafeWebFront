@@ -7,9 +7,9 @@ export default function IconCategoryStrip() {
   return (
     <section className="bg-white py-8">
       <div className="container mx-auto">
-        <div className="flex items-start md:grid md:grid-cols-4 md:gap-2 md:justify-around text-center gap-2 overflow-x-auto scrollbar-hide">
+        <div className="grid grid-cols-4 gap-x-2 gap-y-6 justify-items-center">
           {config.iconCategories.map((category: any) => (
-            <Link href={category.href} key={category.id} className="group shrink-0 w-20">
+            <Link href={category.href} key={category.id} className="group w-20 text-center">
               <div className="flex justify-center items-center">
                   <div className="relative w-20 h-20 rounded-lg bg-accent flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300 overflow-hidden">
                       {category.imageUrl ? (
