@@ -5,7 +5,7 @@ export default function IconCategoryStrip() {
   return (
     <section className="bg-white py-8">
       <div className="container mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
+        <div className="flex items-start justify-around text-center md:grid md:grid-cols-4 md:gap-8">
           {config.iconCategories.map((category) => (
             <Link href={category.href} key={category.id} className="group">
               <div className="flex justify-center items-center">
