@@ -1,3 +1,4 @@
+
 "use client";
 import React from 'react';
 import Image from 'next/image';
@@ -10,12 +11,12 @@ export default function Hero() {
     <section id="home" className="bg-gray-50 pt-8 pb-8">
       <div className="container mx-auto">
         <Carousel
-          opts={{ loop: true }}
+          opts={{ loop: true, align: 'start' }}
           plugins={[Autoplay({ delay: 5000 })]}
         >
           <CarouselContent>
             {config.hero.banners.map((banner, index) => (
-              <CarouselItem key={index}>
+              <CarouselItem key={index} className="md:basis-1/2 lg:basis-2/5">
                 <div className="relative h-[280px] md:aspect-video rounded-lg overflow-hidden bg-gray-100">
                   <Image src={banner.imageUrl} alt={banner.alt} layout="fill" objectFit="cover" />
                 </div>
