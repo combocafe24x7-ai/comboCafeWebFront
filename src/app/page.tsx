@@ -49,7 +49,8 @@ export default function Home() {
           title="Flowers & More"
           subtitle="Fresh arrangements and thoughtful gifts"
           items={config.productSections.flowerProducts}
-          showViewAll={false}
+          showViewAll={true}
+          viewAllLink="/flowers"
         />
         <HorizontalCollection 
           title="Delectable Cakes"
