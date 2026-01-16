@@ -8,13 +8,14 @@ import HorizontalCollection from '@/components/sections/horizontal-collection';
 import { config } from './config';
 import IconCategoryStrip from '@/components/sections/icon-category-strip';
 import FreeDeliveryPill from '@/components/mobile/FreeDeliveryPill';
+import Image from 'next/image';
 
 export default function Home() {
   return (
     <>
       <main>
-        <div className="md:hidden py-2 px-4">
-            <FreeDeliveryPill />
+        <div className="md:hidden pt-4">
+          <FreeDeliveryPill />
         </div>
         <Hero />
         <IconCategoryStrip />
@@ -26,6 +27,20 @@ export default function Home() {
           items={config.productSections.bestSellingCakes}
           viewAllLink="/cakes"
         />
+
+        <section className="bg-white py-8">
+          <div className="container mx-auto">
+            <div className="relative aspect-[3/1] rounded-lg overflow-hidden">
+              <Image
+                src="https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/image%20(4).png"
+                alt="Promotional Banner"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+          </div>
+        </section>
+
         <ProductSection 
           id="top-gifts"
           title="Top Gifts"
