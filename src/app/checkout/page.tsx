@@ -353,7 +353,7 @@ Transaction ID: *${transactionId}*
             />
           </div>
           <DialogFooter className="sm:justify-start">
-            <Button onClick={handleSendToWhatsapp} className="w-full" suppressHydrationWarning>
+            <Button onClick={handleSendToWhatsapp} className="w-full" disabled={!transactionId || transactionId.length < 10} suppressHydrationWarning>
               Confirm and Place Order via WhatsApp
             </Button>
           </DialogFooter>
