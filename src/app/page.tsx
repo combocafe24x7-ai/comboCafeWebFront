@@ -19,6 +19,20 @@ export default function Home() {
         </div>
         <Hero />
         <IconCategoryStrip />
+
+        <section className="hidden md:block bg-white py-8">
+            <div className="container mx-auto">
+                <div className="relative aspect-[350/65] w-full overflow-hidden rounded-lg">
+                    <Image
+                        src="https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/image%20(3).png"
+                        alt="Free delivery banner"
+                        layout="fill"
+                        objectFit="contain"
+                    />
+                </div>
+            </div>
+        </section>
+
         <ServiceStrip />
         <ProductSection
           id="best-selling-cakes"
@@ -64,7 +78,7 @@ export default function Home() {
           title="Hot Beverages"
           subtitle="Warm up with our selection of coffees and more"
           items={config.productSections.hotBeverages.slice(0, 4)}
-          bgColor="bg-accent"
+          bgColor="bg-section-alternate"
           showViewAll={true}
           viewAllLink="/food"
         />
@@ -79,7 +93,7 @@ export default function Home() {
         <HorizontalCollection 
           title="Delectable Cakes"
           items={config.collections.cakes}
-          bgColor="bg-section-alternate"
+          bgColor="bg-accent"
           viewAllLink="/cakes"
         />
       </main>
