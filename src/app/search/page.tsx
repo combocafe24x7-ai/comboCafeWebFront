@@ -1,7 +1,6 @@
 
 'use client';
 
-import { Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
@@ -9,6 +8,7 @@ import ProductSection from '@/components/sections/product-section';
 import { config } from '@/app/config';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
+import { Suspense } from 'react';
 
 type Product = {
   id: string;
@@ -77,9 +77,9 @@ function SearchResults() {
 }
 
 export default function SearchPage() {
-  return (
-    <Suspense fallback={<div>Loading search results...</div>}>
-      <SearchResults />
-    </Suspense>
-  );
+    return (
+        <Suspense fallback={<div>Loading search results...</div>}>
+            <SearchResults />
+        </Suspense>
+    );
 }
