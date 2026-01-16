@@ -6,7 +6,7 @@ const supabaseUrl = "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/
 export const config = {
   header: {
     utilityBar: {
-      promoText: "Fast, Free, and Contactless Delivery",
+      promoText: "Order Today, Receive Tomorrow",
     },
     logoUrl: `https://picsum.photos/seed/brand-logo/180/40`,
     navLinks: [
@@ -203,5 +203,3 @@ export const config = {
     }
   }
 };
-
-    
