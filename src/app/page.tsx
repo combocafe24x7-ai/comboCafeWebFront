@@ -59,18 +59,12 @@ export default function Home() {
           showViewAll={true}
           viewAllLink="/food"
         />
-        <HorizontalCollection 
-          title="Flower Collections"
-          items={config.collections.flowers}
-          bgColor="bg-accent"
-          viewAllLink="/flowers"
-        />
         <ProductSection
           id="hot-beverages"
           title="Hot Beverages"
           subtitle="Warm up with our selection of coffees and more"
           items={config.productSections.hotBeverages.slice(0, 4)}
-          bgColor="bg-white"
+          bgColor="bg-accent"
           showViewAll={true}
           viewAllLink="/food"
         />
