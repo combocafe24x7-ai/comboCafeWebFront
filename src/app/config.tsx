@@ -214,8 +214,8 @@ export const config = {
     ]
   },
   footer: {
-    about: "Discover the perfect gift for every occasion. We are your one-stop destination for gifts, cakes, flowers, and more, offering reliable domestic delivery.",
-    copyright: `© {YEAR} Ferns & Petals. All rights reserved.`,
+    about: "Welcome to Combo Cafe & Gift Shop, your one-stop destination for delightful cakes, thoughtful gifts, and delicious food in Rampurhat.",
+    copyright: `© {YEAR} Combo Cafe and Gift Shop. All rights reserved.`,
     social: [
       { label: "Facebook", Icon: Facebook, href: "#" },
       { label: "Instagram", Icon: Instagram, href: "#" },

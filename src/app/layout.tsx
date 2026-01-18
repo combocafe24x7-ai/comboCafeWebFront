@@ -10,8 +10,8 @@ import MobileBottomNav from '@/components/mobile/MobileBottomNav';
 import MobileCartFab from '@/components/common/MobileCartFab';
 
 export const metadata = {
-  title: 'Ferns & Petals - Gifts, Cakes, Flowers',
-  description: 'A one-stop-shop for gifts, cakes, flowers, and more for domestic delivery.',
+  title: 'Combo Cafe and Gift Shop',
+  description: 'Your one-stop destination for delightful cakes, thoughtful gifts, and delicious food in Rampurhat.',
 }
 
 export default function RootLayout({

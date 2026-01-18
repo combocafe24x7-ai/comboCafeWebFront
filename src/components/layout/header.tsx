@@ -85,7 +85,7 @@ const MainHeader = () => {
       <div className="container mx-auto flex items-center py-4 gap-8">
         {/* Logo */}
         <Link href="/" className="shrink-0">
-          <span className="text-xl font-bold text-gray-800">combo cafe and gift shop</span>
+          <span className="text-xl font-bold text-gray-800">Combo Cafe and Gift Shop</span>
         </Link>
         
         {/* Search */}
@@ -165,7 +165,7 @@ const MobileHeader = () => {
                             <SheetHeader>
                                 <SheetTitle className="text-left">
                                     <Link href="/" onClick={() => setIsSheetOpen(false)}>
-                                        <span className="text-xl font-bold text-gray-800">combo cafe</span>
+                                        <span className="text-xl font-bold text-gray-800">Combo Cafe</span>
                                     </Link>
                                 </SheetTitle>
                             </SheetHeader>
@@ -202,7 +202,7 @@ const MobileHeader = () => {
                         </SheetContent>
                     </Sheet>
                     <Link href="/" className="shrink-0">
-                      <span className="text-lg font-bold text-gray-800">combo cafe</span>
+                      <span className="text-lg font-bold text-gray-800">Combo Cafe</span>
                     </Link>
                 </div>
 
