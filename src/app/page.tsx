@@ -1,13 +1,9 @@
 
 
-import Hero from '@/components/sections/hero';
-import ServiceStrip from '@/components/sections/service-strip';
 import ProductSection from '@/components/sections/product-section';
 import GiftFinder from '@/components/sections/gift-finder';
 import { config } from './config';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import HorizontalCollection from '@/components/sections/horizontal-collection';
 import IconCategoryStrip from '@/components/sections/icon-category-strip';
 import FreeDeliveryPill from '@/components/mobile/FreeDeliveryPill';
@@ -36,13 +32,11 @@ const BestSellingSection = () => (
 export default function Home() {
   return (
     <main className="bg-background">
-      <Hero />
-      
-      <IconCategoryStrip />
-
       <section className="py-4">
         <FreeDeliveryPill />
       </section>
+      
+      <IconCategoryStrip />
 
       <div className="relative w-full aspect-[3/1]">
         <Image
