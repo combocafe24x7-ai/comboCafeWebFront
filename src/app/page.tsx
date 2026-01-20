@@ -32,7 +32,7 @@ const BestSellingSection = () => (
 export default function Home() {
   return (
     <main className="bg-background">
-      <section className="py-4">
+      <section>
         <FreeDeliveryPill />
       </section>
       
