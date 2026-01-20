@@ -3,13 +3,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Search, ShoppingCart, Menu, ChevronDown } from 'lucide-react';
+import { Search, ShoppingCart, Menu, ChevronDown, Phone } from 'lucide-react';
 import { config } from '@/app/config';
 import { useCart } from '@/context/cart-provider';
 import { Button } from '../ui/button';
 import { Popover, PopoverContent, PopoverTrigger, PopoverAnchor } from "@/components/ui/popover"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import MobileSearch from '../mobile/MobileSearch';
+import Image from 'next/image';
 
 
 type Product = {
@@ -173,12 +174,17 @@ const NavLink = ({ href, label, subLinks }: { href: string, label: string, subLi
 
 const CategoryNavigation = () => (
     <div className="bg-background/95 backdrop-blur-sm border-b sticky top-0 z-40 hidden md:block">
-        <div className="container mx-auto">
+        <div className="container mx-auto flex justify-between items-center">
             <nav className="flex items-center gap-x-6 overflow-x-auto scrollbar-hide py-3">
                 {config.header.navLinks.map((link) => (
                     <NavLink key={link.id} {...link} />
                 ))}
             </nav>
+            {config.header.bannerUrl && (
+                <div className="pl-6 shrink-0">
+                    <Image src={config.header.bannerUrl} alt="Special Offer" width={200} height={40} />
+                </div>
+            )}
         </div>
     </div>
 );
