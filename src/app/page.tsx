@@ -64,7 +64,7 @@ export default function Home() {
         showViewAll={true}
         viewAllLink="/food"
       />
-      <ProductSection
+       <ProductSection
         id="top-gifts"
         title="Thoughtful Gifts"
         subtitle="Find the perfect present for your loved ones"
@@ -85,5 +85,3 @@ export default function Home() {
     </main>
   );
 }
-
-    
