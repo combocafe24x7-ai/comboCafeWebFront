@@ -64,7 +64,7 @@ const ProductCard = ({ item, priority }: { item: Product; priority?: boolean }) 
             src={item.imageUrl}
             alt={item.name}
             layout="fill"
-            className="object-contain transition-transform duration-300 group-hover:scale-105"
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
             priority={priority}
           />
            <div className="absolute top-3 right-3 flex flex-col gap-2 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100">
