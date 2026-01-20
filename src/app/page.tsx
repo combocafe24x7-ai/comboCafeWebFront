@@ -37,11 +37,9 @@ export default function Home() {
     <main className="bg-background">
       <Hero />
       
-      <section className="bg-background">
+      <section className="bg-background pt-0">
         <IconCategoryStrip />
       </section>
-
-      <BestSellingSection />
 
       <div className="relative w-full aspect-[3/1]">
         <Image
