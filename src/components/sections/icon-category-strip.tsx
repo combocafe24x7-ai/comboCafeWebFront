@@ -19,7 +19,7 @@ export default function IconCategoryStrip() {
 
 
   return (
-    <section className="py-2 md:py-4">
+    <section className="pt-0 pb-4 md:pt-2 md:pb-6">
         <div className="container mx-auto">
             <div className="flex items-start justify-start gap-x-1 overflow-x-auto scrollbar-hide">
                 {(isMounted ? categories : config.iconCategories).map((category: any, index: number) => (
