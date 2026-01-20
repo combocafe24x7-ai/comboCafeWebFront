@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Button } from '../ui/button';
@@ -177,10 +176,10 @@ Transaction ID: *${transactionId}*
             <div className="p-3 pt-0 bg-white space-y-2">
                 {item.price && (
                     <div className="flex items-center gap-2">
-                        <Button onClick={handleAddToCart} className="flex-1 text-xs text-center" size="sm" suppressHydrationWarning>
+                        <Button onClick={handleAddToCart} className="flex-1 text-xs text-center h-8" size="sm" suppressHydrationWarning>
                             Add to Cart
                         </Button>
-                        <Button variant="outline" size="icon" className="h-9 w-9 shrink-0" asChild suppressHydrationWarning>
+                        <Button variant="outline" size="icon" className="h-8 w-8 shrink-0" asChild suppressHydrationWarning>
                            <a href={`tel:${phoneNumber}`}>
                             <Phone className="h-4 w-4" />
                             <span className="sr-only">Call to Order</span>
@@ -189,11 +188,11 @@ Transaction ID: *${transactionId}*
                     </div>
                 )}
                 {item.price ? (
-                    <Button onClick={() => setIsQrModalOpen(true)} variant="secondary" className="w-full text-xs text-center" size="sm" suppressHydrationWarning>
+                    <Button onClick={() => setIsQrModalOpen(true)} variant="secondary" className="w-full text-xs text-center h-8" size="sm" suppressHydrationWarning>
                         Order on WhatsApp
                     </Button>
                 ) : (
-                    <Button asChild variant="secondary" className="w-full text-xs text-center" size="sm" suppressHydrationWarning>
+                    <Button asChild variant="secondary" className="w-full text-xs text-center h-8" size="sm" suppressHydrationWarning>
                        <a href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(`I'd like to inquire about: ${item.title}`)}`} target="_blank" rel="noopener noreferrer">
                            Inquire on WhatsApp
                        </a>
