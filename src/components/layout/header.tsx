@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Search, ShoppingCart, Menu, ChevronDown, Phone, Heart } from 'lucide-react';
+import { Search, ShoppingCart, Menu, ChevronDown, Phone, Heart, MapPin } from 'lucide-react';
 import { config } from '@/app/config';
 import { useCart } from '@/context/cart-provider';
 import { Button } from '../ui/button';
@@ -32,7 +32,11 @@ const allProducts: Product[] = Array.from(new Set([ // Use Set to remove duplica
 
 const TopUtilityBar = () => (
   <div className="bg-gray-100 text-gray-600 text-xs py-1.5 hidden md:block">
-    <div className="container mx-auto flex justify-end items-center">
+    <div className="container mx-auto flex justify-between items-center">
+        <a href="https://google.com/maps/place/Combo+Cafe+%26+Gifts+Shop/data=!4m2!3m1!1s0x0:0x20d4a8fe5d070ebc?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-gray-900">
+            <MapPin className="h-3 w-3" />
+            <span>Rampurhat</span>
+        </a>
       <p>{config.header.utilityBar.promoText}</p>
     </div>
   </div>
