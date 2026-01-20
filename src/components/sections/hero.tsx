@@ -10,6 +10,7 @@ import {
 import Autoplay from "embla-carousel-autoplay"
 import Image from 'next/image';
 import { config } from '@/app/config';
+import { cn } from '@/lib/utils';
 
 export default function Hero() {
   return (
@@ -21,12 +22,15 @@ export default function Hero() {
             }),
           ]}
           className="w-full"
-          opts={{ loop: true }}
+          opts={{ 
+            loop: true,
+            align: 'start',
+          }}
         >
-          <CarouselContent className="ml-0">
+          <CarouselContent className="-ml-0">
             {config.hero.banners.map((banner, index) => (
-              <CarouselItem key={index} className="pl-0 basis-full">
-                <div className="relative aspect-[2/3] md:aspect-[16/9] w-full">
+              <CarouselItem key={index} className="pl-0 basis-full md:basis-full">
+                <div className="relative h-[50vh] md:h-auto md:aspect-[16/7] w-full">
                   <Image
                     src={banner.imageUrl}
                     alt={banner.alt}
