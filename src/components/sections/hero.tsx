@@ -14,7 +14,7 @@ import { config } from '@/app/config';
 
 export default function Hero() {
   return (
-    <section id="home" className="relative h-[420px] md:h-[520px] w-full">
+    <section id="home" className="relative w-full">
        <Carousel
         plugins={[
           Autoplay({
@@ -26,7 +26,7 @@ export default function Hero() {
         <CarouselContent>
           {config.hero.banners.map((banner, index) => (
             <CarouselItem key={index}>
-              <div className="relative h-[420px] md:h-[520px]">
+              <div className="relative aspect-[21/9] w-full">
                 <Image
                   src={banner.imageUrl}
                   alt={banner.alt}
