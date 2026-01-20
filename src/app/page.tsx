@@ -6,7 +6,6 @@ import { config } from './config';
 import Image from 'next/image';
 import HorizontalCollection from '@/components/sections/horizontal-collection';
 import IconCategoryStrip from '@/components/sections/icon-category-strip';
-import FreeDeliveryPill from '@/components/mobile/FreeDeliveryPill';
 import Hero from '@/components/sections/hero';
 
 const BestSellingSection = () => (
@@ -33,12 +32,7 @@ const BestSellingSection = () => (
 export default function Home() {
   return (
     <main className="bg-background">
-      <div className="md:hidden">
-        <FreeDeliveryPill />
-      </div>
-      <div className='hidden md:block'>
-        <Hero />
-      </div>
+      <Hero />
       
       <IconCategoryStrip />
 
