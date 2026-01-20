@@ -13,16 +13,20 @@ export default {
       center: true,
       padding: '1rem',
       screens: {
-        '2xl': '1440px',
+        '2xl': '1200px',
       },
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
+        sans: ['Lora', 'sans-serif'],
+        ui: ['Inter', 'sans-serif'],
       },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        text: '#422E25',
+        'soft-divider': 'rgba(66,46,37,0.06)',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
@@ -35,6 +39,7 @@ export default {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
         },
+        'primary-dark': '#9A6530',
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
@@ -57,11 +62,13 @@ export default {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+        star: '#F2C94C',
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+        card: '12px',
       },
       keyframes: {
         'accordion-down': {
@@ -96,6 +103,7 @@ export default {
         'fade-out': 'fade-out 0.5s ease-in forwards',
       },
       boxShadow: {
+        'card': '0 8px 20px rgba(66,46,37,0.06)',
         'subtle': '0 4px 12px rgba(0, 0, 0, 0.05)',
       }
     },
