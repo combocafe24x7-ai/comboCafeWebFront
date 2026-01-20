@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Button } from '../ui/button';
@@ -153,12 +152,12 @@ Transaction ID: *${transactionId}*
         <Card className="overflow-hidden group border-0 rounded-lg shadow-sm flex flex-col h-full">
             <CardContent className="p-0 flex-grow">
                 <div className="block">
-                    <div className="relative aspect-[4/5]">
+                    <div className="relative aspect-square">
                     <Image 
                         src={item.imageUrl} 
                         alt={item.title} 
                         layout="fill" 
-                        className="object-contain group-hover:scale-105 transition-transform duration-300" 
+                        className="object-contain transition-transform duration-300 group-hover:scale-105" 
                         priority={priority}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -180,11 +179,11 @@ Transaction ID: *${transactionId}*
                         <Button onClick={handleAddToCart} className="flex-1 text-xs text-center" size="sm" suppressHydrationWarning>
                             Add to Cart
                         </Button>
-                        <Button asChild variant="outline" size="icon" className="h-9 w-9 shrink-0" suppressHydrationWarning>
-                            <a href={`tel:+${phoneNumber}`}>
-                                <Phone className="h-4 w-4" />
-                                <span className="sr-only">Call to Order</span>
-                            </a>
+                        <Button variant="outline" size="icon" className="h-9 w-9 shrink-0" asChild suppressHydrationWarning>
+                           <a href={`tel:${phoneNumber}`}>
+                            <Phone className="h-4 w-4" />
+                            <span className="sr-only">Call to Order</span>
+                           </a>
                         </Button>
                     </div>
                 )}
@@ -332,16 +331,27 @@ export default function HorizontalCollection({ title, items, bgColor = 'bg-white
             <Link href={viewAllLink}>View All</Link>
           </Button>
         </div>
+        
+        {/* Mobile Grid */}
+        <div className="grid grid-cols-2 gap-3 md:hidden">
+            {items.map((item, index) => (
+                <div key={item.id || index} className="h-full">
+                    <CollectionCard item={item} priority={prioritizeImages && index < 2} />
+                </div>
+            ))}
+        </div>
+
+        {/* Desktop Carousel */}
         <Carousel
             opts={{
                 align: "start",
                 slidesToScroll: "auto",
             }}
-             className="w-full"
+             className="w-full hidden md:block"
         >
             <CarouselContent className="-ml-4">
                 {items.map((item, index) => (
-                    <CarouselItem key={index} className="pl-4 basis-4/5 sm:basis-1/2 md:basis-1/4 lg:basis-1/5">
+                    <CarouselItem key={item.id || index} className="pl-4 basis-4/5 sm:basis-1/2 md:basis-1/4 lg:basis-1/5">
                         <div className="h-full">
                             <CollectionCard item={item} priority={prioritizeImages && index < 5} />
                         </div>
@@ -357,5 +367,3 @@ export default function HorizontalCollection({ title, items, bgColor = 'bg-white
     </section>
   );
 }
-
-    
