@@ -1,4 +1,3 @@
-
 "use client";
 import React from 'react';
 import {
@@ -26,7 +25,7 @@ export default function Hero() {
         <CarouselContent>
           {config.hero.banners.map((banner, index) => (
             <CarouselItem key={index}>
-              <div className="relative aspect-[21/9] w-full">
+              <div className="relative aspect-video w-full">
                 <Image
                   src={banner.imageUrl}
                   alt={banner.alt}
