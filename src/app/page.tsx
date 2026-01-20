@@ -67,6 +67,16 @@ export default function Home() {
         showViewAll={true}
         viewAllLink="/food"
       />
+
+      <div className="relative w-full aspect-[24/5]">
+        <Image
+          src="https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%2020,%202026,%2003_m33_32%20PM_upscayl_2x_digital-art-4x.webp"
+          alt="Hot Beverages Banner"
+          layout="fill"
+          objectFit="cover"
+        />
+      </div>
+
       <ProductSection
         id="hot-beverages"
         title="Hot Beverages"
