@@ -52,12 +52,12 @@ export default function Hero() {
           <CarouselContent>
             {config.hero.banners.map((banner, index) => (
               <CarouselItem key={index}>
-                <div className="relative aspect-[21/9] w-full">
+                <div className="relative aspect-[16/9] w-full">
                   <Image
                     src={banner.imageUrl}
                     alt={banner.alt}
                     layout="fill"
-                    objectFit="cover"
+                    objectFit="contain"
                     objectPosition="center"
                     priority={index === 0}
                   />

@@ -9,7 +9,7 @@ export default function FreeDeliveryPill() {
         src="https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/hero%20images/ChatGPT%20Image%20Jan%2016,%202026,%2012_05_00%20AM.png"
         alt="Free delivery banner"
         layout="fill"
-        objectFit="cover"
+        objectFit="contain"
         priority
       />
     </div>

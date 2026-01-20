@@ -7,6 +7,7 @@ import Image from 'next/image';
 import HorizontalCollection from '@/components/sections/horizontal-collection';
 import IconCategoryStrip from '@/components/sections/icon-category-strip';
 import FreeDeliveryPill from '@/components/mobile/FreeDeliveryPill';
+import Hero from '@/components/sections/hero';
 
 const BestSellingSection = () => (
   <section className="bg-background py-16">
@@ -32,7 +33,12 @@ const BestSellingSection = () => (
 export default function Home() {
   return (
     <main className="bg-background">
-      <FreeDeliveryPill />
+      <div className="md:hidden">
+        <FreeDeliveryPill />
+      </div>
+      <div className='hidden md:block'>
+        <Hero />
+      </div>
       
       <IconCategoryStrip />
 
@@ -41,7 +47,7 @@ export default function Home() {
           src="https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/1ChatGPT%20Image%20Jan%2020,%202026,%2003_26_56%20PM_upscayl_2x_digital-art-4x.webp"
           alt="Delectable Cakes Banner"
           layout="fill"
-          objectFit="cover"
+          objectFit="contain"
           priority
         />
       </div>
@@ -69,7 +75,7 @@ export default function Home() {
           src="https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%2020,%202026,%2003_m33_32%20PM_upscayl_2x_digital-art-4x.webp"
           alt="Hot Beverages Banner"
           layout="fill"
-          objectFit="cover"
+          objectFit="contain"
           priority
         />
       </div>
