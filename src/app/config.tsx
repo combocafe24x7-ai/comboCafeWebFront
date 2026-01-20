@@ -9,7 +9,7 @@ export const config = {
       promoText: "Order Today, Receive Tomorrow",
     },
     logoUrl: `https://picsum.photos/seed/brand-logo/180/40`,
-    phoneNumber: "84368 60216",
+    categoryNavBannerUrl: "https://picsum.photos/seed/nav-banner/400/12",
     navLinks: [
       { id: "cakes", label: "Cakes", href: "/cakes" },
       {

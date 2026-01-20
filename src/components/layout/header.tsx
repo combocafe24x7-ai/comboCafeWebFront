@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ChevronDown, Search, ShoppingCart, Menu, X, Phone } from 'lucide-react';
+import Image from 'next/image';
+import { ChevronDown, Search, ShoppingCart, Menu, X } from 'lucide-react';
 import { config } from '@/app/config';
 import { useCart } from '@/context/cart-provider';
 import { Button } from '../ui/button';
@@ -259,12 +260,14 @@ const CategoryNavigation = () => {
                             )
                         ))}
                     </div>
-                    {config.header.phoneNumber && (
-                        <div className="flex items-center gap-2 pl-6 shrink-0">
-                            <Phone className="h-4 w-4 text-primary" />
-                            <a href={`tel:${config.header.phoneNumber.replace(/\s/g, '')}`} className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap">
-                                Call to order: {config.header.phoneNumber}
-                            </a>
+                    {config.header.categoryNavBannerUrl && (
+                        <div className="pl-6 shrink-0">
+                            <Image
+                                src={config.header.categoryNavBannerUrl}
+                                alt="Promotional banner"
+                                width={400}
+                                height={12}
+                            />
                         </div>
                     )}
                 </div>
