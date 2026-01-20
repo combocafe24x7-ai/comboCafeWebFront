@@ -1,4 +1,3 @@
-
 "use client";
 import React from 'react';
 import { Button } from '../ui/button';
@@ -7,7 +6,7 @@ import Image from 'next/image';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import { useCart } from '@/context/cart-provider';
-import { Heart, Star } from 'lucide-react';
+import { Phone, Star } from 'lucide-react';
 
 type Product = {
   id: string;
@@ -31,7 +30,7 @@ type ProductSectionProps = {
 const ProductCard = ({ item }: { item: Product }) => {
   const { toast } = useToast();
   const { addToCart } = useCart();
-  const phoneNumber = "918436860216";
+  const phoneNumber = "8436860216";
 
   const handleAddToCart = () => {
     addToCart(item);
@@ -84,8 +83,10 @@ const ProductCard = ({ item }: { item: Product }) => {
                 <Button onClick={handleAddToCart} variant="secondary" size="sm" className="rounded-lg h-9 px-4" suppressHydrationWarning>
                     Add to Cart
                 </Button>
-                 <Button variant="outline" size="icon" className="h-9 w-9 rounded-lg border-primary-dark/30 text-primary-dark/80 hover:bg-primary-dark/10" suppressHydrationWarning>
-                    <Heart className="w-4 h-4" />
+                 <Button asChild variant="outline" size="icon" className="h-9 w-9 rounded-lg border-primary-dark/30 text-primary-dark/80 hover:bg-primary-dark/10">
+                    <a href={`tel:${phoneNumber}`}>
+                        <Phone className="w-4 h-4" />
+                    </a>
                 </Button>
             </div>
           </div>
