@@ -23,10 +23,10 @@ export default function Hero() {
           className="w-full"
           opts={{ loop: true }}
         >
-          <CarouselContent>
+          <CarouselContent className="ml-0">
             {config.hero.banners.map((banner, index) => (
-              <CarouselItem key={index}>
-                <div className="relative aspect-video w-full">
+              <CarouselItem key={index} className="pl-0">
+                <div className="relative aspect-[16/9] w-full md:aspect-video">
                   <Image
                     src={banner.imageUrl}
                     alt={banner.alt}
