@@ -25,7 +25,7 @@ export default function IconCategoryStrip() {
   return (
     <section className="pt-0 pb-4 md:pt-2 md:pb-6">
         <div className="container mx-auto">
-            <div className="flex items-start justify-start gap-x-1 overflow-x-auto scrollbar-hide">
+            <div className="flex items-start justify-start gap-x-1 overflow-x-auto scrollbar-hide md:justify-around md:gap-x-4 md:overflow-x-visible">
                 {categories.map((category: any, index: number) => (
                 <Link
                     href={category.href}
