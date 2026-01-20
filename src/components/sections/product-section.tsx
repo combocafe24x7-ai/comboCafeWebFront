@@ -193,17 +193,17 @@ Transaction ID: *${transactionId}*
                 <p className="font-sans font-bold text-base text-primary-dark">{`Rs. ${item.price}`}</p>
                 <div className="mt-2 space-y-2">
                     <div className="flex items-center gap-2">
-                        <Button onClick={handleAddToCart} variant="secondary" size="sm" className="w-full flex-1 rounded-lg h-9" suppressHydrationWarning>
+                        <Button onClick={handleAddToCart} variant="secondary" size="sm" className="w-full flex-1 rounded-lg h-8" suppressHydrationWarning>
                             Add to Cart
                         </Button>
-                        <Button variant="outline" size="icon" className="h-9 w-9 shrink-0 rounded-lg border-primary-dark/30 text-primary-dark/80 hover:bg-primary-dark/10" asChild suppressHydrationWarning>
+                        <Button variant="outline" size="icon" className="h-8 w-8 shrink-0 rounded-lg border-primary-dark/30 text-primary-dark/80 hover:bg-primary-dark/10" asChild suppressHydrationWarning>
                             <a href={`tel:${phoneNumber}`}>
                                 <Phone className="h-4 w-4" />
                                 <span className="sr-only">Call to Order</span>
                             </a>
                         </Button>
                     </div>
-                    <Button onClick={() => setIsQrModalOpen(true)} variant="outline" size="sm" className="w-full rounded-lg h-9 border-secondary text-secondary-foreground hover:bg-secondary/80" suppressHydrationWarning>
+                    <Button onClick={() => setIsQrModalOpen(true)} variant="secondary" size="sm" className="w-full text-xs text-center h-8" suppressHydrationWarning>
                         Order on WhatsApp
                     </Button>
                 </div>
@@ -352,22 +352,25 @@ export default function ProductSection({ id, title, subtitle, items, bgColor = '
         </div>
         
         {id === 'hot-beverages' ? (
-            <div className="md:grid md:grid-cols-4 md:gap-6">
-                <div className="flex overflow-x-auto gap-3 pb-4 -mx-4 px-4 scrollbar-hide md:contents">
+            <div className="md:hidden">
+                <div className="flex overflow-x-auto gap-3 pb-4 -mx-4 px-4 scrollbar-hide">
                     {items.map((item, index) => (
-                        <div key={item.id} className="w-[173px] shrink-0 md:w-auto">
+                        <div key={item.id} className="w-[173px] shrink-0">
                             <ProductCard item={item} priority={prioritizeImages && index < 4} />
                         </div>
                     ))}
                 </div>
             </div>
-        ) : (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
-              {items.map((item, index) => (
-                <ProductCard key={item.id} item={item} priority={prioritizeImages && index < 4} />
-              ))}
-            </div>
-        )}
+        ) : null}
+        
+        <div className={cn(
+            "grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6",
+            id === 'hot-beverages' && 'hidden md:grid'
+        )}>
+          {items.map((item, index) => (
+            <ProductCard key={item.id} item={item} priority={prioritizeImages && index < 4} />
+          ))}
+        </div>
 
         {showViewAll && viewAllLink && (
             <div className="text-center mt-10">
