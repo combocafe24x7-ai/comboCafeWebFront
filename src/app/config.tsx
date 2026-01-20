@@ -211,7 +211,8 @@ export const config = {
       { label: "For Who?", type: "who" },
       { label: "What Occasion?", type: "occasion" },
       { label: "What's Your Budget?", type: "budget" },
-    ]
+    ],
+    buttonText: "Find The Perfect Gift"
   },
   collections: {
     flowers: [
