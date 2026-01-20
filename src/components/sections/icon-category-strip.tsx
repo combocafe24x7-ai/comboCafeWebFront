@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -19,7 +20,7 @@ export default function IconCategoryStrip() {
 
 
   return (
-    <section className="pt-4 pb-8 md:pt-8 md:pb-12">
+    <section className="pt-2 pb-4 md:pt-8 md:pb-12">
         <div className="container mx-auto">
             <div className="flex items-start justify-start gap-x-2 overflow-x-auto scrollbar-hide">
                 {(isMounted ? categories : config.iconCategories).map((category: any, index: number) => (
@@ -27,15 +28,15 @@ export default function IconCategoryStrip() {
                     href={category.href}
                     key={category.id}
                     className={cn(
-                        "group w-20 text-center shrink-0 flex flex-col items-center gap-1.5 transition-opacity duration-500",
+                        "group w-24 text-center shrink-0 flex flex-col items-center gap-2 transition-opacity duration-500",
                         isMounted ? 'opacity-100' : 'opacity-0'
                     )}
                     style={{ transitionDelay: `${index * 100}ms` }}
                 >
-                    <div className="relative w-16 h-16 rounded-lg bg-card flex items-center justify-center shadow-subtle border border-black/5 transition-all duration-300 group-hover:shadow-card group-hover:border-primary/50 group-hover:-translate-y-1 overflow-hidden">
+                    <div className="relative w-20 h-20 rounded-lg bg-card flex items-center justify-center shadow-subtle border border-black/5 transition-all duration-300 group-hover:shadow-card group-hover:border-primary/50 group-hover:-translate-y-1 overflow-hidden">
                         <Image src={category.imageUrl} alt={category.label} layout="fill" objectFit="cover" className="transition-transform duration-300 group-hover:scale-110" />
                     </div>
-                    <h4 className="font-semibold text-sm text-text/80 group-hover:text-text transition-colors duration-300 text-ui leading-tight">
+                    <h4 className="font-semibold text-base text-text/80 group-hover:text-text transition-colors duration-300 text-ui leading-tight">
                     {category.label}
                     </h4>
                 </Link>
