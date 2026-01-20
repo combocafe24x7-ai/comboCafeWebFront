@@ -7,8 +7,8 @@ import Image from 'next/image';
 
 export default function IconCategoryStrip() {
   return (
-    <section className="bg-transparent -mt-12 relative z-10">
-      <div className="container mx-auto">
+    <section>
+      <div className="container mx-auto pt-8">
         <div className="bg-card/80 backdrop-blur-sm rounded-card shadow-card p-4">
           <div className="flex items-center justify-around gap-x-2 md:gap-x-4 overflow-x-auto scrollbar-hide">
             {config.iconCategories.map((category: any) => (
