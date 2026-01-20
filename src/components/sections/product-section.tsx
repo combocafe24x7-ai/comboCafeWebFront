@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState } from 'react';
 import { Button } from '../ui/button';
@@ -194,7 +193,7 @@ Transaction ID: *${transactionId}*
                 <p className="font-sans font-bold text-base text-primary-dark">{`Rs. ${item.price}`}</p>
                 <div className="mt-2 space-y-2">
                     <div className="flex items-center gap-2">
-                        <Button onClick={handleAddToCart} size="sm" className="w-full flex-1 text-xs text-center rounded-md h-8" suppressHydrationWarning>
+                        <Button onClick={handleAddToCart} size="sm" className="w-full flex-1 text-xs text-center rounded-md h-8" variant="default" suppressHydrationWarning>
                             Add to Cart
                         </Button>
                         <Button variant="outline" size="icon" className="h-8 w-8 shrink-0 rounded-md border-primary-dark/30 text-primary-dark/80 hover:bg-primary-dark/10" asChild suppressHydrationWarning>
@@ -352,7 +351,7 @@ export default function ProductSection({ id, title, subtitle, items, bgColor = '
           <div className="w-20 h-px bg-soft-divider mx-auto mt-4"></div>
         </div>
         
-        {id === 'hot-beverages' ? (
+        {id === 'hot-beverages' || id === 'quick-bites' ? (
             <div className="md:hidden">
                 <div className="flex overflow-x-auto gap-3 pb-4 -mx-4 px-4 scrollbar-hide">
                     {items.map((item, index) => (
@@ -366,7 +365,7 @@ export default function ProductSection({ id, title, subtitle, items, bgColor = '
         
         <div className={cn(
             "grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6",
-            id === 'hot-beverages' && 'hidden md:grid'
+            (id === 'hot-beverages' || id === 'quick-bites') && 'hidden md:grid'
         )}>
           {items.map((item, index) => (
             <ProductCard key={item.id} item={item} priority={prioritizeImages && index < 4} />
