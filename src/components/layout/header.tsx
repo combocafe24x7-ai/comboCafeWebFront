@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ChevronDown, Search, ShoppingCart, Menu, X } from 'lucide-react';
+import { ChevronDown, Search, ShoppingCart, Menu, X, Phone } from 'lucide-react';
 import { config } from '@/app/config';
 import { useCart } from '@/context/cart-provider';
 import { Button } from '../ui/button';
@@ -227,36 +227,46 @@ const CategoryNavigation = () => {
     return (
         <div className="bg-background shadow-sm sticky top-0 z-40 hidden md:block">
             <div className="container mx-auto">
-                <div className="flex items-center gap-6 overflow-x-auto whitespace-nowrap py-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                    {(config.header.navLinks as any[]).map((link) => (
-                        link.subLinks ? (
-                            <DropdownMenu key={link.id}>
-                                <DropdownMenuTrigger asChild>
-                                    <button suppressHydrationWarning className="flex items-center gap-1 text-sm font-medium text-gray-700 pb-1 border-b-2 border-transparent hover:border-primary hover:text-gray-900 transition-colors duration-200 cursor-pointer focus-visible:outline-none">
-                                        {link.label}
-                                        <ChevronDown className="h-4 w-4" />
-                                    </button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent>
-                                    {link.subLinks.map((subLink: any) => (
-                                        <Link href={subLink.href} passHref key={subLink.id} legacyBehavior>
-                                            <DropdownMenuItem asChild>
-                                                <a className="cursor-pointer">{subLink.label}</a>
-                                            </DropdownMenuItem>
-                                        </Link>
-                                    ))}
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        ) : (
-                             <a
-                                key={link.id}
-                                href={link.href}
-                                className="text-sm font-medium text-gray-700 pb-1 border-b-2 border-transparent hover:border-primary hover:text-gray-900 transition-colors duration-200"
-                            >
-                                {link.label}
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-6 overflow-x-auto whitespace-nowrap py-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                        {(config.header.navLinks as any[]).map((link) => (
+                            link.subLinks ? (
+                                <DropdownMenu key={link.id}>
+                                    <DropdownMenuTrigger asChild>
+                                        <button suppressHydrationWarning className="flex items-center gap-1 text-sm font-medium text-gray-700 pb-1 border-b-2 border-transparent hover:border-primary hover:text-gray-900 transition-colors duration-200 cursor-pointer focus-visible:outline-none">
+                                            {link.label}
+                                            <ChevronDown className="h-4 w-4" />
+                                        </button>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent>
+                                        {link.subLinks.map((subLink: any) => (
+                                            <Link href={subLink.href} passHref key={subLink.id} legacyBehavior>
+                                                <DropdownMenuItem asChild>
+                                                    <a className="cursor-pointer">{subLink.label}</a>
+                                                </DropdownMenuItem>
+                                            </Link>
+                                        ))}
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            ) : (
+                                <a
+                                    key={link.id}
+                                    href={link.href}
+                                    className="text-sm font-medium text-gray-700 pb-1 border-b-2 border-transparent hover:border-primary hover:text-gray-900 transition-colors duration-200"
+                                >
+                                    {link.label}
+                                </a>
+                            )
+                        ))}
+                    </div>
+                    {config.header.phoneNumber && (
+                        <div className="flex items-center gap-2 pl-6 shrink-0">
+                            <Phone className="h-4 w-4 text-primary" />
+                            <a href={`tel:${config.header.phoneNumber.replace(/\s/g, '')}`} className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap">
+                                Call to order: {config.header.phoneNumber}
                             </a>
-                        )
-                    ))}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
