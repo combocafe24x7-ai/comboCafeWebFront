@@ -36,6 +36,8 @@ export default function Home() {
       
       <IconCategoryStrip />
 
+      <BestSellingSection />
+
       <div className="relative w-full aspect-[2.5/1]">
         <Image
           src="https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/1ChatGPT%20Image%20Jan%2020,%202026,%2003_26_56%20PM_upscayl_2x_digital-art-4x.webp"
