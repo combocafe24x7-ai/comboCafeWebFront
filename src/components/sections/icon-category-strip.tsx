@@ -28,10 +28,17 @@ function shuffleArray(array: any[]) {
 
 export default function IconCategoryStrip() {
   const [shuffledCategories, setShuffledCategories] = useState([...config.iconCategories]);
+  const [isShuffling, setIsShuffling] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setShuffledCategories(prevCategories => shuffleArray([...prevCategories]));
+      setIsShuffling(true); // Trigger fade-out
+
+      setTimeout(() => {
+        setShuffledCategories(prevCategories => shuffleArray([...prevCategories]));
+        setIsShuffling(false); // Trigger fade-in
+      }, 300); // Corresponds to the transition duration
+
     }, 5000); // Shuffle every 5 seconds
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
@@ -40,7 +47,11 @@ export default function IconCategoryStrip() {
   return (
     <section>
       <div className="container mx-auto py-8">
-        <div className="flex items-center justify-around gap-x-2 md:gap-x-4 overflow-x-auto scrollbar-hide p-4">
+        <div className={cn(
+            "flex items-center justify-around gap-x-2 md:gap-x-4 overflow-x-auto scrollbar-hide p-4 transition-opacity duration-300",
+            isShuffling ? 'opacity-0' : 'opacity-100'
+          )}
+        >
             {shuffledCategories.map((category: any) => (
             <Link
                 href={category.href}
