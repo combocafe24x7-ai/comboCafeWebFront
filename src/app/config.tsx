@@ -21,9 +21,28 @@ export const config = {
           { id: "personalised-mugs-cushions", label: "Personalised Mugs & Cushions", href: "/personalised-gifts" },
         ]
       },
-      { id: "food", label: "Food", href: "/food" },
+      {
+        id: "food",
+        label: "Food",
+        href: "/food",
+        subLinks: [
+          { id: "all-food", label: "All Food & Drinks", href: "/food" },
+          { id: "snacks", label: "Snacks", href: "/food" },
+          { id: "hot-beverages", label: "Hot Beverages", href: "/food" },
+          { id: "cold-beverages", label: "Cold Beverages", href: "/food" },
+        ]
+      },
       { id: "our-menu", label: "Our Menu", href: "/menu" },
-      { id: "flowers", label: "Flowers & More", href: "/flowers" },
+      {
+        id: "flowers",
+        label: "Flowers & More",
+        href: "/flowers",
+        subLinks: [
+          { id: "all-flowers", label: "All Flowers & Combos", href: "/flowers" },
+          { id: "bouquets", label: "Flower Bouquets", href: "/flowers" },
+          { id: "combos", label: "Combos & Hampers", href: "/flowers" },
+        ]
+      },
       { id: "about-us", label: "About Us", href: "/about" },
       { id: "contact-us", label: "Contact Us", href: "/contact" },
     ],
@@ -37,10 +56,10 @@ export const config = {
     ],
   },
   iconCategories: [
+    { id: "birthday", label: "Birthday", href: "/search?q=birthday", Icon: PartyPopper, imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%2016,%202026,%2007_04_13%20PM.png" },
     { id: "cakes", label: "Cakes", href: "/cakes", Icon: CakeSlice, imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%2016,%202026,%2005_40_12%20PM.png" },
     { id: "gifts", label: "Gifts", href: "/gifts", Icon: Gift, imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%2016,%202026,%2005_41_52%20PM.png" },
     { id: "flowers", label: "Flowers", href: "/flowers", Icon: Flower, imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%2016,%202026,%2005_45_36%20PM.png" },
-    { id: "birthday", label: "Birthday", href: "/search?q=birthday", Icon: PartyPopper, imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%2016,%202026,%2007_04_13%20PM.png" },
     { id: "combos", label: "Combos", href: "/flowers", Icon: Package, imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%2016,%202026,%2007_09_22%20PM.png" },
     { id: "personalised", label: "Custom", href: "/personalised-gifts", Icon: Sparkles, imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%2016,%202026,%2007_40_47%20PM.png" },
     { id: "anniversary", label: "Celebrate", href: "/search?q=anniversary", Icon: Heart, imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/ChatGPT%20Image%20Jan%2016,%202026,%2007_09_35%20PM.png" },
