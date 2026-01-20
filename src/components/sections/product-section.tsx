@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import { useCart } from '@/context/cart-provider';
-import { Phone, Star } from 'lucide-react';
+import { Heart, Star, ZoomIn } from 'lucide-react';
 
 type Product = {
   id: string;
@@ -42,10 +42,24 @@ const ProductCard = ({ item, priority }: { item: Product; priority?: boolean }) 
     });
   };
 
+  const handleWishlistClick = () => {
+    toast({
+      title: "Added to wishlist!",
+      description: `${item.name} has been added to your wishlist.`,
+    });
+  }
+
+  const handleQuickViewClick = () => {
+    toast({
+      title: "Coming Soon!",
+      description: "Quick view functionality will be available shortly.",
+    });
+  }
+
   return (
     <Card className="overflow-hidden group bg-card shadow-card border-0 rounded-card flex flex-col h-full">
       <div className="relative">
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-card">
+        <div className="relative aspect-square w-full overflow-hidden rounded-t-card">
           <Image
             src={item.imageUrl}
             alt={item.name}
@@ -53,6 +67,14 @@ const ProductCard = ({ item, priority }: { item: Product; priority?: boolean }) 
             className="object-cover group-hover:scale-105 transition-transform duration-300"
             priority={priority}
           />
+           <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <Button onClick={handleWishlistClick} variant="outline" size="icon" className="h-8 w-8 bg-white/80 hover:bg-white border-0 rounded-full shadow-md" suppressHydrationWarning>
+                <Heart className="w-4 h-4 text-gray-700" />
+              </Button>
+              <Button onClick={handleQuickViewClick} variant="outline" size="icon" className="h-8 w-8 bg-white/80 hover:bg-white border-0 rounded-full shadow-md" suppressHydrationWarning>
+                <ZoomIn className="w-4 h-4 text-gray-700" />
+              </Button>
+            </div>
         </div>
         {item.badge && (
            <div className="absolute top-0 left-0 bg-primary/90 text-white text-xs font-bold uppercase tracking-wider py-1.5 px-4 rounded-br-lg">
@@ -61,13 +83,12 @@ const ProductCard = ({ item, priority }: { item: Product; priority?: boolean }) 
         )}
       </div>
 
-      <CardContent className="p-4 flex flex-col flex-grow bg-card rounded-b-card">
-        <h3 className="font-sans font-semibold text-text text-base leading-tight line-clamp-2 h-12">
+      <CardContent className="p-3 md:p-4 flex flex-col flex-grow bg-card rounded-b-card">
+        <h3 className="font-sans font-semibold text-text text-sm md:text-base leading-tight line-clamp-2 h-10 md:h-12">
           {item.name}
         </h3>
-        <p className="text-muted-foreground text-ui text-sm mt-1 line-clamp-1">{item.description}</p>
         
-        <div className="flex items-center gap-2 mt-2 text-ui">
+        <div className="flex items-center gap-2 mt-1 text-ui">
             <div className="flex items-center gap-0.5">
                 <Star className="w-4 h-4 text-star fill-star" />
                 <Star className="w-4 h-4 text-star fill-star" />
@@ -75,24 +96,20 @@ const ProductCard = ({ item, priority }: { item: Product; priority?: boolean }) 
                 <Star className="w-4 h-4 text-star fill-star" />
                 <Star className="w-4 h-4 text-gray-300" />
             </div>
-            <span className="text-xs text-muted-foreground font-medium">4.9</span>
-             <span className="text-xs text-muted-foreground font-medium">| 120+ orders</span>
         </div>
 
-        <div className="mt-auto pt-4">
+        <div className="mt-auto pt-2">
           <div className="flex justify-between items-center">
-            <p className="font-sans font-bold text-lg text-primary-dark">{`Rs. ${item.price}`}</p>
-            <div className="flex items-center gap-2">
-                <Button onClick={handleAddToCart} variant="secondary" size="sm" className="rounded-lg h-9 px-4" suppressHydrationWarning>
+            <p className="font-sans font-bold text-base md:text-lg text-primary-dark">{`Rs. ${item.price}`}</p>
+          </div>
+           <div className="mt-2 space-y-2">
+                <Button onClick={handleAddToCart} variant="secondary" size="sm" className="w-full rounded-lg h-9 px-4" suppressHydrationWarning>
                     Add to Cart
                 </Button>
-                 <Button asChild variant="outline" size="icon" className="h-9 w-9 rounded-lg border-primary-dark/30 text-primary-dark/80 hover:bg-primary-dark/10">
-                    <a href={`tel:${phoneNumber}`}>
-                        <Phone className="w-4 h-4" />
-                    </a>
+                <Button onClick={handleWishlistClick} variant="outline" size="sm" className="w-full rounded-lg h-9 px-4 border-primary-dark/30 text-primary-dark/80 hover:bg-primary-dark/10" suppressHydrationWarning>
+                    <Heart className="mr-2 h-4 w-4" /> Wishlist
                 </Button>
             </div>
-          </div>
         </div>
       </CardContent>
     </Card>
@@ -122,7 +139,7 @@ export default function ProductSection({ id, title, subtitle, items, bgColor = '
           <div className="w-20 h-px bg-soft-divider mx-auto mt-4"></div>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {items.map((item, index) => (
             <ProductCard key={item.id} item={item} priority={prioritizeImages && index < 4} />
           ))}

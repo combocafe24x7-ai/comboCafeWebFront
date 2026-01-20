@@ -7,7 +7,6 @@ import React from 'react';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import MobileBottomNav from '@/components/mobile/MobileBottomNav';
-import MobileCartFab from '@/components/common/MobileCartFab';
 
 export const metadata = {
   title: 'Combo Cafe and Gift Shop',
@@ -35,13 +34,12 @@ export default function RootLayout({
           <CartProvider>
               <div className="flex flex-col min-h-screen">
                 <Header />
-                <main className='flex-grow md:pt-0 pt-28'>
+                <main className='flex-grow md:pt-0 pt-16'>
                   {children}
                 </main>
                 <Footer />
               </div>
               <MobileBottomNav />
-              <MobileCartFab />
               <Toaster />
           </CartProvider>
         </ThemeProvider>

@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import HorizontalCollection from '@/components/sections/horizontal-collection';
 import IconCategoryStrip from '@/components/sections/icon-category-strip';
+import FreeDeliveryPill from '@/components/mobile/FreeDeliveryPill';
 
 const BestSellingSection = () => (
   <section className="bg-background py-16">
@@ -37,8 +38,10 @@ export default function Home() {
     <main className="bg-background">
       <Hero />
       
-      <section className="bg-background pt-0">
-        <IconCategoryStrip />
+      <IconCategoryStrip />
+
+      <section className="py-4 md:hidden">
+        <FreeDeliveryPill />
       </section>
 
       <div className="relative w-full aspect-[3/1]">
