@@ -13,7 +13,7 @@ import { config } from '@/app/config';
 
 export default function Hero() {
   return (
-    <section id="home" className="relative w-full pt-0">
+    <section id="home" className="relative w-full -mt-16 md:mt-0">
         <Carousel
           plugins={[
             Autoplay({
@@ -31,7 +31,7 @@ export default function Hero() {
                     src={banner.imageUrl}
                     alt={banner.alt}
                     layout="fill"
-                    objectFit="contain"
+                    objectFit="cover"
                     objectPosition="center"
                     priority={index === 0}
                   />
