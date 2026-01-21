@@ -1,5 +1,5 @@
 
-import { Facebook, Instagram, CakeSlice, Gift, Flower, Cookie, Home, BookOpen, PartyPopper, Heart, Sparkles, Package, ShoppingBag, User } from "lucide-react";
+import { Facebook, Instagram, CakeSlice, Gift, Flower, Cookie, Home, BookOpen, PartyPopper, Heart, Sparkles, Package, ShoppingCart, User } from "lucide-react";
 
 const supabaseUrl = "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/images";
 
@@ -56,7 +56,7 @@ export const config = {
     ],
   },
   iconCategories: [
-    { id: "cakes", label: "Cakes", href: "/cakes", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/cakes/birthday%20delight%20350.jpeg" },
+    { id: "cakes", label: "Cakes", href: "/cakes", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/download.webp" },
     { id: "mugs", label: "Mugs", href: "/personalised-gifts", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/gift%20images/Coffee%20Mug%20(1)%20199.jpeg" },
     { id: "quick-bites", label: "Quick Bites", href: "/food", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/snacks/veg%20puff.jpg" },
     { id: "flowers", label: "Flowers", href: "/flowers", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/flowers/rose%20bouquet.jpg" },
@@ -261,7 +261,7 @@ export const config = {
     },
     bottomNav: [
       { id: "home", label: "Home", href: "/", Icon: Home },
-      { id: "cart", label: "Cart", href: "/checkout", Icon: ShoppingBag },
+      { id: "cart", label: "Cart", href: "/checkout", Icon: ShoppingCart },
       { id: "gifts", label: "Gifts", href: "/gifts", Icon: Gift },
       { id: "wishlist", label: "Wishlist", href: "/coming-soon", Icon: Heart },
       { id: "profile", label: "Profile", href: "/coming-soon", Icon: User }
@@ -271,4 +271,3 @@ export const config = {
     qrCodeUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/qr%20code.jpeg"
   }
 };
-
