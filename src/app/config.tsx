@@ -61,7 +61,7 @@ export const config = {
     { id: "quick-bites", label: "Quick Bites", href: "/food", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/buttons/food.png" },
     { id: "flowers", label: "Flowers", href: "/flowers", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/buttons/flowers.png" },
     { id: "combos", label: "Combos", href: "/flowers", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/buttons/combo.png" },
-    { id: "chocolates", label: "Chocolates", href: "/cakes", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/buttons/chocolates.png" },
+    { id: "chocolates", label: "Chocolates", href: "/chocolates", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/buttons/chocolates.png" },
   ],
   serviceStrip: {
     title: "Bulk orders are acceptable",
