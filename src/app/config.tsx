@@ -238,8 +238,8 @@ export const config = {
     about: "Welcome to Combo Cafe & Gift Shop, your one-stop destination for delightful cakes, thoughtful gifts, and delicious food in Rampurhat.",
     copyright: `© {YEAR} Combo Cafe and Gift Shop. All rights reserved.`,
     social: [
-      { label: "Facebook", Icon: Facebook, href: "https://www.facebook.com/share/19LJ2HN2aG/" },
-      { label: "Instagram", Icon: Instagram, href: "https://www.instagram.com/combo_cafe_gift_store" },
+      { label: "Facebook", Icon: Facebook, href: "https://www.facebook.com/profile.php?id=100063715835154", mobileHref: "fb://profile/100063715835154" },
+      { label: "Instagram", Icon: Instagram, href: "https://www.instagram.com/combo_cafe_gift_store", mobileHref: "instagram://user?username=combo_cafe_gift_store" },
     ],
     links: {
       help: [

@@ -110,10 +110,17 @@ export default function Footer() {
            <div className="flex items-center gap-4">
              <span className="text-sm font-medium">Follow Us:</span>
              <div className="flex items-center gap-3">
-              {config.footer.social.map(({label, Icon, href}) => (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900">
-                  <Icon className="w-5 h-5" />
-                </a>
+              {(config.footer.social as any[]).map(({label, Icon, href, mobileHref}) => (
+                <React.Fragment key={label}>
+                    {/* Mobile link */}
+                    <a href={mobileHref} className="text-gray-500 hover:text-gray-900 md:hidden">
+                        <Icon className="w-5 h-5" />
+                    </a>
+                    {/* Desktop link */}
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 hidden md:block">
+                        <Icon className="w-5 h-5" />
+                    </a>
+                </React.Fragment>
               ))}
              </div>
            </div>
