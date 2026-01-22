@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import { useCart } from '@/context/cart-provider';
-import { Calendar as CalendarIcon, Heart, Phone, Search } from 'lucide-react';
+import { Calendar as CalendarIcon, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '../ui/dialog';
 import { Label } from '../ui/label';
@@ -75,20 +75,6 @@ const ProductCard = ({ item, priority }: { item: Product; priority?: boolean }) 
             description: `${item.name} has been added to your cart.`,
         });
     };
-
-    const handleWishlistClick = () => {
-        toast({
-            title: "Added to wishlist!",
-            description: `${item.name} has been added to your wishlist.`,
-        });
-    }
-
-    const handleQuickViewClick = () => {
-        toast({
-            title: "Coming Soon!",
-            description: "Quick view functionality will be available shortly.",
-        });
-    }
 
     const handleDetailsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -163,14 +149,6 @@ Transaction ID: *${transactionId}*
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             priority={priority}
                         />
-                        <div className="absolute top-3 right-3 flex flex-col gap-2 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100">
-                            <Button onClick={handleWishlistClick} variant="outline" size="icon" className="h-8 w-8 bg-white/80 hover:bg-white border-0 rounded-full shadow-md" suppressHydrationWarning>
-                                <Heart className="w-4 h-4 text-gray-700" />
-                            </Button>
-                            <Button onClick={handleQuickViewClick} variant="outline" size="icon" className="h-8 w-8 bg-white/80 hover:bg-white border-0 rounded-full shadow-md" suppressHydrationWarning>
-                                <Search className="w-4 h-4 text-gray-700" />
-                            </Button>
-                        </div>
                     </div>
                     {item.badge && (
                         <div className="absolute top-0 left-0 bg-primary/90 text-white text-xs font-bold uppercase tracking-wider py-1.5 px-4 rounded-br-lg">
