@@ -54,7 +54,6 @@ export default function Home() {
         items={config.collections.cakes}
         bgColor="bg-background"
         viewAllLink="/cakes"
-        prioritizeImages={true}
       />
 
       <ProductSection
