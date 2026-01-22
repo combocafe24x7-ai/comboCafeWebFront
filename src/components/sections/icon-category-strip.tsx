@@ -16,7 +16,7 @@ export default function IconCategoryStrip() {
               key={category.id}
               className="group w-20 text-center shrink-0 flex flex-col items-center gap-1"
             >
-              <div className="relative w-16 h-16 rounded-lg bg-card flex items-center justify-center shadow-subtle border border-black/5 transition-all duration-300 group-hover:shadow-card group-hover:border-primary/50 group-hover:-translate-y-1 overflow-hidden">
+              <div className="relative w-16 h-16 rounded-lg flex items-center justify-center shadow-subtle border border-black/5 transition-all duration-300 group-hover:shadow-card group-hover:border-primary/50 group-hover:-translate-y-1 overflow-hidden">
                 <Image
                   src={category.imageUrl}
                   alt={category.label}
