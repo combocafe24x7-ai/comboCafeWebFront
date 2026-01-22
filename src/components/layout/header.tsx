@@ -145,19 +145,42 @@ const MainHeader = () => {
 };
 
 const NavLink = ({ href, label, subLinks }: { href: string, label: string, subLinks?: {id: string, label: string, href: string}[] }) => {
+    const [open, setOpen] = React.useState(false);
+    const timerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const handleOpen = () => {
+        if (timerRef.current) {
+            clearTimeout(timerRef.current);
+        }
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        timerRef.current = setTimeout(() => {
+            setOpen(false);
+        }, 200);
+    };
+    
     if (subLinks) {
         return (
-            <Popover>
-                <PopoverTrigger asChild>
-                    <button className="flex items-center gap-1 text-sm font-medium text-gray-700 pb-1 hover:text-gray-900 transition-colors duration-200" suppressHydrationWarning>
-                        {label}
-                        <ChevronDown className="h-4 w-4" />
-                    </button>
-                </PopoverTrigger>
-                <PopoverContent className="w-56 p-2">
+            <Popover open={open} onOpenChange={setOpen}>
+                <div onMouseEnter={handleOpen} onMouseLeave={handleClose}>
+                    <PopoverTrigger asChild>
+                        <Link href={href} className="flex items-center gap-1 text-sm font-medium text-gray-700 pb-1 hover:text-gray-900 transition-colors duration-200">
+                                {label}
+                                <ChevronDown className="h-4 w-4" />
+                        </Link>
+                    </PopoverTrigger>
+                </div>
+                <PopoverContent 
+                    className="w-56 p-2" 
+                    onMouseEnter={handleOpen} 
+                    onMouseLeave={handleClose}
+                    sideOffset={16}
+                >
                     <div className="grid">
                         {subLinks.map((subLink) => (
-                            <Link key={subLink.id} href={subLink.href} className="p-2 block text-sm text-gray-700 rounded-md hover:bg-gray-100">{subLink.label}</Link>
+                            <Link key={subLink.id} href={subLink.href} onClick={() => setOpen(false)} className="p-2 block text-sm text-gray-700 rounded-md hover:bg-gray-100">{subLink.label}</Link>
                         ))}
                     </div>
                 </PopoverContent>
@@ -166,12 +189,12 @@ const NavLink = ({ href, label, subLinks }: { href: string, label: string, subLi
     }
 
     return (
-        <a 
+        <Link 
           href={href}
           className="text-sm font-medium text-gray-700 pb-1 hover:text-gray-900 transition-colors duration-200"
         >
             {label}
-        </a>
+        </Link>
     )
 }
 
