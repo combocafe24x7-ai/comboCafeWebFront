@@ -37,7 +37,7 @@ const TopUtilityBar = () => (
             <MapPin className="h-3 w-3" />
             <span>Rampurhat</span>
         </a>
-      <p>{config.header.utilityBar.promoText}</p>
+      <a href="https://wa.me/918436860216" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900">{config.header.utilityBar.promoText}</a>
     </div>
   </div>
 );

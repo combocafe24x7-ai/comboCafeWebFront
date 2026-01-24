@@ -40,13 +40,12 @@ const pastas = [
 const snacks = [
   { id: "s2", name: "Cheese Sandwich", price: "90", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/snacks/cheese%20sandwich.jpg", description: "A classic sandwich with a generous layer of cheese." },
   { id: "s3", name: "Garlic Bread", price: "100", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/snacks/garluc%20bread.jpg", description: "Toasted bread with a savory garlic butter spread." },
-  { id: "s4", name: "Paneer Puff", price: "70", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/snacks/veg%20puff.jpg", description: "A delicious puff filled with spiced paneer." },
 ];
 
 export const config = {
   header: {
     utilityBar: {
-      promoText: "Order Today, Receive Tomorrow",
+      promoText: "For enquiries on WhatsApp: 84368 60216",
     },
     logoUrl: `https://picsum.photos/seed/brand-logo/180/40`,
     navLinks: [
@@ -291,3 +290,4 @@ export const config = {
     
 
     
+
