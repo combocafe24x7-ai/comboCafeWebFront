@@ -1,5 +1,4 @@
 
-
 import ProductSection from '@/components/sections/product-section';
 import GiftFinder from '@/components/sections/gift-finder';
 import { config } from './config';

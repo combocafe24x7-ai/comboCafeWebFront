@@ -18,12 +18,9 @@ const burgers = [
 ];
 
 const sandwiches = [
-  { id: "sw1", name: "Veg Cheese Sandwich", price: "55", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/Veg%20Cheese%20Sandwich.webp", description: "A simple yet delicious veg and cheese sandwich." },
-  { id: "sw2", name: "Corn Sandwich", price: "55", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/Corn%20Sandwich.webp", description: "Creamy sweet corn filling in a grilled sandwich." },
   { id: "sw3", name: "Paneer Sandwich", price: "80", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/Pannir%20Sandwich%20.webp", description: "Grilled sandwich with a spicy paneer filling." },
   { id: "sw4", name: "Chicken Sandwich", price: "80", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/Chicken%20Sandwich.webp", description: "Hearty sandwich with a savory chicken filling." },
   { id: "sw5", name: "Club Sandwich", price: "110", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/Club%20Sandwich%20Sandwich.webp", description: "A classic multi-layered club sandwich." },
-  { id: "f2", name: "Cheese Sandwich", price: "90", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/snacks/cheese%20sandwich.jpg", description: "A classic sandwich with a generous layer of cheese." },
 ];
 
 const noodles = [
@@ -40,6 +37,8 @@ const pastas = [
 const snacks = [
   { id: "s2", name: "Cheese Sandwich", price: "90", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/snacks/cheese%20sandwich.jpg", description: "A classic sandwich with a generous layer of cheese." },
   { id: "s3", name: "Garlic Bread", price: "100", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/snacks/garluc%20bread.jpg", description: "Toasted bread with a savory garlic butter spread." },
+  { id: "sw1", name: "Veg Cheese Sandwich", price: "55", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/Veg%20Cheese%20Sandwich.webp", description: "A simple yet delicious veg and cheese sandwich." },
+  { id: "sw2", name: "Corn Sandwich", price: "55", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/Corn%20Sandwich.webp", description: "Creamy sweet corn filling in a grilled sandwich." },
 ];
 
 export const config = {
@@ -290,4 +289,5 @@ export const config = {
     
 
     
+
 
