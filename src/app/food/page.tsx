@@ -5,6 +5,7 @@ import { config } from '@/app/config';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function FoodPage() {
   return (
@@ -38,6 +39,19 @@ export default function FoodPage() {
         bgColor="bg-accent"
         showViewAll={false}
       />
+
+      <div className="container mx-auto my-8">
+        <div className="relative aspect-[3/1] w-full overflow-hidden rounded-lg">
+            <Image 
+                src="https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/banner.webp"
+                alt="Food Banner"
+                fill
+                className="object-cover"
+                sizes="100vw"
+            />
+        </div>
+      </div>
+
       <ProductSection
         id="sandwiches"
         title="Sandwiches"
