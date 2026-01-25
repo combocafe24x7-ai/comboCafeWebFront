@@ -51,6 +51,17 @@ const friedItems = [
     { id: "f7", name: "Chicken Pakora", price: "150", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/fried%20items/Chicken%20Pakora.webp", description: "10 pieces of traditional chicken pakora." }
 ];
 
+const foodCombos = [
+  { id: "fc1", name: "Chicken Burger Combo", price: "99", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/combo/Whisk_4a0fd9a26a2f1dfae1d4abebba74aad7dr%20(1).jpeg", description: "Chicken Burger, French Fries & Lime Mint Mojito" },
+  { id: "fc2", name: "Double Pizza Combo", price: "299", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/combo/Whisk_834c6f3aba56f4eaf8a49b785eebe93cdr.jpeg", description: "Chicken Pizza + Paneer Pizza with 2 Masala Soda" },
+  { id: "fc3", name: "Leg Bucket Combo", price: "350", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/combo/Whisk_32e29558d7704da90264c899941f754eeg.png", description: "6pcs Leg Bucket + 1L Coke" },
+  { id: "fc4", name: "Wings Bucket Combo", price: "299", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/combo/Whisk_1efb402d784fed8844a49254928a74d2eg.png", description: "6pcs Wings + 1L Coke" },
+  { id: "fc5", name: "Chicken Breast Combo", price: "150", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/combo/Whisk_f1e30343a2e730fb7164aa2b1c9c1d1deg.png", description: "2 Chicken Breast + 2 Masala Coke" },
+  { id: "fc6", name: "Chicken Strips Combo", price: "99", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/combo/Whisk_a3d63324ef143c5992444aed6d2d2b58eg.png", description: "6pcs Boneless Chicken Strips + 400ml Pepsi" },
+  { id: "fc7", name: "Chicken Leg & Fries Combo", price: "199", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/combo/Whisk_e0ec3d4af939b0b8497489e4495ea6e6eg.png", description: "2 Chicken Legs, French Fries & 2 Rose Crush" },
+  { id: "fc8", name: "Popcorn Combo", price: "99", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/combo/Whisk_fb81eb943345afd8055485e68178df12eg.png", description: "Popcorn with Dip Mayo + 400ml Pepsi" },
+];
+
 export const config = {
   header: {
     utilityBar: {
@@ -223,6 +234,7 @@ export const config = {
       { id: "fp5", name: "Gift Hampers", price: "499", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/flowers/gift%20hamper.jpg", description: "Thoughtfully curated hampers for your loved ones." },
     ],
     comboProducts: [
+      ...foodCombos,
       { id: "fp4", name: "Cake + Flower Combo", price: "699", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/flowers/cake%20plus%20flower.jpg", description: "The perfect combo for any celebration." },
       { id: "fp5", name: "Gift Hampers", price: "499", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/flowers/gift%20hamper.jpg", description: "Thoughtfully curated hampers for your loved ones." },
     ],
@@ -301,6 +313,7 @@ export const config = {
     
 
     
+
 
 
 
