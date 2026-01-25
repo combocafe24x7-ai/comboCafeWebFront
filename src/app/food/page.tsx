@@ -77,11 +77,19 @@ export default function FoodPage() {
         showViewAll={false}
       />
        <ProductSection
+        id="fried-items"
+        title="Fried Items"
+        subtitle="Crispy and delicious"
+        items={config.productSections.friedItems}
+        bgColor="bg-accent"
+        showViewAll={false}
+      />
+       <ProductSection
         id="snacks"
         title="Snacks"
         subtitle="Quick and tasty bites"
         items={config.productSections.snacks}
-        bgColor="bg-accent"
+        bgColor="bg-white"
         showViewAll={false}
       />
     </main>

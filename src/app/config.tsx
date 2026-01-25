@@ -41,6 +41,16 @@ const snacks = [
   { id: "sw2", name: "Corn Sandwich", price: "55", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/Corn%20Sandwich.webp", description: "Creamy sweet corn filling in a grilled sandwich." },
 ];
 
+const friedItems = [
+    { id: "f1", name: "Salted French Fries", price: "65", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/fried%20items/Salted%20french%20fries.webp", description: "Classic salted french fries." },
+    { id: "f2", name: "Peri Peri French Fries", price: "80", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/fried%20items/peri%20peri%20french%20fries.webp", description: "Spicy peri peri flavored fries." },
+    { id: "f3", name: "Hot & Spicy French Fries", price: "99", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/fried%20items/Hot%20&%20Spicy%20French%20Fries.webp", description: "Extra hot and spicy fries." },
+    { id: "f4", name: "Crispy Chicken Wings", price: "199", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/fried%20items/Crishpy%20Chicken%20Wings.webp", description: "4 pieces of crispy chicken wings." },
+    { id: "f5", name: "Crispy Chicken Leg", price: "130", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/fried%20items/crispy%20chicken%20leg.webp", description: "2 pieces of crispy chicken legs." },
+    { id: "f6", name: "Chicken Popcorn", price: "100", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/fried%20items/Crishpy%20Chicken%20pop%20corn.webp", description: "Bite-sized crispy chicken popcorn." },
+    { id: "f7", name: "Chicken Pakora", price: "150", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/Food/fried%20items/Chicken%20Pakora.webp", description: "10 pieces of traditional chicken pakora." }
+];
+
 export const config = {
   header: {
     utilityBar: {
@@ -65,12 +75,13 @@ export const config = {
         href: "/food",
         subLinks: [
           { id: "all-food", label: "All Food", href: "/food" },
-          { id: "snacks", label: "Snacks", href: "/food#snacks" },
           { id: "pizzas", label: "Pizzas", href: "/food#pizzas" },
           { id: "burgers", label: "Burgers", href: "/food#burgers" },
           { id: "sandwiches", label: "Sandwiches", href: "/food#sandwiches" },
           { id: "noodles", label: "Noodles", href: "/food#noodles" },
           { id: "pastas", label: "Pastas", href: "/food#pastas" },
+          { id: "fried-items", label: "Fried Items", href: "/food#fried-items" },
+          { id: "snacks", label: "Snacks", href: "/food#snacks" },
         ]
       },
       { id: "about-us", label: "About Us", href: "/about" },
@@ -196,13 +207,14 @@ export const config = {
       { id: "g5", name: "Customised Cushion", price: "550", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/gift%20images/Customized%20Cushion%20550.jpeg", description: "A soft, personalized cushion for your home." },
       { id: "g10", name: "Magic Mug", price: "399", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/gift%20images/Magic%20Mug%20399.jpeg", description: "Reveals a surprise image with hot liquid." }
     ],
-    foodItems: [...pizzas, ...burgers, ...sandwiches, ...noodles, ...pastas, ...snacks],
+    foodItems: [...pizzas, ...burgers, ...sandwiches, ...noodles, ...pastas, ...snacks, ...friedItems],
     pizzas,
     burgers,
     sandwiches,
     noodles,
     pastas,
     snacks,
+    friedItems,
     flowerProducts: [
       { id: "fp1", name: "Single Rose", price: "50", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/flowers/single%20rose.jpg", description: "A single, elegant rose for a simple gesture." },
       { id: "fp2", name: "Rose Bouquet", price: "299", imageUrl: "https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/flowers/rose%20bouquet.jpg", description: "A beautiful bouquet of fresh roses." },
@@ -289,5 +301,6 @@ export const config = {
     
 
     
+
 
 
