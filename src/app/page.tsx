@@ -84,8 +84,16 @@ export default function Home() {
         showViewAll={true}
         viewAllLink="/gifts"
       />
+
+      <ProductSection
+        id="chocolates"
+        title="Delicious Chocolates"
+        subtitle="Indulge in our sweet treats"
+        items={config.productSections.chocolates}
+        bgColor="bg-background"
+        showViewAll={true}
+        viewAllLink="/chocolates"
+      />
     </main>
   );
 }
-
-    
