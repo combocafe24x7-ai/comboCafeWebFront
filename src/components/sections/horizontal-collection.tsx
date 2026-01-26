@@ -472,3 +472,5 @@ export default function HorizontalCollection({ title, items, bgColor = 'bg-white
         </section>
     );
 }
+
+    
