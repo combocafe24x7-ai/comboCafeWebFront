@@ -237,7 +237,7 @@ Transaction ID: *${transactionId}*
             </Card>
 
             {item.price && (
-                <Dialog open={isQrModalOpen} onOpenChange={setIsQrModalOpen}>
+                <Dialog open={isQrModalOpen} onOpenChange={setIsQrModalOpen} modal={false}>
                     <DialogContent className="sm:max-w-lg">
                         <DialogHeader>
                             <DialogTitle>Order: {item.title}</DialogTitle>
@@ -472,5 +472,7 @@ export default function HorizontalCollection({ title, items, bgColor = 'bg-white
         </section>
     );
 }
+
+    
 
     

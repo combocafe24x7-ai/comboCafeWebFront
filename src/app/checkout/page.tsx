@@ -435,7 +435,7 @@ Transaction ID: *${transactionId}*
           </div>
         </div>
       </main>
-       <Dialog open={isQrModalOpen} onOpenChange={setIsQrModalOpen}>
+       <Dialog open={isQrModalOpen} onOpenChange={setIsQrModalOpen} modal={false}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Scan to Pay</DialogTitle>
@@ -490,5 +490,7 @@ Transaction ID: *${transactionId}*
     </>
   );
 }
+
+    
 
     

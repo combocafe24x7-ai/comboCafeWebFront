@@ -202,7 +202,7 @@ Transaction ID: *${transactionId}*
                     </div>
                 </CardContent>
             </Card>
-            <Dialog open={isQrModalOpen} onOpenChange={setIsQrModalOpen}>
+            <Dialog open={isQrModalOpen} onOpenChange={setIsQrModalOpen} modal={false}>
                 <DialogContent className="sm:max-w-lg">
                     <DialogHeader>
                         <DialogTitle>Order: {item.name}</DialogTitle>
@@ -389,5 +389,7 @@ Transaction ID: *${transactionId}*
         </>
     );
 };
+
+    
 
     
