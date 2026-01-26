@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -234,7 +233,7 @@ const MobileHeader = () => {
                     </Button>
                     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                         <SheetTrigger asChild>
-                            <Button variant="ghost" size="icon">
+                            <Button variant="ghost" size="icon" suppressHydrationWarning>
                                 <Menu className="h-6 w-6" />
                                 <span className="sr-only">Open menu</span>
                             </Button>
