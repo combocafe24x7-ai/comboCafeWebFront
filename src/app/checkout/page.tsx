@@ -298,7 +298,7 @@ Transaction ID: *${transactionId}*
                               <Button
                                 variant={"outline"}
                                 className={cn(
-                                  "w-full justify-start text-left font-normal bg-[#f3f3f3] border-2 border-transparent rounded-lg h-10 px-3 text-foreground transition-all duration-500 hover:bg-white hover:border-[#4a9dec] focus-visible:bg-white focus-visible:border-[#4a9dec] focus-visible:shadow-date-focus focus-visible:ring-0 focus-visible:ring-offset-0",
+                                  "w-full justify-start text-left font-normal bg-[#f3f3f3] border-2 border-transparent rounded-md h-10 px-3 text-foreground transition-all duration-500 hover:bg-white hover:border-[#4a9dec] focus-visible:bg-white focus-visible:border-[#4a9dec] focus-visible:shadow-date-focus focus-visible:ring-0 focus-visible:ring-offset-0",
                                   !date && "text-muted-foreground"
                                 )}
                                 suppressHydrationWarning
