@@ -225,7 +225,7 @@ Transaction ID: *${transactionId}*
                       </a>
                       <div className="flex items-center justify-start gap-1.5">
                           <MapPin className="h-4 w-4" />
-                          <span>Location: Rampurhat</span>
+                          <span>Location: Rampurhat, Nischintapur</span>
                       </div>
                   </div>
               </div>
