@@ -327,13 +327,22 @@ Transaction ID: *${transactionId}*
               </Card>
             </div>
           </div>
-          <div className="text-center mt-12 border-t pt-8">
-            <p className="text-lg text-muted-foreground">Visit our shop and get more unique Gifts and Chocolates...</p>
-            <p className="font-semibold mt-2 text-xl">Combo Cafe & Gifts Shop</p>
-            <div className="flex items-center justify-center gap-2 mt-2 text-muted-foreground">
-                <MapPin className="h-4 w-4" />
-                <span>Nischintapur, Rampurhat, West Bengal 731224</span>
-            </div>
+          <div className="mt-12 border-t pt-8">
+            <Card className="max-w-2xl mx-auto">
+              <CardContent className="p-6 text-center">
+                <p className="text-lg text-muted-foreground">Visit our shop and get more unique Gifts and Chocolates...</p>
+                <p className="font-semibold mt-2 text-xl">Combo Cafe & Gifts Shop</p>
+                <a 
+                  href="https://google.com/maps/place/Combo+Cafe+%26+Gifts+Shop/data=!4m2!3m1!1s0x0:0x20d4a8fe5d070ebc?sa=X&ved=1t:2428&ictx=111" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 mt-2 text-muted-foreground hover:text-primary transition-colors"
+                >
+                    <MapPin className="h-4 w-4" />
+                    <span>Nischintapur, Rampurhat, West Bengal 731224</span>
+                </a>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>
