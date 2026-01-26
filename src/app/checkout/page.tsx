@@ -40,7 +40,38 @@ export default function CheckoutPage() {
   const router = useRouter();
   const [deliveryMethod, setDeliveryMethod] = useState('home-delivery');
   const [date, setDate] = useState<Date | undefined>(new Date());
-  const [timeSlot, setTimeSlot] = useState("10:00 AM - 12:00 PM");
+  
+  const deliveryTimeSlots = [
+    "10:00 AM - 12:00 PM",
+    "12:00 PM - 02:00 PM",
+    "02:00 PM - 04:00 PM",
+    "04:00 PM - 06:00 PM",
+    "06:00 PM - 08:00 PM",
+  ];
+
+  const takeAwayTimeSlots = [
+      "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
+      "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM",
+      "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM",
+      "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM",
+      "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM",
+      "08:00 PM", "08:30 PM",
+  ];
+  
+  const [timeSlot, setTimeSlot] = useState(deliveryTimeSlots[0]);
+
+  const timeSlots = useMemo(() => {
+    return deliveryMethod === 'home-delivery' ? deliveryTimeSlots : takeAwayTimeSlots;
+  }, [deliveryMethod]);
+
+  const handleDeliveryMethodChange = (value: string) => {
+    setDeliveryMethod(value);
+    if (value === 'home-delivery') {
+      setTimeSlot(deliveryTimeSlots[0]);
+    } else {
+      setTimeSlot(takeAwayTimeSlots[0]);
+    }
+  };
 
   const [isQrModalOpen, setIsQrModalOpen] = useState(false);
   const [transactionId, setTransactionId] = useState('');
@@ -62,14 +93,6 @@ export default function CheckoutPage() {
     return cart.reduce((acc, item) => acc + parseFloat(item.price), 0);
   }, [cart]);
 
-  const timeSlots = [
-    "10:00 AM - 12:00 PM",
-    "12:00 PM - 02:00 PM",
-    "02:00 PM - 04:00 PM",
-    "04:00 PM - 06:00 PM",
-    "06:00 PM - 08:00 PM",
-  ];
-  
   const handleRemoveAllOfItem = (productId: string) => {
     removeFromCart(productId, true);
   }
@@ -268,7 +291,7 @@ Transaction ID: *${transactionId}*
                             <Label>Delivery Method</Label>
                             <RadioGroup
                                 value={deliveryMethod}
-                                onValueChange={setDeliveryMethod}
+                                onValueChange={handleDeliveryMethodChange}
                                 className="flex space-x-4 pt-2"
                                 defaultValue="home-delivery"
                             >
