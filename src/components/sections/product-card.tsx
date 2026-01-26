@@ -256,7 +256,7 @@ Transaction ID: *${transactionId}*
                             <p className="font-semibold">Due to high payment issues, we are taking payment before placing the order.</p>
                             <p className="mt-1">Don't worry, you are dealing with genuine people.</p>
                             <p className="mt-2 text-xs text-green-600">
-                                Contact: 8436860216 | combocafe24x7@gmail.com<br/>
+                                Contact: 8436860216<br/>
                                 Location: Nischintapur, Rampurhat
                             </p>
                         </div>
