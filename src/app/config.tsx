@@ -97,7 +97,7 @@ export const config = {
       },
       { id: "combos", label: "Combos", href: "/combos" },
       { id: "chocolates", label: "Chocolates", href: "/chocolates" },
-      { id: "about-us", label: "About Us", href: "/about" },
+      { id: "about-us", label: "About Us", href: "/about-us" },
       { id: "contact-us", label: "Contact Us", href: "/contact" },
     ],
   },
@@ -312,6 +312,7 @@ export const config = {
     
 
     
+
 
 
 
