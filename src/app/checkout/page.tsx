@@ -441,42 +441,44 @@ Transaction ID: *${transactionId}*
               3. Click confirm to place your order via WhatsApp.
             </DialogDescription>
           </DialogHeader>
-          <div className="text-sm text-center text-green-700 bg-green-50 p-3 rounded-md border border-green-200">
-            <p className="font-semibold">Due to high payment issues, we are taking payment before placing the order.</p>
-            <p className="mt-1">Don't worry, you are dealing with genuine people.</p>
-            <p className="mt-2 text-xs text-green-600">
-                <a href="tel:8436860216" className="hover:underline">Contact: 8436860216</a>
-                <span className="mx-2">|</span>
-                <a href="https://google.com/maps/place/Combo+Cafe+%26+Gifts+Shop/data=!4m2!3m1!1s0x0:0x20d4a8fe5d070ebc?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer" className="hover:underline">Location: Nischintapur, Rampurhat</a>
-            </p>
-          </div>
-          <div className="flex items-center justify-center py-4">
-            <Image
-              src={config.payment.qrCodeUrl}
-              alt="Payment QR Code"
-              width={250}
-              height={250}
-              className="rounded-md ring-1 ring-border"
-              priority
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="transactionId">Transaction ID</Label>
-            <Input
-              id="transactionId"
-              value={transactionId}
-              onChange={(e) => setTransactionId(e.target.value)}
-              placeholder="Enter 10+ digit transaction ID"
-              required
-              minLength={10}
-              suppressHydrationWarning
-            />
-          </div>
-          <DialogFooter className="sm:justify-start">
-            <Button onClick={handleSendToWhatsapp} className="w-full" disabled={!transactionId || transactionId.length < 10} suppressHydrationWarning>
-              Confirm and Place Order via WhatsApp
-            </Button>
-          </DialogFooter>
+          <div className="max-h-[65vh] overflow-y-auto -mx-6 px-6">
+              <div className="text-sm text-center text-green-700 bg-green-50 p-3 rounded-md border border-green-200">
+                <p className="font-semibold">Due to high payment issues, we are taking payment before placing the order.</p>
+                <p className="mt-1">Don't worry, you are dealing with genuine people.</p>
+                <p className="mt-2 text-xs text-green-600">
+                    <a href="tel:8436860216" className="hover:underline">Contact: 8436860216</a>
+                    <span className="mx-2">|</span>
+                    <a href="https://google.com/maps/place/Combo+Cafe+%26+Gifts+Shop/data=!4m2!3m1!1s0x0:0x20d4a8fe5d070ebc?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer" className="hover:underline">Location: Nischintapur, Rampurhat</a>
+                </p>
+              </div>
+              <div className="flex items-center justify-center py-4">
+                <Image
+                  src={config.payment.qrCodeUrl}
+                  alt="Payment QR Code"
+                  width={250}
+                  height={250}
+                  className="rounded-md ring-1 ring-border"
+                  priority
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="transactionId">Transaction ID</Label>
+                <Input
+                  id="transactionId"
+                  value={transactionId}
+                  onChange={(e) => setTransactionId(e.target.value)}
+                  placeholder="Enter 10+ digit transaction ID"
+                  required
+                  minLength={10}
+                  suppressHydrationWarning
+                />
+              </div>
+              <DialogFooter className="sm:justify-start pt-4">
+                <Button onClick={handleSendToWhatsapp} className="w-full" disabled={!transactionId || transactionId.length < 10} suppressHydrationWarning>
+                  Confirm and Place Order via WhatsApp
+                </Button>
+              </DialogFooter>
+            </div>
         </DialogContent>
       </Dialog>
     </>
