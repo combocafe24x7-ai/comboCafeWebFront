@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { DayPicker } from "react-day-picker"
 
 import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { buttonVariants, Button } from "@/components/ui/button"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -15,6 +15,8 @@ function Calendar({
   showOutsideDays = true,
   ...props
 }: CalendarProps) {
+  const handleSelect = props.onSelect as ((date: Date | undefined) => void) | undefined;
+
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
@@ -43,10 +45,10 @@ function Calendar({
         ),
         day_range_end: "day-range-end",
         day_selected:
-          "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
+          "bg-[#4a9dec] text-primary-foreground hover:bg-[#4a9dec]/90 focus:bg-[#4a9dec] focus:text-primary-foreground",
         day_today: "bg-accent text-accent-foreground",
         day_outside:
-          "day-outside text-muted-foreground aria-selected:bg-accent/50 aria-selected:text-muted-foreground",
+          "day-outside text-muted-foreground opacity-50 aria-selected:bg-accent/50 aria-selected:text-muted-foreground",
         day_disabled: "text-muted-foreground opacity-50",
         day_range_middle:
           "aria-selected:bg-accent aria-selected:text-accent-foreground",
@@ -61,6 +63,27 @@ function Calendar({
           <ChevronRight className={cn("h-4 w-4", className)} {...props} />
         ),
       }}
+      footer={
+        props.mode === 'single' && handleSelect ? (
+          <div className="flex justify-between pt-3 mt-3 border-t">
+            <Button
+              type="button"
+              variant="link"
+              className="text-muted-foreground"
+              onClick={() => handleSelect(undefined)}
+            >
+              Clear
+            </Button>
+            <Button
+              type="button"
+              variant="link"
+              onClick={() => handleSelect(new Date())}
+            >
+              Today
+            </Button>
+          </div>
+        ) : undefined
+      }
       {...props}
     />
   )
