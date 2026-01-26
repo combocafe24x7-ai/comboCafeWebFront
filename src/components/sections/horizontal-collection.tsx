@@ -44,6 +44,7 @@ const CollectionCard = ({ item, priority }: { item: CollectionItem; priority?: b
     const [isQrModalOpen, setIsQrModalOpen] = useState(false);
     const [transactionId, setTransactionId] = useState('');
     const [deliveryMethod, setDeliveryMethod] = useState('home-delivery');
+    const [paymentMethod, setPaymentMethod] = useState('prepaid');
     const [date, setDate] = useState<Date | undefined>(new Date());
     
     const deliveryTimeSlots = [
@@ -337,49 +338,80 @@ Transaction ID: *${transactionId}*
                                 </Select>
                             </div>
 
-                            <Separator />
-
-                            <div className="text-sm text-center text-muted-foreground">
-                                1. Scan the QR code to pay Rs. {item.price}.<br />2. Enter the transaction ID below.
-                            </div>
-                            
-                            <div className="text-sm text-center text-green-700 bg-green-50 p-3 my-2 rounded-md border border-green-200">
-                                <p className="font-semibold">Due to high payment issues, we are taking payment before placing the order.</p>
-                                <p className="mt-1">Don't worry, you are dealing with genuine people.</p>
-                                <p className="mt-2 text-xs text-green-600">
-                                    <a href="tel:8436860216" className="hover:underline">Contact: 8436860216</a>
-                                    <span className="mx-2">|</span>
-                                    <a href="https://google.com/maps/place/Combo+Cafe+%26+Gifts+Shop/data=!4m2!3m1!1s0x0:0x20d4a8fe5d070ebc?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer" className="hover:underline">Location: Nischintapur, Rampurhat</a>
-                                </p>
-                            </div>
-
-                            <div className="flex items-center justify-center py-2">
-                                <Image
-                                    src={config.payment.qrCodeUrl}
-                                    alt="Payment QR Code"
-                                    width={200}
-                                    height={200}
-                                    className="rounded-md ring-1 ring-border"
-                                    priority
-                                />
-                            </div>
                             <div className="space-y-2">
-                                <Label htmlFor={`transactionId-collection-${cardId}`}>Transaction ID</Label>
-                                <Input
-                                    id={`transactionId-collection-${cardId}`}
-                                    value={transactionId}
-                                    onChange={(e) => setTransactionId(e.target.value)}
-                                    placeholder="Enter 10+ digit transaction ID"
-                                    required
-                                    minLength={10}
-                                    suppressHydrationWarning
-                                />
+                                <Label>Payment Method</Label>
+                                <RadioGroup
+                                    value={paymentMethod}
+                                    onValueChange={setPaymentMethod}
+                                    className="flex space-x-4 pt-2"
+                                    defaultValue="prepaid"
+                                >
+                                    <div className="flex items-center space-x-2">
+                                        <RadioGroupItem value="prepaid" id={`prepaid-collection-${cardId}`} />
+                                        <Label htmlFor={`prepaid-collection-${cardId}`} className="font-normal">Pay Now</Label>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                        <RadioGroupItem value="cod" id={`cod-collection-${cardId}`} />
+                                        <Label htmlFor={`cod-collection-${cardId}`} className="font-normal">Cash on Delivery</Label>
+                                    </div>
+                                </RadioGroup>
                             </div>
-                            <DialogFooter className="sm:justify-start pt-4">
-                                <Button type="submit" className="w-full" disabled={!transactionId || transactionId.length < 10} suppressHydrationWarning>
-                                    Confirm and Place Order via WhatsApp
-                                </Button>
-                            </DialogFooter>
+                            {paymentMethod === 'prepaid' ? (
+                                <>
+                                    <Separator />
+
+                                    <div className="text-sm text-center text-muted-foreground">
+                                        1. Scan the QR code to pay Rs. {item.price}.<br />2. Enter the transaction ID below.
+                                    </div>
+                                    
+                                    <div className="text-sm text-center text-green-700 bg-green-50 p-3 my-2 rounded-md border border-green-200">
+                                        <p className="font-semibold">Due to high payment issues, we are taking payment before placing the order.</p>
+                                        <p className="mt-1">Don't worry, you are dealing with genuine people.</p>
+                                        <p className="mt-2 text-xs text-green-600">
+                                            <a href="tel:8436860216" className="hover:underline">Contact: 8436860216</a>
+                                            <span className="mx-2">|</span>
+                                            <a href="https://google.com/maps/place/Combo+Cafe+%26+Gifts+Shop/data=!4m2!3m1!1s0x0:0x20d4a8fe5d070ebc?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer" className="hover:underline">Location: Nischintapur, Rampurhat</a>
+                                        </p>
+                                    </div>
+
+                                    <div className="flex items-center justify-center py-2">
+                                        <Image
+                                            src={config.payment.qrCodeUrl}
+                                            alt="Payment QR Code"
+                                            width={200}
+                                            height={200}
+                                            className="rounded-md ring-1 ring-border"
+                                            priority
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor={`transactionId-collection-${cardId}`}>Transaction ID</Label>
+                                        <Input
+                                            id={`transactionId-collection-${cardId}`}
+                                            value={transactionId}
+                                            onChange={(e) => setTransactionId(e.target.value)}
+                                            placeholder="Enter 10+ digit transaction ID"
+                                            required
+                                            minLength={10}
+                                            suppressHydrationWarning
+                                        />
+                                    </div>
+                                    <DialogFooter className="sm:justify-start pt-4">
+                                        <Button type="submit" className="w-full" disabled={!transactionId || transactionId.length < 10} suppressHydrationWarning>
+                                            Confirm and Place Order via WhatsApp
+                                        </Button>
+                                    </DialogFooter>
+                                </>
+                            ) : (
+                                <DialogFooter className="sm:justify-start pt-4">
+                                    <Button asChild className="w-full" suppressHydrationWarning>
+                                        <a href={`tel:${phoneNumber}`}>
+                                            <Phone className="mr-2 h-4 w-4" />
+                                            Call to Place Order
+                                        </a>
+                                    </Button>
+                                </DialogFooter>
+                            )}
                         </form>
                     </DialogContent>
                 </Dialog>

@@ -39,6 +39,7 @@ export default function CheckoutPage() {
   const { toast } = useToast();
   const router = useRouter();
   const [deliveryMethod, setDeliveryMethod] = useState('home-delivery');
+  const [paymentMethod, setPaymentMethod] = useState('prepaid');
   const [date, setDate] = useState<Date | undefined>(new Date());
   
   const deliveryTimeSlots = [
@@ -373,10 +374,38 @@ Transaction ID: *${transactionId}*
                           </Select>
                         </div>
 
+                        <div className="space-y-2">
+                            <Label>Payment Method</Label>
+                            <RadioGroup
+                                value={paymentMethod}
+                                onValueChange={setPaymentMethod}
+                                className="flex space-x-4 pt-2"
+                                defaultValue="prepaid"
+                            >
+                                <div className="flex items-center space-x-2">
+                                    <RadioGroupItem value="prepaid" id="prepaid-checkout" />
+                                    <Label htmlFor="prepaid-checkout" className="font-normal">Pay Now</Label>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <RadioGroupItem value="cod" id="cod-checkout" />
+                                    <Label htmlFor="cod-checkout" className="font-normal">Cash on Delivery</Label>
+                                </div>
+                            </RadioGroup>
+                        </div>
 
-                        <Button type="submit" className="w-full" size="lg" disabled={cart.length === 0} suppressHydrationWarning>
-                            Place Order
-                        </Button>
+
+                        {paymentMethod === 'prepaid' ? (
+                            <Button type="submit" className="w-full" size="lg" disabled={cart.length === 0} suppressHydrationWarning>
+                                Place Order
+                            </Button>
+                        ) : (
+                            <Button asChild className="w-full" size="lg" suppressHydrationWarning>
+                                <a href="tel:918436860216">
+                                    <Phone className="mr-2 h-4 w-4" />
+                                    Call to Place Order
+                                </a>
+                            </Button>
+                        )}
                     </form>
                 </CardFooter>
               </Card>
