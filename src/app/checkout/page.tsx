@@ -217,13 +217,13 @@ Transaction ID: *${transactionId}*
             </div>
             <div>
               <div className="bg-white p-4 rounded-lg shadow-sm border mb-6">
-                  <h3 className="font-semibold text-center text-base mb-2">Cash on delivery is available!</h3>
-                  <div className="text-sm text-center text-muted-foreground space-y-1">
-                      <a href="https://wa.me/918436860216" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 hover:text-primary">
+                  <h3 className="font-semibold text-left text-base mb-2">Cash on delivery is available!</h3>
+                  <div className="text-sm text-muted-foreground space-y-1">
+                      <a href="https://wa.me/918436860216" target="_blank" rel="noopener noreferrer" className="flex items-center justify-start gap-1.5 hover:text-primary">
                           <Phone className="h-4 w-4" />
                           <span>WhatsApp: 84368 60216</span>
                       </a>
-                      <div className="flex items-center justify-center gap-1.5">
+                      <div className="flex items-center justify-start gap-1.5">
                           <MapPin className="h-4 w-4" />
                           <span>Location: Rampurhat</span>
                       </div>
