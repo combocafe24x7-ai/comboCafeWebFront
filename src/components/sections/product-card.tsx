@@ -27,7 +27,14 @@ export const ProductCard = ({ item, priority }: { item: Product; priority?: bool
     const [transactionId, setTransactionId] = useState('');
     const [deliveryMethod, setDeliveryMethod] = useState('home-delivery');
     const [paymentMethod, setPaymentMethod] = useState('prepaid');
-    const [date, setDate] = useState<Date | undefined>(new Date());
+    
+    const tomorrow = useMemo(() => {
+        const d = new Date();
+        d.setDate(d.getDate() + 1);
+        d.setHours(0, 0, 0, 0);
+        return d;
+    }, []);
+    const [date, setDate] = useState<Date | undefined>(tomorrow);
     
     const deliveryTimeSlots = [
         "10:00 AM - 12:00 PM",
@@ -277,7 +284,7 @@ Transaction ID: *${transactionId}*
                                         selected={date}
                                         onSelect={setDate}
                                         initialFocus
-                                        disabled={(d) => d <= new Date()}
+                                        disabled={(d) => d < tomorrow}
                                     />
                                 </PopoverContent>
                             </Popover>
