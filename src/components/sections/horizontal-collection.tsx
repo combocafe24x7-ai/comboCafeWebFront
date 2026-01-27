@@ -235,12 +235,9 @@ ${paymentInfo}
                 <div className="p-3 pt-0 bg-white space-y-2">
                     {item.price ? (
                         <>
-                           <Button onClick={handleAddToCart} className="w-full text-xs text-center rounded-md h-8" size="sm" suppressHydrationWarning>
-                                Add to Cart
-                            </Button>
-                            <div className="flex gap-2">
-                                <Button onClick={() => setIsQrModalOpen(true)} variant="secondary" className="w-full text-xs text-center rounded-md h-8" size="sm" suppressHydrationWarning>
-                                    Buy Now
+                           <div className="flex gap-2">
+                                <Button onClick={handleAddToCart} className="w-full text-xs text-center rounded-md h-8" size="sm" suppressHydrationWarning>
+                                    Add to Cart
                                 </Button>
                                 <Button asChild variant="outline" size="icon" className="h-8 w-8" suppressHydrationWarning>
                                     <a href={`tel:${phoneNumber}`}>
@@ -248,6 +245,9 @@ ${paymentInfo}
                                     </a>
                                 </Button>
                             </div>
+                            <Button onClick={() => setIsQrModalOpen(true)} variant="secondary" className="w-full text-xs text-center rounded-md h-8" size="sm" suppressHydrationWarning>
+                                Buy Now
+                            </Button>
                         </>
                     ) : (
                         <Button asChild variant="secondary" className="w-full text-xs text-center h-8" size="sm" suppressHydrationWarning>

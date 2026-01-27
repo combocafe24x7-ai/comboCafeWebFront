@@ -207,12 +207,9 @@ ${paymentInfo}
                     <div className="mt-auto pt-2">
                         <p className="font-sans font-bold text-base text-primary-dark">{`Rs. ${item.price}`}</p>
                         <div className="mt-2 space-y-2">
-                             <Button onClick={handleAddToCart} size="sm" className="w-full text-xs text-center rounded-md h-8" variant="default" suppressHydrationWarning>
-                                Add to Cart
-                            </Button>
                             <div className="flex gap-2">
-                                <Button onClick={() => setIsQrModalOpen(true)} variant="secondary" size="sm" className="w-full text-xs text-center rounded-md h-8" suppressHydrationWarning>
-                                    Buy Now
+                                <Button onClick={handleAddToCart} size="sm" className="w-full text-xs text-center rounded-md h-8" variant="default" suppressHydrationWarning>
+                                    Add to Cart
                                 </Button>
                                 <Button asChild variant="outline" size="icon" className="h-8 w-8 rounded-md" suppressHydrationWarning>
                                     <a href={`tel:${phoneNumber}`}>
@@ -220,6 +217,9 @@ ${paymentInfo}
                                     </a>
                                 </Button>
                             </div>
+                            <Button onClick={() => setIsQrModalOpen(true)} variant="secondary" size="sm" className="w-full text-xs text-center rounded-md h-8" suppressHydrationWarning>
+                                Buy Now
+                            </Button>
                         </div>
                     </div>
                 </CardContent>
