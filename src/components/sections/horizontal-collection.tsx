@@ -45,7 +45,6 @@ const CollectionCard = ({ item, priority }: { item: CollectionItem; priority?: b
     const [isQrModalOpen, setIsQrModalOpen] = useState(false);
     const [transactionId, setTransactionId] = useState('');
     const [deliveryMethod, setDeliveryMethod] = useState('home-delivery');
-    const [paymentMethod, setPaymentMethod] = useState('prepaid');
     const [qrCodeUrl, setQrCodeUrl] = useState('');
     
     const tomorrow = useMemo(() => {
@@ -145,7 +144,7 @@ const CollectionCard = ({ item, priority }: { item: CollectionItem; priority?: b
     const handleSendToWhatsapp = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         
-        if (paymentMethod === 'prepaid' && (!transactionId || transactionId.length < 12)) {
+        if (!transactionId || transactionId.length < 12) {
             toast({
                 variant: "destructive",
                 title: "Valid Transaction ID is required",
@@ -164,12 +163,9 @@ Address: ${customerDetails.address}${customerDetails.landmark ? `, ${customerDet
 The customer will pick up from the store.
 `;
 
-        const paymentInfo = paymentMethod === 'prepaid' ? `
+        const paymentInfo = `
 *Payment Information:*
 Transaction ID: *${transactionId}*
-` : `
-*Payment Information:*
-Cash on Delivery
 `;
 
         const whatsappMessage = `
@@ -242,9 +238,16 @@ ${paymentInfo}
                            <Button onClick={handleAddToCart} className="w-full text-xs text-center rounded-md h-8" size="sm" suppressHydrationWarning>
                                 Add to Cart
                             </Button>
-                            <Button onClick={() => setIsQrModalOpen(true)} variant="secondary" className="w-full text-xs text-center rounded-md h-8" size="sm" suppressHydrationWarning>
-                                Buy Now
-                            </Button>
+                            <div className="flex gap-2">
+                                <Button onClick={() => setIsQrModalOpen(true)} variant="secondary" className="w-full text-xs text-center rounded-md h-8" size="sm" suppressHydrationWarning>
+                                    Buy Now
+                                </Button>
+                                <Button asChild variant="outline" size="icon" className="h-8 w-8" suppressHydrationWarning>
+                                    <a href={`tel:${phoneNumber}`}>
+                                        <Phone className="h-4 w-4" />
+                                    </a>
+                                </Button>
+                            </div>
                         </>
                     ) : (
                         <Button asChild variant="secondary" className="w-full text-xs text-center h-8" size="sm" suppressHydrationWarning>
@@ -258,7 +261,7 @@ ${paymentInfo}
 
             {item.price && (
                 <Dialog open={isQrModalOpen} onOpenChange={setIsQrModalOpen}>
-                    <DialogContent className="sm:max-w-lg">
+                    <DialogContent className="sm:max-w-lg" onOpenAutoFocus={(e) => e.preventDefault()}>
                         <DialogHeader>
                             <DialogTitle>Order: {item.title}</DialogTitle>
                             <DialogDescription>
@@ -364,75 +367,46 @@ ${paymentInfo}
                                 </Select>
                             </div>
 
-                            <div className="space-y-2">
-                                <Label>Payment Method</Label>
-                                <RadioGroup
-                                    value={paymentMethod}
-                                    onValueChange={setPaymentMethod}
-                                    className="flex space-x-4 pt-2"
-                                    defaultValue="prepaid"
-                                >
-                                    <div className="flex items-center space-x-2">
-                                        <RadioGroupItem value="prepaid" id={`prepaid-collection-${cardId}`} />
-                                        <Label htmlFor={`prepaid-collection-${cardId}`} className="font-normal">Pay Now</Label>
-                                    </div>
-                                    <div className="flex items-center space-x-2">
-                                        <RadioGroupItem value="cod" id={`cod-collection-${cardId}`} />
-                                        <Label htmlFor={`cod-collection-${cardId}`} className="font-normal">Cash on Delivery</Label>
-                                    </div>
-                                </RadioGroup>
-                            </div>
-                            
                             <Separator />
+                            
+                            <div className="text-sm text-center text-green-700 bg-green-50 p-3 my-2 rounded-md border border-green-200">
+                                <p className="font-semibold">Orders are confirmed only after payment verification.</p>
+                                <p className="mt-1">Orders without correct UTR will not be processed.</p>
+                            </div>
 
-                            {paymentMethod === 'prepaid' ? (
-                                <>
-                                    <div className="text-sm text-center text-green-700 bg-green-50 p-3 my-2 rounded-md border border-green-200">
-                                        <p className="font-semibold">Orders are confirmed only after payment verification.</p>
-                                        <p className="mt-1">Orders without correct UTR will not be processed.</p>
+                            <div className="flex items-center justify-center py-2">
+                                {qrCodeUrl ? (
+                                    <Image
+                                        src={qrCodeUrl}
+                                        alt="UPI QR Code for payment"
+                                        width={200}
+                                        height={200}
+                                        className="rounded-md ring-1 ring-border"
+                                        priority
+                                    />
+                                ) : (
+                                    <div className="w-[200px] h-[200px] flex items-center justify-center bg-gray-100 rounded-md">
+                                        <p className="text-sm text-gray-500">Generating QR Code...</p>
                                     </div>
-
-                                    <div className="flex items-center justify-center py-2">
-                                        {qrCodeUrl ? (
-                                            <Image
-                                                src={qrCodeUrl}
-                                                alt="UPI QR Code for payment"
-                                                width={200}
-                                                height={200}
-                                                className="rounded-md ring-1 ring-border"
-                                                priority
-                                            />
-                                        ) : (
-                                            <div className="w-[200px] h-[200px] flex items-center justify-center bg-gray-100 rounded-md">
-                                                <p className="text-sm text-gray-500">Generating QR Code...</p>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor={`transactionId-collection-${cardId}`}>UPI Transaction ID (UTR)</Label>
-                                        <Input
-                                            id={`transactionId-collection-${cardId}`}
-                                            value={transactionId}
-                                            onChange={(e) => setTransactionId(e.target.value)}
-                                            placeholder="Enter 12-digit transaction ID"
-                                            required
-                                            minLength={12}
-                                            suppressHydrationWarning
-                                        />
-                                    </div>
-                                    <DialogFooter className="sm:justify-start pt-4">
-                                        <Button type="submit" className="w-full" disabled={!transactionId || transactionId.length < 12} suppressHydrationWarning>
-                                            I have paid - Place Order on WhatsApp
-                                        </Button>
-                                    </DialogFooter>
-                                </>
-                            ) : (
-                                <DialogFooter className="sm:justify-start pt-4">
-                                    <Button type="submit" className="w-full" suppressHydrationWarning>
-                                        Place Order on WhatsApp
-                                    </Button>
-                                </DialogFooter>
-                            )}
+                                )}
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor={`transactionId-collection-${cardId}`}>UPI Transaction ID (UTR)</Label>
+                                <Input
+                                    id={`transactionId-collection-${cardId}`}
+                                    value={transactionId}
+                                    onChange={(e) => setTransactionId(e.target.value)}
+                                    placeholder="Enter 12-digit transaction ID"
+                                    required
+                                    minLength={12}
+                                    suppressHydrationWarning
+                                />
+                            </div>
+                            <DialogFooter className="sm:justify-start pt-4">
+                                <Button type="submit" className="w-full" disabled={!transactionId || transactionId.length < 12} suppressHydrationWarning>
+                                    I have paid - Place Order on WhatsApp
+                                </Button>
+                            </DialogFooter>
                         </form>
                     </DialogContent>
                 </Dialog>
