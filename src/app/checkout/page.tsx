@@ -11,7 +11,8 @@ import Link from 'next/link';
 import { ArrowLeft, Plus, Minus, Trash2, Phone, Calendar as CalendarIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
+import QRCode from 'qrcode';
 import {
   Dialog,
   DialogContent,
@@ -84,6 +85,7 @@ export default function CheckoutPage() {
   const [isQrModalOpen, setIsQrModalOpen] = useState(false);
   const [transactionId, setTransactionId] = useState('');
   const [customerDetails, setCustomerDetails] = useState<any>(null);
+  const [qrCodeUrl, setQrCodeUrl] = useState('');
 
   const cartItems = useMemo((): CartItemView[] => {
     const groupedItems: { [key: string]: CartItemView } = {};
@@ -100,6 +102,24 @@ export default function CheckoutPage() {
   const total = useMemo(() => {
     return cart.reduce((acc, item) => acc + parseFloat(item.price), 0);
   }, [cart]);
+
+  useEffect(() => {
+    if (isQrModalOpen && total > 0) {
+      const upiLink = `upi://pay?pa=soumyasaha18@oksbi&pn=Soumya%20Saha&am=${total.toFixed(2)}&cu=INR&tn=Website%20Order`;
+      QRCode.toDataURL(upiLink)
+        .then(url => {
+          setQrCodeUrl(url);
+        })
+        .catch(err => {
+          console.error(err);
+          toast({
+            variant: "destructive",
+            title: "Could not generate QR code",
+            description: "Please try again.",
+          });
+        });
+    }
+  }, [isQrModalOpen, total, toast]);
 
   const handleRemoveAllOfItem = (productId: string) => {
     removeFromCart(productId, true);
@@ -349,7 +369,7 @@ Transaction ID: *${transactionId}*
                                 {date ? format(date, "PPP") : <span>Pick a date</span>}
                               </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="w-auto p-0" onOpenAutoFocus={(e) => e.preventDefault()}>
+                            <PopoverContent className="w-auto p-0 z-[200]" onOpenAutoFocus={(e) => e.preventDefault()}>
                               <Calendar
                                 mode="single"
                                 selected={date}
@@ -435,7 +455,7 @@ Transaction ID: *${transactionId}*
           </div>
         </div>
       </main>
-       <Dialog open={isQrModalOpen} onOpenChange={setIsQrModalOpen} modal={false}>
+       <Dialog open={isQrModalOpen} onOpenChange={setIsQrModalOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Scan to Pay</DialogTitle>
@@ -447,10 +467,10 @@ Transaction ID: *${transactionId}*
               3. Click confirm to place your order via WhatsApp.
             </DialogDescription>
           </DialogHeader>
-          <div className="max-h-[65vh] overflow-y-auto -mx-6 px-6">
+          <div className="max-h-[70vh] overflow-y-auto -mx-6 px-6">
               <div className="text-sm text-center text-green-700 bg-green-50 p-3 rounded-md border border-green-200">
-                <p className="font-semibold">Due to high payment issues, we are taking payment before placing the order.</p>
-                <p className="mt-1">Don't worry, you are dealing with genuine people.</p>
+                <p className="font-semibold">Orders are confirmed only after payment verification.</p>
+                <p className="mt-1">Orders without correct UTR will not be processed.</p>
                 <p className="mt-2 text-xs text-green-600">
                     <a href="tel:8436860216" className="hover:underline">Contact: 8436860216</a>
                     <span className="mx-2">|</span>
@@ -458,30 +478,36 @@ Transaction ID: *${transactionId}*
                 </p>
               </div>
               <div className="flex items-center justify-center py-4">
-                <Image
-                  src={config.payment.qrCodeUrl}
-                  alt="Payment QR Code"
-                  width={250}
-                  height={250}
-                  className="rounded-md ring-1 ring-border"
-                  priority
-                />
+                {qrCodeUrl ? (
+                  <Image
+                    src={qrCodeUrl}
+                    alt="UPI QR Code for payment"
+                    width={250}
+                    height={250}
+                    className="rounded-md ring-1 ring-border"
+                    priority
+                  />
+                ) : (
+                  <div className="w-[250px] h-[250px] flex items-center justify-center bg-gray-100 rounded-md">
+                    <p className="text-sm text-gray-500">Generating QR Code...</p>
+                  </div>
+                )}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="transactionId">Transaction ID</Label>
+                <Label htmlFor="transactionId">UPI Transaction ID (UTR)</Label>
                 <Input
                   id="transactionId"
                   value={transactionId}
                   onChange={(e) => setTransactionId(e.target.value)}
-                  placeholder="Enter 10+ digit transaction ID"
+                  placeholder="Enter 12-digit transaction ID"
                   required
-                  minLength={10}
+                  minLength={12}
                   suppressHydrationWarning
                 />
               </div>
               <DialogFooter className="sm:justify-start pt-4">
-                <Button onClick={handleSendToWhatsapp} className="w-full" disabled={!transactionId || transactionId.length < 10} suppressHydrationWarning>
-                  Confirm and Place Order via WhatsApp
+                <Button onClick={handleSendToWhatsapp} className="w-full" disabled={!transactionId || transactionId.length < 12} suppressHydrationWarning>
+                  I have paid - Place Order on WhatsApp
                 </Button>
               </DialogFooter>
             </div>
@@ -490,7 +516,3 @@ Transaction ID: *${transactionId}*
     </>
   );
 }
-
-    
-
-    
