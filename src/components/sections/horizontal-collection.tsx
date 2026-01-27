@@ -158,6 +158,15 @@ const CollectionCard = ({ item, priority }: { item: CollectionItem; priority?: b
     const handleSendToWhatsapp = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         
+        if (deliveryMethod === 'home-delivery' && customerDetails.pincode !== '731224') {
+            toast({
+                variant: "destructive",
+                title: "Pincode not serviceable",
+                description: "We currently only deliver to pincode 731224.",
+            });
+            return;
+        }
+
         if (!transactionId || transactionId.length < 12) {
             toast({
                 variant: "destructive",
@@ -327,7 +336,7 @@ ${paymentInfo}
                                     </div>
                                     <div className="space-y-2">
                                         <Label htmlFor={`pincode-${cardId}`}>Pincode</Label>
-                                        <Input id={`pincode-${cardId}`} name="pincode" type="text" placeholder="731235" maxLength={6} required={deliveryMethod === 'home-delivery'} onChange={handleDetailsChange} value={customerDetails.pincode} suppressHydrationWarning />
+                                        <Input id={`pincode-${cardId}`} name="pincode" type="text" placeholder="731224" maxLength={6} required={deliveryMethod === 'home-delivery'} onChange={handleDetailsChange} value={customerDetails.pincode} suppressHydrationWarning />
                                     </div>
                                 </>
                             )}
@@ -481,3 +490,5 @@ export default function HorizontalCollection({ title, items, bgColor = 'bg-white
         </section>
     );
 }
+
+    

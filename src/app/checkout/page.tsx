@@ -128,6 +128,16 @@ export default function CheckoutPage() {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    const pincode = formData.get('pincode');
+
+    if (deliveryMethod === 'home-delivery' && pincode !== '731224') {
+      toast({
+        variant: 'destructive',
+        title: 'Pincode not serviceable',
+        description: 'We currently only deliver to pincode 731224.',
+      });
+      return;
+    }
     
     if (cart.length === 0) {
       toast({
@@ -144,7 +154,7 @@ export default function CheckoutPage() {
         phone: formData.get('phone'),
         address: formData.get('address'),
         landmark: formData.get('landmark'),
-        pincode: formData.get('pincode'),
+        pincode: pincode,
     });
 
     setIsQrModalOpen(true);
@@ -346,7 +356,7 @@ Transaction ID: *${transactionId}*
                                 </div>
                                 <div className="space-y-2">
                                     <Label htmlFor="pincode">Pincode</Label>
-                                    <Input id="pincode" name="pincode" type="text" placeholder="731235" maxLength={6} required={deliveryMethod === 'home-delivery'} suppressHydrationWarning />
+                                    <Input id="pincode" name="pincode" type="text" placeholder="731224" maxLength={6} required={deliveryMethod === 'home-delivery'} suppressHydrationWarning />
                                 </div>
                             </>
                         )}
@@ -517,3 +527,5 @@ Transaction ID: *${transactionId}*
     </>
   );
 }
+
+    
