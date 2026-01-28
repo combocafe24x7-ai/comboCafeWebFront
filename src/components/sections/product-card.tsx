@@ -482,6 +482,7 @@ ${paymentInfo}
                                                 minLength={12}
                                                 className="text-lg text-center font-mono tracking-widest bg-gray-50 border-2 border-dashed"
                                                 suppressHydrationWarning
+                                                autoComplete="off"
                                             />
                                         </div>
                                     </div>

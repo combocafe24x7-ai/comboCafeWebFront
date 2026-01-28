@@ -547,6 +547,7 @@ Transaction ID: *${transactionId}*
                   minLength={12}
                   className="text-lg text-center font-mono tracking-widest bg-gray-50 border-2 border-dashed"
                   suppressHydrationWarning
+                  autoComplete="off"
                 />
               </div>
               <DialogFooter className="sm:justify-start pt-4">
