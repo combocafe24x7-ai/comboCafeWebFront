@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState, useMemo, useEffect } from 'react';
 import QRCode from 'qrcode';
@@ -265,7 +266,7 @@ ${paymentInfo}
                 </CardContent>
             </Card>
             <Dialog open={isQrModalOpen} onOpenChange={setIsQrModalOpen}>
-                <DialogContent className="w-screen h-screen max-w-full rounded-none border-0 p-0 sm:h-auto sm:w-full sm:max-w-4xl sm:rounded-lg sm:border">
+                <DialogContent className="w-screen h-screen max-w-full rounded-none border-0 p-0 sm:h-auto sm:w-full sm:max-w-4xl sm:rounded-lg sm:border" onPointerDownOutside={(e) => e.preventDefault()} onEscapeKeyDown={(e) => e.preventDefault()}>
                     <DialogHeader className="p-6 pb-0">
                         <DialogTitle>Your Order</DialogTitle>
                         <DialogDescription>
@@ -273,7 +274,7 @@ ${paymentInfo}
                         </DialogDescription>
                     </DialogHeader>
                     <form id={`form-${cardId}`} onSubmit={handleSendToWhatsapp}>
-                        <div className="grid md:grid-cols-2 md:gap-8 overflow-y-auto px-6 h-[calc(100vh-150px)] sm:h-auto sm:max-h-[65vh]">
+                        <div className="grid md:grid-cols-2 md:gap-8 overflow-y-auto px-6 h-[calc(100vh-240px)] sm:h-auto sm:max-h-[65vh]">
                             {/* Left Column: Form fields */}
                             <div className="space-y-4 py-4">
                                 <h3 className="text-lg font-semibold">Contact & Delivery Details</h3>
