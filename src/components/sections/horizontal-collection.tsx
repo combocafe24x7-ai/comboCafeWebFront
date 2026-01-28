@@ -48,6 +48,12 @@ const CollectionCard = ({ item, priority }: { item: CollectionItem; priority?: b
     const [deliveryMethod, setDeliveryMethod] = useState('home-delivery');
     const [qrCodeUrl, setQrCodeUrl] = useState('');
     const router = useRouter();
+
+    const finalPrice = useMemo(() => {
+        if (!item.price) return 0;
+        const price = parseFloat(item.price);
+        return price < 299 ? price + 25 : price;
+    }, [item.price]);
     
     const tomorrow = useMemo(() => {
         const d = new Date();
@@ -99,8 +105,8 @@ const CollectionCard = ({ item, priority }: { item: CollectionItem; priority?: b
     });
 
     useEffect(() => {
-        if (isQrModalOpen && item.price) {
-            const upiLink = `upi://pay?pa=soumyasaha18@oksbi&pn=Soumya%20Saha&am=${parseFloat(item.price).toFixed(2)}&cu=INR&tn=${encodeURIComponent(item.title)}`;
+        if (isQrModalOpen && finalPrice > 0) {
+            const upiLink = `upi://pay?pa=soumyasaha18@oksbi&pn=Soumya%20Saha&am=${finalPrice.toFixed(2)}&cu=INR&tn=${encodeURIComponent(item.title)}`;
             QRCode.toDataURL(upiLink, { errorCorrectionLevel: 'M' })
                 .then(url => {
                     setQrCodeUrl(url);
@@ -114,7 +120,7 @@ const CollectionCard = ({ item, priority }: { item: CollectionItem; priority?: b
                     });
                 });
         }
-    }, [isQrModalOpen, item.title, item.price, toast]);
+    }, [isQrModalOpen, item.title, finalPrice, toast]);
 
     const handleAddToCart = () => {
         if (!item.id || !item.price) {
@@ -140,7 +146,7 @@ const CollectionCard = ({ item, priority }: { item: CollectionItem; priority?: b
 
     const handleBuyNow = () => {
         if (!item.id || !item.price) {
-            toast({
+             toast({
                 variant: "destructive",
                 title: "Cannot buy now",
                 description: "This item cannot be purchased directly.",
@@ -208,7 +214,7 @@ ${deliveryDetails}
 *Order Item:*
 - ${item.title} (x1)
 
-*Order Total: Rs. ${item.price}*
+*Order Total: Rs. ${finalPrice.toFixed(2)}*
 
 ${paymentInfo}
         `.trim().replace(/^\s+/gm, '');
@@ -252,6 +258,9 @@ ${paymentInfo}
                     {item.price && (
                         <div className="p-3 bg-white">
                             <p className="font-semibold text-gray-900 text-sm">{`Rs. ${item.price}`}</p>
+                            {parseFloat(item.price) < 299 && (
+                                <p className="text-xs text-muted-foreground mt-1">+ ₹25 Delivery</p>
+                            )}
                         </div>
                     )}
                 </CardContent>

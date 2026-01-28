@@ -30,6 +30,11 @@ export const ProductCard = ({ item, priority }: { item: Product; priority?: bool
     const [transactionId, setTransactionId] = useState('');
     const [deliveryMethod, setDeliveryMethod] = useState('home-delivery');
     const [qrCodeUrl, setQrCodeUrl] = useState('');
+
+    const finalPrice = useMemo(() => {
+        const price = parseFloat(item.price);
+        return price < 299 ? price + 25 : price;
+    }, [item.price]);
     
     const tomorrow = useMemo(() => {
         const d = new Date();
@@ -84,7 +89,7 @@ export const ProductCard = ({ item, priority }: { item: Product; priority?: bool
 
     useEffect(() => {
         if (isQrModalOpen) {
-            const upiLink = `upi://pay?pa=soumyasaha18@oksbi&pn=Soumya%20Saha&am=${parseFloat(item.price).toFixed(2)}&cu=INR&tn=${encodeURIComponent(item.name)}`;
+            const upiLink = `upi://pay?pa=soumyasaha18@oksbi&pn=Soumya%20Saha&am=${finalPrice.toFixed(2)}&cu=INR&tn=${encodeURIComponent(item.name)}`;
             QRCode.toDataURL(upiLink, { errorCorrectionLevel: 'M' })
                 .then(url => {
                     setQrCodeUrl(url);
@@ -98,7 +103,7 @@ export const ProductCard = ({ item, priority }: { item: Product; priority?: bool
                     });
                 });
         }
-    }, [isQrModalOpen, item.name, item.price, toast]);
+    }, [isQrModalOpen, item.name, finalPrice, toast]);
 
     const handleAddToCart = () => {
         addToCart(item);
@@ -165,7 +170,7 @@ ${deliveryDetails}
 *Order Item:*
 - ${item.name} (x1)
 
-*Order Total: Rs. ${item.price}*
+*Order Total: Rs. ${finalPrice.toFixed(2)}*
 
 ${paymentInfo}
         `.trim().replace(/^\s+/gm, '');
@@ -220,7 +225,12 @@ ${paymentInfo}
                     </div>
 
                     <div className="mt-auto pt-2">
-                        <p className="font-sans font-bold text-base text-primary-dark">{`Rs. ${item.price}`}</p>
+                        <div>
+                            <p className="font-sans font-bold text-base text-primary-dark">{`Rs. ${item.price}`}</p>
+                            {parseFloat(item.price) < 299 && (
+                                <p className="text-xs text-muted-foreground">+ ₹25 Delivery</p>
+                            )}
+                        </div>
                         <div className="mt-2 space-y-2">
                             <div className="flex gap-1">
                                 <Button onClick={handleAddToCart} size="sm" className="w-full text-xs text-center rounded-md h-8" variant="default" suppressHydrationWarning>

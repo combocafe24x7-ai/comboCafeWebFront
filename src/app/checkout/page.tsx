@@ -99,8 +99,19 @@ export default function CheckoutPage() {
     return Object.values(groupedItems);
   }, [cart]);
 
-  const total = useMemo(() => {
-    return cart.reduce((acc, item) => acc + parseFloat(item.price), 0);
+  const { subtotal, deliveryCharge, total } = useMemo(() => {
+    const subtotal = cart.reduce((acc, item) => acc + parseFloat(item.price), 0);
+    
+    let calcDeliveryCharge = 0;
+    for (const item of cart) {
+        if (parseFloat(item.price) < 299) {
+            calcDeliveryCharge += 25;
+        }
+    }
+
+    const total = subtotal + calcDeliveryCharge;
+
+    return { subtotal, deliveryCharge: calcDeliveryCharge, total };
   }, [cart]);
 
   useEffect(() => {
@@ -298,11 +309,11 @@ Transaction ID: *${transactionId}*
                 <CardContent className="space-y-4">
                   <div className="flex justify-between">
                     <span>Subtotal</span>
-                    <span>{`Rs. ${total.toFixed(2)}`}</span>
+                    <span>{`Rs. ${subtotal.toFixed(2)}`}</span>
                   </div>
                   <div className="flex justify-between text-sm text-gray-500">
                     <span>Delivery</span>
-                    <span>Free</span>
+                    <span>{deliveryCharge > 0 ? `Rs. ${deliveryCharge.toFixed(2)}` : 'Free'}</span>
                   </div>
                   <Separator />
                   <div className="flex justify-between font-bold text-lg">
