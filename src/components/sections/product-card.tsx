@@ -34,10 +34,13 @@ export const ProductCard = ({ item, priority }: { item: Product; priority?: bool
 
     const finalPrice = useMemo(() => {
         const price = parseFloat(item.price);
-        const delivery = price < 299 ? 25 : 0;
+        let delivery = 0;
+        if (deliveryMethod === 'home-delivery' && price < 299) {
+            delivery = 25;
+        }
         const handling = 5;
         return price + delivery + handling;
-    }, [item.price]);
+    }, [item.price, deliveryMethod]);
     
     const tomorrow = useMemo(() => {
         const d = new Date();
@@ -240,7 +243,7 @@ ${paymentInfo}
                         <div>
                             <p className="font-sans font-bold text-base text-primary-dark">{`Rs. ${item.price}`}</p>
                             {parseFloat(item.price) < 299 && (
-                                <p className="text-xs text-muted-foreground">+ ₹25 Delivery</p>
+                                <p className="text-xs text-muted-foreground mt-1">₹25 Delivery</p>
                             )}
                         </div>
                         <div className="mt-2 space-y-2">
@@ -372,6 +375,25 @@ ${paymentInfo}
                                         </SelectContent>
                                     </Select>
                                 </div>
+
+                                <div className="space-y-2">
+                                    <Label>Payment Method</Label>
+                                    <RadioGroup
+                                        value={paymentMethod}
+                                        onValueChange={setPaymentMethod}
+                                        className="flex space-x-4 pt-2"
+                                        defaultValue="prepaid"
+                                    >
+                                        <div className="flex items-center space-x-2">
+                                            <RadioGroupItem value="prepaid" id={`prepaid-product-${cardId}`} />
+                                            <Label htmlFor={`prepaid-product-${cardId}`} className="font-normal">Pay Now</Label>
+                                        </div>
+                                        <div className="flex items-center space-x-2">
+                                            <RadioGroupItem value="cod" id={`cod-product-${cardId}`} />
+                                            <Label htmlFor={`cod-product-${cardId}`} className="font-normal">Cash on Delivery</Label>
+                                        </div>
+                                    </RadioGroup>
+                                </div>
                             </div>
                             
                             {/* Right Column: Order Summary & Payment */}
@@ -414,31 +436,12 @@ ${paymentInfo}
                                     </Card>
                                 </div>
 
-                                <div className="space-y-2">
-                                    <Label>Payment Method</Label>
-                                    <RadioGroup
-                                        value={paymentMethod}
-                                        onValueChange={setPaymentMethod}
-                                        className="flex space-x-4 pt-2"
-                                        defaultValue="prepaid"
-                                    >
-                                        <div className="flex items-center space-x-2">
-                                            <RadioGroupItem value="prepaid" id={`prepaid-product-${cardId}`} />
-                                            <Label htmlFor={`prepaid-product-${cardId}`} className="font-normal">Pay Now</Label>
-                                        </div>
-                                        <div className="flex items-center space-x-2">
-                                            <RadioGroupItem value="cod" id={`cod-product-${cardId}`} />
-                                            <Label htmlFor={`cod-product-${cardId}`} className="font-normal">Cash on Delivery</Label>
-                                        </div>
-                                    </RadioGroup>
-                                </div>
-
                                 {paymentMethod === 'prepaid' && (
                                     <div className="space-y-4 rounded-lg border p-4">
                                         <div className="text-sm text-center text-green-700 bg-green-50 p-3 rounded-md border border-green-200">
                                             <p className="font-semibold">You're dealing with genuine people!</p>
-                                            <p className="mt-1">Please double-check the Transaction ID (UTR). Orders without a correct UTR cannot be processed.</p>
-                                            <p className="mt-1 text-xs text-green-600">
+                                            <p className="mt-1 font-semibold">Please double-check the Transaction ID (UTR). Orders without a correct UTR cannot be processed.</p>
+                                            <p className="mt-2 text-xs text-green-600">
                                                 <a href="tel:8436860216" className="hover:underline">Contact: 8436860216</a>
                                                 <span className="mx-2">|</span>
                                                 <a href="https://google.com/maps/place/Combo+Cafe+%26+Gifts+Shop/data=!4m2!3m1!1s0x0:0x20d4a8fe5d070ebc?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer" className="hover:underline">Location: Nischintapur, Rampurhat</a>
