@@ -220,6 +220,7 @@ ${paymentInfo}
                             className="object-cover transition-transform duration-300 group-hover:scale-105"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             priority={priority}
+                            unoptimized
                         />
                     </div>
                     {item.badge && (
@@ -398,7 +399,7 @@ ${paymentInfo}
                                         <CardContent className="p-4 space-y-3">
                                             <div className="flex justify-between items-center">
                                                 <div className="flex items-center gap-3">
-                                                    <Image src={item.imageUrl} alt={item.name} width={48} height={48} className="rounded-md" />
+                                                    <Image src={item.imageUrl} alt={item.name} width={48} height={48} className="rounded-md" unoptimized />
                                                     <div>
                                                         <p className="font-semibold text-sm">{item.name}</p>
                                                         <p className="text-sm text-muted-foreground">Qty: 1</p>

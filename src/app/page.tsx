@@ -45,6 +45,7 @@ export default function Home() {
           className="object-cover"
           sizes="100vw"
           priority
+          unoptimized
         />
       </div>
 
@@ -62,6 +63,7 @@ export default function Home() {
           fill
           className="object-cover"
           sizes="100vw"
+          unoptimized
         />
       </div>
 
@@ -82,6 +84,7 @@ export default function Home() {
           fill
           className="object-cover"
           sizes="100vw"
+          unoptimized
         />
       </div>
 

@@ -24,6 +24,7 @@ export default function IconCategoryStrip() {
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
                   sizes="64px"
                   priority
+                  unoptimized
                 />
               </div>
               <h4 className="font-semibold text-xs text-text/80 group-hover:text-text transition-colors duration-300 text-ui leading-tight">

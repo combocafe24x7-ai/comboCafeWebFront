@@ -46,6 +46,7 @@ export default function CakesPage() {
                 fill
                 className="object-cover"
                 sizes="100vw"
+                unoptimized
             />
         </div>
       </div>

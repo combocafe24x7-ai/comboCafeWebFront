@@ -263,6 +263,7 @@ ${paymentInfo}
                                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
                                 priority={priority}
+                                unoptimized
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                             <div className="absolute bottom-4 left-4 right-4">
@@ -439,7 +440,7 @@ ${paymentInfo}
                                             <CardContent className="p-4 space-y-3">
                                                 <div className="flex justify-between items-center">
                                                     <div className="flex items-center gap-3">
-                                                        <Image src={item.imageUrl} alt={item.title} width={48} height={48} className="rounded-md" />
+                                                        <Image src={item.imageUrl} alt={item.title} width={48} height={48} className="rounded-md" unoptimized />
                                                         <div>
                                                             <p className="font-semibold text-sm">{item.title}</p>
                                                             <p className="text-sm text-muted-foreground">Qty: 1</p>

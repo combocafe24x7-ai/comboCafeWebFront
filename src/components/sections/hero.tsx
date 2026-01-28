@@ -38,6 +38,7 @@ export default function Hero() {
                   className="object-cover object-center"
                   sizes="100vw"
                   priority={index === 0}
+                  unoptimized
                 />
               </div>
             </CarouselItem>

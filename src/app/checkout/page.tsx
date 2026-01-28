@@ -267,6 +267,7 @@ Transaction ID: *${transactionId}*
                             width={80}
                             height={80}
                             className="rounded-md object-cover"
+                            unoptimized
                           />
                           <div className="flex-grow">
                             <h3 className="font-semibold">{product.name}</h3>

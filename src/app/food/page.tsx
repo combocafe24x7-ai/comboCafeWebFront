@@ -48,6 +48,7 @@ export default function FoodPage() {
                 fill
                 className="object-cover"
                 sizes="100vw"
+                unoptimized
             />
         </div>
       </div>
