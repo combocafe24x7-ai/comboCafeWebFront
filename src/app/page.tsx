@@ -55,6 +55,16 @@ export default function Home() {
         viewAllLink="/cakes"
       />
 
+      <div className="relative w-full aspect-[3/1]">
+        <Image
+          src="https://gpfocwgfedokhmfsbcpy.supabase.co/storage/v1/object/public/asset/banner1.webp"
+          alt="Special Offer Banner"
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+      </div>
+
       <ProductSection
         id="quick-bites"
         title="Quick Bites"
