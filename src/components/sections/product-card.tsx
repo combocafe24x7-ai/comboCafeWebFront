@@ -2,7 +2,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import QRCode from 'qrcode';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
 import { useToast } from '@/hooks/use-toast';
 import { useCart, Product } from '@/context/cart-provider';
@@ -11,7 +11,6 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { config } from '@/app/config';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
@@ -263,198 +262,241 @@ ${paymentInfo}
                 </CardContent>
             </Card>
             <Dialog open={isQrModalOpen} onOpenChange={setIsQrModalOpen}>
-                <DialogContent className="sm:max-w-lg">
-                    <DialogHeader>
-                        <DialogTitle>Order: {item.name}</DialogTitle>
+                <DialogContent className="w-screen h-screen max-w-full rounded-none border-0 p-0 sm:h-auto sm:w-full sm:max-w-4xl sm:rounded-lg sm:border">
+                    <DialogHeader className="p-6 pb-0">
+                        <DialogTitle>Your Order</DialogTitle>
                         <DialogDescription>
-                            Fill your details, pay via QR, and confirm your order on WhatsApp.
+                            Confirm your details and place the order.
                         </DialogDescription>
                     </DialogHeader>
-                    <form onSubmit={handleSendToWhatsapp} className="space-y-4 max-h-[70vh] overflow-y-auto p-1 pr-3">
-                        <div className="space-y-2">
-                            <Label htmlFor={`name-${cardId}`}>Full Name</Label>
-                            <Input id={`name-${cardId}`} name="name" placeholder="Priya Sharma" required onChange={handleDetailsChange} value={customerDetails.name} suppressHydrationWarning />
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor={`email-${cardId}`}>Email</Label>
-                            <Input id={`email-${cardId}`} name="email" type="email" placeholder="you@example.com" required onChange={handleDetailsChange} value={customerDetails.email} suppressHydrationWarning />
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor={`phone-${cardId}`}>Phone Number</Label>
-                            <Input id={`phone-${cardId}`} name="phone" type="tel" placeholder="9876543210" required onChange={handleDetailsChange} value={customerDetails.phone} suppressHydrationWarning />
-                        </div>
-                        
-                        <div className="space-y-2">
-                            <Label>Delivery Method</Label>
-                            <RadioGroup
-                                value={deliveryMethod}
-                                onValueChange={handleDeliveryMethodChange}
-                                className="flex space-x-4 pt-2"
-                                defaultValue="home-delivery"
-                            >
-                                <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="home-delivery" id={`home-delivery-${cardId}`} />
-                                    <Label htmlFor={`home-delivery-${cardId}`} className="font-normal">Home Delivery</Label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="take-away" id={`take-away-${cardId}`} />
-                                    <Label htmlFor={`take-away-${cardId}`} className="font-normal">Take Away</Label>
-                                </div>
-                            </RadioGroup>
-                        </div>
-                        
-                        {deliveryMethod === 'home-delivery' && (
-                            <>
+                    <form id={`form-${cardId}`} onSubmit={handleSendToWhatsapp}>
+                        <div className="grid md:grid-cols-2 md:gap-8 overflow-y-auto px-6 h-[calc(100vh-150px)] sm:h-auto sm:max-h-[65vh]">
+                            {/* Left Column: Form fields */}
+                            <div className="space-y-4 py-4">
+                                <h3 className="text-lg font-semibold">Contact & Delivery Details</h3>
+                                
                                 <div className="space-y-2">
-                                    <Label htmlFor={`address-${cardId}`}>Delivery Address</Label>
-                                    <Input id={`address-${cardId}`} name="address" placeholder="123 Main St, Rampurhat" required={deliveryMethod === 'home-delivery'} onChange={handleDetailsChange} value={customerDetails.address} suppressHydrationWarning />
+                                    <Label htmlFor={`name-${cardId}`}>Full Name</Label>
+                                    <Input id={`name-${cardId}`} name="name" placeholder="Priya Sharma" required onChange={handleDetailsChange} value={customerDetails.name} suppressHydrationWarning />
                                 </div>
                                 <div className="space-y-2">
-                                    <Label htmlFor={`landmark-${cardId}`}>Landmark</Label>
-                                    <Input id={`landmark-${cardId}`} name="landmark" placeholder="Near City Mall" onChange={handleDetailsChange} value={customerDetails.landmark} suppressHydrationWarning />
+                                    <Label htmlFor={`email-${cardId}`}>Email</Label>
+                                    <Input id={`email-${cardId}`} name="email" type="email" placeholder="you@example.com" required onChange={handleDetailsChange} value={customerDetails.email} suppressHydrationWarning />
                                 </div>
                                 <div className="space-y-2">
-                                    <Label htmlFor={`pincode-${cardId}`}>Pincode</Label>
-                                    <Input id={`pincode-${cardId}`} name="pincode" type="text" placeholder="731224" maxLength={6} required={deliveryMethod === 'home-delivery'} onChange={handleDetailsChange} value={customerDetails.pincode} suppressHydrationWarning />
+                                    <Label htmlFor={`phone-${cardId}`}>Phone Number</Label>
+                                    <Input id={`phone-${cardId}`} name="phone" type="tel" placeholder="9876543210" required onChange={handleDetailsChange} value={customerDetails.phone} suppressHydrationWarning />
                                 </div>
-                            </>
-                        )}
-                        
-                        <div className="space-y-2">
-                            <Label htmlFor={`date-${cardId}`}>
-                                {deliveryMethod === 'home-delivery' ? 'Delivery Date' : 'Pickup Date'}
-                            </Label>
-                            <Popover>
-                                <PopoverTrigger asChild>
-                                    <Button
-                                        variant={"outline"}
-                                        className={cn(
-                                            "w-full justify-start text-left font-normal bg-[#f3f3f3] border-2 border-transparent rounded-md h-10 px-3 text-foreground transition-all duration-500 hover:bg-white hover:border-[#4a9dec] focus-visible:bg-white focus-visible:border-[#4a9dec] focus-visible:shadow-date-focus focus-visible:ring-0 focus-visible:ring-offset-0",
-                                            !date && "text-muted-foreground"
-                                        )}
-                                        suppressHydrationWarning
+                                
+                                <div className="space-y-2">
+                                    <Label>Delivery Method</Label>
+                                    <RadioGroup
+                                        value={deliveryMethod}
+                                        onValueChange={handleDeliveryMethodChange}
+                                        className="flex space-x-4 pt-2"
+                                        defaultValue="home-delivery"
                                     >
-                                        <CalendarIcon className="mr-2 h-4 w-4" />
-                                        {date ? format(date, "PPP") : <span>Pick a date</span>}
-                                    </Button>
-                                </PopoverTrigger>
-                                <PopoverContent className="w-auto p-0 z-[200]">
-                                    <Calendar
-                                        mode="single"
-                                        selected={date}
-                                        onSelect={setDate}
-                                        disabled={{ before: tomorrow }}
-                                    />
-                                </PopoverContent>
-                            </Popover>
-                        </div>
-
-                        <div className="space-y-2">
-                            <Label htmlFor={`time-slot-${cardId}`}>{deliveryMethod === 'home-delivery' ? 'Delivery Time' : 'Pickup Time'}</Label>
-                            <Select value={timeSlot} onValueChange={setTimeSlot}>
-                                <SelectTrigger
-                                id={`time-slot-${cardId}`}
-                                className="w-full justify-start text-left font-normal bg-[#f3f3f3] border-2 border-transparent rounded-md h-10 px-3 text-foreground transition-all duration-500 hover:bg-white hover:border-[#4a9dec] focus-visible:bg-white focus-visible:border-[#4a9dec] focus-visible:shadow-date-focus focus-visible:ring-0 focus-visible:ring-offset-0"
-                                suppressHydrationWarning
-                                >
-                                <SelectValue placeholder="Select a time slot" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                {timeSlots.map((slot) => (
-                                    <SelectItem key={slot} value={slot}>
-                                    {slot}
-                                    </SelectItem>
-                                ))}
-                                </SelectContent>
-                            </Select>
-                        </div>
-                        
-                        <div className="space-y-2">
-                            <Label>Payment Method</Label>
-                            <RadioGroup
-                                value={paymentMethod}
-                                onValueChange={setPaymentMethod}
-                                className="flex space-x-4 pt-2"
-                                defaultValue="prepaid"
-                            >
-                                <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="prepaid" id={`prepaid-product-${cardId}`} />
-                                    <Label htmlFor={`prepaid-product-${cardId}`} className="font-normal">Pay Now</Label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="cod" id={`cod-product-${cardId}`} />
-                                    <Label htmlFor={`cod-product-${cardId}`} className="font-normal">Cash on Delivery</Label>
-                                </div>
-                            </RadioGroup>
-                        </div>
-
-                        {paymentMethod === 'prepaid' && (
-                            <>
-                                <Separator />
-                                
-                                <div className="text-sm text-center text-green-700 bg-green-50 p-3 rounded-md border border-green-200">
-                                    <p className="font-semibold text-base">You're dealing with genuine people!</p>
-                                    <p className="mt-2 font-semibold">Please double-check the Transaction ID (UTR). Orders without a correct UTR cannot be processed.</p>
-                                    <p className="mt-2 text-xs text-green-600">
-                                        <a href="tel:8436860216" className="hover:underline">Contact: 8436860216</a>
-                                        <span className="mx-2">|</span>
-                                        <a href="https://google.com/maps/place/Combo+Cafe+%26+Gifts+Shop/data=!4m2!3m1!1s0x0:0x20d4a8fe5d070ebc?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer" className="hover:underline">Location: Nischintapur, Rampurhat</a>
-                                    </p>
-                                </div>
-
-                                <div className="flex items-center justify-center py-2">
-                                    {qrCodeUrl ? (
-                                        <Image
-                                            src={qrCodeUrl}
-                                            alt="UPI QR Code for payment"
-                                            width={200}
-                                            height={200}
-                                            className="rounded-md ring-1 ring-border"
-                                            priority
-                                        />
-                                    ) : (
-                                        <div className="w-[200px] h-[200px] flex items-center justify-center bg-gray-100 rounded-md">
-                                            <p className="text-sm text-gray-500">Generating QR Code...</p>
+                                        <div className="flex items-center space-x-2">
+                                            <RadioGroupItem value="home-delivery" id={`home-delivery-${cardId}`} />
+                                            <Label htmlFor={`home-delivery-${cardId}`} className="font-normal">Home Delivery</Label>
                                         </div>
-                                    )}
+                                        <div className="flex items-center space-x-2">
+                                            <RadioGroupItem value="take-away" id={`take-away-${cardId}`} />
+                                            <Label htmlFor={`take-away-${cardId}`} className="font-normal">Take Away</Label>
+                                        </div>
+                                    </RadioGroup>
                                 </div>
                                 
-                                {qrCodeUrl && upiLink && (
-                                    <div className="py-2">
-                                        <Button
-                                            type="button"
-                                            onClick={() => { window.location.href = upiLink; }}
-                                            className="w-full"
-                                            suppressHydrationWarning
+                                {deliveryMethod === 'home-delivery' && (
+                                    <>
+                                        <div className="space-y-2">
+                                            <Label htmlFor={`address-${cardId}`}>Delivery Address</Label>
+                                            <Input id={`address-${cardId}`} name="address" placeholder="123 Main St, Rampurhat" required={deliveryMethod === 'home-delivery'} onChange={handleDetailsChange} value={customerDetails.address} suppressHydrationWarning />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor={`landmark-${cardId}`}>Landmark</Label>
+                                            <Input id={`landmark-${cardId}`} name="landmark" placeholder="Near City Mall" onChange={handleDetailsChange} value={customerDetails.landmark} suppressHydrationWarning />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor={`pincode-${cardId}`}>Pincode</Label>
+                                            <Input id={`pincode-${cardId}`} name="pincode" type="text" placeholder="731224" maxLength={6} required={deliveryMethod === 'home-delivery'} onChange={handleDetailsChange} value={customerDetails.pincode} suppressHydrationWarning />
+                                        </div>
+                                    </>
+                                )}
+                                
+                                <div className="space-y-2">
+                                    <Label htmlFor={`date-${cardId}`}>
+                                        {deliveryMethod === 'home-delivery' ? 'Delivery Date' : 'Pickup Date'}
+                                    </Label>
+                                    <Popover>
+                                        <PopoverTrigger asChild>
+                                            <Button
+                                                variant={"outline"}
+                                                className={cn(
+                                                    "w-full justify-start text-left font-normal bg-[#f3f3f3] border-2 border-transparent rounded-md h-10 px-3 text-foreground transition-all duration-500 hover:bg-white hover:border-[#4a9dec] focus-visible:bg-white focus-visible:border-[#4a9dec] focus-visible:shadow-date-focus focus-visible:ring-0 focus-visible:ring-offset-0",
+                                                    !date && "text-muted-foreground"
+                                                )}
+                                                suppressHydrationWarning
+                                            >
+                                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                                {date ? format(date, "PPP") : <span>Pick a date</span>}
+                                            </Button>
+                                        </PopoverTrigger>
+                                        <PopoverContent className="w-auto p-0 z-[200]">
+                                            <Calendar
+                                                mode="single"
+                                                selected={date}
+                                                onSelect={setDate}
+                                                disabled={{ before: tomorrow }}
+                                            />
+                                        </PopoverContent>
+                                    </Popover>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor={`time-slot-${cardId}`}>{deliveryMethod === 'home-delivery' ? 'Delivery Time' : 'Pickup Time'}</Label>
+                                    <Select value={timeSlot} onValueChange={setTimeSlot}>
+                                        <SelectTrigger
+                                        id={`time-slot-${cardId}`}
+                                        className="w-full justify-start text-left font-normal bg-[#f3f3f3] border-2 border-transparent rounded-md h-10 px-3 text-foreground transition-all duration-500 hover:bg-white hover:border-[#4a9dec] focus-visible:bg-white focus-visible:border-[#4a9dec] focus-visible:shadow-date-focus focus-visible:ring-0 focus-visible:ring-offset-0"
+                                        suppressHydrationWarning
                                         >
-                                            Pay using UPI App
-                                        </Button>
+                                        <SelectValue placeholder="Select a time slot" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                        {timeSlots.map((slot) => (
+                                            <SelectItem key={slot} value={slot}>
+                                            {slot}
+                                            </SelectItem>
+                                        ))}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            </div>
+                            
+                            {/* Right Column: Order Summary & Payment */}
+                            <div className="space-y-6 py-4">
+                                <div>
+                                    <h3 className="text-lg font-semibold mb-2">Order Summary</h3>
+                                    <Card>
+                                        <CardContent className="p-4 space-y-3">
+                                            <div className="flex justify-between items-center">
+                                                <div className="flex items-center gap-3">
+                                                    <Image src={item.imageUrl} alt={item.name} width={48} height={48} className="rounded-md" />
+                                                    <div>
+                                                        <p className="font-semibold text-sm">{item.name}</p>
+                                                        <p className="text-sm text-muted-foreground">Qty: 1</p>
+                                                    </div>
+                                                </div>
+                                                <p className="font-semibold text-sm">Rs. {parseFloat(item.price).toFixed(2)}</p>
+                                            </div>
+                                            <Separator />
+                                            <div className="space-y-1 text-sm">
+                                                <div className="flex justify-between">
+                                                    <span>Subtotal</span>
+                                                    <span>Rs. {parseFloat(item.price).toFixed(2)}</span>
+                                                </div>
+                                                <div className="flex justify-between">
+                                                    <span>Delivery</span>
+                                                    <span>Rs. {(finalPrice - parseFloat(item.price) - 5).toFixed(2)}</span>
+                                                </div>
+                                                <div className="flex justify-between">
+                                                    <span>Handling Fee</span>
+                                                    <span>Rs. 5.00</span>
+                                                </div>
+                                                <Separator />
+                                                <div className="flex justify-between font-bold text-base">
+                                                    <span>Total</span>
+                                                    <span>Rs. {finalPrice.toFixed(2)}</span>
+                                                </div>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label>Payment Method</Label>
+                                    <RadioGroup
+                                        value={paymentMethod}
+                                        onValueChange={setPaymentMethod}
+                                        className="flex space-x-4 pt-2"
+                                        defaultValue="prepaid"
+                                    >
+                                        <div className="flex items-center space-x-2">
+                                            <RadioGroupItem value="prepaid" id={`prepaid-product-${cardId}`} />
+                                            <Label htmlFor={`prepaid-product-${cardId}`} className="font-normal">Pay Now</Label>
+                                        </div>
+                                        <div className="flex items-center space-x-2">
+                                            <RadioGroupItem value="cod" id={`cod-product-${cardId}`} />
+                                            <Label htmlFor={`cod-product-${cardId}`} className="font-normal">Cash on Delivery</Label>
+                                        </div>
+                                    </RadioGroup>
+                                </div>
+
+                                {paymentMethod === 'prepaid' && (
+                                    <div className="space-y-4 rounded-lg border p-4">
+                                        <div className="text-sm text-center text-green-700 bg-green-50 p-3 rounded-md border border-green-200">
+                                            <p className="font-semibold">You're dealing with genuine people!</p>
+                                            <p className="mt-1">Please double-check the Transaction ID (UTR). Orders without a correct UTR cannot be processed.</p>
+                                            <p className="mt-1 text-xs text-green-600">
+                                                <a href="tel:8436860216" className="hover:underline">Contact: 8436860216</a>
+                                                <span className="mx-2">|</span>
+                                                <a href="https://google.com/maps/place/Combo+Cafe+%26+Gifts+Shop/data=!4m2!3m1!1s0x0:0x20d4a8fe5d070ebc?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer" className="hover:underline">Location: Nischintapur, Rampurhat</a>
+                                            </p>
+                                        </div>
+
+                                        <div className="flex items-center justify-center">
+                                            {qrCodeUrl ? (
+                                                <Image
+                                                    src={qrCodeUrl}
+                                                    alt="UPI QR Code for payment"
+                                                    width={180}
+                                                    height={180}
+                                                    className="rounded-md ring-1 ring-border"
+                                                    priority
+                                                />
+                                            ) : (
+                                                <div className="w-[180px] h-[180px] flex items-center justify-center bg-gray-100 rounded-md">
+                                                    <p className="text-sm text-gray-500">Generating QR Code...</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                        
+                                        {qrCodeUrl && upiLink && (
+                                            <Button
+                                                type="button"
+                                                onClick={() => { window.location.href = upiLink; }}
+                                                className="w-full"
+                                                suppressHydrationWarning
+                                            >
+                                                Pay using UPI App
+                                            </Button>
+                                        )}
+
+                                        <div className="space-y-2 text-center">
+                                            <Label htmlFor={`transactionId-product-${cardId}`}>UPI Transaction ID (UTR)</Label>
+                                            <Input
+                                                id={`transactionId-product-${cardId}`}
+                                                value={transactionId}
+                                                onChange={(e) => setTransactionId(e.target.value)}
+                                                placeholder="Enter 12-digit UTR here"
+                                                required={paymentMethod === 'prepaid'}
+                                                minLength={12}
+                                                className="text-lg text-center font-mono tracking-widest bg-gray-50 border-2 border-dashed"
+                                                suppressHydrationWarning
+                                            />
+                                        </div>
                                     </div>
                                 )}
-
-                                <div className="space-y-2 text-center">
-                                    <Label htmlFor={`transactionId-product-${cardId}`}>UPI Transaction ID (UTR)</Label>
-                                    <Input
-                                        id={`transactionId-product-${cardId}`}
-                                        value={transactionId}
-                                        onChange={(e) => setTransactionId(e.target.value)}
-                                        placeholder="Enter 12-digit UTR here"
-                                        required={paymentMethod === 'prepaid'}
-                                        minLength={12}
-                                        className="text-lg text-center font-mono tracking-widest bg-gray-50 border-2 border-dashed"
-                                        suppressHydrationWarning
-                                    />
-                                </div>
-                            </>
-                        )}
-
-                        <DialogFooter className="sm:justify-start pt-4">
+                            </div>
+                        </div>
+                        <DialogFooter className="px-6 pb-6 pt-4 border-t bg-background absolute bottom-0 left-0 right-0 sm:relative">
                             {paymentMethod === 'prepaid' ? (
-                                <Button type="submit" className="w-full" disabled={!transactionId || transactionId.length < 12} suppressHydrationWarning>
+                                <Button type="submit" form={`form-${cardId}`} className="w-full" size="lg" disabled={!transactionId || transactionId.length < 12} suppressHydrationWarning>
                                     I have paid - Place Order on WhatsApp
                                 </Button>
                             ) : (
-                                 <Button type="submit" className="w-full" suppressHydrationWarning>
+                                 <Button type="submit" form={`form-${cardId}`} className="w-full" size="lg" suppressHydrationWarning>
                                     Place Order on WhatsApp
                                 </Button>
                             )}
