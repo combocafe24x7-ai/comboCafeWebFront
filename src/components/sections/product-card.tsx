@@ -394,8 +394,7 @@ ${paymentInfo}
                                 
                                 <div className="text-sm text-center text-green-700 bg-green-50 p-3 rounded-md border border-green-200">
                                     <p className="font-semibold text-base">You're dealing with genuine people!</p>
-                                    <p className="mt-2">To avoid delays from payment issues, please double-check the UPI Transaction ID (UTR) you enter.</p>
-                                    <p className="font-semibold mt-2">Orders are confirmed only after payment verification, and orders without a correct UTR cannot be processed.</p>
+                                    <p className="mt-2 font-semibold">Please double-check the Transaction ID (UTR). Orders without a correct UTR cannot be processed.</p>
                                     <p className="mt-2 text-xs text-green-600">
                                         <a href="tel:8436860216" className="hover:underline">Contact: 8436860216</a>
                                         <span className="mx-2">|</span>
