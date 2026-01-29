@@ -504,8 +504,8 @@ Transaction ID: *${transactionId}*
         </div>
       </main>
        <Dialog open={isQrModalOpen} onOpenChange={handlePaymentModalOpenChange}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
+        <DialogContent className="p-0 sm:max-w-md flex flex-col max-h-[95vh] h-full sm:h-auto">
+          <DialogHeader className="p-6 pb-4 border-b shrink-0">
             <DialogTitle>Scan to Pay</DialogTitle>
             <DialogDescription>
               1. Scan the QR code to pay Rs. {total.toFixed(2)}.
@@ -515,7 +515,7 @@ Transaction ID: *${transactionId}*
               3. Click confirm to place your order via WhatsApp.
             </DialogDescription>
           </DialogHeader>
-          <div className="max-h-[70vh] overflow-y-auto -mx-6 px-6 pb-4">
+          <div className="overflow-y-auto flex-grow p-6">
               <div className="text-sm text-center text-green-700 bg-green-50 p-3 rounded-md border border-green-200">
                 <p className="font-semibold text-base">You're dealing with genuine people!</p>
                 <p className="mt-2 font-semibold">Please double-check the Transaction ID (UTR). Orders without a correct UTR cannot be processed.</p>
@@ -569,7 +569,7 @@ Transaction ID: *${transactionId}*
                 />
               </div>
             </div>
-            <DialogFooter className="sm:justify-start pt-4 px-6 pb-6 border-t">
+            <DialogFooter className="p-6 pt-4 border-t mt-auto shrink-0 sm:justify-start">
               <Button onClick={handleSendToWhatsapp} className="w-full" disabled={!transactionId || transactionId.length < 12} suppressHydrationWarning>
                 I have paid - Place Order on WhatsApp
               </Button>
