@@ -65,7 +65,6 @@ export default function CheckoutPage() {
     "12:00 PM - 02:00 PM",
     "02:00 PM - 04:00 PM",
     "04:00 PM - 06:00 PM",
-    "06:00 PM - 08:00 PM"
   ];
 
   const takeAwayTimeSlots = [
@@ -591,7 +590,9 @@ Transaction ID: *${transactionId}*
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
               onClick={() => {
                 setIsQrModalOpen(false);
-                router.push('/');
+                setTimeout(() => {
+                  router.push('/');
+                }, 300);
               }}
             >
               Cancel Order
