@@ -75,6 +75,8 @@ const CollectionCard = ({ item, priority }: { item: CollectionItem; priority?: b
         "10:00 AM - 12:00 PM",
         "12:00 PM - 02:00 PM",
         "02:00 PM - 04:00 PM",
+        "04:00 PM - 06:00 PM",
+        "06:00 PM - 08:00 PM"
     ];
 
     const takeAwayTimeSlots = [
@@ -481,7 +483,7 @@ ${paymentInfo}
                                         <div className="space-y-4 rounded-lg border p-4">
                                             <div className="text-sm text-center text-green-700 bg-green-50 p-3 rounded-md border border-green-200">
                                                 <p className="font-semibold">You're dealing with genuine people!</p>
-                                                <p className="mt-1 font-semibold">Please double-check the Transaction ID (UTR). Orders without a correct UTR cannot be processed.</p>
+                                                <p className="mt-1 font-semibold">Please double-check the Transaction ID. Orders without a correct ID cannot be processed.</p>
                                                 <p className="mt-2 text-xs text-green-600">
                                                     <a href="tel:8436860216" className="hover:underline">Contact: 8436860216</a>
                                                     <span className="mx-2">|</span>
@@ -518,12 +520,12 @@ ${paymentInfo}
                                             )}
 
                                             <div className="space-y-2 text-center pt-4">
-                                                <Label htmlFor={`transactionId-collection-${cardId}`} className="text-center w-full block">UPI Transaction ID (UTR)</Label>
                                                 <Input
                                                     id={`transactionId-collection-${cardId}`}
                                                     value={transactionId}
                                                     onChange={(e) => setTransactionId(e.target.value)}
-                                                    placeholder="Enter 12-digit UTR here"
+                                                    placeholder="Enter Transaction ID"
+                                                    aria-label="Transaction ID"
                                                     required={paymentMethod === 'prepaid'}
                                                     minLength={12}
                                                     className="text-lg text-center font-mono tracking-widest bg-gray-50 border-2 border-dashed"
