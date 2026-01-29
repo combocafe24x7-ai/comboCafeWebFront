@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { useCart } from '@/context/cart-provider';
+import Image from 'next/image';
 
 export default function MobileBottomNav() {
   const pathname = usePathname();
@@ -12,7 +13,7 @@ export default function MobileBottomNav() {
   return (
     <div className="md:hidden fixed bottom-0 left-0 right-0 bg-background border-t shadow-t-lg z-40">
       <div className="flex justify-around items-center h-16">
-        {config.mobile.bottomNav.map((item) => {
+        {(config.mobile.bottomNav as any[]).map((item) => {
           const Icon = item.Icon;
           const isActive = pathname === item.href;
           const isCart = item.id === 'cart';
@@ -24,7 +25,14 @@ export default function MobileBottomNav() {
                     {cart.length}
                   </div>
                 )}
-                <Icon className={cn("h-6 w-6", isActive && "text-primary")} />
+                
+                {item.imageUrl ? (
+                  <div className="relative w-6 h-6">
+                    <Image src={item.imageUrl} alt={item.label} fill sizes="24px" unoptimized/>
+                  </div>
+                ) : (
+                  Icon && <Icon className={cn("h-6 w-6", isActive && "text-primary")} />
+                )}
               </div>
               <span className={cn("text-xs", isActive && "text-primary")}>
                 {item.label}
