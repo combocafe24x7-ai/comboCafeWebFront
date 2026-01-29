@@ -167,7 +167,11 @@ const CollectionCard = ({ item, priority }: { item: CollectionItem; priority?: b
     
     const handlePaymentModalOpenChange = (open: boolean) => {
         if (!open) {
-            setIsCancelConfirmOpen(true);
+            if (orderMethod === 'call') {
+                setIsQrModalOpen(false);
+            } else {
+                setIsCancelConfirmOpen(true);
+            }
         }
     };
 
@@ -310,7 +314,7 @@ ${paymentInfo}
 
             {item.price && (
                 <Dialog open={isQrModalOpen} onOpenChange={handlePaymentModalOpenChange}>
-                    <DialogContent className="w-screen h-screen max-w-full rounded-none border-0 p-0 sm:h-auto sm:w-full sm:max-w-4xl sm:rounded-lg sm:border" onPointerDownOutside={(e) => e.preventDefault()} onEscapeKeyDown={(e) => e.preventDefault()}>
+                    <DialogContent className="w-screen h-screen max-w-full rounded-none border-0 p-0 sm:h-auto sm:w-full sm:max-w-4xl sm:rounded-lg sm:border">
                         <DialogHeader className="p-6 pb-0">
                             <DialogTitle>Your Order</DialogTitle>
                             <DialogDescription>
@@ -594,9 +598,12 @@ ${paymentInfo}
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                         <AlertDialogCancel>Go Back</AlertDialogCancel>
-                        <AlertDialogAction 
+                        <AlertDialogAction
                             className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                            onClick={() => setIsQrModalOpen(false)}>
+                            onClick={() => {
+                                setIsQrModalOpen(false);
+                                // No redirect here, just close the modal
+                            }}>
                             Cancel Order
                         </AlertDialogAction>
                     </AlertDialogFooter>

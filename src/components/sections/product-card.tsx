@@ -211,7 +211,11 @@ ${paymentInfo}
 
     const handlePaymentModalOpenChange = (open: boolean) => {
         if (!open) {
-            setIsCancelConfirmOpen(true);
+            if (orderMethod === 'call') {
+                setIsQrModalOpen(false);
+            } else {
+                setIsCancelConfirmOpen(true);
+            }
         }
     };
 
@@ -267,7 +271,7 @@ ${paymentInfo}
                 </CardContent>
             </Card>
             <Dialog open={isQrModalOpen} onOpenChange={handlePaymentModalOpenChange}>
-                <DialogContent className="w-screen h-screen max-w-full rounded-none border-0 p-0 sm:h-auto sm:w-full sm:max-w-4xl sm:rounded-lg sm:border" onPointerDownOutside={(e) => e.preventDefault()} onEscapeKeyDown={(e) => e.preventDefault()}>
+                <DialogContent className="w-screen h-screen max-w-full rounded-none border-0 p-0 sm:h-auto sm:w-full sm:max-w-4xl sm:rounded-lg sm:border">
                     <DialogHeader className="p-6 pb-0">
                         <DialogTitle>Your Order</DialogTitle>
                         <DialogDescription>
