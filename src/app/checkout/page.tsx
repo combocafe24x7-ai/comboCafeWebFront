@@ -213,6 +213,18 @@ export default function CheckoutPage() {
     }
   };
 
+  const handleConfirmCancel = () => {
+    // Close the confirmation dialog to start its exit animation
+    setIsCancelConfirmOpen(false);
+
+    // After a delay, clean up the state for the main QR modal
+    setTimeout(() => {
+      localStorage.removeItem('checkoutState');
+      localStorage.removeItem('checkoutCustomerDetails');
+      setIsQrModalOpen(false);
+    }, 200); // 200ms delay for animation
+  };
+
   const handleSendToWhatsapp = () => {
     if (!transactionId || transactionId.length < 10) {
         toast({
@@ -714,12 +726,7 @@ ${deliveryDetails}
             <AlertDialogCancel>Go Back</AlertDialogCancel>
             <AlertDialogAction
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-              onClick={() => {
-                localStorage.removeItem('checkoutState');
-                localStorage.removeItem('checkoutCustomerDetails');
-                setIsQrModalOpen(false);
-                setIsCancelConfirmOpen(false);
-              }}
+              onClick={handleConfirmCancel}
             >
               Cancel Order
             </AlertDialogAction>

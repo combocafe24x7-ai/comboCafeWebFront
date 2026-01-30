@@ -35,6 +35,16 @@ export const ProductCard = ({ item, priority }: { item: Product; priority?: bool
     const [qrCodeUrl, setQrCodeUrl] = useState('');
     const [upiLink, setUpiLink] = useState('');
 
+    const handleCancelOrder = () => {
+        // Close the confirmation dialog to start its exit animation
+        setIsCancelConfirmOpen(false);
+
+        // After a delay for the animation, close the main dialog
+        setTimeout(() => {
+            setIsQrModalOpen(false);
+        }, 200);
+    };
+
     const finalPrice = useMemo(() => {
         const price = parseFloat(item.price);
         let delivery = 0;
@@ -213,9 +223,9 @@ ${paymentInfo}
         if (!open) {
             if (orderMethod === 'call') {
                 setIsQrModalOpen(false);
-            } else {
-                setIsCancelConfirmOpen(true);
+                return;
             }
+            setIsCancelConfirmOpen(true);
         }
     };
 
@@ -557,10 +567,7 @@ ${paymentInfo}
                         <AlertDialogCancel>Go Back</AlertDialogCancel>
                         <AlertDialogAction
                           className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                          onClick={() => {
-                            setIsQrModalOpen(false);
-                            // No redirect here, just close the modal
-                        }}>
+                          onClick={handleCancelOrder}>
                             Cancel Order
                         </AlertDialogAction>
                     </AlertDialogFooter>

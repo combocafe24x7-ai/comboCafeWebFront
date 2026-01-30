@@ -53,6 +53,16 @@ const CollectionCard = ({ item, priority }: { item: CollectionItem; priority?: b
     const [upiLink, setUpiLink] = useState('');
     const router = useRouter();
 
+    const handleCancelOrder = () => {
+        // Close the confirmation dialog to start its exit animation
+        setIsCancelConfirmOpen(false);
+
+        // After a delay for the animation, close the main dialog
+        setTimeout(() => {
+            setIsQrModalOpen(false);
+        }, 200);
+    };
+
     const finalPrice = useMemo(() => {
         if (!item.price) return 0;
         const price = parseFloat(item.price);
@@ -169,9 +179,9 @@ const CollectionCard = ({ item, priority }: { item: CollectionItem; priority?: b
         if (!open) {
             if (orderMethod === 'call') {
                 setIsQrModalOpen(false);
-            } else {
-                setIsCancelConfirmOpen(true);
+                return;
             }
+            setIsCancelConfirmOpen(true);
         }
     };
 
@@ -600,10 +610,7 @@ ${paymentInfo}
                         <AlertDialogCancel>Go Back</AlertDialogCancel>
                         <AlertDialogAction
                             className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                            onClick={() => {
-                                setIsQrModalOpen(false);
-                                // No redirect here, just close the modal
-                            }}>
+                            onClick={handleCancelOrder}>
                             Cancel Order
                         </AlertDialogAction>
                     </AlertDialogFooter>
