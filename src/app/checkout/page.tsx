@@ -151,6 +151,17 @@ export default function CheckoutPage() {
     }
   }, [isQrModalOpen, total, toast]);
 
+  useEffect(() => {
+    const checkoutState = localStorage.getItem('checkoutState');
+    if (checkoutState === 'paymentPending' && cart.length > 0) {
+      const savedDetails = localStorage.getItem('checkoutCustomerDetails');
+      if (savedDetails) {
+        setCustomerDetails(JSON.parse(savedDetails));
+        setIsQrModalOpen(true);
+      }
+    }
+  }, [cart.length]);
+
   const handleRemoveAllOfItem = (productId: string) => {
     removeFromCart(productId, true);
   }
@@ -178,24 +189,28 @@ export default function CheckoutPage() {
       return;
     }
     
-    setCustomerDetails({
+    const customerData = {
         name: formData.get('name'),
         email: formData.get('email'),
         phone: formData.get('phone'),
         address: formData.get('address'),
         landmark: formData.get('landmark'),
         pincode: pincode,
-    });
-
+    };
+    setCustomerDetails(customerData);
+    localStorage.setItem('checkoutCustomerDetails', JSON.stringify(customerData));
+    localStorage.setItem('checkoutState', 'paymentPending');
     setIsQrModalOpen(true);
   };
   
   const handlePaymentModalOpenChange = (open: boolean) => {
     if (!open) {
-      // User is trying to close the dialog, show confirmation
+      if (orderMethod === 'call') {
+        setIsQrModalOpen(false);
+        return;
+      }
       setIsCancelConfirmOpen(true);
     }
-    // Do not close the main dialog here, let the confirmation dialog handle it
   };
 
   const handleSendToWhatsapp = () => {
@@ -249,6 +264,8 @@ Transaction ID: *${transactionId}*
     window.open(whatsappUrl, '_blank');
     
     clearCart();
+    localStorage.removeItem('checkoutState');
+    localStorage.removeItem('checkoutCustomerDetails');
     setIsQrModalOpen(false);
     toast({
         title: "Order details sent!",
@@ -314,6 +331,8 @@ ${deliveryDetails}
     window.open(whatsappUrl, '_blank');
     
     clearCart();
+    localStorage.removeItem('checkoutState');
+    localStorage.removeItem('checkoutCustomerDetails');
     toast({
         title: "Order details sent!",
         description: "Your COD order has been sent via WhatsApp. We will confirm shortly.",
@@ -696,7 +715,10 @@ ${deliveryDetails}
             <AlertDialogAction
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
               onClick={() => {
+                localStorage.removeItem('checkoutState');
+                localStorage.removeItem('checkoutCustomerDetails');
                 setIsQrModalOpen(false);
+                setIsCancelConfirmOpen(false);
                 setTimeout(() => {
                   router.push('/');
                 }, 300);
