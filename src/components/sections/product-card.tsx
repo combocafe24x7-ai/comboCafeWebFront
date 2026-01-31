@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import QRCode from 'qrcode';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -35,14 +35,95 @@ export const ProductCard = ({ item, priority }: { item: Product; priority?: bool
     const [qrCodeUrl, setQrCodeUrl] = useState('');
     const [upiLink, setUpiLink] = useState('');
 
-    const handleCancelOrder = () => {
-        // Close the confirmation dialog to start its exit animation
-        setIsCancelConfirmOpen(false);
+    const [userLocation, setUserLocation] = useState<{latitude: number, longitude: number} | null>(null);
+    const [locationError, setLocationError] = useState<string | null>(null);
+    const [isAddressVerified, setIsAddressVerified] = useState(false);
+    const [isVerificationInProgress, setIsVerificationInProgress] = useState(false);
+    const [showDeliveryErrorModal, setShowDeliveryErrorModal] = useState(false);
+    const permissionRequested = useRef(false);
 
-        // After a delay for the animation, close the main dialog
+    const STORE_COORDINATES = { latitude: 24.1818, longitude: 87.7901 };
+
+    function getDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
+        const R = 6371; // Radius of the earth in km
+        const dLat = deg2rad(lat2 - lat1);
+        const dLon = deg2rad(lon2 - lon1);
+        const a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const d = R * c; // Distance in km
+        return d;
+    }
+
+    function deg2rad(deg: number) {
+        return deg * (Math.PI / 180);
+    }
+    
+    const requestLocation = () => {
+        if (deliveryMethod !== 'home-delivery' || userLocation || locationError || permissionRequested.current) {
+            return;
+        }
+        permissionRequested.current = true;
+        setIsVerificationInProgress(true);
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                setUserLocation({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                });
+                setLocationError(null);
+                setIsVerificationInProgress(false);
+            },
+            (error) => {
+                if (error.code === error.PERMISSION_DENIED) {
+                    setLocationError("Location permission denied. Please enable it to check delivery availability.");
+                } else {
+                    setLocationError("Could not get location. Please check your device settings.");
+                }
+                setIsVerificationInProgress(false);
+            },
+            { timeout: 10000 }
+        );
+    }
+
+    const handleVerifyAddress = () => {
+        if (!userLocation) {
+            requestLocation();
+            toast({
+                variant: 'destructive',
+                title: 'Location not available',
+                description: 'Please allow location access to verify your address.',
+            });
+            return;
+        }
+
+        setIsVerificationInProgress(true);
+        const distance = getDistance(
+            userLocation.latitude,
+            userLocation.longitude,
+            STORE_COORDINATES.latitude,
+            STORE_COORDINATES.longitude
+        );
+
+        if (distance <= 5) {
+            setIsAddressVerified(true);
+            toast({
+                title: 'Address Verified!',
+                description: 'Your location is within our delivery area.',
+            });
+        } else {
+            setShowDeliveryErrorModal(true);
+        }
+        setIsVerificationInProgress(false);
+    };
+
+    const handleCancelOrder = () => {
+        setIsCancelConfirmOpen(false);
         setTimeout(() => {
             setIsQrModalOpen(false);
-        }, 200);
+        }, 300);
     };
 
     const finalPrice = useMemo(() => {
@@ -87,6 +168,7 @@ export const ProductCard = ({ item, priority }: { item: Product; priority?: bool
     
     const handleDeliveryMethodChange = (value: string) => {
         setDeliveryMethod(value);
+        setIsAddressVerified(false);
         if (value === 'home-delivery') {
             setTimeSlot(deliveryTimeSlots[0]);
         } else {
@@ -350,16 +432,27 @@ ${paymentInfo}
                                             <>
                                                 <div className="space-y-2">
                                                     <Label htmlFor={`address-${cardId}`}>Delivery Address</Label>
-                                                    <Input id={`address-${cardId}`} name="address" placeholder="123 Main St, Rampurhat" required={deliveryMethod === 'home-delivery'} onChange={handleDetailsChange} value={customerDetails.address} suppressHydrationWarning />
+                                                    <Input id={`address-${cardId}`} name="address" placeholder="123 Main St, Rampurhat" required={deliveryMethod === 'home-delivery'} onChange={handleDetailsChange} onFocus={requestLocation} onInput={() => setIsAddressVerified(false)} value={customerDetails.address} suppressHydrationWarning />
+                                                    <p className="text-xs text-muted-foreground pt-1">📍 We use your location only to check delivery availability within 5 km.</p>
+                                                     {locationError && (
+                                                        <p className="text-sm text-destructive pt-1">{locationError}</p>
+                                                    )}
                                                 </div>
                                                 <div className="space-y-2">
                                                     <Label htmlFor={`landmark-${cardId}`}>Landmark</Label>
-                                                    <Input id={`landmark-${cardId}`} name="landmark" placeholder="Near City Mall" onChange={handleDetailsChange} value={customerDetails.landmark} suppressHydrationWarning />
+                                                    <Input id={`landmark-${cardId}`} name="landmark" placeholder="Near City Mall" onChange={handleDetailsChange} onInput={() => setIsAddressVerified(false)} value={customerDetails.landmark} suppressHydrationWarning />
                                                 </div>
                                                 <div className="space-y-2">
                                                     <Label htmlFor={`pincode-${cardId}`}>Pincode</Label>
                                                     <Input id={`pincode-${cardId}`} name="pincode" type="text" value="731224" readOnly required={deliveryMethod === 'home-delivery'} className="bg-gray-100" suppressHydrationWarning />
                                                 </div>
+                                                {!isAddressVerified && (
+                                                    <div className="!mt-4">
+                                                        <Button type="button" onClick={handleVerifyAddress} className="w-full" disabled={isVerificationInProgress || !userLocation}>
+                                                             {isVerificationInProgress && !userLocation ? 'Getting Location...' : isVerificationInProgress ? 'Verifying...' : 'Submit Address & Verify Availability'}
+                                                        </Button>
+                                                    </div>
+                                                )}
                                             </>
                                         )}
                                         
@@ -532,11 +625,11 @@ ${paymentInfo}
                                 </div>
                                 <DialogFooter className="px-6 pb-6 pt-4 border-t bg-background absolute bottom-0 left-0 right-0 sm:relative">
                                     {paymentMethod === 'prepaid' ? (
-                                        <Button type="submit" form={`form-${cardId}`} className="w-full" size="lg" disabled={!transactionId || transactionId.length < 12} suppressHydrationWarning>
+                                        <Button type="submit" form={`form-${cardId}`} className="w-full" size="lg" disabled={!transactionId || transactionId.length < 12 || (deliveryMethod === 'home-delivery' && !isAddressVerified)} suppressHydrationWarning>
                                             I have paid - Place Order on WhatsApp
                                         </Button>
                                     ) : (
-                                         <Button type="submit" form={`form-${cardId}`} className="w-full" size="lg" suppressHydrationWarning>
+                                         <Button type="submit" form={`form-${cardId}`} className="w-full" size="lg" disabled={(deliveryMethod === 'home-delivery' && !isAddressVerified)} suppressHydrationWarning>
                                             Place Order on WhatsApp
                                          </Button>
                                     )}
@@ -569,6 +662,21 @@ ${paymentInfo}
                           className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                           onClick={handleCancelOrder}>
                             Cancel Order
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
+            <AlertDialog open={showDeliveryErrorModal} onOpenChange={setShowDeliveryErrorModal}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>🚫 Oops! Delivery Not Available</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            Deliveries are available only within a 5 km radius from our store. You appear to be outside this area.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogAction onClick={() => setShowDeliveryErrorModal(false)}>
+                            OK
                         </AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>

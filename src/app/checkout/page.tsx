@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { ArrowLeft, Plus, Minus, Trash2, Phone, Calendar as CalendarIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 import QRCode from 'qrcode';
 import {
   Dialog,
@@ -84,15 +84,6 @@ export default function CheckoutPage() {
     return deliveryMethod === 'home-delivery' ? deliveryTimeSlots : takeAwayTimeSlots;
   }, [deliveryMethod]);
 
-  const handleDeliveryMethodChange = (value: string) => {
-    setDeliveryMethod(value);
-    if (value === 'home-delivery') {
-      setTimeSlot(deliveryTimeSlots[0]);
-    } else {
-      setTimeSlot(takeAwayTimeSlots[0]);
-    }
-  };
-
   const [isQrModalOpen, setIsQrModalOpen] = useState(false);
   const [isCancelConfirmOpen, setIsCancelConfirmOpen] = useState(false);
   const [isClearCartConfirmOpen, setIsClearCartConfirmOpen] = useState(false);
@@ -100,6 +91,101 @@ export default function CheckoutPage() {
   const [customerDetails, setCustomerDetails] = useState<any>(null);
   const [qrCodeUrl, setQrCodeUrl] = useState('');
   const [upiLink, setUpiLink] = useState('');
+
+  // Location state
+  const [userLocation, setUserLocation] = useState<{latitude: number, longitude: number} | null>(null);
+  const [locationError, setLocationError] = useState<string | null>(null);
+  const [isAddressVerified, setIsAddressVerified] = useState(false);
+  const [isVerificationInProgress, setIsVerificationInProgress] = useState(false);
+  const [showDeliveryErrorModal, setShowDeliveryErrorModal] = useState(false);
+  const permissionRequested = useRef(false);
+
+  const STORE_COORDINATES = { latitude: 24.1818, longitude: 87.7901 };
+
+  function getDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
+    const R = 6371; // Radius of the earth in km
+    const dLat = deg2rad(lat2 - lat1);
+    const dLon = deg2rad(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const d = R * c; // Distance in km
+    return d;
+  }
+
+  function deg2rad(deg: number) {
+    return deg * (Math.PI / 180);
+  }
+  
+  const requestLocation = () => {
+    if (deliveryMethod !== 'home-delivery' || userLocation || locationError || permissionRequested.current) {
+        return;
+    }
+    permissionRequested.current = true;
+    setIsVerificationInProgress(true);
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            setUserLocation({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+            });
+            setLocationError(null);
+            setIsVerificationInProgress(false);
+        },
+        (error) => {
+            if (error.code === error.PERMISSION_DENIED) {
+                setLocationError("Location permission denied. Please enable it to check delivery availability.");
+            } else {
+                setLocationError("Could not get location. Please check your device settings.");
+            }
+            setIsVerificationInProgress(false);
+        },
+        { timeout: 10000 }
+    );
+  }
+
+  const handleVerifyAddress = () => {
+      if (!userLocation) {
+          requestLocation();
+          toast({
+              variant: 'destructive',
+              title: 'Location not available',
+              description: 'Please allow location access to verify your address.',
+          });
+          return;
+      }
+
+      setIsVerificationInProgress(true);
+      const distance = getDistance(
+          userLocation.latitude,
+          userLocation.longitude,
+          STORE_COORDINATES.latitude,
+          STORE_COORDINATES.longitude
+      );
+
+      if (distance <= 5) {
+          setIsAddressVerified(true);
+          toast({
+              title: 'Address Verified!',
+              description: 'Your location is within our delivery area.',
+          });
+      } else {
+          setShowDeliveryErrorModal(true);
+      }
+      setIsVerificationInProgress(false);
+  };
+
+  const handleDeliveryMethodChange = (value: string) => {
+    setDeliveryMethod(value);
+    setIsAddressVerified(false);
+    if (value === 'home-delivery') {
+      setTimeSlot(deliveryTimeSlots[0]);
+    } else {
+      setTimeSlot(takeAwayTimeSlots[0]);
+    }
+  };
 
   const cartItems = useMemo((): CartItemView[] => {
     const groupedItems: { [key: string]: CartItemView } = {};
@@ -214,15 +300,12 @@ export default function CheckoutPage() {
   };
 
   const handleConfirmCancel = () => {
-    // Close the confirmation dialog to start its exit animation
     setIsCancelConfirmOpen(false);
-
-    // After a delay, clean up the state for the main QR modal
     setTimeout(() => {
-      localStorage.removeItem('checkoutState');
-      localStorage.removeItem('checkoutCustomerDetails');
-      setIsQrModalOpen(false);
-    }, 200); // 200ms delay for animation
+        setIsQrModalOpen(false);
+        localStorage.removeItem('checkoutState');
+        localStorage.removeItem('checkoutCustomerDetails');
+    }, 300);
   };
 
   const handleSendToWhatsapp = () => {
@@ -515,16 +598,27 @@ ${deliveryDetails}
                                 <>
                                     <div className="space-y-2">
                                         <Label htmlFor="address">Delivery Address</Label>
-                                        <Input id="address" name="address" placeholder="123 Main St, Rampurhat" required={deliveryMethod === 'home-delivery'} suppressHydrationWarning />
+                                        <Input id="address" name="address" placeholder="123 Main St, Rampurhat" required={deliveryMethod === 'home-delivery'} suppressHydrationWarning onFocus={requestLocation} onInput={() => setIsAddressVerified(false)} />
+                                        <p className="text-xs text-muted-foreground pt-1">📍 We use your location only to check delivery availability within 5 km.</p>
+                                        {locationError && (
+                                            <p className="text-sm text-destructive pt-1">{locationError}</p>
+                                        )}
                                     </div>
                                     <div className="space-y-2">
                                         <Label htmlFor="landmark">Landmark</Label>
-                                        <Input id="landmark" name="landmark" placeholder="Near City Mall" suppressHydrationWarning />
+                                        <Input id="landmark" name="landmark" placeholder="Near City Mall" suppressHydrationWarning onInput={() => setIsAddressVerified(false)} />
                                     </div>
                                     <div className="space-y-2">
                                         <Label htmlFor="pincode">Pincode</Label>
                                         <Input id="pincode" name="pincode" type="text" value="731224" readOnly required={deliveryMethod === 'home-delivery'} className="bg-gray-100" suppressHydrationWarning />
                                     </div>
+                                    {!isAddressVerified && (
+                                        <div className="!mt-4">
+                                            <Button type="button" onClick={handleVerifyAddress} className="w-full" disabled={isVerificationInProgress || !userLocation}>
+                                                {isVerificationInProgress && !userLocation ? 'Getting Location...' : isVerificationInProgress ? 'Verifying...' : 'Submit Address & Verify Availability'}
+                                            </Button>
+                                        </div>
+                                    )}
                                 </>
                             )}
 
@@ -598,11 +692,11 @@ ${deliveryDetails}
 
 
                             {paymentMethod === 'prepaid' ? (
-                                <Button type="submit" className="w-full" size="lg" disabled={cart.length === 0} suppressHydrationWarning>
+                                <Button type="submit" className="w-full" size="lg" disabled={cart.length === 0 || (deliveryMethod === 'home-delivery' && !isAddressVerified)} suppressHydrationWarning>
                                     Place Order
                                 </Button>
                             ) : (
-                                <Button type="button" onClick={handleCodWhatsappOrder} className="w-full" size="lg" disabled={cart.length === 0} suppressHydrationWarning>
+                                <Button type="button" onClick={handleCodWhatsappOrder} className="w-full" size="lg" disabled={cart.length === 0 || (deliveryMethod === 'home-delivery' && !isAddressVerified)} suppressHydrationWarning>
                                     Place COD Order via WhatsApp
                                 </Button>
                             )}
@@ -748,6 +842,21 @@ ${deliveryDetails}
               onClick={handleClearCart}
             >
               Empty Cart
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+      <AlertDialog open={showDeliveryErrorModal} onOpenChange={setShowDeliveryErrorModal}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>🚫 Oops! Delivery Not Available</AlertDialogTitle>
+            <AlertDialogDescription>
+              Deliveries are available only within a 5 km radius from our store. You appear to be outside this area.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={() => setShowDeliveryErrorModal(false)}>
+              OK
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
